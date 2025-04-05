@@ -1,3 +1,4 @@
+class_name SpikeFish
 extends Area2D
 
 const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
@@ -48,6 +49,9 @@ func _shoot_spikes() -> void:
 		spike.rotation = angle
 		
 		parent.add_child(spike)
+
+func take_damage(amount: int):
+	print("fish took some damage")
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
