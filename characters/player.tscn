@@ -842,6 +842,7 @@ script = ExtResource("10_q605b")
 [node name="NetThrowDirection" type="Marker2D" parent="NetThrower"]
 position = Vector2(29, -60)
 
+[connection signal="Die" from="." to="AnimationPlayer" method="_on_player_die"]
 [connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]
 [connection signal="Jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
 [connection signal="Die" from="Health" to="." method="_on_health_die"]

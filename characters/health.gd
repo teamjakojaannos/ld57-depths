@@ -20,7 +20,7 @@ signal Hurt
 		var old_health = health
 		health = clamp(value, 0, max_health)
 
-		if Engine.is_editor_hint():
+		if Engine.is_editor_hint() or _is_killed:
 			return
 
 		var change = health - old_health
@@ -30,11 +30,13 @@ signal Hurt
 			Hurt.emit()
 		
 		if health <= 0:
+			_is_killed = true
 			Die.emit()
 
+var _is_killed: bool = false
 var is_dead: bool:
 	get:
-		return health <=  0
+		return health <= 0
 
 func _ready() -> void:
 	health = max_health

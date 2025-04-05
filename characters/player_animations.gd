@@ -45,7 +45,7 @@ func _on_player_jumped() -> void:
 	_is_jumping = true
 
 
-func _on_player_died() -> void:
+func _on_player_die() -> void:
 	play("die")
 
 

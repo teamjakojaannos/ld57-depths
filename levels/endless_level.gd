@@ -74,7 +74,7 @@ func _transition_to_next_level() -> void:
 	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
 	transition.tween_property(player, "position", player_goal_position, transition_duration)
 	
-	$"../Overlay/ObjectiveOverlay".show_objective("KILL", "EVERY", "FISH")
+	objective_overlay.show_objective("KILL", "EVERY", "FISH", 1.0)
 
 	await transition.finished
 
@@ -90,3 +90,7 @@ func _freeze_player() -> void:
 
 func _release_player() -> void:
 	player.is_in_transition = false
+
+var objective_overlay: ObjectiveOverlay:
+	get:
+		return $"../Overlay/ObjectiveOverlay"

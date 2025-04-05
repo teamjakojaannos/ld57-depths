@@ -204,6 +204,10 @@ enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
 
+[node name="Blocker" parent="EndlessLevel/Level" index="1"]
+visible = false
+collision_enabled = false
+
 [node name="LevelPart" parent="EndlessLevel/Level/BottomLevelPart" index="0" instance=ExtResource("3_y7kp8")]
 
 [node name="Walls" type="Parallax2D" parent="EndlessLevel"]
