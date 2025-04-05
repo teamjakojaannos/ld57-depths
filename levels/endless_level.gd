@@ -1,7 +1,6 @@
 extends Node2D
 class_name EndlessLevel
 
-@onready var level_prefab: PackedScene = preload("res://levels/generation/level.tscn")
 @onready var current_level: Level = $Level
 @onready var player: Player = $"../Player"
 
@@ -37,6 +36,7 @@ func _transition_to_next_level() -> void:
 
 	_is_transition_in_progress = true
 
+	var level_prefab: PackedScene = load("res://levels/generation/level.tscn")
 	var new_level: Node2D = level_prefab.instantiate()
 	add_child(new_level)
 
