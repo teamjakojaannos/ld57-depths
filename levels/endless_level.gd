@@ -58,15 +58,21 @@ func _transition_to_next_level() -> void:
 	var old_level_goal_position = Vector2.UP * _level_height_total
 	var new_level_goal_position = Vector2.ZERO
 	var player_goal_position = player.position + Vector2.UP * _level_height_total
+	# HACK: offset slightly to create illusion of falling
+	player_goal_position += Vector2.DOWN * (28.0 * tile_size)
+
 	current_level.position = Vector2.ZERO
 	new_level.position = Vector2.DOWN * _level_height_total
 
 	var transition = create_tween()
 	transition.set_parallel(true)
+	transition.set_trans(Tween.TRANS_SPRING)
+	transition.set_ease(Tween.EASE_OUT)
+
 	transition.tween_property(current_level, "position", old_level_goal_position, transition_duration)
 	transition.tween_property(new_level, "position", new_level_goal_position, transition_duration)
-	transition.tween_property(player, "position", player_goal_position, transition_duration)
 	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
+	transition.tween_property(player, "position", player_goal_position, transition_duration)
 
 	await transition.finished
 

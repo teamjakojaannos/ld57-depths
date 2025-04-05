@@ -30,7 +30,7 @@ sources/0 = SubResource("TileSetAtlasSource_p0d6h")
 
 [node name="EndlessLevel" type="Node2D" parent="."]
 script = ExtResource("1_vhr6a")
-level_height_in_tiles = 29
+level_height_in_tiles = 64
 level_part_prefabs = Array[PackedScene]([ExtResource("2_cnc74"), ExtResource("3_ughyh")])
 connector_part_prefabs = Array[PackedScene]([ExtResource("3_arvxu"), ExtResource("4_y7kp8"), ExtResource("5_ughyh"), ExtResource("6_5ycdb")])
 enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
