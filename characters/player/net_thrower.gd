@@ -11,7 +11,7 @@ func _on_net_thrower_fire(direction: Vector2) -> void:
 	_spawn_projectile(direction)
 
 func _spawn_projectile(direction: Vector2) -> void:
-	var projectile: NetProjectile = net_attack_prefab.instantiate()
+	var projectile: Projectile = net_attack_prefab.instantiate()
 	
 	projectile.global_position = global_position
 	var net_direction = ($"../NetThrowDirection".global_position - global_position).normalized()

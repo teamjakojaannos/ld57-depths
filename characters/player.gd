@@ -4,11 +4,10 @@ extends CharacterBody2D
 const SPEED = 150.0
 const JUMP_VELOCITY = -250.0
 
-@export var max_hp = 10
-var hp = max_hp
-
 var is_in_transition: bool = false
-var is_dead: bool = false
+var is_dead: bool:
+	get:
+		return $Health.is_dead
 
 var _slowdown_amount: float
 var _push_force: Vector2 = Vector2.ZERO
@@ -24,9 +23,11 @@ func apply_slow(amount: float, duration: float) -> void:
 
 	_slowdown_amount = move_toward(_slowdown_amount, 0, amount)
 
+
 signal Jumped
-signal Died
+signal Die
 signal Hurt
+
 
 var is_moving: bool:
 	get:
@@ -60,6 +61,8 @@ static func look_at_str(direction: LookingAt) -> String:
 			return "right"
 		_:
 			return "unknown"
+			
+
 
 func _physics_process(delta: float) -> void:
 	if is_in_transition:
@@ -97,16 +100,9 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("attack_2"):
 		$NetThrower.fire(self, look_direction)
 
-func take_damage(amount: int):
-	hp -= amount
-	if hp <= 0:
-		die()
-	else:
-		Hurt.emit()
 
-func die():
-	if is_dead:
-		return
-	is_dead = true
+func _on_health_die() -> void:
+	Die.emit()
 
-	Died.emit()
+func _on_health_hurt() -> void:
+	Hurt.emit()

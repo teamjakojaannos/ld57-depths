@@ -12,9 +12,10 @@ var ready_to_attack: bool = false
 @export var min_spike_count = 3
 @export var max_spike_count = 8
 
-@export var max_hp = 5
-var hp = max_hp
-var is_dead = false
+
+var is_dead: bool:
+	get:
+		return $Health.is_dead
 
 func _ready() -> void:
 	# get some variation so fishes don't instantly attack on entering new level
@@ -57,23 +58,21 @@ func _shoot_spikes() -> void:
 		
 		parent.add_child(spike)
 
-func take_damage(amount: int):
-	if is_dead:
-		return
-	
-	hp -= amount
-	if hp <= 0:
-		is_dead = true
-		$AnimationPlayer.play("die")
-		await $AnimationPlayer.animation_finished
-		queue_free()
-	else:
-		# stop current animation in case we have another hurt animation playing
-		$AnimationPlayer.stop()
-		$AnimationPlayer.play("hurt")
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
 	var x = cos(angle)
 	var y = sin(angle)
 	return Vector2(x, y)
+
+
+func _on_health_hurt() -> void:
+	# stop current animation in case we have another hurt animation playing
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("hurt")
+
+
+func _on_health_die() -> void:
+	$AnimationPlayer.play("die")
+	await $AnimationPlayer.animation_finished
+	queue_free()

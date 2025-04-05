@@ -9,13 +9,13 @@ func _on_harpoon_gun_fire(direction: Vector2) -> void:
 	_spawn_projectile(direction)
 
 func _spawn_projectile(direction: Vector2) -> void:
-	var projectile: HarpoonProjectile = harpoon_scene.instantiate()
+	var projectile: Projectile = harpoon_scene.instantiate()
 
 	var offset = position
 	offset.x *= sign(direction.x)
 
 	projectile.global_position = get_parent().global_position + offset
-	projectile.speed = direction * projectile_speed
+	projectile.velocity = direction * projectile_speed
 	projectile.damage = projectile_damage
 	
 	var current_map = Globals.level.current_level

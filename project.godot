@@ -71,6 +71,7 @@ attack_2={
 2d_physics/layer_1="obstacle"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
+2d_physics/layer_4="wall"
 
 [physics]
 

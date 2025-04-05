@@ -21,11 +21,15 @@ script = ExtResource("1_bokrc")
 [node name="Bounds" type="Node2D" parent="."]
 
 [node name="LeftBoundary" type="StaticBody2D" parent="Bounds"]
+collision_layer = 9
+collision_mask = 9
 
 [node name="Shape" type="CollisionShape2D" parent="Bounds/LeftBoundary"]
 shape = SubResource("WorldBoundaryShape2D_ndswy")
 
 [node name="RightBoundary" type="StaticBody2D" parent="Bounds"]
+collision_layer = 9
+collision_mask = 9
 
 [node name="Shape" type="CollisionShape2D" parent="Bounds/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_bokrc")
