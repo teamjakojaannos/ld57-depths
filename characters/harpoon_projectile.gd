@@ -1,11 +1,12 @@
 class_name HarpoonProjectile
 extends Area2D
 
-var speed = 100.0
-var damage = 1
+var speed: Vector2 = Vector2.RIGHT * 100.0
+var damage: int = 1
 
 func _physics_process(delta: float) -> void:
-	position.x += speed * delta
+	position += speed * delta
+	rotation = speed.angle()
 	
 func _on_area_entered(other: Area2D) -> void:
 	if other is SpikeFish:

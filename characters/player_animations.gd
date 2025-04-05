@@ -1,13 +1,16 @@
 extends AnimationPlayer
 
 @onready var player: Player = $".."
-var anim_direction = "right"
 
 var _is_jumping = false
 
 func _process(_delta: float) -> void:
-	if !player.is_dead and abs(player.velocity.x) > 0.1:
-		anim_direction = "left" if player.velocity.x < 0 else "right"
+	var anim_direction = "left"
+	match player.looking_at:
+		Player.LookingAt.LEFT:
+			anim_direction = "left"
+		Player.LookingAt.RIGHT:
+			anim_direction = "right"
 
 	if !player.is_dead and player.is_on_floor():
 		_is_jumping = false

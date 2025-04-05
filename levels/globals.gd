@@ -5,6 +5,7 @@ class_name GameGlobals
 @export var current_room_index: int = 0
 
 @export var player: Player
+@export var level: EndlessLevel
 
 func reset() -> void:
 	depth = 0.0

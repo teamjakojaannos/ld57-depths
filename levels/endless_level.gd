@@ -29,6 +29,7 @@ var _level_height_total: float:
 func _ready() -> void:
 	Globals.reset()
 	Globals.player = $"../Player"
+	Globals.level = self
 
 	current_level = $Level
 	current_level.Finished.connect(next_level)
