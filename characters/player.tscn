@@ -77,3 +77,6 @@ shape = SubResource("CapsuleShape2D_x0jl3")
 libraries = {
 &"": SubResource("AnimationLibrary_x0jl3")
 }
+
+[node name="HarpoonSpawn" type="Marker2D" parent="."]
+position = Vector2(20, -21)
