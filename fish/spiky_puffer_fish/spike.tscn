@@ -1,26 +1,26 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv7qqj0er6f4y"]
+[gd_scene load_steps=5 format=3 uid="uid://bv7qqj0er6f4y"]
 
-[ext_resource type="Script" uid="uid://dx7hqkyhr67vh" path="res://fish/spiky_puffer_fish/spike.gd" id="1_axd3l"]
 [ext_resource type="Texture2D" uid="uid://cx0yqjvqex2ft" path="res://graphics/spike.png" id="1_k8k4s"]
+[ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_wovym"]
+[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="3_wovym"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_axd3l"]
-size = Vector2(3, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wovym"]
+size = Vector2(6, 3)
 
 [node name="Spike" type="Area2D"]
 collision_layer = 0
 collision_mask = 3
-script = ExtResource("1_axd3l")
+script = ExtResource("1_wovym")
+
+[node name="Lifetime" type="Node" parent="."]
+script = ExtResource("3_wovym")
+metadata/_custom_type_script = "uid://dhxp0561m5pwb"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
 texture = ExtResource("1_k8k4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_axd3l")
-
-[node name="Lifetime" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-autostart = true
+shape = SubResource("RectangleShape2D_wovym")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="Lifetime" to="." method="_lifetime_expired"]

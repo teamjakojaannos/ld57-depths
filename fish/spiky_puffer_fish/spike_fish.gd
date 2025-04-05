@@ -48,15 +48,12 @@ func _shoot_spikes() -> void:
 	for _s in spike_count:
 		var spawn = point_on_unit_circle()
 		var velocity = spawn * randf_range(min_spike_speed, max_spike_speed)
-		var angle = zero.angle_to_point(spawn)
-		angle += PI / 2.0
 		
-		var spike: Spike = spike_scene.instantiate()
+		var spike: Projectile = spike_scene.instantiate()
 		spike.velocity = velocity
 		spike.global_position = $SpikeOrigin.global_position + spawn
-		spike.rotation = angle
 		
-		parent.add_child(spike)
+		Globals.level.current_level.add_child(spike)
 
 
 func point_on_unit_circle() -> Vector2:
