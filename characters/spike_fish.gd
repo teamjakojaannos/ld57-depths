@@ -15,7 +15,7 @@ func _do_attack() -> void:
 		var angle = origin.angle_to_point(spawn.global_position)
 		angle += PI / 2.0
 		
-		spike.linear_velocity = velocity
+		spike.velocity = velocity
 		spike.global_position = spawn.global_position
 		spike.rotation = angle
 		
