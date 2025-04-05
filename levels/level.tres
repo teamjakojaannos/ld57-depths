@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://djhl6rrvyuldm"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://djhl6rrvyuldm"]
 
 [ext_resource type="Texture2D" uid="uid://dcm56e4fuatja" path="res://levels/programmer_art_tiles.png" id="1_ed4d4"]
+[ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="2_6468l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6468l"]
 texture = ExtResource("1_ed4d4")
@@ -296,6 +297,25 @@ texture = ExtResource("1_ed4d4")
 4:3/0/terrains_peering_bit/left_side = 0
 4:3/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mk1w5"]
+texture = ExtResource("2_6468l")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [resource]
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 2
@@ -306,3 +326,4 @@ terrain_set_0/terrain_1/color = Color(1, 0.439216, 0.25098, 1)
 terrain_set_0/terrain_2/name = "Bubbles"
 terrain_set_0/terrain_2/color = Color(0.470588, 1, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_6468l")
+sources/1 = SubResource("TileSetAtlasSource_mk1w5")

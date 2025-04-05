@@ -28,6 +28,9 @@ var _level_height_total: float:
 @export var enemy_prefabs: Array[PackedScene] = []
 
 func _ready() -> void:
+	Globals.reset()
+	Globals.player = $"../Player"
+
 	current_level = $Level
 	current_level.Finished.connect(next_level)
 	
@@ -44,6 +47,8 @@ func _transition_to_next_level() -> void:
 		return
 
 	_is_transition_in_progress = true
+	
+	Globals.current_room_index += 1
 
 	var level_prefab: PackedScene = load("res://levels/generation/level.tscn")
 	var new_level: Level = level_prefab.instantiate()
@@ -61,6 +66,8 @@ func _transition_to_next_level() -> void:
 	transition.tween_property(current_level, "position", old_level_goal_position, transition_duration)
 	transition.tween_property(new_level, "position", new_level_goal_position, transition_duration)
 	transition.tween_property(player, "position", player_goal_position, transition_duration)
+	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
+
 	await transition.finished
 
 	var old_level = current_level
