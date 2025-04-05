@@ -15,6 +15,11 @@ run/main_scene="uid://n36ccijtj8is"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_height"
+
 [dotnet]
 
 project/assembly_name="depths"
