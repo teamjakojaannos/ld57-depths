@@ -1,6 +1,6 @@
 extends Area2D
 
-const spike_scene = preload("res://characters/spike.tscn")
+const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
 @export var spike_speed = 100.0
 
 func _do_attack() -> void:

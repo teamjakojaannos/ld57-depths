@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nq12kdbslhu2" path="res://levels/generation/templates/con_platform_01.tscn" id="3_arvxu"]
 [ext_resource type="Script" uid="uid://c0jwiq3xuu5o5" path="res://camera/camera_controller.gd" id="3_cnc74"]
 [ext_resource type="PackedScene" uid="uid://c35xcm5fhvq4e" path="res://levels/generation/templates/part_basic_02.tscn" id="3_ughyh"]
-[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://characters/spike_fish.tscn" id="3_vpik0"]
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="3_vpik0"]
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
 [ext_resource type="PackedScene" uid="uid://bvopgdtktl31q" path="res://levels/generation/templates/con_platform_02.tscn" id="4_y7kp8"]
 [ext_resource type="PackedScene" uid="uid://c2j550rhs0pdq" path="res://levels/generation/templates/con_bubbles_01.tscn" id="5_ughyh"]

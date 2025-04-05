@@ -3,7 +3,7 @@ class_name Level
 
 signal Finished
 
-const spike_fish_prefab = preload("res://characters/spike_fish.tscn")
+const spike_fish_prefab = preload("res://fish/spiky_puffer_fish/spike_fish.tscn")
 
 func finish() -> void:
 	Finished.emit()

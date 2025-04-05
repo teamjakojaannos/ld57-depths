@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://ufxrj7wc6mfv"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_434qw"]
-[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://characters/spike_fish.tscn" id="2_kfa7i"]
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="2_kfa7i"]
 [ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="3_x27he"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbyq"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bv7qqj0er6f4y"]
 
-[ext_resource type="Script" uid="uid://dx7hqkyhr67vh" path="res://characters/spike.gd" id="1_axd3l"]
+[ext_resource type="Script" uid="uid://dx7hqkyhr67vh" path="res://fish/spiky_puffer_fish/spike.gd" id="1_axd3l"]
 [ext_resource type="Texture2D" uid="uid://cx0yqjvqex2ft" path="res://graphics/spike.png" id="1_k8k4s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_axd3l"]
