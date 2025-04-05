@@ -29,4 +29,15 @@ position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_bokrc")
 debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
 
+[node name="SpikeFishSpawns" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpikeFishSpawns"]
+position = Vector2(-244.836, -281.082)
+
+[node name="Marker2D2" type="Marker2D" parent="SpikeFishSpawns"]
+position = Vector2(79.1721, -177.219)
+
+[node name="Marker2D3" type="Marker2D" parent="SpikeFishSpawns"]
+position = Vector2(-244.836, -106.095)
+
 [connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]
