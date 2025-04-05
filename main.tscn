@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://n36ccijtj8is"]
+[gd_scene load_steps=3 format=3 uid="uid://n36ccijtj8is"]
+
+[ext_resource type="Script" uid="uid://025ul1c73l5t" path="res://world/start_game_button.gd" id="1_ig7tw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7dm0k"]
 font_size = 24
 
-[node name="Control" type="Control"]
+[node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -44,3 +46,10 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "A Ludum Dare 57 Game"
 horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="Title"]
+layout_mode = 2
+text = "I want to play!"
+script = ExtResource("1_ig7tw")
+
+[connection signal="pressed" from="Title/Button" to="Title/Button" method="_start_button_pressed"]
