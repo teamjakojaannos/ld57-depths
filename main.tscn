@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://n36ccijtj8is"]
 
-[ext_resource type="Script" uid="uid://025ul1c73l5t" path="res://world/start_game_button.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://025ul1c73l5t" path="res://world/start_game.gd" id="1_ig7tw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7dm0k"]
 font_size = 24
@@ -21,6 +21,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117057, 0.117057, 0.117057, 1)
+
+[node name="SplashTimeout" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+script = ExtResource("1_ig7tw")
 
 [node name="Title" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -47,9 +53,4 @@ layout_mode = 2
 text = "A Ludum Dare 57 Game"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="Title"]
-layout_mode = 2
-text = "I want to play!"
-script = ExtResource("1_ig7tw")
-
-[connection signal="pressed" from="Title/Button" to="Title/Button" method="_start_button_pressed"]
+[connection signal="timeout" from="SplashTimeout" to="SplashTimeout" method="_start_game"]
