@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends Area2D
 
 const spike_scene = preload("res://characters/spike.tscn")
 @export var spike_speed = 100.0

@@ -18,5 +18,5 @@ func spawn_enemies():
 	var spawn_point = spawn_points.pick_random()
 
 	var fish: Node2D = spike_fish_prefab.instantiate()
-	fish.global_position = spawn_point.global_position
+	fish.position = spawn_point.position
 	add_child(fish)
