@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ufxrj7wc6mfv"]
+[gd_scene load_steps=5 format=3 uid="uid://ufxrj7wc6mfv"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_0u2o0"]
 [ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="2_jjmkw"]
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://characters/spike_fish.tscn" id="3_jjmkw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbyq"]
 size = Vector2(170, 22)
@@ -12,6 +13,9 @@ size = Vector2(170, 22)
 zoom = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("1_0u2o0")]
+
+[node name="SpikeFish" parent="." instance=ExtResource("3_jjmkw")]
+position = Vector2(125.014, -30.0512)
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 89)
