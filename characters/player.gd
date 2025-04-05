@@ -8,6 +8,7 @@ const JUMP_VELOCITY = -400.0
 var hp = max_hp
 
 var is_in_transition: bool = false
+var is_dead: bool = false
 
 var harpoon_scene = preload("res://characters/harpoon_projectile.tscn")
 var is_harpoon_ready = true
@@ -16,15 +17,15 @@ var is_harpoon_ready = true
 func _physics_process(delta: float) -> void:
 	if is_in_transition:
 		return
-	
+
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and !is_dead:
 		velocity.y = JUMP_VELOCITY
 
 	var direction = Input.get_axis("left", "right")
-	if direction:
+	if direction and !is_dead:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
@@ -37,11 +38,19 @@ func _input(event: InputEvent) -> void:
 
 func take_damage(amount: int):
 	hp -= amount
-	print("Ouch, my hp is: ", hp)
-	$AnimationPlayer.play("take_damage")
+	if hp <= 0:
+		die()
+	else:
+		$AnimationPlayer.play("take_damage")
+
+func die():
+	if is_dead:
+		return
+	is_dead = true
+	$AnimationPlayer.play("die")
 
 func do_harpoon_attack():
-	if !is_harpoon_ready or is_in_transition:
+	if !is_harpoon_ready or is_in_transition or is_dead:
 		return
 	
 	var projectile: HarpoonProjectile = harpoon_scene.instantiate()
