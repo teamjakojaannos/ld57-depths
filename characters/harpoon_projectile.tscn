@@ -8,7 +8,7 @@ size = Vector2(9, 3)
 
 [node name="HarpoonProjectile" type="Area2D"]
 collision_layer = 0
-collision_mask = 6
+collision_mask = 5
 script = ExtResource("1_1vnpa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -41,13 +41,24 @@ func take_damage(amount: int):
 	$AnimationPlayer.play("take_damage")
 
 func do_harpoon_attack():
-	if !is_harpoon_ready:
+	if !is_harpoon_ready or is_in_transition:
 		return
 	
 	var projectile: HarpoonProjectile = harpoon_scene.instantiate()
 	projectile.global_position = $HarpoonSpawn.global_position
-	get_parent().add_child(projectile)
+	var current_map = get_current_map()
+	if current_map == null:
+		printerr("Can't find map where to spawn projectiles")
+		return
+	current_map.add_child(projectile)
 	
 	is_harpoon_ready = false
 	await get_tree().create_timer(harpoon_cooldown).timeout
 	is_harpoon_ready = true
+
+func get_current_map():
+	var level = get_node_or_null("../EndlessLevel")
+	if level == null or level is not EndlessLevel:
+		return null
+	
+	return level.current_level
