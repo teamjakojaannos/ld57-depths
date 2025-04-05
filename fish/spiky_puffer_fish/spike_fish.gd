@@ -12,18 +12,22 @@ var ready_to_attack: bool = false
 @export var min_spike_count = 3
 @export var max_spike_count = 8
 
+@export var max_hp = 5
+var hp = max_hp
+var is_dead = false
+
 func _ready() -> void:
 	# get some variation so fishes don't instantly attack on entering new level
 	start_attack_cooldown(0.0, max_attack_cooldown)
 
 func _physics_process(_delta: float) -> void:
-	if ready_to_attack:
+	if ready_to_attack and !is_dead:
 		attack()
 
 func attack():
 	ready_to_attack = false
-	$AnimationPlayer.play("attack")
-	await $AnimationPlayer.animation_finished
+	$AttackAnimationPlayer.play("attack")
+	await $AttackAnimationPlayer.animation_finished
 	start_attack_cooldown(min_attack_cooldown, max_attack_cooldown)
 
 func start_attack_cooldown(min_cd: float, max_cd: float):
@@ -32,6 +36,9 @@ func start_attack_cooldown(min_cd: float, max_cd: float):
 	ready_to_attack = true
 
 func _shoot_spikes() -> void:
+	if is_dead:
+		return
+
 	var parent = get_parent()
 
 	var zero = Vector2(0, 0)
@@ -51,7 +58,19 @@ func _shoot_spikes() -> void:
 		parent.add_child(spike)
 
 func take_damage(amount: int):
-	print("fish took some damage")
+	if is_dead:
+		return
+	
+	hp -= amount
+	if hp <= 0:
+		is_dead = true
+		$AnimationPlayer.play("die")
+		await $AnimationPlayer.animation_finished
+		queue_free()
+	else:
+		# stop current animation in case we have another hurt animation playing
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("hurt")
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
