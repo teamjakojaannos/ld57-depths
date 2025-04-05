@@ -10,7 +10,7 @@ var hp = max_hp
 var is_in_transition: bool = false
 var is_dead: bool = false
 
-var harpoon_scene = preload("res://characters/harpoon_projectile.tscn")
+const harpoon_scene = preload("res://characters/harpoon_projectile.tscn")
 var is_harpoon_ready = true
 @export var harpoon_cooldown = 0.75
 

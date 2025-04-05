@@ -3,7 +3,7 @@ class_name Level
 
 signal Finished
 
-var spike_fish_prefab = preload("res://characters/spike_fish.tscn")
+const spike_fish_prefab = preload("res://characters/spike_fish.tscn")
 
 func _ready() -> void:
 	spawn_enemies()

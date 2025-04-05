@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-var spike_scene = preload("res://characters/spike.tscn")
+const spike_scene = preload("res://characters/spike.tscn")
 @export var spike_speed = 100.0
 
 func _do_attack() -> void:
