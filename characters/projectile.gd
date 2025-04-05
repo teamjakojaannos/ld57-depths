@@ -24,11 +24,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_area_entered(other: Area2D) -> void:
-	_on_body_entered(other)
-
+	# Hit something with health => damage
+	if other is Hurtbox:
+		other.health.health -= damage
 
 func _on_body_entered(other: Node2D) -> void:
-	var health = other.get_node_or_null("Health")
-	if health is Health:
-		health.health -= damage
+	# Hit something hard => destroy
 	self.queue_free()
