@@ -108,3 +108,9 @@ libraries = {
 
 [node name="HarpoonSpawn" type="Marker2D" parent="."]
 position = Vector2(20, -21)
+
+[node name="NetSpawn" type="Marker2D" parent="."]
+position = Vector2(14, -43)
+
+[node name="NetThrowDirection" type="Marker2D" parent="."]
+position = Vector2(29, -60)

@@ -14,6 +14,11 @@ const harpoon_scene = preload("res://characters/harpoon_projectile.tscn")
 var is_harpoon_ready = true
 @export var harpoon_cooldown = 0.75
 
+const net_attack_prefab = preload("res://characters/net_projectile.tscn")
+var is_net_attack_ready = true
+@export var net_attack_cooldown = 0.75
+@export var net_flying_speed = 75.0
+
 func _physics_process(delta: float) -> void:
 	if is_in_transition:
 		return
@@ -35,6 +40,8 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("attack_1"):
 		do_harpoon_attack()
+	elif event.is_action_pressed("attack_2"):
+		do_net_attack()
 
 func take_damage(amount: int):
 	hp -= amount
@@ -64,6 +71,25 @@ func do_harpoon_attack():
 	is_harpoon_ready = false
 	await get_tree().create_timer(harpoon_cooldown).timeout
 	is_harpoon_ready = true
+
+func do_net_attack():
+	if !is_net_attack_ready or is_in_transition or is_dead:
+		return
+
+	var current_map = get_current_map()
+	if current_map == null:
+		printerr("Can't find map where to spawn nets")
+		return
+
+	var net: NetProjectile = net_attack_prefab.instantiate()
+	net.global_position = $NetSpawn.global_position
+	var velocity = ($NetThrowDirection.global_position - $NetSpawn.global_position).normalized() * net_flying_speed
+	net.initial_velocity = velocity
+	current_map.add_child(net)
+
+	is_net_attack_ready = false
+	await get_tree().create_timer(net_attack_cooldown).timeout
+	is_net_attack_ready = true
 
 func get_current_map():
 	var level = get_node_or_null("../EndlessLevel")
