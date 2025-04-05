@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=13 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dqf30nhwiyrkn" path="res://levels/generation/templates/platform_02.tscn" id="3_y7kp8"]
 [ext_resource type="PackedScene" uid="uid://dm26lbxt62yt" path="res://levels/generation/templates/platform_03.tscn" id="4_ughyh"]
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
+[ext_resource type="PackedScene" uid="uid://daf4ocofnmlcr" path="res://levels/generation/templates/platform_04.tscn" id="5_y7kp8"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="10_yyd14"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="11_6f163"]
 
@@ -26,8 +27,8 @@ sources/0 = SubResource("TileSetAtlasSource_p0d6h")
 
 [node name="EndlessLevel" type="Node2D" parent="."]
 script = ExtResource("1_vhr6a")
-level_height_in_tiles = 48
-level_part_prefabs = Array[PackedScene]([ExtResource("2_kc1m6"), ExtResource("3_y7kp8"), ExtResource("4_ughyh")])
+level_height_in_tiles = 36
+level_part_prefabs = Array[PackedScene]([ExtResource("2_kc1m6"), ExtResource("3_y7kp8"), ExtResource("4_ughyh"), ExtResource("5_y7kp8")])
 enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
@@ -57,7 +58,7 @@ offset_right = 3315.0
 color = Color(0.0196078, 0.0588235, 0.105882, 1)
 
 [node name="Walls2" type="Parallax2D" parent="EndlessLevel"]
-modulate = Color(0.4, 0.4, 0.4, 1)
+modulate = Color(0.27, 0.27, 0.27, 1)
 z_index = -1
 scroll_scale = Vector2(0.9, 0.9)
 repeat_size = Vector2(0, 230.4)
@@ -73,7 +74,7 @@ tile_map_data = PackedByteArray("AADT/+b/AAADAAAAAADT/+f/AAAEAAIAAADT/+j/AAAEAAI
 tile_set = SubResource("TileSet_jkag2")
 
 [node name="Walls3" type="Parallax2D" parent="EndlessLevel"]
-modulate = Color(0.197377, 0.197377, 0.197376, 1)
+modulate = Color(0.0595108, 0.0595108, 0.0595103, 1)
 z_index = -2
 scroll_scale = Vector2(0.8, 0.8)
 repeat_size = Vector2(0, 211.2)

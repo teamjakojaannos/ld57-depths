@@ -58,7 +58,7 @@ func _transition_to_next_level() -> void:
 	var new_level_goal_position = Vector2.ZERO
 	var player_goal_position = player.position + Vector2.UP * _level_height_total
 	# HACK: offset slightly to create illusion of falling
-	player_goal_position += Vector2.DOWN * (20.0 * tile_size)
+	player_goal_position += Vector2.DOWN * (15.0 * tile_size)
 
 	current_level.position = Vector2.ZERO
 	new_level.position = Vector2.DOWN * _level_height_total

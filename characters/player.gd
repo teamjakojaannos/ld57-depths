@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED = 150.0
-const JUMP_VELOCITY = -120.0
+const JUMP_VELOCITY = -150.0
 
 @export var max_hp = 10
 var hp = max_hp
