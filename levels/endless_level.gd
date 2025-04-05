@@ -22,10 +22,19 @@ var _is_transition_in_progress: bool = false:
 var _level_height_total: float:
 	get:
 		return tile_size * level_height_in_tiles
+		
+@export var level_part_prefabs: Array[PackedScene] = []
+@export var connector_part_prefabs: Array[PackedScene] = []
+@export var enemy_prefabs: Array[PackedScene] = []
 
 func _ready() -> void:
 	current_level = $Level
 	current_level.Finished.connect(next_level)
+	
+	_generate_level.call_deferred(current_level)
+
+func _generate_level(level: Level) -> void:
+	level.generate(level_part_prefabs, connector_part_prefabs, enemy_prefabs)
 
 func next_level() -> void:
 	_transition_to_next_level.call_deferred()
@@ -37,7 +46,8 @@ func _transition_to_next_level() -> void:
 	_is_transition_in_progress = true
 
 	var level_prefab: PackedScene = load("res://levels/generation/level.tscn")
-	var new_level: Node2D = level_prefab.instantiate()
+	var new_level: Level = level_prefab.instantiate()
+	_generate_level(new_level)
 	add_child(new_level)
 
 	var old_level_goal_position = Vector2.UP * _level_height_total

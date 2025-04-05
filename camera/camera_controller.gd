@@ -10,7 +10,7 @@ var level_height_in_px: float:
 
 @export_category("Debug")
 @export_tool_button("Refresh preview")
-var _refresh_preview_button: Callable = _on_resized
+var refresh_preview_button: Callable = _on_resized
 
 func _ready() -> void:
 	_on_resized()

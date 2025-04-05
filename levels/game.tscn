@@ -1,14 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=12 format=3 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
+[ext_resource type="PackedScene" uid="uid://7hec8jbsrv5t" path="res://levels/generation/templates/part_basic_01.tscn" id="2_cnc74"]
+[ext_resource type="PackedScene" uid="uid://nq12kdbslhu2" path="res://levels/generation/templates/con_platform_01.tscn" id="3_arvxu"]
 [ext_resource type="Script" uid="uid://c0jwiq3xuu5o5" path="res://camera/camera_controller.gd" id="3_cnc74"]
+[ext_resource type="PackedScene" uid="uid://c35xcm5fhvq4e" path="res://levels/generation/templates/part_basic_02.tscn" id="3_ughyh"]
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://characters/spike_fish.tscn" id="3_vpik0"]
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
+[ext_resource type="PackedScene" uid="uid://bvopgdtktl31q" path="res://levels/generation/templates/con_platform_02.tscn" id="4_y7kp8"]
+[ext_resource type="PackedScene" uid="uid://c2j550rhs0pdq" path="res://levels/generation/templates/con_bubbles_01.tscn" id="5_ughyh"]
+[ext_resource type="PackedScene" uid="uid://cktv28emjs5xy" path="res://levels/generation/templates/con_bubbles_02.tscn" id="6_5ycdb"]
 
 [node name="Main" type="Node2D"]
 
 [node name="EndlessLevel" type="Node2D" parent="."]
 script = ExtResource("1_vhr6a")
+level_height_in_tiles = 26
+level_part_prefabs = Array[PackedScene]([ExtResource("2_cnc74"), ExtResource("3_ughyh")])
+connector_part_prefabs = Array[PackedScene]([ExtResource("3_arvxu"), ExtResource("4_y7kp8"), ExtResource("5_ughyh"), ExtResource("6_5ycdb")])
+enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
 
@@ -16,7 +27,7 @@ script = ExtResource("1_vhr6a")
 position = Vector2(0, -192)
 zoom = Vector2(1.6875, 1.6875)
 script = ExtResource("3_cnc74")
-level_height_in_tiles = 24
+level_height_in_tiles = 26
 
 [node name="Player" parent="." instance=ExtResource("4_vpik0")]
 position = Vector2(0, -96)
