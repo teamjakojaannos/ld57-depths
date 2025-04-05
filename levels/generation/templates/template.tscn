@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqnj1w08ijveo"]
+
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_7c1en"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
+size = Vector2(384, 128)
+
+[node name="LevelPart" type="Node2D"]
+
+[node name="Bounds" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_soyje")
+debug_color = Color(1, 1, 1, 0.0392157)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = ExtResource("1_7c1en")

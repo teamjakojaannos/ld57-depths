@@ -22,9 +22,8 @@ var _is_transition_in_progress: bool = false:
 var _level_height_total: float:
 	get:
 		return tile_size * level_height_in_tiles
-		
+
 @export var level_part_prefabs: Array[PackedScene] = []
-@export var connector_part_prefabs: Array[PackedScene] = []
 @export var enemy_prefabs: Array[PackedScene] = []
 
 func _ready() -> void:
@@ -37,7 +36,7 @@ func _ready() -> void:
 	_generate_level.call_deferred(current_level)
 
 func _generate_level(level: Level) -> void:
-	level.generate(level_part_prefabs, connector_part_prefabs, enemy_prefabs)
+	level.generate(level_part_prefabs, enemy_prefabs)
 
 func next_level() -> void:
 	_transition_to_next_level.call_deferred()
@@ -59,14 +58,14 @@ func _transition_to_next_level() -> void:
 	var new_level_goal_position = Vector2.ZERO
 	var player_goal_position = player.position + Vector2.UP * _level_height_total
 	# HACK: offset slightly to create illusion of falling
-	player_goal_position += Vector2.DOWN * (28.0 * tile_size)
+	player_goal_position += Vector2.DOWN * (20.0 * tile_size)
 
 	current_level.position = Vector2.ZERO
 	new_level.position = Vector2.DOWN * _level_height_total
 
 	var transition = create_tween()
 	transition.set_parallel(true)
-	transition.set_trans(Tween.TRANS_SPRING)
+	transition.set_trans(Tween.TRANS_CUBIC)
 	transition.set_ease(Tween.EASE_OUT)
 
 	transition.tween_property(current_level, "position", old_level_goal_position, transition_duration)

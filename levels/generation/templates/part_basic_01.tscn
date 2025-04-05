@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=4 uid="uid://7hec8jbsrv5t"]
-
-[ext_resource type="TileSet" uid="uid://djhl6rrvyuldm" path="res://levels/level.tres" id="1_hust8"]
-
-[node name="LevelPart" type="Node2D"]
-
-[node name="Floor" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD7//7/AAAAAAAAAAD8//7/AAACAAAAAAD9//7/AAABAAIAAAD+//7/AAADAAAAAAD///7/AAABAAIAAAAAAP7/AAACAAAAAAABAP7/AAACAAIAAAACAP7/AAABAAIAAAACAP//AAABAAMAAAABAP//AAABAAMAAAAAAP//AAACAAMAAAD/////AAACAAMAAAD+////AAACAAEAAAD9////AAADAAEAAAD8////AAADAAEAAAD7////AAAAAAEAAAADAP7/AAABAAIAAAADAP//AAACAAMAAAAEAP7/AAABAAAAAAAEAP//AAADAAMAAAA=")
-tile_set = ExtResource("1_hust8")

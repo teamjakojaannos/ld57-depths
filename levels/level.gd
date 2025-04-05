@@ -10,17 +10,11 @@ func finish() -> void:
 
 func generate(
 	part_prefabs: Array[PackedScene],
-	connector_prefabs: Array[PackedScene],
 	enemy_prefabs: Array[PackedScene],
 ) -> void:
 	if not part_prefabs.is_empty():
-		spawn_level_part($LeftLevelPart, part_prefabs.pick_random())
-		spawn_level_part($MiddleLevelPart, part_prefabs.pick_random())
-		spawn_level_part($RightLevelPart, part_prefabs.pick_random())
-
-	if not connector_prefabs.is_empty():
-		spawn_level_part($LeftConnectorPart, connector_prefabs.pick_random())
-		spawn_level_part($RightConnectorPart, connector_prefabs.pick_random())
+		spawn_level_part($TopLevelPart, part_prefabs.pick_random())
+		spawn_level_part($BottomLevelPart, part_prefabs.pick_random())
 
 	if not enemy_prefabs.is_empty():
 		spawn_enemies(enemy_prefabs.pick_random())
