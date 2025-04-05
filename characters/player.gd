@@ -10,14 +10,7 @@ var hp = max_hp
 var is_in_transition: bool = false
 var is_dead: bool = false
 
-const net_attack_prefab = preload("res://characters/net_projectile.tscn")
-var is_net_attack_ready = true
-@export var net_attack_cooldown = 0.75
-@export var net_flying_speed = 200.0
-@export var net_fall_speed = -200.0
-
 var _slowdown_amount: float
-
 var _push_force: Vector2 = Vector2.ZERO
 
 ## Applies a knockback force (single time "impulse") on the player. 
@@ -98,10 +91,11 @@ func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:
 		return
 	
+	var look_direction = Vector2(looking_at_scalar, 0.0)
 	if event.is_action_pressed("attack_1"):
-		$Gun.do_harpoon_attack()
+		$HarpoonGun.fire(self, look_direction)
 	elif event.is_action_pressed("attack_2"):
-		do_net_attack()
+		$NetThrower.fire(self, look_direction)
 
 func take_damage(amount: int):
 	hp -= amount
@@ -116,31 +110,3 @@ func die():
 	is_dead = true
 
 	Died.emit()
-
-
-func do_net_attack():
-	if !is_net_attack_ready or is_in_transition or is_dead:
-		return
-
-	var current_map = get_current_map()
-	if current_map == null:
-		printerr("Can't find map where to spawn nets")
-		return
-
-	var net: NetProjectile = net_attack_prefab.instantiate()
-	net.global_position = $NetSpawn.global_position
-	var net_velocity = ($NetThrowDirection.global_position - $NetSpawn.global_position).normalized() * net_flying_speed
-	net.velocity = net_velocity
-	net.fall_speed = net_fall_speed
-	current_map.add_child(net)
-
-	is_net_attack_ready = false
-	await get_tree().create_timer(net_attack_cooldown).timeout
-	is_net_attack_ready = true
-
-func get_current_map():
-	var level = get_node_or_null("../EndlessLevel")
-	if level == null or level is not EndlessLevel:
-		return null
-	
-	return level.current_level

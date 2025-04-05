@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=56 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Texture2D" uid="uid://djixa0ojt1h4q" path="res://characters/ukko_kuolee.png" id="2_h1q25"]
@@ -7,7 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://bcocl277dytcr" path="res://characters/ukko_jump2.png" id="5_n8jd0"]
 [ext_resource type="Texture2D" uid="uid://nms5due712ew" path="res://characters/ukko_walk2.png" id="6_q605b"]
 [ext_resource type="Script" uid="uid://bysi8m2sai2lv" path="res://characters/player_animations.gd" id="7_j31ep"]
-[ext_resource type="Script" uid="uid://oa3iroanwqwb" path="res://characters/player/gun.gd" id="8_6t23p"]
+[ext_resource type="Script" uid="uid://3vm0w8ex7f7t" path="res://characters/player/gun.gd" id="8_6t23p"]
+[ext_resource type="Script" uid="uid://oa3iroanwqwb" path="res://characters/player/harpoongun.gd" id="9_n8jd0"]
+[ext_resource type="Script" uid="uid://cqlms1btxml54" path="res://characters/player/net_thrower.gd" id="10_q605b"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eho78"]
 atlas = ExtResource("2_h1q25")
@@ -798,19 +800,29 @@ libraries = {
 }
 script = ExtResource("7_j31ep")
 
-[node name="Gun" type="Node2D" parent="."]
+[node name="HarpoonGun" type="Node2D" parent="."]
 script = ExtResource("8_6t23p")
 
-[node name="HarpoonSpawn" type="Marker2D" parent="Gun"]
+[node name="HarpoonSpawner" type="Marker2D" parent="HarpoonGun"]
 position = Vector2(20, -21)
+script = ExtResource("9_n8jd0")
 
-[node name="NetSpawn" type="Marker2D" parent="."]
+[node name="NetThrower" type="Node2D" parent="."]
+script = ExtResource("8_6t23p")
+cooldown = 0.75
+knockback = 0.0
+slowdown = 0.5
+
+[node name="NetSpawner" type="Marker2D" parent="NetThrower"]
 position = Vector2(14, -43)
+script = ExtResource("10_q605b")
 
-[node name="NetThrowDirection" type="Marker2D" parent="."]
+[node name="NetThrowDirection" type="Marker2D" parent="NetThrower"]
 position = Vector2(29, -60)
 
 [connection signal="Died" from="." to="AnimationPlayer" method="_on_player_died"]
 [connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]
 [connection signal="Jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
+[connection signal="Fire" from="HarpoonGun" to="HarpoonGun/HarpoonSpawner" method="_on_harpoon_gun_fire"]
+[connection signal="Fire" from="NetThrower" to="NetThrower/NetSpawner" method="_on_net_thrower_fire"]
