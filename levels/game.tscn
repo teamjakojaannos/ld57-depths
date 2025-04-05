@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=20 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
 [ext_resource type="PackedScene" uid="uid://daf4ocofnmlcr" path="res://levels/generation/templates/platform_04.tscn" id="5_y7kp8"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="10_yyd14"]
+[ext_resource type="Script" uid="uid://c7m15n72b5j4x" path="res://ui/objective_overlay.gd" id="11_5ycdb"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="11_6f163"]
+[ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="11_ughyh"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="12_yyd14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0d6h"]
 texture = ExtResource("11_6f163")
@@ -23,6 +26,174 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_p0d6h")
 
+[sub_resource type="LabelSettings" id="LabelSettings_y7kp8"]
+font = ExtResource("12_yyd14")
+font_size = 48
+font_color = Color(0.57, 0.1425, 0.1425, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.24, 0, 0, 0.443137)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_ughyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:slide_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:slide_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:slide_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_y7kp8"]
+resource_name = "enter"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:modulate")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:slide_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.4, 3),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:slide_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2.4, 3),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, -1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:slide_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2.4, 3),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ughyh"]
+_data = {
+&"RESET": SubResource("Animation_ughyh"),
+&"enter": SubResource("Animation_y7kp8")
+}
+
 [node name="Main" type="Node2D"]
 
 [node name="EndlessLevel" type="Node2D" parent="."]
@@ -32,6 +203,8 @@ level_part_prefabs = Array[PackedScene]([ExtResource("2_kc1m6"), ExtResource("3_
 enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
+
+[node name="LevelPart" parent="EndlessLevel/Level/BottomLevelPart" index="0" instance=ExtResource("3_y7kp8")]
 
 [node name="Walls" type="Parallax2D" parent="EndlessLevel"]
 repeat_size = Vector2(0, 256)
@@ -97,3 +270,54 @@ zoom = Vector2(2, 2)
 position = Vector2(0, -96)
 collision_layer = 2
 collision_mask = 1
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="ObjectiveOverlay" type="Control" parent="Overlay"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_5ycdb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/ObjectiveOverlay"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -104.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ObjectiveLine1" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "KILL"
+label_settings = SubResource("LabelSettings_y7kp8")
+horizontal_alignment = 1
+script = ExtResource("11_ughyh")
+
+[node name="ObjectiveLine2" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "THEM"
+label_settings = SubResource("LabelSettings_y7kp8")
+horizontal_alignment = 1
+script = ExtResource("11_ughyh")
+
+[node name="ObjectiveLine3" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "ALL"
+label_settings = SubResource("LabelSettings_y7kp8")
+horizontal_alignment = 1
+script = ExtResource("11_ughyh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Overlay/ObjectiveOverlay"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ughyh")
+}
+
+[editable path="EndlessLevel/Level"]

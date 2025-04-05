@@ -33,7 +33,7 @@ func _ready() -> void:
 	current_level = $Level
 	current_level.Finished.connect(next_level)
 	
-	_generate_level.call_deferred(current_level)
+	# _generate_level.call_deferred(current_level)
 
 func _generate_level(level: Level) -> void:
 	level.generate(level_part_prefabs, enemy_prefabs)
@@ -72,6 +72,8 @@ func _transition_to_next_level() -> void:
 	transition.tween_property(new_level, "position", new_level_goal_position, transition_duration)
 	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
 	transition.tween_property(player, "position", player_goal_position, transition_duration)
+	
+	$"../Overlay/ObjectiveOverlay".show_objective("KILL", "EVERY", "FISH")
 
 	await transition.finished
 
