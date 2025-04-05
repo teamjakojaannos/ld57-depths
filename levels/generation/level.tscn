@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="5_slcm8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bokrc"]
-size = Vector2(640, 7)
+size = Vector2(704, 7)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_bokrc")
@@ -32,7 +32,6 @@ position = Vector2(120, -32)
 position = Vector2(240, -32)
 
 [node name="NextLevelTrigger" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_slcm8")
