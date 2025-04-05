@@ -28,6 +28,10 @@ window/stretch/aspect="keep_height"
 
 project/assembly_name="depths"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
+
 [global_group]
 
 player=""

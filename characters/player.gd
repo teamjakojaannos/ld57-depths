@@ -20,6 +20,14 @@ var is_net_attack_ready = true
 @export var net_flying_speed = 200.0
 @export var net_fall_speed = -200.0
 
+signal Jumped
+signal Died
+signal Hurt
+
+var is_moving: bool:
+	get:
+		return abs(velocity.x) > 0.1
+
 func _physics_process(delta: float) -> void:
 	if is_in_transition:
 		return
@@ -29,6 +37,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !is_dead:
 		velocity.y = JUMP_VELOCITY
+		Jumped.emit()
 
 	var direction = Input.get_axis("left", "right")
 	if direction and !is_dead:
@@ -49,13 +58,14 @@ func take_damage(amount: int):
 	if hp <= 0:
 		die()
 	else:
-		$AnimationPlayer.play("take_damage")
+		Hurt.emit()
 
 func die():
 	if is_dead:
 		return
 	is_dead = true
-	$AnimationPlayer.play("die")
+
+	Died.emit()
 
 func do_harpoon_attack():
 	if !is_harpoon_ready or is_in_transition or is_dead:
