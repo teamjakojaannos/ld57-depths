@@ -1,11 +1,15 @@
 extends Area2D
 
 const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
-@export var spike_speed = 100.0
+@export var min_spike_speed = 100.0
+@export var max_spike_speed = 200.0
 
 var ready_to_attack: bool = false
 @export var min_attack_cooldown = 5.0
 @export var max_attack_cooldown = 10.0
+
+@export var min_spike_count = 3
+@export var max_spike_count = 8
 
 func _ready() -> void:
 	# get some variation so fishes don't instantly attack on entering new level
@@ -28,18 +32,25 @@ func start_attack_cooldown(min_cd: float, max_cd: float):
 
 func _shoot_spikes() -> void:
 	var parent = get_parent()
-	
-	var spawns = $SpikeSpawns.get_children()
-	var origin: Vector2 = $SpikeOrigin.global_position
-	
-	for spawn in spawns:
-		var spike: Spike = spike_scene.instantiate()
-		var velocity = (spawn.global_position - origin).normalized() * spike_speed
-		var angle = origin.angle_to_point(spawn.global_position)
+
+	var zero = Vector2(0, 0)
+	var spike_count = randi_range(min_spike_count, max_spike_count)
+
+	for _s in spike_count:
+		var spawn = point_on_unit_circle()
+		var velocity = spawn * randf_range(min_spike_speed, max_spike_speed)
+		var angle = zero.angle_to_point(spawn)
 		angle += PI / 2.0
 		
+		var spike: Spike = spike_scene.instantiate()
 		spike.velocity = velocity
-		spike.global_position = spawn.global_position
+		spike.global_position = $SpikeOrigin.global_position + spawn
 		spike.rotation = angle
 		
 		parent.add_child(spike)
+
+func point_on_unit_circle() -> Vector2:
+	var angle = randf() * 2.0 * PI
+	var x = cos(angle)
+	var y = sin(angle)
+	return Vector2(x, y)
