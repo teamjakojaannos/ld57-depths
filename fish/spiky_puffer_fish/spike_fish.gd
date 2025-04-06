@@ -59,7 +59,11 @@ func _create_movement_tweens(force_recreate: bool = false):
 
 func _physics_process(delta: float) -> void:
 	var target_position = (target1 + target1) / 2.0
+	var previous_position = position
 	position = position.move_toward(target_position, move_speed * delta)
+	
+	var movement = position - previous_position
+	$AnimatedSprite2D.flip_h = movement.x > 0
 	
 	var d2 = position.distance_squared_to(target_position)
 	var close_enough = 10.0
