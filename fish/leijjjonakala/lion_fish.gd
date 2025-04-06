@@ -10,6 +10,7 @@ var velocity = Vector2()
 
 enum State {
 	Idle,
+	PreparingCharge,
 	Charge,
 	AfterCharge,
 }
@@ -46,14 +47,20 @@ func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.flip_h = velocity.x >= 0
 
 func start_charging():
+	current_state = State.PreparingCharge
+	$AnimationPlayer.play("prepare_charge")
+	await $AnimationPlayer.animation_finished
+	
 	current_state = State.Charge
 	target = Globals.player.position
 	var tween = create_tween()
 	var acceleration_time = 1.0
 	speed = 0.0
 	tween.tween_property(self, "speed", charge_speed, acceleration_time)
+	$AnimationPlayer.play("charge")
 
 func run_away_after_charge():
+	$AnimationPlayer.play_backwards("charge")
 	current_state = State.AfterCharge
 	speed = after_charge_speed
 	target = Globals.current_level.get_random_fish_nav_point()
