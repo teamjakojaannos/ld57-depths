@@ -138,6 +138,8 @@ func _input(event: InputEvent) -> void:
 		$HarpoonGun.fire(self, look_direction)
 	elif event.is_action_pressed("attack_2"):
 		$NetThrower.fire(self, look_direction)
+	elif event.is_action_pressed("attack_3"):
+		$AnchorDropper.fire(self, look_direction)
 
 func get_health():
 	return $Health._health

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=64 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://oa3iroanwqwb" path="res://characters/player/harpoongun.gd" id="9_n8jd0"]
 [ext_resource type="Script" uid="uid://cqlms1btxml54" path="res://characters/player/net_thrower.gd" id="10_q605b"]
 [ext_resource type="AudioStream" uid="uid://hu2m6xsdop1r" path="res://characters/player/player_death.ogg" id="13_6rrl0"]
+[ext_resource type="Script" uid="uid://dmjpbqmvd2lrm" path="res://characters/anchor_dropper.gd" id="13_lcfw7"]
 [ext_resource type="AudioStream" uid="uid://d3t024eeopcgr" path="res://characters/player/harpoongun_shoot.ogg" id="14_eus45"]
 [ext_resource type="Script" uid="uid://b8r7hyb7fpo7n" path="res://characters/sfx_harpoon.gd" id="15_vcag3"]
 [ext_resource type="AudioStream" uid="uid://dtuwrmrl18hr4" path="res://characters/player/net_throw2.ogg" id="16_h076o"]
@@ -853,6 +854,16 @@ net_fall_speed = -800.0
 [node name="NetThrowDirection" type="Marker2D" parent="NetThrower"]
 position = Vector2(33, -54)
 
+[node name="AnchorDropper" type="Node2D" parent="."]
+script = ExtResource("8_6t23p")
+cooldown = 1.0
+knockback = 0.0
+slowdown = 0.0
+
+[node name="AnchorSpawner" type="Marker2D" parent="AnchorDropper"]
+position = Vector2(0, -2)
+script = ExtResource("13_lcfw7")
+
 [node name="SfxDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_6rrl0")
 bus = &"Player SFX"
@@ -881,3 +892,4 @@ script = ExtResource("15_vcag3")
 [connection signal="Fire" from="HarpoonGun" to="SfxHarpoon" method="_on_harpoon_gun_fire"]
 [connection signal="Fire" from="NetThrower" to="NetThrower/NetSpawner" method="_on_net_thrower_fire"]
 [connection signal="Fire" from="NetThrower" to="SfxNet" method="_on_net_thrower_fire"]
+[connection signal="Fire" from="AnchorDropper" to="AnchorDropper/AnchorSpawner" method="_on_anchor_dropper_fire"]
