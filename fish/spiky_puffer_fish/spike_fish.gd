@@ -27,6 +27,8 @@ func _ready() -> void:
 	# get some variation so fishes don't instantly attack on entering new level
 	start_attack_cooldown(0.0, max_attack_cooldown)
 
+	target1 = position
+	target2 = position
 	_create_movement_tweens()
 
 func _create_movement_tweens(force_recreate: bool = false):
@@ -101,11 +103,11 @@ func _shoot_spikes() -> void:
 func pick_random_target_position() -> Vector2:
 	var current_level = get_parent()
 	if current_level == null:
-		return Vector2()
+		return position
 	
-	var nav_area: CollisionShape2D = current_level.get_node_or_null("FishNavArea")
+	var nav_area: CollisionShape2D = current_level.get_node_or_null("FishNavArea/Shape")
 	if nav_area == null:
-		return Vector2()
+		return position
 	
 	var rect : Rect2 = nav_area.shape.get_rect()
 	var x = randf_range(-rect.size.x, rect.size.x) / 2.0

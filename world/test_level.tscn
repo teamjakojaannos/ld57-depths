@@ -48,5 +48,7 @@ texture = ExtResource("3_x27he")
 position = Vector2(0, -57)
 shape = SubResource("RectangleShape2D_vkbyq")
 
-[node name="FishNavArea" type="CollisionShape2D" parent="."]
+[node name="FishNavArea" type="Area2D" parent="."]
+
+[node name="Shape" type="CollisionShape2D" parent="FishNavArea"]
 shape = SubResource("RectangleShape2D_434qw")
