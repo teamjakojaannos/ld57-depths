@@ -1,29 +1,64 @@
-[gd_scene load_steps=43 format=4 uid="uid://cmd0mp6ymi7ud"]
+[gd_scene load_steps=54 format=4 uid="uid://cmd0mp6ymi7ud"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_0alwl"]
-[ext_resource type="Texture2D" uid="uid://cqt6tq7jpu8wx" path="res://ui/UI_shop_thing.png" id="1_8mfk2"]
+[ext_resource type="Script" uid="uid://bk5gxqd8aqc1w" path="res://levels/ui_shop_menu.gd" id="1_4c3kr"]
 [ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="1_bxwj6"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_gkqpf"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="2_0alwl"]
 [ext_resource type="Texture2D" uid="uid://b3xyn7auifgmh" path="res://graphics/environment/verkko.png" id="2_j4twb"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_bxwj6"]
 [ext_resource type="Texture2D" uid="uid://b3tu1ua8e4t1x" path="res://ui/UI_price.png" id="4_iholk"]
+[ext_resource type="Texture2D" uid="uid://ba341wigdrrnp" path="res://ui/UI_shop_thing_2.png" id="4_mrxtu"]
 [ext_resource type="Texture2D" uid="uid://cx8inlndxvxbj" path="res://graphics/environment/verkkomeritahdet.png" id="6_7so00"]
 [ext_resource type="Texture2D" uid="uid://orjirnmltqap" path="res://graphics/environment/light1.png" id="6_f1vne"]
 [ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="7_oicxr"]
+[ext_resource type="Theme" uid="uid://d2smrevun00ki" path="res://ui/shopbutton_theme.tres" id="7_tk23p"]
 [ext_resource type="Script" uid="uid://bbngw2nir6lwi" path="res://levels/shop_detector.gd" id="7_uauoh"]
 [ext_resource type="Texture2D" uid="uid://ihh2tkm104h5" path="res://graphics/environment/light2.png" id="8_2u8mt"]
 [ext_resource type="Texture2D" uid="uid://blmbo6051td5r" path="res://graphics/environment/hyllyt.png" id="8_f1vne"]
+[ext_resource type="AudioStream" uid="uid://0du4omic770g" path="res://shop/shop_open.ogg" id="8_mrxtu"]
 [ext_resource type="Texture2D" uid="uid://dj3c2ut275fvy" path="res://graphics/environment/lamp_orange.png" id="9_2u8mt"]
 [ext_resource type="Texture2D" uid="uid://ekf074r753ji" path="res://graphics/environment/Simp-ukka.png" id="9_tc86n"]
 [ext_resource type="Texture2D" uid="uid://de8mo82umubf4" path="res://graphics/environment/lamp_pink.png" id="10_tc86n"]
+[ext_resource type="AudioStream" uid="uid://dqeh5fy21unsb" path="res://shop/buy.ogg" id="10_v0w1h"]
 [ext_resource type="Texture2D" uid="uid://dt6wshqtynvxt" path="res://characters/Slimak.png" id="11_2t6om"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="12_2t6om"]
 [ext_resource type="Texture2D" uid="uid://cb7ootveaauvt" path="res://graphics/environment/kassa.png" id="12_l5dky"]
 [ext_resource type="Texture2D" uid="uid://c1xkl2788byky" path="res://graphics/environment/bottle.png" id="13_8mfk2"]
 [ext_resource type="Texture2D" uid="uid://ctqdpa3ybbxj3" path="res://graphics/environment/meren_syran.png" id="16_sxfjh"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="17_j4twb"]
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="17_kysah"]
+[ext_resource type="Texture2D" uid="uid://cchobjb6qwop8" path="res://graphics/environment/jokukivijuttu2.png" id="17_rjv0b"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="18_a1m8x"]
 [ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="18_bxwj6"]
+[ext_resource type="Texture2D" uid="uid://i71dckv6fov7" path="res://graphics/environment/tridentfancy.png" id="29_vn25w"]
+
+[sub_resource type="Animation" id="Animation_mrxtu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_uauoh"]
 resource_name = "Trans_in"
@@ -79,33 +114,6 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="Animation" id="Animation_mrxtu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tk23p"]
 _data = {
 &"RESET": SubResource("Animation_mrxtu"),
@@ -116,12 +124,6 @@ _data = {
 [sub_resource type="LabelSettings" id="LabelSettings_iholk"]
 font = ExtResource("3_bxwj6")
 font_size = 32
-
-[sub_resource type="LabelSettings" id="LabelSettings_uauoh"]
-font = ExtResource("3_bxwj6")
-font_size = 48
-font_color = Color(0.0627451, 0.0588235, 0.054902, 1)
-outline_color = Color(0.0627451, 0.0588235, 0.054902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iholk"]
 
@@ -137,9 +139,10 @@ outline_color = Color(0.0627451, 0.0588235, 0.054902, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vn25w"]
 
-[sub_resource type="Theme" id="Theme_iholk"]
+[sub_resource type="Theme" id="Theme_v0w1h"]
+Button/colors/font_hover_color = Color(1, 1, 0.678431, 1)
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
-Button/font_sizes/font_size = 48
+Button/font_sizes/font_size = 32
 Button/fonts/font = ExtResource("3_bxwj6")
 Button/styles/disabled = SubResource("StyleBoxEmpty_iholk")
 Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_uauoh")
@@ -148,6 +151,12 @@ Button/styles/hover = SubResource("StyleBoxEmpty_mrxtu")
 Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_tk23p")
 Button/styles/normal = SubResource("StyleBoxEmpty_v0w1h")
 Button/styles/pressed = SubResource("StyleBoxEmpty_vn25w")
+
+[sub_resource type="LabelSettings" id="LabelSettings_uauoh"]
+font = ExtResource("3_bxwj6")
+font_size = 48
+font_color = Color(0.0627451, 0.0588235, 0.054902, 1)
+outline_color = Color(0.0627451, 0.0588235, 0.054902, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iholk"]
 size = Vector2(231, 150)
@@ -164,13 +173,24 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_h6oo3")
 
+[sub_resource type="Gradient" id="Gradient_v0w1h"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vn25w"]
+gradient = SubResource("Gradient_v0w1h")
+fill_from = Vector2(0, 1)
+
 [sub_resource type="CanvasTexture" id="CanvasTexture_e47gb"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uauoh"]
+size = Vector2(175, 119)
+
 [node name="Shop_thingy" type="Node2D"]
+position = Vector2(-1, 0)
 
 [node name="UI_ShopMenu" type="CanvasLayer" parent="."]
 process_mode = 3
 visible = false
+script = ExtResource("1_4c3kr")
 
 [node name="Shopmenu_anim" type="AnimationPlayer" parent="UI_ShopMenu"]
 libraries = {
@@ -209,40 +229,55 @@ offset_left = 478.0
 offset_top = 66.0
 offset_right = 843.0
 offset_bottom = 468.0
-texture = ExtResource("1_8mfk2")
+texture = ExtResource("4_mrxtu")
+
+[node name="Buy_button" type="Button" parent="UI_ShopMenu/Control/Item_template"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.304
+anchor_top = 0.764
+anchor_right = 0.704
+anchor_bottom = 0.888
+offset_left = 2.03999
+offset_top = 1.87198
+offset_right = 1.03998
+offset_bottom = 2.02396
+theme = SubResource("Theme_v0w1h")
+text = "Buy?"
 
 [node name="PriceTag" type="TextureRect" parent="UI_ShopMenu/Control/Item_template"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 28.0
-offset_right = 355.0
-offset_bottom = 272.0
+offset_left = 248.0
+offset_top = 32.0
+offset_right = 363.0
+offset_bottom = 276.0
 texture = ExtResource("4_iholk")
 
 [node name="Item_picture" type="TextureRect" parent="UI_ShopMenu/Control/Item_template"]
 modulate = Color(0.49, 0.49, 0.49, 1)
 layout_mode = 0
-offset_left = 102.0
-offset_top = 120.0
-offset_right = 240.0
-offset_bottom = 242.0
+offset_left = 108.0
+offset_top = 140.0
+offset_right = 246.0
+offset_bottom = 262.0
 texture = ExtResource("2_j4twb")
 
 [node name="Item_name" type="Label" parent="UI_ShopMenu/Control/Item_template"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.107
-anchor_top = 0.821
-anchor_right = 0.649
-anchor_bottom = 0.923
-offset_left = -1.055
-offset_top = -1.04202
-offset_right = 0.114975
-offset_bottom = -0.0460205
+anchor_left = 0.162
+anchor_top = 0.167
+anchor_right = 0.707
+anchor_bottom = 0.271
+offset_left = -0.130001
+offset_top = -0.134003
+offset_right = -0.0550232
+offset_bottom = 0.057991
 text = "item name here"
 label_settings = SubResource("LabelSettings_iholk")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Item_price" type="Label" parent="UI_ShopMenu/Control/Item_template"]
 layout_mode = 1
@@ -251,55 +286,70 @@ anchor_left = 0.714
 anchor_top = 0.55
 anchor_right = 0.918
 anchor_bottom = 0.647
-offset_left = 16.39
-offset_top = -3.10001
-offset_right = -13.07
-offset_bottom = -1.09399
+offset_left = 7.39001
+offset_top = 0.899994
+offset_right = 7.92999
+offset_bottom = 3.90601
 text = "15"
 label_settings = SubResource("LabelSettings_uauoh")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Item_template2" type="TextureRect" parent="UI_ShopMenu/Control"]
 layout_mode = 2
-offset_left = 794.0
-offset_top = 63.0
-offset_right = 1159.0
-offset_bottom = 465.0
-texture = ExtResource("1_8mfk2")
+offset_left = 793.0
+offset_top = 65.0
+offset_right = 1158.0
+offset_bottom = 467.0
+texture = ExtResource("4_mrxtu")
+
+[node name="Buy_button" type="Button" parent="UI_ShopMenu/Control/Item_template2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.304
+anchor_top = 0.764
+anchor_right = 0.704
+anchor_bottom = 0.888
+offset_left = 2.03999
+offset_top = 1.87198
+offset_right = 1.03998
+offset_bottom = 2.02396
+theme = SubResource("Theme_v0w1h")
+text = "Buy?"
 
 [node name="PriceTag" type="TextureRect" parent="UI_ShopMenu/Control/Item_template2"]
 layout_mode = 0
-offset_left = 240.0
-offset_top = 28.0
-offset_right = 355.0
-offset_bottom = 272.0
+offset_left = 248.0
+offset_top = 32.0
+offset_right = 363.0
+offset_bottom = 276.0
 texture = ExtResource("4_iholk")
 
 [node name="Item_picture" type="TextureRect" parent="UI_ShopMenu/Control/Item_template2"]
-modulate = Color(0.49, 0.49, 0.49, 1)
 layout_mode = 0
-offset_left = 102.0
-offset_top = 120.0
-offset_right = 240.0
-offset_bottom = 242.0
+offset_left = 108.0
+offset_top = 140.0
+offset_right = 246.0
+offset_bottom = 262.0
 texture = ExtResource("17_j4twb")
 
 [node name="Item_name" type="Label" parent="UI_ShopMenu/Control/Item_template2"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.107
-anchor_top = 0.821
-anchor_right = 0.649
-anchor_bottom = 0.923
-offset_left = -1.055
-offset_top = -1.04202
-offset_right = 0.114975
-offset_bottom = -0.0460205
+anchor_left = 0.162
+anchor_top = 0.167
+anchor_right = 0.707
+anchor_bottom = 0.271
+offset_left = -0.130001
+offset_top = -0.134003
+offset_right = -0.0550232
+offset_bottom = 0.057991
 text = "item name here"
 label_settings = SubResource("LabelSettings_iholk")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Item_price" type="Label" parent="UI_ShopMenu/Control/Item_template2"]
 layout_mode = 1
@@ -308,14 +358,15 @@ anchor_left = 0.714
 anchor_top = 0.55
 anchor_right = 0.918
 anchor_bottom = 0.647
-offset_left = 16.39
-offset_top = -3.10001
-offset_right = -13.07
-offset_bottom = -1.09399
-text = "20"
+offset_left = 7.39001
+offset_top = 0.899994
+offset_right = 7.92999
+offset_bottom = 3.90601
+text = "15"
 label_settings = SubResource("LabelSettings_uauoh")
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Leave" type="TextureRect" parent="UI_ShopMenu/Control"]
 layout_mode = 0
@@ -336,8 +387,14 @@ offset_left = -0.052002
 offset_top = -1.004
 offset_right = 3.98999
 offset_bottom = 13.957
-theme = SubResource("Theme_iholk")
+theme = ExtResource("7_tk23p")
 text = "Leave"
+
+[node name="ShopOpen_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_mrxtu")
+
+[node name="Buy_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_v0w1h")
 
 [node name="Shop_detector" type="Area2D" parent="."]
 collision_layer = 0
@@ -345,6 +402,7 @@ collision_mask = 2
 script = ExtResource("7_uauoh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shop_detector"]
+visible = false
 position = Vector2(-161.5, -46)
 shape = SubResource("RectangleShape2D_iholk")
 
@@ -357,7 +415,8 @@ position = Vector2(98, -300)
 collision_mask = 9
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD1/wEAAAAHAAIAAAD3/wEAAAAHAAIAAAD4/wEAAAAFAAMAAAD5/wEAAAAGAAMAAAD6/wEAAAAFAAMAAAD7/wEAAAAGAAMAAAD8/wEAAAAGAAMAAAD9/wEAAAAGAAMAAAD+/wEAAAAGAAMAAAD//wEAAAAGAAMAAAAAAAEAAAAFAAMAAAABAAEAAAAFAAMAAAACAAEAAAAGAAMAAAADAAEAAAAFAAMAAAAEAAEAAAAGAAMAAAAFAAEAAAAGAAMAAAAGAAEAAAAFAAMAAAAHAAEAAAAFAAMAAAAIAAEAAAAFAAMAAAAJAAEAAAAHAAMAAAAJAAIAAAAHAAQAAAAJAAMAAAAHAAQAAAAJAAQAAAAHAAQAAAAJAAUAAAAHAAQAAAAIAAIAAAAHAAIAAAAHAAIAAAAHAAIAAAAIAAUAAAAHAAIAAAAIAAQAAAAHAAIAAAAIAAMAAAAHAAIAAAAHAAUAAAAHAAIAAAAHAAQAAAAHAAIAAAAHAAMAAAAHAAIAAAAGAAUAAAAHAAIAAAAGAAQAAAAHAAIAAAAGAAMAAAAHAAIAAAAGAAIAAAAHAAIAAAAFAAUAAAAHAAIAAAAFAAQAAAAHAAIAAAAFAAMAAAAHAAIAAAAFAAIAAAAHAAIAAAAEAAUAAAAHAAIAAAAEAAQAAAAHAAIAAAAEAAMAAAAHAAIAAAAEAAIAAAAHAAIAAAADAAUAAAAHAAIAAAADAAQAAAAHAAIAAAADAAMAAAAHAAIAAAADAAIAAAAHAAIAAAACAAUAAAAHAAIAAAACAAQAAAAHAAIAAAACAAMAAAAHAAIAAAACAAIAAAAHAAIAAAABAAUAAAAHAAIAAAABAAQAAAAHAAIAAAABAAMAAAAHAAIAAAABAAIAAAAHAAIAAAAAAAUAAAAHAAIAAAAAAAQAAAAHAAIAAAAAAAMAAAAHAAIAAAAAAAIAAAAHAAIAAAD//wUAAAAHAAIAAAD//wQAAAAHAAIAAAD//wMAAAAHAAIAAAD//wIAAAAHAAIAAAD+/wUAAAAHAAIAAAD+/wQAAAAHAAIAAAD+/wMAAAAHAAIAAAD+/wIAAAAHAAIAAAD9/wUAAAAHAAIAAAD9/wQAAAAHAAIAAAD9/wMAAAAHAAIAAAD9/wIAAAAHAAIAAAD8/wUAAAAHAAIAAAD8/wQAAAAHAAIAAAD8/wMAAAAHAAIAAAD8/wIAAAAHAAIAAAD7/wUAAAAHAAIAAAD7/wQAAAAHAAIAAAD7/wMAAAAHAAIAAAD7/wIAAAAHAAIAAAD6/wUAAAAHAAIAAAD6/wQAAAAHAAIAAAD6/wMAAAAHAAIAAAD6/wIAAAAHAAIAAAD5/wUAAAAHAAIAAAD5/wQAAAAHAAIAAAD5/wMAAAAHAAIAAAD5/wIAAAAHAAIAAAD4/wUAAAAHAAIAAAD4/wQAAAAHAAIAAAD4/wMAAAAHAAIAAAD4/wIAAAAHAAIAAAD3/wUAAAAHAAIAAAD3/wQAAAAHAAIAAAD3/wMAAAAHAAIAAAD3/wIAAAAHAAIAAAD2/wUAAAAHAAIAAAD2/wQAAAAHAAIAAAD2/wMAAAAHAAIAAAD2/wIAAAAHAAIAAAD1/wUAAAAHAAIAAAD1/wQAAAAHAAIAAAD1/wMAAAAHAAIAAAD1/wIAAAAHAAIAAAD0/wUAAAAHAAIAAAD0/wQAAAAHAAIAAAD0/wMAAAAHAAIAAAD0/wIAAAAHAAIAAADz/wUAAAAHAAIAAADz/wQAAAAHAAIAAADz/wMAAAAHAAIAAADz/wIAAAAHAAIAAADy/wUAAAAHAAIAAADy/wQAAAAHAAIAAADy/wMAAAAHAAIAAADy/wIAAAAHAAIAAAAIAAkAAAAGAAQAAAAIAAgAAAAHAAIAAAAIAAcAAAAHAAIAAAAIAAYAAAAHAAIAAAAHAAkAAAAFAAQAAAAHAAgAAAAHAAIAAAAHAAcAAAAHAAIAAAAHAAYAAAAHAAIAAAAGAAkAAAAFAAQAAAAGAAgAAAAHAAIAAAAGAAcAAAAHAAIAAAAGAAYAAAAHAAIAAAAFAAkAAAAGAAQAAAAFAAgAAAAHAAIAAAAFAAcAAAAHAAIAAAAFAAYAAAAHAAIAAAAEAAkAAAAGAAQAAAAEAAgAAAAHAAIAAAAEAAcAAAAHAAIAAAAEAAYAAAAHAAIAAAADAAkAAAAFAAQAAAADAAgAAAAHAAIAAAADAAcAAAAHAAIAAAADAAYAAAAHAAIAAAACAAkAAAAGAAQAAAACAAgAAAAHAAIAAAACAAcAAAAHAAIAAAACAAYAAAAHAAIAAAABAAkAAAAFAAQAAAABAAgAAAAHAAIAAAABAAcAAAAHAAIAAAABAAYAAAAHAAIAAAAAAAkAAAAGAAQAAAAAAAgAAAAHAAIAAAAAAAcAAAAHAAIAAAAAAAYAAAAHAAIAAAD//wkAAAAFAAQAAAD//wgAAAAHAAIAAAD//wcAAAAHAAIAAAD//wYAAAAHAAIAAAD+/wkAAAAGAAQAAAD+/wgAAAAHAAIAAAD+/wcAAAAHAAIAAAD+/wYAAAAHAAIAAAD9/wkAAAAGAAQAAAD9/wgAAAAHAAIAAAD9/wcAAAAHAAIAAAD9/wYAAAAHAAIAAAD8/wkAAAAGAAQAAAD8/wgAAAAHAAIAAAD8/wcAAAAHAAIAAAD8/wYAAAAHAAIAAAD7/wkAAAAGAAQAAAD7/wgAAAAHAAIAAAD7/wcAAAAHAAIAAAD7/wYAAAAHAAIAAAD6/wkAAAAFAAQAAAD6/wgAAAAHAAIAAAD6/wcAAAAHAAIAAAD6/wYAAAAHAAIAAAD5/wkAAAAFAAQAAAD5/wgAAAAHAAIAAAD5/wcAAAAHAAIAAAD5/wYAAAAHAAIAAAD4/wkAAAAGAAQAAAD4/wgAAAAHAAIAAAD4/wcAAAAHAAIAAAD4/wYAAAAHAAIAAAD3/wkAAAAFAAQAAAD3/wgAAAAHAAIAAAD3/wcAAAAHAAIAAAD3/wYAAAAHAAIAAAD2/wkAAAAGAAQAAAD2/wgAAAAHAAIAAAD2/wcAAAAHAAIAAAD2/wYAAAAHAAIAAAD1/wkAAAAFAAQAAAD1/wgAAAAHAAIAAAD1/wcAAAAHAAIAAAD1/wYAAAAHAAIAAAD0/wkAAAAFAAQAAAD0/wgAAAAHAAIAAAD0/wcAAAAHAAIAAAD0/wYAAAAHAAIAAADz/wkAAAAGAAQAAADz/wgAAAAHAAIAAADz/wcAAAAHAAIAAADz/wYAAAAHAAIAAADy/wkAAAAGAAQAAADy/wgAAAAHAAIAAADy/wcAAAAHAAIAAADy/wYAAAAHAAIAAADx/wkAAAAFAAQAAADx/wgAAAAHAAIAAADx/wcAAAAHAAIAAADx/wYAAAAHAAIAAADx/wUAAAAHAAIAAADx/wQAAAAHAAIAAADx/wMAAAAHAAIAAADx/wIAAAAHAAIAAADw/wkAAAAFAAQAAADw/wgAAAAHAAIAAADw/wcAAAAHAAIAAADw/wYAAAAHAAIAAADw/wUAAAAHAAIAAADw/wQAAAAHAAIAAADw/wMAAAAHAAIAAADw/wIAAAAHAAIAAADv/wkAAAAHAAIAAADv/wgAAAAHAAIAAADv/wcAAAAHAAIAAADv/wYAAAAHAAIAAADv/wUAAAAHAAIAAADv/wQAAAAHAAIAAADv/wMAAAAHAAIAAADv/wIAAAAHAAIAAADu/wkAAAAHAAIAAADu/wgAAAAHAAIAAADu/wcAAAAHAAIAAADu/wYAAAAHAAIAAADu/wUAAAAHAAIAAADu/wQAAAAHAAIAAADu/wMAAAAHAAIAAADu/wIAAAAHAAIAAAAJAAYAAAAHAAQAAAAJAAcAAAAHAAQAAAAJAAgAAAAHAAQAAAAJAAkAAAAHAAQAAAACAPT/AAAFAAQAAAABAPT/AAAGAAQAAAAAAPT/AAAGAAQAAAD9//X/AAAGAAQAAAD8//X/AAAGAAQAAAD+//X/AAAHAAQAAAD///T/AAAFAAQAAAD9//T/AAAHAAIAAAD+//T/AAAHAAIAAAD8//T/AAAHAAIAAAD8//P/AAAHAAIAAAD9//P/AAAHAAIAAAD+//P/AAAHAAIAAAD///P/AAAHAAIAAAAAAPP/AAAHAAIAAAABAPP/AAAHAAIAAAACAPP/AAAHAAIAAAADAPT/AAAHAAQAAAADAPP/AAAHAAQAAAADAPL/AAAHAAQAAAADAPH/AAAHAAQAAAADAPD/AAAHAAMAAAACAPD/AAAGAAMAAAABAPD/AAAFAAMAAAAAAPD/AAAFAAMAAAD///D/AAAFAAMAAAD+//D/AAAFAAMAAAD9//D/AAAFAAMAAAD8//D/AAAFAAMAAAD7//D/AAAGAAMAAAD6//D/AAAGAAMAAAD5//D/AAAFAAMAAAD4//D/AAAFAAMAAAD3//D/AAAGAAMAAAD2//D/AAAFAAMAAAD1//D/AAAGAAMAAAD0//D/AAAFAAMAAADz//D/AAAGAAMAAADy//D/AAAFAAMAAADx//D/AAAGAAMAAADw//D/AAAEAAMAAAACAPL/AAAHAAIAAAACAPH/AAAHAAIAAAABAPL/AAAHAAIAAAABAPH/AAAHAAIAAAAAAPL/AAAHAAIAAAAAAPH/AAAHAAIAAAD///L/AAAHAAIAAAD///H/AAAHAAIAAAD+//L/AAAHAAIAAAD+//H/AAAHAAIAAAD9//L/AAAHAAIAAAD9//H/AAAHAAIAAAD8//L/AAAHAAIAAAD8//H/AAAHAAIAAAD7//P/AAAHAAIAAAD7//L/AAAHAAIAAAD7//H/AAAHAAIAAAD6//L/AAAHAAIAAAD6//H/AAAHAAIAAAD5//L/AAAGAAQAAAD5//H/AAAHAAIAAAD4//L/AAAGAAQAAAD4//H/AAAHAAIAAAD3//L/AAAFAAQAAAD3//H/AAAHAAIAAAD2//L/AAAGAAQAAAD2//H/AAAHAAIAAAD1//L/AAAGAAQAAAD1//H/AAAHAAIAAAD0//L/AAAGAAQAAAD0//H/AAAHAAIAAADz//L/AAAFAAQAAADz//H/AAAHAAIAAADy//L/AAAGAAQAAADy//H/AAAHAAIAAADx//L/AAAGAAQAAADx//H/AAAHAAIAAADw//P/AAAHAAIAAADw//L/AAAHAAIAAADw//H/AAAHAAIAAADv//P/AAAHAAIAAADv//L/AAAHAAIAAADv//H/AAAHAAIAAAD7//T/AAAHAAIAAAD7//X/AAAFAAQAAAD6//T/AAAEAAQAAAD6//X/AAAEAAQAAAD6//P/AAAEAAQAAADz/wEAAAAHAAIAAADy/wEAAAAHAAIAAAD0/wEAAAAHAAIAAAD2/wEAAAAHAAIAAADx/wEAAAAHAAIAAAA=")
+position = Vector2(3, 0)
+tile_map_data = PackedByteArray("AAD1/wEAAAAHAAIAAAD3/wEAAAAHAAIAAAD4/wEAAAAFAAMAAAD5/wEAAAAGAAMAAAD6/wEAAAAFAAMAAAD7/wEAAAAGAAMAAAD8/wEAAAAGAAMAAAD9/wEAAAAGAAMAAAD+/wEAAAAGAAMAAAD//wEAAAAGAAMAAAAAAAEAAAAFAAMAAAABAAEAAAAFAAMAAAACAAEAAAAGAAMAAAADAAEAAAAFAAMAAAAEAAEAAAAGAAMAAAAFAAEAAAAGAAMAAAAGAAEAAAAFAAMAAAAHAAEAAAAFAAMAAAAIAAEAAAAFAAMAAAAJAAEAAAAHAAMAAAAJAAIAAAAHAAQAAAAJAAMAAAAHAAQAAAAJAAQAAAAHAAQAAAAJAAUAAAAHAAQAAAAIAAIAAAAHAAIAAAAHAAIAAAAHAAIAAAAIAAUAAAAHAAIAAAAIAAQAAAAHAAIAAAAIAAMAAAAHAAIAAAAHAAUAAAAHAAIAAAAHAAQAAAAHAAIAAAAHAAMAAAAHAAIAAAAGAAUAAAAHAAIAAAAGAAQAAAAHAAIAAAAGAAMAAAAHAAIAAAAGAAIAAAAHAAIAAAAFAAUAAAAHAAIAAAAFAAQAAAAHAAIAAAAFAAMAAAAHAAIAAAAFAAIAAAAHAAIAAAAEAAUAAAAHAAIAAAAEAAQAAAAHAAIAAAAEAAMAAAAHAAIAAAAEAAIAAAAHAAIAAAADAAUAAAAHAAIAAAADAAQAAAAHAAIAAAADAAMAAAAHAAIAAAADAAIAAAAHAAIAAAACAAUAAAAHAAIAAAACAAQAAAAHAAIAAAACAAMAAAAHAAIAAAACAAIAAAAHAAIAAAABAAUAAAAHAAIAAAABAAQAAAAHAAIAAAABAAMAAAAHAAIAAAABAAIAAAAHAAIAAAAAAAUAAAAHAAIAAAAAAAQAAAAHAAIAAAAAAAMAAAAHAAIAAAAAAAIAAAAHAAIAAAD//wUAAAAHAAIAAAD//wQAAAAHAAIAAAD//wMAAAAHAAIAAAD//wIAAAAHAAIAAAD+/wUAAAAHAAIAAAD+/wQAAAAHAAIAAAD+/wMAAAAHAAIAAAD+/wIAAAAHAAIAAAD9/wUAAAAHAAIAAAD9/wQAAAAHAAIAAAD9/wMAAAAHAAIAAAD9/wIAAAAHAAIAAAD8/wUAAAAHAAIAAAD8/wQAAAAHAAIAAAD8/wMAAAAHAAIAAAD8/wIAAAAHAAIAAAD7/wUAAAAHAAIAAAD7/wQAAAAHAAIAAAD7/wMAAAAHAAIAAAD7/wIAAAAHAAIAAAD6/wUAAAAHAAIAAAD6/wQAAAAHAAIAAAD6/wMAAAAHAAIAAAD6/wIAAAAHAAIAAAD5/wUAAAAHAAIAAAD5/wQAAAAHAAIAAAD5/wMAAAAHAAIAAAD5/wIAAAAHAAIAAAD4/wUAAAAHAAIAAAD4/wQAAAAHAAIAAAD4/wMAAAAHAAIAAAD4/wIAAAAHAAIAAAD3/wUAAAAHAAIAAAD3/wQAAAAHAAIAAAD3/wMAAAAHAAIAAAD3/wIAAAAHAAIAAAD2/wUAAAAHAAIAAAD2/wQAAAAHAAIAAAD2/wMAAAAHAAIAAAD2/wIAAAAHAAIAAAD1/wUAAAAHAAIAAAD1/wQAAAAHAAIAAAD1/wMAAAAHAAIAAAD1/wIAAAAHAAIAAAD0/wUAAAAHAAIAAAD0/wQAAAAHAAIAAAD0/wMAAAAHAAIAAAD0/wIAAAAHAAIAAADz/wUAAAAHAAIAAADz/wQAAAAHAAIAAADz/wMAAAAHAAIAAADz/wIAAAAHAAIAAADy/wUAAAAHAAIAAADy/wQAAAAHAAIAAADy/wMAAAAHAAIAAADy/wIAAAAHAAIAAAAIAAkAAAAGAAQAAAAIAAgAAAAHAAIAAAAIAAcAAAAHAAIAAAAIAAYAAAAHAAIAAAAHAAkAAAAFAAQAAAAHAAgAAAAHAAIAAAAHAAcAAAAHAAIAAAAHAAYAAAAHAAIAAAAGAAkAAAAFAAQAAAAGAAgAAAAHAAIAAAAGAAcAAAAHAAIAAAAGAAYAAAAHAAIAAAAFAAkAAAAGAAQAAAAFAAgAAAAHAAIAAAAFAAcAAAAHAAIAAAAFAAYAAAAHAAIAAAAEAAkAAAAGAAQAAAAEAAgAAAAHAAIAAAAEAAcAAAAHAAIAAAAEAAYAAAAHAAIAAAADAAkAAAAFAAQAAAADAAgAAAAHAAIAAAADAAcAAAAHAAIAAAADAAYAAAAHAAIAAAACAAkAAAAGAAQAAAACAAgAAAAHAAIAAAACAAcAAAAHAAIAAAACAAYAAAAHAAIAAAABAAkAAAAFAAQAAAABAAgAAAAHAAIAAAABAAcAAAAHAAIAAAABAAYAAAAHAAIAAAAAAAkAAAAGAAQAAAAAAAgAAAAHAAIAAAAAAAcAAAAHAAIAAAAAAAYAAAAHAAIAAAD//wkAAAAFAAQAAAD//wgAAAAHAAIAAAD//wcAAAAHAAIAAAD//wYAAAAHAAIAAAD+/wkAAAAGAAQAAAD+/wgAAAAHAAIAAAD+/wcAAAAHAAIAAAD+/wYAAAAHAAIAAAD9/wkAAAAGAAQAAAD9/wgAAAAHAAIAAAD9/wcAAAAHAAIAAAD9/wYAAAAHAAIAAAD8/wkAAAAGAAQAAAD8/wgAAAAHAAIAAAD8/wcAAAAHAAIAAAD8/wYAAAAHAAIAAAD7/wkAAAAGAAQAAAD7/wgAAAAHAAIAAAD7/wcAAAAHAAIAAAD7/wYAAAAHAAIAAAD6/wkAAAAFAAQAAAD6/wgAAAAHAAIAAAD6/wcAAAAHAAIAAAD6/wYAAAAHAAIAAAD5/wkAAAAFAAQAAAD5/wgAAAAHAAIAAAD5/wcAAAAHAAIAAAD5/wYAAAAHAAIAAAD4/wkAAAAGAAQAAAD4/wgAAAAHAAIAAAD4/wcAAAAHAAIAAAD4/wYAAAAHAAIAAAD3/wkAAAAFAAQAAAD3/wgAAAAHAAIAAAD3/wcAAAAHAAIAAAD3/wYAAAAHAAIAAAD2/wkAAAAGAAQAAAD2/wgAAAAHAAIAAAD2/wcAAAAHAAIAAAD2/wYAAAAHAAIAAAD1/wkAAAAFAAQAAAD1/wgAAAAHAAIAAAD1/wcAAAAHAAIAAAD1/wYAAAAHAAIAAAD0/wkAAAAFAAQAAAD0/wgAAAAHAAIAAAD0/wcAAAAHAAIAAAD0/wYAAAAHAAIAAADz/wkAAAAGAAQAAADz/wgAAAAHAAIAAADz/wcAAAAHAAIAAADz/wYAAAAHAAIAAADy/wkAAAAGAAQAAADy/wgAAAAHAAIAAADy/wcAAAAHAAIAAADy/wYAAAAHAAIAAADx/wkAAAAFAAQAAADx/wgAAAAHAAIAAADx/wcAAAAHAAIAAADx/wYAAAAHAAIAAADx/wUAAAAHAAIAAADx/wQAAAAHAAIAAADx/wMAAAAHAAIAAADx/wIAAAAHAAIAAADw/wkAAAAFAAQAAADw/wgAAAAHAAIAAADw/wcAAAAHAAIAAADw/wYAAAAHAAIAAADw/wUAAAAHAAIAAADw/wQAAAAHAAIAAADw/wMAAAAHAAIAAADw/wIAAAAHAAIAAADv/wkAAAAHAAIAAADv/wgAAAAHAAIAAADv/wcAAAAHAAIAAADv/wYAAAAHAAIAAADv/wUAAAAHAAIAAADv/wQAAAAHAAIAAADv/wMAAAAHAAIAAADv/wIAAAAHAAIAAADu/wkAAAAHAAIAAADu/wgAAAAHAAIAAADu/wcAAAAHAAIAAADu/wYAAAAHAAIAAADu/wUAAAAHAAIAAADu/wQAAAAHAAIAAADu/wMAAAAHAAIAAADu/wIAAAAHAAIAAAAJAAYAAAAHAAQAAAAJAAcAAAAHAAQAAAAJAAgAAAAHAAQAAAAJAAkAAAAHAAQAAAACAPT/AAAFAAQAAAABAPT/AAAGAAQAAAAAAPT/AAAGAAQAAAD9//X/AAAGAAQAAAD8//X/AAAGAAQAAAD+//X/AAAHAAQAAAD///T/AAAFAAQAAAD9//T/AAAHAAIAAAD+//T/AAAHAAIAAAD8//T/AAAHAAIAAAD8//P/AAAHAAIAAAD9//P/AAAHAAIAAAD+//P/AAAHAAIAAAD///P/AAAHAAIAAAAAAPP/AAAHAAIAAAABAPP/AAAHAAIAAAACAPP/AAAHAAIAAAADAPT/AAAHAAQAAAADAPP/AAAHAAQAAAADAPL/AAAHAAQAAAADAPH/AAAHAAQAAAADAPD/AAAHAAMAAAACAPD/AAAGAAMAAAABAPD/AAAFAAMAAAAAAPD/AAAFAAMAAAD///D/AAAFAAMAAAD+//D/AAAFAAMAAAD9//D/AAAFAAMAAAD8//D/AAAFAAMAAAD7//D/AAAGAAMAAAD6//D/AAAGAAMAAAD5//D/AAAFAAMAAAD4//D/AAAFAAMAAAD3//D/AAAGAAMAAAD2//D/AAAFAAMAAAD1//D/AAAGAAMAAAD0//D/AAAFAAMAAADz//D/AAAGAAMAAADy//D/AAAFAAMAAADx//D/AAAGAAMAAADw//D/AAAEAAMAAAACAPL/AAAHAAIAAAACAPH/AAAHAAIAAAABAPL/AAAHAAIAAAABAPH/AAAHAAIAAAAAAPL/AAAHAAIAAAAAAPH/AAAHAAIAAAD///L/AAAHAAIAAAD///H/AAAHAAIAAAD+//L/AAAHAAIAAAD+//H/AAAHAAIAAAD9//L/AAAHAAIAAAD9//H/AAAHAAIAAAD8//L/AAAHAAIAAAD8//H/AAAHAAIAAAD7//P/AAAHAAIAAAD7//L/AAAHAAIAAAD7//H/AAAHAAIAAAD6//L/AAAHAAIAAAD6//H/AAAHAAIAAAD5//L/AAAGAAQAAAD5//H/AAAHAAIAAAD4//L/AAAGAAQAAAD4//H/AAAHAAIAAAD3//L/AAAFAAQAAAD3//H/AAAHAAIAAAD2//L/AAAGAAQAAAD2//H/AAAHAAIAAAD1//L/AAAGAAQAAAD1//H/AAAHAAIAAAD0//L/AAAGAAQAAAD0//H/AAAHAAIAAADz//L/AAAFAAQAAADz//H/AAAHAAIAAADy//L/AAAGAAQAAADy//H/AAAHAAIAAADx//L/AAAGAAQAAADx//H/AAAHAAIAAADw//P/AAAHAAIAAADw//L/AAAHAAIAAADw//H/AAAHAAIAAADv//P/AAAHAAIAAADv//L/AAAHAAIAAADv//H/AAAHAAIAAAD7//T/AAAHAAIAAAD7//X/AAAFAAQAAAD6//T/AAAEAAQAAAD6//X/AAAEAAQAAAD6//P/AAAEAAQAAADz/wEAAAAHAAIAAADy/wEAAAAHAAIAAAD0/wEAAAAHAAIAAAD2/wEAAAAHAAIAAADx/wEAAAAHAAIAAAAKAPn/AAAEAAMAAAAKAPr/AAAEAAQAAAALAPn/AAAFAAMAAAALAPr/AAAFAAQAAAAMAPn/AAAGAAMAAAAMAPr/AAAGAAQAAAANAPn/AAAHAAMAAAANAPr/AAAHAAQAAAA=")
 tile_set = ExtResource("12_2t6om")
 metadata/_edit_lock_ = true
 
@@ -388,13 +447,13 @@ offset_right = 3315.0
 color = Color(0.0196078, 0.0588235, 0.105882, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.0117647, 0.0352941, 0.0627451, 1)
-z_index = -1
-offset_left = -288.0
-offset_top = -246.0
-offset_right = 283.0
-offset_bottom = 143.0
-texture = SubResource("CanvasTexture_e47gb")
+modulate = Color(0.0594, 0.14784, 0.18, 1)
+z_index = -2
+offset_left = -273.0
+offset_top = -247.0
+offset_right = 298.0
+offset_bottom = 148.0
+texture = SubResource("GradientTexture2D_vn25w")
 metadata/_edit_lock_ = true
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -410,6 +469,46 @@ metadata/_edit_lock_ = true
 [node name="Sprite2D9" type="Sprite2D" parent="."]
 position = Vector2(-137, -56)
 texture = ExtResource("8_f1vne")
+
+[node name="Sprite2D16" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+z_index = -1
+position = Vector2(-184, -144)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_kysah")
+
+[node name="Sprite2D25" type="Sprite2D" parent="."]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+z_index = -1
+position = Vector2(-43, -44)
+texture = ExtResource("17_kysah")
+
+[node name="Sprite2D26" type="Sprite2D" parent="."]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+z_index = -1
+position = Vector2(121, -16)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_kysah")
+
+[node name="Sprite2D28" type="Sprite2D" parent="."]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+z_index = -1
+position = Vector2(13, -10)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("18_a1m8x")
+
+[node name="Sprite2D29" type="Sprite2D" parent="."]
+self_modulate = Color(0.18, 0.18, 0.18, 1)
+z_index = -1
+position = Vector2(205, -124)
+texture = ExtResource("18_a1m8x")
+
+[node name="Sprite2D13" type="Sprite2D" parent="."]
+self_modulate = Color(0.58, 0.58, 0.58, 1)
+z_index = -1
+position = Vector2(-103, -74)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("17_rjv0b")
 
 [node name="Sprite2D22" type="Sprite2D" parent="."]
 position = Vector2(-68, -144)
@@ -529,11 +628,19 @@ texture = ExtResource("9_tc86n")
 position = Vector2(-195, -66)
 texture = ExtResource("13_8mfk2")
 
-[node name="Sprite2D13" type="Sprite2D" parent="."]
+[node name="Slimak" type="StaticBody2D" parent="."]
 position = Vector2(-143, -15)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slimak"]
+visible = false
+position = Vector2(-29.5, -9.5)
+shape = SubResource("RectangleShape2D_uauoh")
+
+[node name="SlimakSprite" type="Sprite2D" parent="Slimak"]
 texture = ExtResource("11_2t6om")
 
-[node name="PointLight2D4" type="PointLight2D" parent="Sprite2D13"]
+[node name="PointLight2D4" type="PointLight2D" parent="Slimak/SlimakSprite"]
 position = Vector2(21, -15)
 scale = Vector2(0.160056, 0.152719)
 color = Color(0.2, 1, 0.64, 1)
@@ -563,4 +670,11 @@ position = Vector2(-82, -42)
 rotation = -0.994838
 texture = ExtResource("18_bxwj6")
 
+[node name="Sprite2D23" type="Sprite2D" parent="."]
+position = Vector2(-147, -77)
+rotation = -1.35263
+texture = ExtResource("29_vn25w")
+
+[connection signal="pressed" from="UI_ShopMenu/Control/Item_template/Buy_button" to="UI_ShopMenu" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="UI_ShopMenu/Control/Leave/Leave_button" to="UI_ShopMenu" method="_on_leave_button_pressed"]
 [connection signal="body_entered" from="Shop_detector" to="Shop_detector" method="_on_body_entered"]

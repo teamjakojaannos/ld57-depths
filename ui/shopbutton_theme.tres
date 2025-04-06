@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://d2smrevun00ki"]
+
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="1_0pyeq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iholk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uauoh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4c3kr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrxtu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tk23p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0w1h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vn25w"]
+
+[resource]
+Button/colors/font_hover_color = Color(1, 1, 0.678431, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("1_0pyeq")
+Button/styles/disabled = SubResource("StyleBoxEmpty_iholk")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_uauoh")
+Button/styles/focus = SubResource("StyleBoxEmpty_4c3kr")
+Button/styles/hover = SubResource("StyleBoxEmpty_mrxtu")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_tk23p")
+Button/styles/normal = SubResource("StyleBoxEmpty_v0w1h")
+Button/styles/pressed = SubResource("StyleBoxEmpty_vn25w")
