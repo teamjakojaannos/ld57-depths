@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://lpjtb8lmu68i"]
+[gd_scene load_steps=16 format=3 uid="uid://lpjtb8lmu68i"]
 
 [ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="1_43kmr"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="1_hl0h3"]
 [ext_resource type="Script" uid="uid://dm26ku20d8btu" path="res://fish/eel/eel.gd" id="1_ucu2c"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_a4hyh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4hyh"]
+size = Vector2(64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl0h3"]
 atlas = ExtResource("1_43kmr")
@@ -188,6 +192,17 @@ script = ExtResource("1_ucu2c")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_hl0h3")
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_a4hyh")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_a4hyh")
+debug_color = Color(0.964706, 0, 0.494118, 0.419608)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wg4o3")
