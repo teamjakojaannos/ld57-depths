@@ -1,0 +1,124 @@
+[gd_scene load_steps=12 format=3 uid="uid://cbhx15hlcg32f"]
+
+[ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_cpp7e"]
+[ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="2_radd6"]
+[ext_resource type="Texture2D" uid="uid://smlf3v78mu0y" path="res://fish/spiky_puffer_fish/pufferfisu.png" id="3_r1kg4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1kg4"]
+atlas = ExtResource("2_radd6")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpp7e"]
+atlas = ExtResource("2_radd6")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1375k"]
+atlas = ExtResource("2_radd6")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_denpw"]
+atlas = ExtResource("2_radd6")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a10x3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1kg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpp7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1375k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_denpw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a10x3"]
+atlas = ExtResource("3_r1kg4")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8f620"]
+atlas = ExtResource("3_r1kg4")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k72q6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a10x3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8f620")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BGFishy" type="Parallax2D"]
+z_index = -3
+scroll_scale = Vector2(0.9, 0.9)
+repeat_size = Vector2(5000, 1700)
+autoscroll = Vector2(-12.5, 0)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+script = ExtResource("1_cpp7e")
+
+[node name="Eel" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.149157, 0.1102, 0.29, 1)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a10x3")
+autoplay = "default"
+
+[node name="Eel2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.149157, 0.1102, 0.29, 1)
+position = Vector2(794, -556)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a10x3")
+autoplay = "default"
+
+[node name="Eel3" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.149157, 0.1102, 0.29, 1)
+position = Vector2(-1420, -452)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a10x3")
+autoplay = "default"
+
+[node name="Eel4" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.149157, 0.1102, 0.29, 1)
+position = Vector2(1379, 780)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_a10x3")
+autoplay = "default"
+
+[node name="puffy puff boi" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.149157, 0.1102, 0.29, 1)
+position = Vector2(1492, 750)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_k72q6")
+autoplay = "default"
+
+[node name="puffy puff boi2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.113153, 0.0836, 0.22, 1)
+position = Vector2(1538, 806)
+scale = Vector2(1.23236, 1.23236)
+sprite_frames = SubResource("SpriteFrames_k72q6")
+autoplay = "default"
+speed_scale = 0.9
+
+[node name="puffy puff boi3" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.11, 0.124667, 0.22, 1)
+position = Vector2(1586, 751)
+scale = Vector2(1.23236, 1.23236)
+sprite_frames = SubResource("SpriteFrames_k72q6")
+autoplay = "default"
+frame_progress = 0.814285
+speed_scale = 0.8

@@ -1,0 +1,211 @@
+[gd_scene load_steps=19 format=3 uid="uid://dhnr4iaiiaf5p"]
+
+[ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_4tt31"]
+[ext_resource type="Texture2D" uid="uid://b4yqypvnttqx3" path="res://fish/vittumies.png" id="2_sv5cj"]
+[ext_resource type="Texture2D" uid="uid://bud2y1fttpqef" path="res://fish/whale.png" id="3_ks0by"]
+[ext_resource type="Texture2D" uid="uid://b6stc6id777uv" path="res://fish/leijonakala.png" id="4_sv5cj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0d6h"]
+atlas = ExtResource("2_sv5cj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkag2"]
+atlas = ExtResource("2_sv5cj")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol2u7"]
+atlas = ExtResource("2_sv5cj")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aumgp"]
+atlas = ExtResource("2_sv5cj")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fbo34"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0d6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkag2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol2u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aumgp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_si8kf"]
+atlas = ExtResource("3_ks0by")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgpep"]
+atlas = ExtResource("3_ks0by")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb6kn"]
+atlas = ExtResource("3_ks0by")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw56w"]
+atlas = ExtResource("3_ks0by")
+region = Rect2(576, 0, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xr5dp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_si8kf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgpep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb6kn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw56w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks0by"]
+atlas = ExtResource("4_sv5cj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xrkab"]
+atlas = ExtResource("4_sv5cj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aafpe"]
+atlas = ExtResource("4_sv5cj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_isigq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks0by")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrkab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aafpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xrkab")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="BGFishy" type="Parallax2D"]
+z_index = -3
+scroll_scale = Vector2(0.25, 0.25)
+repeat_size = Vector2(5000, 1500)
+autoscroll = Vector2(12.5, 0)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+script = ExtResource("1_4tt31")
+
+[node name="Vittumies" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.13, 0.13, 0.13, 1)
+position = Vector2(0, -182)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_fbo34")
+autoplay = "default"
+speed_scale = 2.0
+
+[node name="Whale" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.31, 0.31, 0.31, 1)
+position = Vector2(-736, -69)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_xr5dp")
+autoplay = "default"
+frame_progress = 0.0450312
+
+[node name="Whale2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.31, 0.31, 0.31, 1)
+position = Vector2(1613, 1774)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_xr5dp")
+autoplay = "default"
+frame_progress = 0.815096
+
+[node name="Whale3" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.31, 0.31, 0.31, 1)
+position = Vector2(2224, 3432)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_xr5dp")
+autoplay = "default"
+frame_progress = 0.815096
+
+[node name="Jellonakala" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(2486, 992)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.360172
+
+[node name="Jellonakala3" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(-138, 1698)
+scale = Vector2(-0.760247, 0.654625)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.107496
+
+[node name="Jellonakala4" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(-1615, 122)
+scale = Vector2(-0.760247, 0.654625)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.107496
+speed_scale = 1.1
+
+[node name="Jellonakala5" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(-1627, 166)
+scale = Vector2(-0.501546, 0.431866)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.107496
+
+[node name="Jellonakala6" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(-1663, 137)
+scale = Vector2(-0.595027, 0.512359)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.107496
+speed_scale = 0.95
+
+[node name="Jellonakala7" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(-1705, 113)
+scale = Vector2(-0.595027, 0.512359)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.107496
+speed_scale = 0.9
+
+[node name="Jellonakala2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.0779, 0.14516, 0.19, 1)
+position = Vector2(1591, 0)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_isigq")
+autoplay = "default"
+frame_progress = 0.916278

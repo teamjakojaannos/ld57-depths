@@ -1,0 +1,122 @@
+[gd_scene load_steps=12 format=3 uid="uid://bj0y1grmkuw1b"]
+
+[ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_i7suw"]
+[ext_resource type="Texture2D" uid="uid://b4yqypvnttqx3" path="res://fish/vittumies.png" id="2_3h817"]
+[ext_resource type="PackedScene" uid="uid://dhnr4iaiiaf5p" path="res://levels/bg_fishy.tscn" id="3_qjryw"]
+[ext_resource type="PackedScene" uid="uid://cbhx15hlcg32f" path="res://levels/bg_fishy2.tscn" id="4_3h817"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0d6h"]
+atlas = ExtResource("2_3h817")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkag2"]
+atlas = ExtResource("2_3h817")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol2u7"]
+atlas = ExtResource("2_3h817")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aumgp"]
+atlas = ExtResource("2_3h817")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0u5wd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0d6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkag2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ol2u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aumgp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_3h817"]
+offsets = PackedFloat32Array(0, 0.25822, 1)
+colors = PackedColorArray(0.0957, 0.11, 0.102135, 1, 0.1254, 0.16797, 0.22, 1, 0, 0.531667, 0.58, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qjryw"]
+gradient = SubResource("Gradient_3h817")
+width = 1
+height = 256
+fill_from = Vector2(1, 1)
+
+[node name="Background" type="Node2D"]
+
+[node name="UltraRareFish" type="Parallax2D" parent="."]
+z_index = -3
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(-1000, 0)
+repeat_size = Vector2(5000, 5000)
+autoscroll = Vector2(12.5, 0)
+repeat_times = 2
+follow_viewport = false
+ignore_camera_scroll = true
+script = ExtResource("1_i7suw")
+
+[node name="Vittumies" type="AnimatedSprite2D" parent="UltraRareFish"]
+modulate = Color(0.13, 0.13, 0.13, 1)
+position = Vector2(0, -182)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_0u5wd")
+autoplay = "default"
+frame_progress = 0.525001
+
+[node name="BGFishy" parent="." instance=ExtResource("3_qjryw")]
+scroll_offset = Vector2(-4857, -124)
+
+[node name="BGFishy3" parent="." instance=ExtResource("3_qjryw")]
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.125, 0.125)
+scroll_offset = Vector2(4227, 100)
+repeat_size = Vector2(7500, 5000)
+
+[node name="BGFishy4" parent="." instance=ExtResource("3_qjryw")]
+rotation = 3.14159
+scale = Vector2(0.5, -0.5)
+scroll_scale = Vector2(0.125, 0.125)
+scroll_offset = Vector2(6123, 1000)
+repeat_size = Vector2(7500, 5000)
+autoscroll = Vector2(-29, 0)
+
+[node name="BGFishy2" parent="." instance=ExtResource("3_qjryw")]
+rotation = 3.14159
+scale = Vector2(1, -1)
+scroll_scale = Vector2(0.35, 0.35)
+scroll_offset = Vector2(1500, 1239)
+repeat_size = Vector2(5300, 5000)
+autoscroll = Vector2(-15, 0)
+
+[node name="BGFishy_2_2" parent="." instance=ExtResource("4_3h817")]
+
+[node name="BGFishy_2_3" parent="." instance=ExtResource("4_3h817")]
+scroll_scale = Vector2(0.25, 0.25)
+scroll_offset = Vector2(2000, 1000)
+autoscroll = Vector2(-5, 0)
+
+[node name="BGFishy_2_4" parent="." instance=ExtResource("4_3h817")]
+scroll_scale = Vector2(0.5, 0.5)
+scroll_offset = Vector2(1000, 333)
+autoscroll = Vector2(-20, 0)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4096
+offset_left = -312.0
+offset_top = -335.0
+offset_right = 293.0
+offset_bottom = 4.0
+texture = SubResource("GradientTexture2D_qjryw")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -162)
+zoom = Vector2(2, 2)
