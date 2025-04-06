@@ -15,7 +15,7 @@ func _select_spawnlist() -> Spawnlist:
 	
 	var allowed: Array[Spawnlist] = []
 	for list in spawnlists:
-		if current_depth < list.min_depth:
+		if current_depth <= list.min_depth:
 			continue
 		if list.max_depth != -1 and current_depth > list.max_depth:
 			continue

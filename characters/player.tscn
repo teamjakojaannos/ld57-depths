@@ -832,6 +832,7 @@ script = ExtResource("8_6t23p")
 [node name="HarpoonSpawner" type="Marker2D" parent="HarpoonGun"]
 position = Vector2(20, -21)
 script = ExtResource("9_n8jd0")
+projectile_damage = 100.0
 
 [node name="NetThrower" type="Node2D" parent="."]
 script = ExtResource("8_6t23p")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=32 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="10_yyd14"]
 [ext_resource type="Script" uid="uid://c7m15n72b5j4x" path="res://ui/objective_overlay.gd" id="11_5ycdb"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="11_6f163"]
+[ext_resource type="Resource" uid="uid://cn34rxb6u104s" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="11_mgpep"]
 [ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="11_ughyh"]
 [ext_resource type="Resource" uid="uid://bmxxixyyjvvnh" path="res://levels/level_parts/common_any_slot.tres" id="12_pb6kn"]
@@ -246,7 +247,7 @@ level_part_prefabs = Array[PackedScene]([ExtResource("2_kc1m6"), ExtResource("3_
 [node name="LevelGenerator" type="Node" parent="EndlessLevel"]
 script = ExtResource("10_0u5wd")
 parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
-spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_xr5dp")])
+spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_xr5dp"), ExtResource("11_fbo34")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]

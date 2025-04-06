@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Spawnable" load_steps=3 format=3 uid="uid://cxtleutuy6mec"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_rtp8s"]
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="1_v007n"]
+
+[resource]
+script = ExtResource("1_rtp8s")
+prefab = ExtResource("1_v007n")
+spawnpoint_group = &"enemy_spawn"
+spawn_cost = 3
+metadata/_custom_type_script = "uid://b5ri76voq74fo"
