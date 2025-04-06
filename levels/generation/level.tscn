@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://dmcjpau04bcb0"]
+[gd_scene load_steps=9 format=4 uid="uid://dmcjpau04bcb0"]
 
 [ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/level.gd" id="1_bokrc"]
 [ext_resource type="TileSet" uid="uid://djhl6rrvyuldm" path="res://levels/level.tres" id="2_ndswy"]
-[ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="3_bokrc"]
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="5_slcm8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ndswy"]
@@ -61,12 +60,8 @@ debug_color = Color(0.393465, 0.61037, 0, 0.42)
 [node name="LeftUtility" type="Marker2D" parent="."]
 position = Vector2(-208, 0)
 
-[node name="BubbleElevator" parent="LeftUtility" instance=ExtResource("3_bokrc")]
-
 [node name="RightUtility" type="Marker2D" parent="."]
 position = Vector2(208, 0)
-
-[node name="BubbleElevator" parent="RightUtility" instance=ExtResource("3_bokrc")]
 
 [node name="TopLevelPart" type="Marker2D" parent="."]
 position = Vector2(0, -176)

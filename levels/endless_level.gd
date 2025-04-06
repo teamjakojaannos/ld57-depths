@@ -49,11 +49,12 @@ func _transition_to_next_level() -> void:
 	
 	Globals.current_room_index += 1
 
-	var level_prefab: PackedScene = load("res://levels/generation/level.tscn")
-	var new_level: Level = level_prefab.instantiate()
-	_generate_level(new_level)
-	add_child(new_level)
+	var new_level: Level = $LevelGenerator.generate(self)
 
+	_play_transition_animation.call_deferred(new_level)
+
+
+func _play_transition_animation(new_level: Level) -> void:
 	var old_level_goal_position = Vector2.UP * _level_height_total
 	var new_level_goal_position = Vector2.ZERO
 	var player_goal_position = player.position + Vector2.UP * _level_height_total
@@ -62,6 +63,8 @@ func _transition_to_next_level() -> void:
 
 	current_level.position = Vector2.ZERO
 	new_level.position = Vector2.DOWN * _level_height_total
+
+	# await get_tree().create_timer(1.0).timeout
 
 	var transition = create_tween()
 	transition.set_parallel(true)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelPart" load_steps=2 format=3 uid="uid://bmxxixyyjvvnh"]
+
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="1_vxvtg"]
+
+[resource]
+script = ExtResource("1_vxvtg")
+scene_uids = Array[String](["uid://dpcnthy4eomun", "uid://dqf30nhwiyrkn", "uid://dm26lbxt62yt", "uid://daf4ocofnmlcr"])
+allowed_placement = 0
+special_sequence = 0
+blocks_left_utility = false
+blocks_right_utility = false
+metadata/_custom_type_script = "uid://btbyp1ynjhn0d"

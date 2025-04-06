@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="LevelPart" load_steps=2 format=3 uid="uid://cb53ctfrsyrep"]
+
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="1_gok0l"]
+
+[resource]
+script = ExtResource("1_gok0l")
+scene_uids = Array[String](["uid://cij80dcdoxkv3"])
+allowed_placement = 3
+special_sequence = 1
+blocks_left_utility = false
+blocks_right_utility = false
+metadata/_custom_type_script = "uid://btbyp1ynjhn0d"
