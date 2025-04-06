@@ -8,8 +8,8 @@
 
 [resource]
 script = ExtResource("3_14tn7")
-min_depth = 7
-max_depth = 7
+min_depth = 8
+max_depth = 8
 total_cost = 10
 enemies = Array[ExtResource("1_4v1ue")]([ExtResource("2_qn1ot")])
 level_override = Array[ExtResource("3_qn1ot")]([ExtResource("4_14tn7")])

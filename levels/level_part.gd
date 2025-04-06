@@ -10,6 +10,8 @@ class_name LevelPart
 @export var blocks_left_utility: bool = false
 @export var blocks_right_utility: bool = false
 
+@export var require_completion: bool = true
+
 enum AllowedPlacement {
 	## Can be placed to either of the slots
 	EITHER,

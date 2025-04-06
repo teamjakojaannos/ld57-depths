@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://c70onsm5j3784"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_l3vwb"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_bxplb"]
+[ext_resource type="Resource" uid="uid://cxtoqp352umox" path="res://levels/level_parts/special/shop/shop_02.tres" id="3_bxplb"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_euesn"]
+
+[resource]
+script = ExtResource("3_euesn")
+min_depth = 6
+max_depth = 6
+total_cost = 0
+enemies = Array[ExtResource("1_l3vwb")]([])
+level_override = Array[ExtResource("2_bxplb")]([ExtResource("3_bxplb")])
+special_sequence = 2
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"

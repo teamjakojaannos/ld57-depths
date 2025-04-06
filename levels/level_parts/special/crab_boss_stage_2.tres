@@ -10,4 +10,5 @@ allowed_placement = 3
 special_sequence = 1
 blocks_left_utility = true
 blocks_right_utility = true
+require_completion = true
 metadata/_custom_type_script = "uid://btbyp1ynjhn0d"

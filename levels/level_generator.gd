@@ -81,9 +81,12 @@ func _generate_from_parts(
 	var level: Level = level_base.instantiate()
 	container.add_child(level)
 
+	var require_completion = false
 	if top_part is LevelPart:
+		require_completion = require_completion || top_part.require_completion
 		_place_part.call_deferred(level, LevelPart.Slot.TOP, top_part)
 	if bottom_part is LevelPart:
+		require_completion = require_completion || bottom_part.require_completion
 		_place_part.call_deferred(level, LevelPart.Slot.BOTTOM, bottom_part)
 
 	if left_utility:
@@ -92,6 +95,10 @@ func _generate_from_parts(
 		_place_utility.call_deferred(level, false)
 
 	_spawn_enemies.call_deferred(level, spawnlist)
+
+	if !require_completion:
+		level.no_blocker = true
+		level.unlock_exit()
 
 	return level
 
