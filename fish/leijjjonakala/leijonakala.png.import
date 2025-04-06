@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6stc6id777uv"
-path="res://.godot/imported/leijonakala.png-4736b9acb2f113010c4ebbfb9256c3a9.ctex"
+path="res://.godot/imported/leijonakala.png-0fd854dd879fdf4306d9e1a4437026dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://fish/leijonakala.png"
-dest_files=["res://.godot/imported/leijonakala.png-4736b9acb2f113010c4ebbfb9256c3a9.ctex"]
+source_file="res://fish/leijjjonakala/leijonakala.png"
+dest_files=["res://.godot/imported/leijonakala.png-0fd854dd879fdf4306d9e1a4437026dd.ctex"]
 
 [params]
 

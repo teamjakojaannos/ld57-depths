@@ -40,3 +40,10 @@ func record_kill() -> void:
 	if _kills >= kills_required:
 		Globals.level.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
 		unlock_exit()
+
+func get_random_fish_nav_point() -> Vector2:
+	var nav_area: CollisionShape2D = $"FishNavArea/Shape"
+	var rect: Rect2 = nav_area.shape.get_rect()
+	var x = randf_range(-rect.size.x, rect.size.x) / 2.0
+	var y = randf_range(-rect.size.y, rect.size.y) / 2.0
+	return Vector2(x, y) + nav_area.position

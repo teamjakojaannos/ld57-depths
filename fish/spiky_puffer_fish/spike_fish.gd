@@ -117,18 +117,11 @@ func _shoot_spikes() -> void:
 
 
 func pick_random_target_position() -> Vector2:
-	var current_level = get_parent()
+	var current_level = Globals.current_level
 	if current_level == null:
 		return position
 	
-	var nav_area: CollisionShape2D = current_level.get_node_or_null("FishNavArea/Shape")
-	if nav_area == null:
-		return position
-	
-	var rect : Rect2 = nav_area.shape.get_rect()
-	var x = randf_range(-rect.size.x, rect.size.x) / 2.0
-	var y = randf_range(-rect.size.y, rect.size.y) / 2.0
-	return Vector2(x, y) + nav_area.position
+	return current_level.get_random_fish_nav_point()
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
