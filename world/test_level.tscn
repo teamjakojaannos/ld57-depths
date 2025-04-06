@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ufxrj7wc6mfv"]
+[gd_scene load_steps=7 format=3 uid="uid://ufxrj7wc6mfv"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_434qw"]
 [ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="2_kfa7i"]
 [ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="3_x27he"]
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="4_kfa7i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbyq"]
 size = Vector2(170, 22)
@@ -19,6 +20,8 @@ zoom = Vector2(2, 2)
 
 [node name="SpikeFish" parent="." instance=ExtResource("2_kfa7i")]
 position = Vector2(125.014, -30.0512)
+min_attack_cooldown = 999.0
+max_attack_cooldown = 999.0
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2(0, 89)
@@ -52,3 +55,6 @@ shape = SubResource("RectangleShape2D_vkbyq")
 
 [node name="Shape" type="CollisionShape2D" parent="FishNavArea"]
 shape = SubResource("RectangleShape2D_434qw")
+
+[node name="Eel" parent="." instance=ExtResource("4_kfa7i")]
+position = Vector2(-61, -22)
