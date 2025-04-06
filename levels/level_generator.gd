@@ -97,7 +97,7 @@ func _spawn_enemies(level: Level) -> void:
 
 
 func _place_part(level: Level, slot: LevelPart.Slot, part: LevelPart) -> void:
-	var part_prefab: PackedScene = part.scenes().pick_random()
+	var part_prefab: PackedScene = part.scenes.pick_random()
 	var part_instance: Node2D = part_prefab.instantiate()
 
 	if slot == LevelPart.Slot.BOTTOM:

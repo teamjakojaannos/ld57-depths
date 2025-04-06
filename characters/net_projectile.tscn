@@ -1,7 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cc3oxdvccshkj"]
+[gd_scene load_steps=17 format=3 uid="uid://cc3oxdvccshkj"]
 
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_hqja7"]
+[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="2_ee6op"]
 [ext_resource type="Texture2D" uid="uid://7r0ldnpfl5sr" path="res://characters/player/verkko.png" id="2_hqja7"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_hxwdh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hxwdh"]
+radius = 3.53553
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxwdh"]
 atlas = ExtResource("2_hqja7")
@@ -54,7 +59,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CollisionShape2D:shape")
+tracks/0/path = NodePath("Hurtbox/Shape:shape")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -96,7 +101,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionShape2D:shape")
+tracks/2/path = NodePath("Hurtbox/Shape:shape")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -114,18 +119,24 @@ _data = {
 
 [node name="Net" type="Area2D"]
 collision_layer = 0
-collision_mask = 12
+collision_mask = 0
 script = ExtResource("1_hqja7")
 point_at_velocity = false
 fall_speed = 400.0
+damage = 3.0
+
+[node name="Lifetime" type="Node" parent="."]
+script = ExtResource("2_ee6op")
+duration = 5.0
+metadata/_custom_type_script = "uid://dhxp0561m5pwb"
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("CircleShape2D_hxwdh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s75y3")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -4.76837e-07)
-rotation = 0.785398
-shape = SubResource("RectangleShape2D_hqja7")
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -133,4 +144,18 @@ libraries = {
 }
 autoplay = "default"
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_hxwdh")
+damage = 3.0
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, -4.76837e-07)
+rotation = 0.785398
+shape = SubResource("RectangleShape2D_hqja7")
+debug_color = Color(0.983059, 0, 0.356535, 0.42)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hurt_target" from="Hurtbox" to="." method="_on_hurtbox_hurt_target"]

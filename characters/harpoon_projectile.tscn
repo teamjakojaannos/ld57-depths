@@ -1,11 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6swhl7gcqc5y"]
+[gd_scene load_steps=10 format=3 uid="uid://c6swhl7gcqc5y"]
 
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_1vnpa"]
 [ext_resource type="Texture2D" uid="uid://8piw52kr2jqf" path="res://characters/harppuuna_projektiili.png" id="2_1vnpa"]
 [ext_resource type="Texture2D" uid="uid://brigoy27bkp6p" path="res://particles/mikrokupla.png" id="3_sq7bj"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8act"]
-size = Vector2(21, 7)
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_k6xo0"]
 
 [sub_resource type="Gradient" id="Gradient_sq7bj"]
 offsets = PackedFloat32Array(0, 0.943638, 1)
@@ -31,19 +29,21 @@ scale_min = 0.5
 scale_max = 1.1
 color_ramp = SubResource("GradientTexture1D_k6xo0")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8act"]
+size = Vector2(17, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k6xo0"]
+size = Vector2(21, 7)
+
 [node name="HarpoonProjectile" type="Area2D" node_paths=PackedStringArray("trail_particle_emitter")]
 collision_layer = 0
-collision_mask = 12
+collision_mask = 8
 script = ExtResource("1_1vnpa")
 trail_particle_emitter = NodePath("TrailBubbles")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-9, 0)
 texture = ExtResource("2_1vnpa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9, 0)
-shape = SubResource("RectangleShape2D_l8act")
 
 [node name="TrailBubbles" type="GPUParticles2D" parent="."]
 position = Vector2(-19, 0)
@@ -52,5 +52,20 @@ texture = ExtResource("3_sq7bj")
 lifetime = 0.75
 process_material = SubResource("ParticleProcessMaterial_k6xo0")
 
+[node name="Collider" type="CollisionShape2D" parent="."]
+position = Vector2(-7.5, 0)
+shape = SubResource("RectangleShape2D_l8act")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("4_k6xo0")
+damage = 1.0
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-9, 0)
+shape = SubResource("RectangleShape2D_k6xo0")
+debug_color = Color(0.972567, 0, 0.440138, 0.42)
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hurt_target" from="Hurtbox" to="." method="_on_hurtbox_hurt_target"]

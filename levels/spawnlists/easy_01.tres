@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_k6gfn"]
 [ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="2_m1c8n"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="2_rkawd"]
-[ext_resource type="Resource" uid="uid://cxtleutuy6mec" path="res://levels/spawnable/enemies/eel_01.tres" id="3_m1c8n"]
+[ext_resource type="Resource" path="res://levels/spawnable/enemies/eel_01.tres" id="3_m1c8n"]
 
 [resource]
 script = ExtResource("2_rkawd")

@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bv7qqj0er6f4y"]
+[gd_scene load_steps=7 format=3 uid="uid://bv7qqj0er6f4y"]
 
 [ext_resource type="Texture2D" uid="uid://cx0yqjvqex2ft" path="res://graphics/spike.png" id="1_k8k4s"]
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_wovym"]
 [ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="3_wovym"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_uq8tb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wovym"]
 size = Vector2(6, 3)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uq8tb"]
+size = Vector2(9, 4)
+
 [node name="Spike" type="Area2D"]
 collision_layer = 0
-collision_mask = 3
+collision_mask = 10
 script = ExtResource("1_wovym")
 
 [node name="Lifetime" type="Node" parent="."]
@@ -23,4 +27,16 @@ texture = ExtResource("1_k8k4s")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wovym")
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_uq8tb")
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_uq8tb")
+debug_color = Color(0.998931, 0, 0.128543, 0.42)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="hurt_target" from="Hurtbox" to="." method="_on_hurtbox_hurt_target"]

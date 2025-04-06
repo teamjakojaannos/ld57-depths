@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="10_yyd14"]
 [ext_resource type="Script" uid="uid://c7m15n72b5j4x" path="res://ui/objective_overlay.gd" id="11_5ycdb"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="11_6f163"]
-[ext_resource type="Resource" uid="uid://cn34rxb6u104s" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
+[ext_resource type="Resource" uid="uid://cuii51a4el6ao" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="11_mgpep"]
 [ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="11_ughyh"]
 [ext_resource type="Resource" uid="uid://bmxxixyyjvvnh" path="res://levels/level_parts/common_any_slot.tres" id="12_pb6kn"]

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://cn34rxb6u104s"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://cuii51a4el6ao"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_2qvev"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="2_ca8xa"]

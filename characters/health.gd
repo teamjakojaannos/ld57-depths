@@ -18,17 +18,17 @@ var is_dead: bool:
 var _is_killed: bool = false
 var _health: float = 10
 
-func heal(amount: float, from: Node) -> void:
+func heal(amount: float, _from: Node) -> void:
 	var old_health = _health
 	_health = clamp(_health + amount, 0, max_health)
 	_check_signals(old_health, Vector2.INF)
 
-func take_damage(amount: float, from: Node) -> void:
+func take_damage(amount: float, _from: Node) -> void:
 	var old_health = _health
 	_health = clamp(_health - amount, 0, max_health)
 	_check_signals(old_health, Vector2.INF)
 
-func take_damage_at(amount: float, from: Node, point: Vector2) -> void:
+func take_damage_at(amount: float, _from: Node, point: Vector2) -> void:
 	var old_health = _health
 	_health = clamp(_health - amount, 0, max_health)
 	_check_signals(old_health, point)

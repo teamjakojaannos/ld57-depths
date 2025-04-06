@@ -2,22 +2,13 @@
 extends Resource
 class_name LevelPart
 
-@export var scene_uids: Array[String] = []
+@export var scenes: Array[PackedScene] = []
 @export var allowed_placement: AllowedPlacement = AllowedPlacement.EITHER
 
 @export var special_sequence: SpecialSequence = SpecialSequence.NONE
 
 @export var blocks_left_utility: bool = false
 @export var blocks_right_utility: bool = false
-
-var _scenes: Array[PackedScene] = []
-
-func scenes() -> Array[PackedScene]:
-	if _scenes.is_empty():
-		for uid in scene_uids:
-			_scenes.push_back(load(uid))
-
-	return _scenes
 
 enum AllowedPlacement {
 	## Can be placed to either of the slots
