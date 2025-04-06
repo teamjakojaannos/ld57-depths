@@ -12,16 +12,27 @@ var ready_to_attack: bool = false
 @export var min_spike_count = 3
 @export var max_spike_count = 8
 
+@export var move_speed = 50.0
 
 var is_dead: bool:
 	get:
 		return $Health.is_dead
 
+var target_position: Vector2 = Vector2()
+
 func _ready() -> void:
+	target_position = pick_random_target_position()
 	# get some variation so fishes don't instantly attack on entering new level
 	start_attack_cooldown(0.0, max_attack_cooldown)
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	var close_enough = 20.0
+
+	position = position.move_toward(target_position, move_speed * delta)
+	var d2 = position.distance_squared_to(target_position)
+	if d2 <= close_enough:
+		target_position = pick_random_target_position()
+
 	if ready_to_attack and !is_dead:
 		attack()
 
@@ -55,6 +66,21 @@ func _shoot_spikes() -> void:
 		
 		Globals.level.current_level.add_child(spike)
 
+
+func pick_random_target_position() ->Vector2:
+	var current_level = get_parent()
+	if current_level == null:
+		return Vector2()
+	
+	var nav_points = current_level.get_node_or_null("FishNavPoints")
+	if nav_points == null:
+		return Vector2()
+	
+	var markers = nav_points.get_children()
+	if markers.size() == 0:
+		return Vector2()
+	
+	return markers.pick_random().position
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
