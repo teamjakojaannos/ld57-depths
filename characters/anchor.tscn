@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ctjdv3ddjte5s"]
+[gd_scene load_steps=8 format=3 uid="uid://ctjdv3ddjte5s"]
 
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_3vbes"]
 [ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="1_mtty5"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="2_e0s76"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_iklul"]
+[ext_resource type="Script" uid="uid://dcwntjp1sybhk" path="res://characters/anchor_impact.gd" id="5_ogsqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vbes"]
 size = Vector2(23, 21)
@@ -40,3 +41,9 @@ metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_ogsqg")
+
+[node name="AnchorImpact" type="Node" parent="."]
+script = ExtResource("5_ogsqg")
+
+[connection signal="body_entered" from="." to="AnchorImpact" method="_on_anchor_body_entered"]
+[connection signal="hurt_target" from="Hurtbox" to="AnchorImpact" method="_on_hurtbox_hurt_target"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=65 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
@@ -17,6 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://d3t024eeopcgr" path="res://characters/player/harpoongun_shoot.ogg" id="14_eus45"]
 [ext_resource type="Script" uid="uid://b8r7hyb7fpo7n" path="res://characters/sfx_harpoon.gd" id="15_vcag3"]
 [ext_resource type="AudioStream" uid="uid://dtuwrmrl18hr4" path="res://characters/player/net_throw2.ogg" id="16_h076o"]
+[ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sqrr"]
 radius = 9.0
@@ -880,6 +881,12 @@ max_polyphony = 4
 bus = &"Player Guns SFX"
 script = ExtResource("15_vcag3")
 
+[node name="SfxAnchor" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_h076o")
+max_polyphony = 4
+bus = &"Player Guns SFX"
+script = ExtResource("18_b0vde")
+
 [connection signal="Die" from="." to="AnimationPlayer" method="_on_player_die"]
 [connection signal="Die" from="." to="SfxDeath" method="play"]
 [connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]
@@ -893,3 +900,4 @@ script = ExtResource("15_vcag3")
 [connection signal="Fire" from="NetThrower" to="NetThrower/NetSpawner" method="_on_net_thrower_fire"]
 [connection signal="Fire" from="NetThrower" to="SfxNet" method="_on_net_thrower_fire"]
 [connection signal="Fire" from="AnchorDropper" to="AnchorDropper/AnchorSpawner" method="_on_anchor_dropper_fire"]
+[connection signal="Fire" from="AnchorDropper" to="SfxAnchor" method="_on_anchor_dropper_fire"]
