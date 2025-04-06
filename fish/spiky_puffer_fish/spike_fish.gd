@@ -2,6 +2,7 @@ class_name SpikeFish
 extends Area2D
 
 const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
+@export var spike_damage = 1
 @export var min_spike_speed = 100.0
 @export var max_spike_speed = 200.0
 
@@ -110,6 +111,7 @@ func _shoot_spikes() -> void:
 		var spike: Projectile = spike_scene.instantiate()
 		spike.velocity = velocity
 		spike.global_position = $SpikeOrigin.global_position + spawn
+		spike.damage = spike_damage
 		
 		Globals.level.current_level.add_child(spike)
 

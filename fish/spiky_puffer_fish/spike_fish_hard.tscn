@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ex2yq61nhl0k"]
+
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="1_sag2v"]
+
+[node name="SpikeFish" instance=ExtResource("1_sag2v")]
+modulate = Color(0, 1, 0.74902, 1)
+spike_damage = 2
+min_spike_speed = 125.0
+max_spike_speed = 225.0
+min_attack_cooldown = 1.0
+max_attack_cooldown = 2.5
+min_spike_count = 8
+max_spike_count = 16
+normal_move_speed = 75.0
+attack_move_speed = 25.0
+
+[node name="Health" parent="." index="0"]
+max_health = 8.0
