@@ -8,7 +8,7 @@ const harpoon_scene = preload("res://characters/harpoon_projectile.tscn")
 func _on_harpoon_gun_fire(shooter: CharacterBody2D, direction: Vector2) -> void:
 	_spawn_projectile(shooter, direction)
 
-func _spawn_projectile(shooter: CharacterBody2D, direction: Vector2) -> void:
+func _spawn_projectile(_shooter: CharacterBody2D, direction: Vector2) -> void:
 	var projectile: Projectile = harpoon_scene.instantiate()
 
 	var offset = position

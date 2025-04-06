@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://b56fx2xsus5v3"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_j4acq"]
+[ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="2_j4acq"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_vmaxn"]
+
+[resource]
+script = ExtResource("3_vmaxn")
+min_depth = 0
+max_depth = -1
+total_cost = 0
+enemies = Array[ExtResource("1_j4acq")]([ExtResource("2_j4acq")])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"

@@ -4,6 +4,10 @@ class_name LevelGenerator
 @export var parts: Array[LevelPart] = []
 @export var spawnlists: Array[Spawnlist] = []
 
+@export_category("Crab Rave")
+@export var crab_rave_parts: Array[LevelPart] = []
+@export var crab_rave_spawnlists: Array[Spawnlist] = []
+
 # level.tscn
 const level_base: PackedScene = preload("uid://dmcjpau04bcb0")
 
@@ -24,8 +28,6 @@ func _select_spawnlist() -> Spawnlist:
 	return allowed.pick_random()
 
 func _find_level_parts(slot: LevelPart.Slot) -> Array[LevelPart]:
-	var current_depth = Globals.current_room_index
-	
 	var allowed: Array[LevelPart] = []
 	for part in parts:
 		if part.can_be_placed_in(slot):
@@ -33,43 +35,75 @@ func _find_level_parts(slot: LevelPart.Slot) -> Array[LevelPart]:
 	
 	return allowed
 
+func generate_crab_rave(container: Node, room_index: int) -> Level:
+	var part = crab_rave_parts[room_index]
+	var spawnlist = crab_rave_spawnlists[room_index]
+	return _generate_from_parts(
+		container,
+		null,
+		part,
+		true,#room_index == 3,
+		true,#room_index == 3,
+		spawnlist
+	)
+	
 func generate(container: Node) -> Level:
-	var level: Level = level_base.instantiate()
-	container.add_child(level)
-
 	var is_left_utility_allowed: bool = true
 	var is_right_utility_allowed: bool = true
 	
 	var first_slot = LevelPart.Slot.TOP if randf() < 0.5 else LevelPart.Slot.BOTTOM
 	var first_part: LevelPart = _find_level_parts(first_slot).pick_random()
 	
-	_place_part.call_deferred(level, first_slot, first_part)
 	is_left_utility_allowed = is_left_utility_allowed && !first_part.blocks_left_utility
 	is_right_utility_allowed = is_right_utility_allowed && !first_part.blocks_right_utility
 
+	var second_part: LevelPart
+	var second_slot: LevelPart.Slot
 	if first_part.allowed_placement != LevelPart.AllowedPlacement.DOUBLE_SIZE:
-		var second_slot = LevelPart.other_slot(first_slot)
+		second_slot = LevelPart.other_slot(first_slot)
 		var second_part_candidates = _find_level_parts(second_slot)
 		
 		if not second_part_candidates.is_empty():
-			var second_part = second_part_candidates.pick_random()
-			_place_part.call_deferred(level, second_slot, second_part)
+			second_part = second_part_candidates.pick_random()
 			is_left_utility_allowed = is_left_utility_allowed && !second_part.blocks_left_utility
 			is_right_utility_allowed = is_right_utility_allowed && !second_part.blocks_right_utility
 
-	if is_left_utility_allowed:
+	return _generate_from_parts(
+		container,
+		first_part if first_slot == LevelPart.Slot.TOP else second_part,
+		second_part if first_slot == LevelPart.Slot.TOP else first_part,
+		is_left_utility_allowed,
+		is_right_utility_allowed,
+		_select_spawnlist()
+	)
+
+func _generate_from_parts(
+	container: Node,
+	top_part: LevelPart,
+	bottom_part: LevelPart,
+	right_utility: bool,
+	left_utility: bool,
+	spawnlist: Spawnlist
+) -> Level:
+	var level: Level = level_base.instantiate()
+	container.add_child(level)
+
+	if top_part is LevelPart:
+		_place_part.call_deferred(level, LevelPart.Slot.TOP, top_part)
+	if bottom_part is LevelPart:
+		_place_part.call_deferred(level, LevelPart.Slot.BOTTOM, bottom_part)
+
+	if left_utility:
 		_place_utility.call_deferred(level, true)
-	if is_right_utility_allowed:
+	if right_utility:
 		_place_utility.call_deferred(level, false)
 
-	_spawn_enemies.call_deferred(level)
+	_spawn_enemies.call_deferred(level, spawnlist)
 
 	return level
 
 
-func _spawn_enemies(level: Level) -> void:
-	var spawnlist = _select_spawnlist()
-
+func _spawn_enemies(level: Level, spawnlist: Spawnlist) -> void:
 	var spawned_enemies = 0
 	var spent_cost = 0
 	while spent_cost < spawnlist.total_cost:

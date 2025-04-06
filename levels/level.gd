@@ -21,6 +21,7 @@ func finish() -> void:
 
 func unlock_exit() -> void:
 	$Blocker.queue_free()
+	Globals.trigger_level_clear()
 	
 	for child in $LeftUtility.get_children():
 		if child is BubbleElevator:

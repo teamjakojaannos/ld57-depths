@@ -99,9 +99,6 @@ func _shoot_spikes() -> void:
 	if is_dead:
 		return
 
-	var parent = get_parent()
-
-	var zero = Vector2(0, 0)
 	var spike_count = randi_range(min_spike_count, max_spike_count)
 
 	for _s in spike_count:

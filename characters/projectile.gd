@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		rotation = velocity.angle()
 
 
-func _on_body_entered(other: Node2D) -> void:
+func _on_body_entered(_other: Node2D) -> void:
 	if Engine.is_editor_hint():
 		return
 
@@ -51,7 +51,7 @@ func _on_body_entered(other: Node2D) -> void:
 	_destroy()
 
 
-func _on_hurtbox_hurt_target(other) -> void:
+func _on_hurtbox_hurt_target(_other) -> void:
 	if Engine.is_editor_hint():
 		return
 

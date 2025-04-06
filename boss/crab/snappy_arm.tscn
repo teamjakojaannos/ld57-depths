@@ -1,0 +1,177 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqngjdi7feqd4"]
+
+[ext_resource type="Texture2D" uid="uid://c3mlvrimd7i8x" path="res://boss/crab/rapuclaw.png" id="1_h11qt"]
+[ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="2_eyr67"]
+
+[sub_resource type="Animation" id="Animation_obwof"]
+length = 0.769231
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["no_snappy"]
+}
+
+[sub_resource type="Animation" id="Animation_igk4n"]
+length = 1.53846
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.769231),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["snappy"]
+}
+
+[sub_resource type="Animation" id="Animation_wdbw8"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Sprite:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["snappy_fast"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6u1in"]
+_data = {
+&"no_snappy": SubResource("Animation_obwof"),
+&"snappy": SubResource("Animation_igk4n"),
+&"snappy_fast": SubResource("Animation_wdbw8")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0yh8"]
+atlas = ExtResource("1_h11qt")
+region = Rect2(258, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiodq"]
+atlas = ExtResource("1_h11qt")
+region = Rect2(2, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00haj"]
+atlas = ExtResource("1_h11qt")
+region = Rect2(130, 10, 42, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obwof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"no_snappy",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snappy",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snappy_fast",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igk4n"]
+radius = 24.0
+
+[node name="Pivot" type="Node2D"]
+
+[node name="SpriteAnimations" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_6u1in")
+}
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_obwof")
+animation = &"snappy_fast"
+offset = Vector2(-11, -32)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-8, -40)
+collision_layer = 0
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_unit_distance = 24.0
+gravity_point_center = Vector2(0, 16)
+gravity_direction = Vector2(0, 16)
+gravity = -15000.0
+script = ExtResource("2_eyr67")
+
+[node name="Shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_igk4n")
+debug_color = Color(0.971292, 0.170316, 1.92523e-07, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="Area2D" method="_on_area_entered"]

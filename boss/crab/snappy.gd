@@ -8,6 +8,11 @@ extends Node2D
 
 signal attack_finished
 
+func retreat() -> void:
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(self, "position", Vector2.DOWN * 1000.0, 1.5)
+
 func attack() -> void:
 	var point = points.pick_random()
 

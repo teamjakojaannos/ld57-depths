@@ -3,6 +3,7 @@ class_name EndlessLevel
 
 @onready var current_level: Level = $Level
 @onready var player: Player = $"../Player"
+@onready var level_generator: LevelGenerator = $LevelGenerator
 
 @export var transition_duration: float = 1.5
 
@@ -23,9 +24,6 @@ var _level_height_total: float:
 	get:
 		return tile_size * level_height_in_tiles
 
-@export var level_part_prefabs: Array[PackedScene] = []
-@export var enemy_prefabs: Array[PackedScene] = []
-
 func _ready() -> void:
 	Globals.reset()
 	Globals.level = self
@@ -33,9 +31,6 @@ func _ready() -> void:
 
 	current_level = $Level
 	current_level.Finished.connect(next_level)
-
-func _generate_level(level: Level) -> void:
-	level.generate(level_part_prefabs, enemy_prefabs)
 
 func next_level() -> void:
 	_transition_to_next_level.call_deferred()
@@ -45,10 +40,20 @@ func _transition_to_next_level() -> void:
 		return
 
 	_is_transition_in_progress = true
-	
-	Globals.current_room_index += 1
 
-	var new_level: Level = $LevelGenerator.generate(self)
+	Globals.current_room_index += 1
+	
+	var new_level: Level
+	var ri = Globals.current_room_index
+	var crab_rave_start = 1
+	var crab_rave_room_count = level_generator.crab_rave_parts.size()
+	var crab_rave_end = crab_rave_start + crab_rave_room_count
+
+	if ri >= crab_rave_start and ri < crab_rave_end:
+		var crab_rave_room_index = Globals.current_room_index - crab_rave_start
+		new_level = level_generator.generate_crab_rave(self, crab_rave_room_index)
+	else:
+		new_level = $LevelGenerator.generate(self)
 
 	_play_transition_animation.call_deferred(new_level)
 

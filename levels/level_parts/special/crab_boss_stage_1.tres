@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LevelPart" load_steps=3 format=3 uid="uid://cb53ctfrsyrep"]
+
+[ext_resource type="PackedScene" uid="uid://vxxeln7q6wqf" path="res://levels/generation/templates/special/platform_crab_boss_01.tscn" id="1_yokqk"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_3srmt"]
+
+[resource]
+script = ExtResource("2_3srmt")
+scenes = Array[PackedScene]([ExtResource("1_yokqk")])
+allowed_placement = 3
+special_sequence = 1
+blocks_left_utility = true
+blocks_right_utility = true
+metadata/_custom_type_script = "uid://btbyp1ynjhn0d"

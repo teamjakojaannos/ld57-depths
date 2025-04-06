@@ -10,9 +10,14 @@ class_name GameGlobals
 
 @export var money: int = 100
 
+signal level_cleared
+
 func _ready() -> void:
 	reset()
 
 func reset() -> void:
 	depth = 0.0
 	current_room_index = 0
+
+func trigger_level_clear() -> void:
+	level_cleared.emit()

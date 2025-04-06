@@ -14,8 +14,8 @@ func update_indicator():
 	var angle_at_full = 130
 	
 	var percent = hp / max_hp if max_hp != 0 else 0
-	var range = angle_at_full - angle_at_empty
-	var angle = range * percent + angle_at_empty
+	var full_range = angle_at_full - angle_at_empty
+	var angle = full_range * percent + angle_at_empty
 	
 	if tween != null:
 		tween.kill()

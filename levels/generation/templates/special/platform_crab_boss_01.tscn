@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://cij80dcdoxkv3"]
+[gd_scene load_steps=5 format=4 uid="uid://vxxeln7q6wqf"]
 
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_uing8"]
 [ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="2_d4ux3"]
@@ -22,16 +22,15 @@ shape = SubResource("RectangleShape2D_soyje")
 debug_color = Color(1, 1, 1, 0.0392157)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAD///7/AAAEAAMAAAAAAP7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAD/////AAAEAAQAAAAAAP//AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAA=")
+position = Vector2(0, 24)
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAFAAMAAAD6//7/AAAFAAMAAAD7//7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAGAAMAAAAKAP7/AAAEAAMAAAD1////AAAEAAQAAAD2////AAAFAAQAAAD6////AAAGAAQAAAD7////AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAGAAQAAAAKAP//AAAEAAQAAADz//j/AAAEAAQAAAD0//j/AAAGAAQAAAD1//j/AAAFAAQAAAD2//j/AAAGAAQAAAD3//j/AAAHAAQAAAD3//f/AAAHAAMAAAD2//f/AAAGAAMAAAD1//f/AAAGAAMAAAD0//f/AAAFAAMAAADz//f/AAAEAAMAAAAHAPj/AAAEAAMAAAAHAPn/AAAEAAQAAAAIAPn/AAAGAAQAAAAJAPn/AAAHAAQAAAAJAPj/AAAHAAMAAAAIAPj/AAAGAAMAAAD3//r/AAADAAYAAAD4//r/AAAEAAYAAAD5//r/AAAFAAYAAAD6//r/AAAGAAYAAAD7//r/AAAHAAYAAAD8//r/AAAIAAYAAAD3//7/AAAGAAMAAAD3////AAAFAAQAAAD4////AAAGAAQAAAD5////AAAFAAQAAAD5//7/AAAFAAMAAAD4//7/AAAGAAMAAAD///7/AAAEAAQAAAD/////AAAEAAQAAAAAAP//AAAHAAQAAAAAAP7/AAAHAAQAAAAGAP7/AAAHAAMAAAAGAP//AAAHAAQAAAALAP7/AAAFAAMAAAALAP//AAAGAAQAAAAMAP//AAAGAAQAAAANAP//AAAHAAQAAAAMAP7/AAAFAAMAAAANAP7/AAAHAAMAAAANAPz/AAADAAYAAAAOAPz/AAAEAAYAAAAPAPz/AAAHAAYAAAAQAPz/AAAIAAYAAAD///3/AAAEAAMAAAAAAP3/AAAHAAMAAAA=")
 tile_set = ExtResource("1_uing8")
 
 [node name="SnappyPoints" type="Node2D" parent="."]
+position = Vector2(0, 30)
 
 [node name="Left" type="Marker2D" parent="SnappyPoints"]
 position = Vector2(-30, 10)
-
-[node name="Left2" type="Marker2D" parent="SnappyPoints"]
-position = Vector2(-110, 10)
 
 [node name="Left3" type="Marker2D" parent="SnappyPoints"]
 position = Vector2(-190, 10)
@@ -40,28 +39,38 @@ position = Vector2(-190, 10)
 position = Vector2(50, 10)
 
 [node name="Right2" type="Marker2D" parent="SnappyPoints"]
-position = Vector2(130, 10)
-
-[node name="Right3" type="Marker2D" parent="SnappyPoints"]
-position = Vector2(210, 10)
+position = Vector2(146, 10)
 
 [node name="CrabClaws" type="Node2D" parent="."]
+position = Vector2(0, 16)
 script = ExtResource("2_d4ux3")
 
 [node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
 position = Vector2(-40, 32)
-points = [NodePath(""), NodePath(""), NodePath("")]
+points = [NodePath("../../SnappyPoints/Left"), NodePath("../../SnappyPoints/Left3")]
 
 [node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
 position = Vector2(40, 32)
-points = [NodePath(""), NodePath(""), NodePath("")]
-
-[node name="Sprite" parent="CrabClaws/SnappyRight/Pivot" index="1"]
-flip_h = true
+scale = Vector2(-1, 1)
+points = [NodePath("../../SnappyPoints/Right"), NodePath("../../SnappyPoints/Right2")]
 
 [node name="Timer" type="Timer" parent="CrabClaws"]
 wait_time = 0.5
 one_shot = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="Node2D" groups=["enemy_spawn"]]
+position = Vector2(-184, -24)
+
+[node name="Spawn3" type="Marker2D" parent="Node2D" groups=["enemy_spawn"]]
+position = Vector2(-184, -136)
+
+[node name="Spawn4" type="Marker2D" parent="Node2D" groups=["enemy_spawn"]]
+position = Vector2(144, -128)
+
+[node name="Spawn2" type="Marker2D" parent="Node2D" groups=["enemy_spawn"]]
+position = Vector2(200, -56)
 
 [connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
 [connection signal="attack_finished" from="CrabClaws/SnappyRight" to="CrabClaws" method="_on_snappy_right_attack_finished"]
