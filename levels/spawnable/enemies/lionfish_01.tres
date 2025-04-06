@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Spawnable" load_steps=3 format=3 uid="uid://uhl3v2h0qcj0"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_6wuni"]
+[ext_resource type="PackedScene" uid="uid://bbiktumwnn3j6" path="res://fish/leijjjonakala/lion_fish.tscn" id="1_tvg4v"]
+
+[resource]
+script = ExtResource("1_6wuni")
+prefab = ExtResource("1_tvg4v")
+spawnpoint_group = &"enemy_spawn"
+spawn_cost = 5
+metadata/_custom_type_script = "uid://b5ri76voq74fo"

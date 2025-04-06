@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://0tfxy1u6khlw"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_5432p"]
+[ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="2_75r58"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_1jg2k"]
+
+[resource]
+script = ExtResource("3_1jg2k")
+min_depth = 0
+max_depth = -1
+total_cost = 5
+enemies = Array[ExtResource("1_5432p")]([ExtResource("2_75r58")])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
