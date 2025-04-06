@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ufxrj7wc6mfv"]
+[gd_scene load_steps=6 format=3 uid="uid://ufxrj7wc6mfv"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_434qw"]
 [ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="2_kfa7i"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vkbyq"]
 size = Vector2(170, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_434qw"]
+size = Vector2(501, 263)
 
 [node name="Level" type="Node2D"]
 
@@ -45,22 +48,5 @@ texture = ExtResource("3_x27he")
 position = Vector2(0, -57)
 shape = SubResource("RectangleShape2D_vkbyq")
 
-[node name="FishNavPoints" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(-181.986, -67.9335)
-
-[node name="Marker2D2" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(-196.33, 80.2805)
-
-[node name="Marker2D3" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(-48.1158, -103.45)
-
-[node name="Marker2D4" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(47.5061, 108.284)
-
-[node name="Marker2D5" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(149.958, -102.767)
-
-[node name="Marker2D6" type="Marker2D" parent="FishNavPoints"]
-position = Vector2(214.161, 95.9897)
+[node name="FishNavArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_434qw")
