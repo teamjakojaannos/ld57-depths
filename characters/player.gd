@@ -1,8 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -250.0
+const AIR_ACCEL: float = 2000.0
+const SPEED: float = 150.0
+const JUMP_VELOCITY: float = -250.0
 
 var is_in_transition: bool = false
 var is_dead: bool:
@@ -68,6 +69,23 @@ func _physics_process(delta: float) -> void:
 	if is_in_transition:
 		return
 
+	var direction = Input.get_axis("left", "right")
+	if direction and !is_dead:
+		if is_on_floor():
+			velocity.x = direction * SPEED * clamp(1.0 - _slowdown_amount, 0.0, 1.0)
+		else:
+			var speed = direction * SPEED * clamp(1.0 - _slowdown_amount, 0.0, 1.0)
+			var accel = AIR_ACCEL * delta
+			velocity.x = move_toward(velocity.x, speed, accel)
+	else:
+		var d = SPEED
+		if not is_on_floor():
+			d = 2.0 * SPEED * delta
+		velocity.x = move_toward(velocity.x, 0, d)
+
+	if direction:
+		looking_at = LookingAt.LEFT if direction < 0 else LookingAt.RIGHT
+
 	# Always apply gravity to support gravity zones
 	velocity += get_gravity() * delta
 	if is_on_floor():
@@ -76,15 +94,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !is_dead:
 		velocity.y = JUMP_VELOCITY
 		Jumped.emit()
-
-	var direction = Input.get_axis("left", "right")
-	if direction and !is_dead:
-		velocity.x = direction * SPEED * clamp(1.0 - _slowdown_amount, 0.0, 1.0)
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	if is_moving:
-		looking_at = LookingAt.LEFT if velocity.x < 0 else LookingAt.RIGHT
 
 	velocity += _push_force
 	move_and_slide()

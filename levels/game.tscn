@@ -323,7 +323,7 @@ position = Vector2(0, -182)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_0u5wd")
 autoplay = "default"
-frame_progress = 0.107412
+frame_progress = 0.525001
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -162)

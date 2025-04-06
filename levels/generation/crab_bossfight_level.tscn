@@ -1,7 +1,107 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2mtslfanxprb"]
+[gd_scene load_steps=10 format=4 uid="uid://c2mtslfanxprb"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_u21xx"]
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="2_2yr71"]
+[ext_resource type="Texture2D" uid="uid://c3mlvrimd7i8x" path="res://boss/crab/rapuclaw.png" id="3_cuao6"]
+[ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_q0yh8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0yh8"]
+atlas = ExtResource("3_cuao6")
+region = Rect2(258, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiodq"]
+atlas = ExtResource("3_cuao6")
+region = Rect2(2, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00haj"]
+atlas = ExtResource("3_cuao6")
+region = Rect2(130, 10, 42, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obwof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"no_snappy",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snappy",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snappy_fast",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_igk4n"]
+radius = 16.0
 
 [node name="CrabBossfightLevel" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -160)
+zoom = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("4_q0yh8")]
+position = Vector2(0, -56)
+collision_layer = 2
+collision_mask = 9
+
 [node name="Level" parent="." instance=ExtResource("1_u21xx")]
+
+[node name="BubbleElevator" parent="Level/LeftUtility" index="0"]
+process_mode = 4
+enabled = false
+
+[node name="BubbleElevator" parent="Level/RightUtility" index="0"]
+process_mode = 4
+enabled = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAD///7/AAAEAAMAAAAAAP7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAD/////AAAEAAQAAAAAAP//AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAA=")
+tile_set = ExtResource("2_2yr71")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-40, -16)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_obwof")
+animation = &"no_snappy"
+frame_progress = 0.808194
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+position = Vector2(0, -8)
+collision_layer = 0
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_unit_distance = 24.0
+gravity_point_center = Vector2(0, 16)
+gravity_direction = Vector2(0, 16)
+gravity = -3000.0
+
+[node name="Shape" type="CollisionShape2D" parent="Node2D/Area2D"]
+shape = SubResource("CircleShape2D_igk4n")
+debug_color = Color(0.971292, 0.170316, 1.92523e-07, 0.42)
+
+[editable path="Level"]
