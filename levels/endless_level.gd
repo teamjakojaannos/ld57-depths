@@ -32,8 +32,6 @@ func _ready() -> void:
 
 	current_level = $Level
 	current_level.Finished.connect(next_level)
-	
-	# _generate_level.call_deferred(current_level)
 
 func _generate_level(level: Level) -> void:
 	level.generate(level_part_prefabs, enemy_prefabs)

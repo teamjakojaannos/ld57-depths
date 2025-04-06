@@ -29,7 +29,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(other: Area2D) -> void:
 	# Hit something with health => damage
-	if other is Hitbox:
+	if other is Hitbox and not other.health.is_dead:
 		# FIXME: there should be a reference to the shooter/real source
 		#        here in the projectile to figure out who damaged whom
 		# HACK: offset the damage position to push particle emitters into the

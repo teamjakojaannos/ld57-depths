@@ -22,6 +22,14 @@ func finish() -> void:
 func unlock_exit() -> void:
 	$Blocker.queue_free()
 	
+	for child in $LeftUtility.get_children():
+		if child is BubbleElevator:
+			child.enabled = false
+
+	for child in $RightUtility.get_children():
+		if child is BubbleElevator:
+			child.enabled = false
+	
 func _ready() -> void:
 	if no_blocker:
 		unlock_exit()
