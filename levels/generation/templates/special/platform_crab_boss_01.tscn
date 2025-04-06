@@ -47,11 +47,12 @@ script = ExtResource("2_d4ux3")
 
 [node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
 position = Vector2(-40, 32)
+scale = Vector2(1.25, 1.25)
 points = [NodePath("../../SnappyPoints/Left"), NodePath("../../SnappyPoints/Left3")]
 
 [node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
 position = Vector2(40, 32)
-scale = Vector2(-1, 1)
+scale = Vector2(-1.25, 1.25)
 points = [NodePath("../../SnappyPoints/Right"), NodePath("../../SnappyPoints/Right2")]
 
 [node name="Timer" type="Timer" parent="CrabClaws"]

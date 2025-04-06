@@ -45,7 +45,7 @@ func _transition_to_next_level() -> void:
 	
 	var new_level: Level
 	var ri = Globals.current_room_index
-	var crab_rave_start = 1
+	var crab_rave_start = 5
 	var crab_rave_room_count = level_generator.crab_rave_parts.size()
 	var crab_rave_end = crab_rave_start + crab_rave_room_count
 

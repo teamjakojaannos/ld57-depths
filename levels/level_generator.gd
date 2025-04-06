@@ -42,8 +42,8 @@ func generate_crab_rave(container: Node, room_index: int) -> Level:
 		container,
 		null,
 		part,
-		true,#room_index == 3,
-		true,#room_index == 3,
+		!part.blocks_left_utility,
+		!part.blocks_right_utility,
 		spawnlist
 	)
 	
