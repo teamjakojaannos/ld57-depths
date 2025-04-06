@@ -792,6 +792,7 @@ script = ExtResource("1_3eadt")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_eho78")
+invincible_time = 0.5
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
