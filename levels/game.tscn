@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=30 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="11_6f163"]
 [ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="11_ughyh"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="12_yyd14"]
+[ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p0d6h"]
 texture = ExtResource("11_6f163")
@@ -380,3 +381,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ughyh")
 }
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="HpIndicator" parent="Hud" instance=ExtResource("18_aumgp")]

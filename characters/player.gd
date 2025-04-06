@@ -102,6 +102,11 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("attack_2"):
 		$NetThrower.fire(self, look_direction)
 
+func get_health():
+	return $Health._health
+
+func get_max_health():
+	return $Health.max_health
 
 func _on_health_die() -> void:
 	Die.emit()
