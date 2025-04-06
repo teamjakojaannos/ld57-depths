@@ -58,7 +58,7 @@ func _create_movement_tweens(force_recreate: bool = false):
 		movement_tween_2.tween_callback(_create_movement_tweens)
 
 func _physics_process(delta: float) -> void:
-	var target_position = (target1 + target1) / 2.0
+	var target_position = (target1 + target2) / 2.0
 	var previous_position = position
 	position = position.move_toward(target_position, move_speed * delta)
 	
