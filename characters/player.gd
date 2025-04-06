@@ -36,6 +36,7 @@ var is_moving: bool:
 		return abs(velocity.x) > 0.5
 		
 var _jumping: bool = false
+var is_crouching: bool = false
 
 var looking_at: LookingAt = LookingAt.RIGHT
 var looking_at_scalar: float:
@@ -78,6 +79,15 @@ func _physics_process(delta: float) -> void:
 		_jumping = false
 
 	var direction = Input.get_axis("left", "right")
+	if direction:
+		looking_at = LookingAt.LEFT if direction < 0 else LookingAt.RIGHT
+
+	if Input.is_action_pressed("crouch") and is_on_floor():
+		is_crouching = true
+		direction = 0.0
+	else:
+		is_crouching = false
+	
 	if direction and !is_dead:
 		if is_on_floor():
 			velocity.x = direction * SPEED * clamp(1.0 - _slowdown_amount, 0.0, 1.0)
@@ -98,9 +108,6 @@ func _physics_process(delta: float) -> void:
 	# Dampen high h velocities
 	if abs(velocity.x) > JUMP_VELOCITY * 2.0:
 		velocity.x = sign(velocity.x) * lerp(abs(velocity.x), 0.0, 10.0 * delta)
-
-	if direction:
-		looking_at = LookingAt.LEFT if direction < 0 else LookingAt.RIGHT
 
 	# Always apply gravity to support gravity zones
 	velocity += get_gravity() * delta

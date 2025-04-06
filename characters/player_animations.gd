@@ -3,6 +3,7 @@ extends AnimationPlayer
 @onready var player: Player = $".."
 
 var _is_jumping = false
+var _is_crouching = true
 
 func _process(_delta: float) -> void:
 	var anim_direction = "left"
@@ -18,8 +19,15 @@ func _process(_delta: float) -> void:
 		var anim = "idle"
 		if player.is_moving:
 			anim = "walk"
+		if player.is_crouching:
+			anim = "crouch"
+			if !_is_crouching:
+				_is_crouching = true
+				play("%s_%s" % [anim, anim_direction])
+		else:
+			_is_crouching = false
+			play("%s_%s" % [anim, anim_direction])
 
-		play("%s_%s" % [anim, anim_direction])
 	
 	if !player.is_dead and !player.is_on_floor():
 		var anim = "fall"

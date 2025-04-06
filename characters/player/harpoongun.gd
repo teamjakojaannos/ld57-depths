@@ -12,8 +12,6 @@ func _spawn_projectile(_shooter: CharacterBody2D, direction: Vector2) -> void:
 	var projectile: Projectile = harpoon_scene.instantiate()
 
 	var offset = position
-	offset.x *= sign(direction.x)
-
 	projectile.global_position = get_parent().global_position + offset
 	projectile.velocity = direction * projectile_speed
 	projectile.damage = projectile_damage
