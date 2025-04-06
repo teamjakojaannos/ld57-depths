@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctjdv3ddjte5s"]
+
+[ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_3vbes"]
+[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="1_mtty5"]
+[ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="2_e0s76"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_iklul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vbes"]
+size = Vector2(23, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogsqg"]
+size = Vector2(23, 21)
+
+[node name="Anchor" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_3vbes")
+point_at_velocity = false
+destroy_on_damage = false
+damage = 0.0
+
+[node name="Lifetime" type="Node" parent="."]
+script = ExtResource("1_mtty5")
+duration = 5.0
+metadata/_custom_type_script = "uid://dhxp0561m5pwb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_3vbes")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_e0s76")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_iklul")
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.5, 4.5)
+shape = SubResource("RectangleShape2D_ogsqg")
