@@ -77,6 +77,10 @@ func _play_transition_animation(new_level: Level) -> void:
 	
 	objective_overlay.show_objective("KILL", "EVERY", "FISH", 1.0)
 
+	var d = Globals.current_room_index / 100.0
+	$Bubbles.pitch_scale = lerp(1.05, 0.35, d)
+	$Bubbles.play()
+
 	await transition.finished
 
 	var old_level = current_level

@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="13_kw56w"]
 [ext_resource type="Resource" uid="uid://p30hred7cgtr" path="res://levels/spawnlists/easy_01.tres" id="14_xr5dp"]
 [ext_resource type="PackedScene" uid="uid://bj0y1grmkuw1b" path="res://levels/background.tscn" id="15_fbo34"]
+[ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
 [ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="22_si8kf"]
 
@@ -284,6 +285,10 @@ tile_map_data = PackedByteArray("AADT/+b/AAADAAAAAADT/+f/AAAEAAIAAADT/+j/AAAEAAI
 tile_set = SubResource("TileSet_jkag2")
 
 [node name="Background" parent="EndlessLevel" instance=ExtResource("15_fbo34")]
+
+[node name="Bubbles" type="AudioStreamPlayer" parent="EndlessLevel"]
+stream = ExtResource("17_si8kf")
+bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -162)
