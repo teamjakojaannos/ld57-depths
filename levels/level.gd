@@ -8,12 +8,20 @@ const spike_fish_prefab = preload("res://fish/spiky_puffer_fish/spike_fish.tscn"
 var _kills: int = 0
 var _kills_required: int = 999
 
+@export var no_blocker: bool = false
+
 
 func finish() -> void:
 	Finished.emit()
 
 func unlock_exit() -> void:
 	$Blocker.queue_free()
+	$LeftUtility/BubbleElevator.enabled = false
+	$RightUtility/BubbleElevator.enabled = false
+	
+func _ready() -> void:
+	if no_blocker:
+		unlock_exit()
 
 
 func generate(

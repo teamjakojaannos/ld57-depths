@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://dmcjpau04bcb0"]
+[gd_scene load_steps=9 format=4 uid="uid://dmcjpau04bcb0"]
 
 [ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/level.gd" id="1_bokrc"]
-[ext_resource type="PackedScene" uid="uid://6rmamqtga4e1" path="res://levels/generation/blocker_01.tscn" id="3_slcm8"]
+[ext_resource type="TileSet" uid="uid://djhl6rrvyuldm" path="res://levels/level.tres" id="2_ndswy"]
+[ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="3_bokrc"]
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="5_slcm8"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ndswy"]
@@ -11,6 +12,9 @@ distance = -232.0
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bokrc"]
 normal = Vector2(-1, 0)
 distance = -232.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ln7"]
+size = Vector2(480, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bokrc"]
 size = Vector2(480, 7)
@@ -34,12 +38,35 @@ collision_mask = 9
 [node name="Shape" type="CollisionShape2D" parent="Bounds/RightBoundary"]
 shape = SubResource("WorldBoundaryShape2D_bokrc")
 
-[node name="Blocker" parent="." instance=ExtResource("3_slcm8")]
+[node name="Blocker" type="TileMapLayer" parent="."]
 position = Vector2(0, 16)
 tile_map_data = PackedByteArray("AADz////AAAEAAEAAAD0////AAAEAAEAAAD1////AAAEAAEAAAD2////AAAEAAEAAAD3////AAAEAAEAAAD4////AAAEAAEAAAD5////AAAEAAEAAAD6////AAAEAAEAAAD7////AAAEAAEAAAD8////AAAEAAEAAAD9////AAAEAAEAAAD+////AAAEAAEAAAD/////AAAEAAEAAAAAAP//AAAEAAEAAAABAP//AAAEAAEAAAACAP//AAAEAAEAAAADAP//AAAEAAEAAAAEAP//AAAEAAEAAAAFAP//AAAEAAEAAAAGAP//AAAEAAEAAAAHAP//AAAEAAEAAAAIAP//AAAEAAEAAAAJAP//AAAEAAEAAAAKAP//AAAEAAEAAAALAP//AAAEAAEAAAAMAP//AAAEAAEAAAAOAP//AAAEAAEAAAANAP//AAAEAAEAAADy////AAAEAAEAAADx////AAAEAAEAAAA=")
+tile_set = ExtResource("2_ndswy")
+
+[node name="BubbleElevator" type="Area2D" parent="Blocker"]
+collision_mask = 6
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1470.0
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_a6ln7")
+debug_color = Color(0.393465, 0.61037, 0, 0.42)
+
+[node name="LeftUtility" type="Marker2D" parent="."]
+position = Vector2(-208, 0)
+
+[node name="BubbleElevator" parent="LeftUtility" instance=ExtResource("3_bokrc")]
+
+[node name="RightUtility" type="Marker2D" parent="."]
+position = Vector2(208, 0)
+
+[node name="BubbleElevator" parent="RightUtility" instance=ExtResource("3_bokrc")]
 
 [node name="TopLevelPart" type="Marker2D" parent="."]
-position = Vector2(0, -160)
+position = Vector2(0, -176)
 
 [node name="BottomLevelPart" type="Marker2D" parent="."]
 position = Vector2(0, -32)

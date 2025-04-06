@@ -2,41 +2,54 @@
 extends Node
 class_name Health
 
+# FIXME: why are these PascalCase??
 signal Die
 signal Heal
 signal Hurt
 
-@export var max_health: float = 10:
-	get:
-		return max_health
-	set(value):
-		max_health = value
-		health = min(health, max_health)
+signal hurt_at(position: Vector2)
 
-@export var health: float = 10:
-	get:
-		return health
-	set(value):
-		var old_health = health
-		health = clamp(value, 0, max_health)
+@export var max_health: float = 10
 
-		if Engine.is_editor_hint() or _is_killed:
-			return
-
-		var change = health - old_health
-		if change > 0:
-			Heal.emit()
-		elif change < 0:
-			Hurt.emit()
-		
-		if health <= 0:
-			_is_killed = true
-			Die.emit()
-
-var _is_killed: bool = false
 var is_dead: bool:
 	get:
-		return health <= 0
+		return _health <= 0
+
+var _is_killed: bool = false
+var _health: float = 10
+
+func heal(amount: float, from: Node) -> void:
+	var old_health = _health
+	_health = clamp(_health + amount, 0, max_health)
+	_check_signals(old_health, Vector2.INF)
+
+func take_damage(amount: float, from: Node) -> void:
+	var old_health = _health
+	_health = clamp(_health - amount, 0, max_health)
+	_check_signals(old_health, Vector2.INF)
+
+func take_damage_at(amount: float, from: Node, point: Vector2) -> void:
+	var old_health = _health
+	_health = clamp(_health - amount, 0, max_health)
+	_check_signals(old_health, point)
+
 
 func _ready() -> void:
-	health = max_health
+	_health = max_health
+
+
+func _check_signals(old_health: float, point: Vector2) -> void:
+	if Engine.is_editor_hint() or _is_killed:
+		return
+
+	var change = _health - old_health
+	if change > 0:
+		Heal.emit()
+	elif change < 0:
+		Hurt.emit()
+		if point.is_finite():
+			hurt_at.emit(point)
+		
+	if is_dead:
+		_is_killed = true
+		Die.emit()

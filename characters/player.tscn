@@ -838,9 +838,11 @@ slowdown = 0.5
 [node name="NetSpawner" type="Marker2D" parent="NetThrower"]
 position = Vector2(14, -43)
 script = ExtResource("10_q605b")
+net_flying_speed = 300.0
+net_fall_speed = -800.0
 
 [node name="NetThrowDirection" type="Marker2D" parent="NetThrower"]
-position = Vector2(29, -60)
+position = Vector2(33, -54)
 
 [connection signal="Die" from="." to="AnimationPlayer" method="_on_player_die"]
 [connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]

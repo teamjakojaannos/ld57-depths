@@ -1,9 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://bf1fy0bxb0uml"]
+[gd_scene load_steps=24 format=3 uid="uid://bf1fy0bxb0uml"]
 
 [ext_resource type="Script" uid="uid://dv0ja71tjy6bn" path="res://fish/spiky_puffer_fish/spike_fish.gd" id="1_onis2"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_0rbh6"]
 [ext_resource type="Texture2D" uid="uid://smlf3v78mu0y" path="res://fish/spiky_puffer_fish/pufferfisu.png" id="2_onis2"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_f2lvf"]
+[ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="4_jh4rq"]
+[ext_resource type="PackedScene" uid="uid://dkgpgoo61sytr" path="res://particles/hurtsplosion.tscn" id="5_1a4sv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1a4sv"]
 
@@ -282,7 +284,6 @@ max_attack_cooldown = 5.0
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_0rbh6")
 max_health = 5.0
-health = 5.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
@@ -296,6 +297,11 @@ metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 z_index = 1
 shape = SubResource("CircleShape2D_1a4sv")
 debug_color = Color(0.963989, 0, 0.495441, 0.42)
+
+[node name="DamageParticles" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_jh4rq")
+particle_emitter = ExtResource("5_1a4sv")
+health = NodePath("../Health")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_dp0uu")
@@ -320,3 +326,4 @@ libraries = {
 
 [connection signal="Die" from="Health" to="." method="_on_health_die"]
 [connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]
+[connection signal="hurt_at" from="Health" to="DamageParticles" method="_on_health_hurt_at"]

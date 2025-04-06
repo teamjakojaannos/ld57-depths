@@ -2,6 +2,8 @@ class_name Projectile
 extends Area2D
 
 @export var point_at_velocity: bool = true
+@export var destroy_on_damage: bool = true
+
 @export var fall_speed: float = 0.0
 @export var damage: float = 1
 
@@ -26,7 +28,15 @@ func _physics_process(delta: float) -> void:
 func _on_area_entered(other: Area2D) -> void:
 	# Hit something with health => damage
 	if other is Hitbox:
-		other.health.health -= damage
+		# FIXME: there should be a reference to the shooter/real source
+		#        here in the projectile to figure out who damaged whom
+		# HACK: offset the damage position to push particle emitters into the
+		#       damaged entity
+		var offset = velocity * 0.5 * (1.0 / 60.0)
+		other.health.take_damage_at(damage, self, global_position + offset)
+		
+		if destroy_on_damage:
+			self.queue_free()
 
 func _on_body_entered(other: Node2D) -> void:
 	# Hit something hard => destroy

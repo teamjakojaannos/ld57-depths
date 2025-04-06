@@ -7,13 +7,13 @@ extends Node2D
 
 var _is_ready: bool = true
 
-signal Fire(direction: Vector2)
+signal Fire(shooter: CharacterBody2D, direction: Vector2)
 
 func fire(shooter: Player, direction: Vector2):
 	if !_is_ready:
 		return
 
-	Fire.emit(direction)
+	Fire.emit(shooter, direction)
 	
 	var knockback_direction = direction * -1.0
 	shooter.push(knockback_direction * knockback)

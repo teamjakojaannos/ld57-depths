@@ -203,12 +203,10 @@ level_part_prefabs = Array[PackedScene]([ExtResource("2_kc1m6"), ExtResource("3_
 enemy_prefabs = Array[PackedScene]([ExtResource("3_vpik0")])
 
 [node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
+no_blocker = true
 
-[node name="Blocker" parent="EndlessLevel/Level" index="1"]
-visible = false
-collision_enabled = false
-
-[node name="LevelPart" parent="EndlessLevel/Level/BottomLevelPart" index="0" instance=ExtResource("3_y7kp8")]
+[node name="LevelPart" parent="EndlessLevel/Level" instance=ExtResource("3_y7kp8")]
+position = Vector2(0, -32)
 
 [node name="Walls" type="Parallax2D" parent="EndlessLevel"]
 repeat_size = Vector2(0, 256)
@@ -323,5 +321,3 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ughyh")
 }
-
-[editable path="EndlessLevel/Level"]
