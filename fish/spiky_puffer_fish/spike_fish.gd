@@ -12,7 +12,9 @@ var ready_to_attack: bool = false
 @export var min_spike_count = 3
 @export var max_spike_count = 8
 
-@export var move_speed = 50.0
+@export var normal_move_speed = 50.0
+@export var attack_move_speed = 5.0
+var move_speed = normal_move_speed
 
 var is_dead: bool:
 	get:
@@ -76,8 +78,15 @@ func _physics_process(delta: float) -> void:
 
 func attack():
 	ready_to_attack = false
+	var tween = create_tween()
+	tween.tween_property(self, "move_speed", attack_move_speed, 0.5)
+	
 	$AttackAnimationPlayer.play("attack")
 	await $AttackAnimationPlayer.animation_finished
+	
+	tween.kill()
+	move_speed = normal_move_speed
+	
 	start_attack_cooldown(min_attack_cooldown, max_attack_cooldown)
 
 func start_attack_cooldown(min_cd: float, max_cd: float):
