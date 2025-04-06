@@ -21,17 +21,23 @@ var is_dead: bool:
 var target_position: Vector2 = Vector2()
 
 func _ready() -> void:
-	target_position = pick_random_target_position()
 	# get some variation so fishes don't instantly attack on entering new level
 	start_attack_cooldown(0.0, max_attack_cooldown)
 
-func _physics_process(delta: float) -> void:
-	var close_enough = 20.0
+	_create_movement_tween()
 
+func set_target_position(vec: Vector2):
+	target_position = vec
+
+func _create_movement_tween():
+	var r1 = pick_random_target_position()
+	var r2 = pick_random_target_position()
+	var t1 = create_tween()
+	t1.tween_method(set_target_position, r1, r2, 1.5)
+	t1.tween_callback(_create_movement_tween)
+
+func _physics_process(delta: float) -> void:
 	position = position.move_toward(target_position, move_speed * delta)
-	var d2 = position.distance_squared_to(target_position)
-	if d2 <= close_enough:
-		target_position = pick_random_target_position()
 
 	if ready_to_attack and !is_dead:
 		attack()
