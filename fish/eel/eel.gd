@@ -14,7 +14,6 @@ var level_bound_right = 200
 var entities_inside_area = {}
 
 func _physics_process(delta: float) -> void:
-	var close_enough = 20.0
 	var go_right = move_direction == Direction.Right
 	var is_over_bounds = position.x >= level_bound_right if go_right else position.x <= level_bound_left
 	if is_over_bounds:
@@ -50,5 +49,7 @@ func _on_health_die() -> void:
 	Globals.level.current_level.record_kill()
 
 	$HurtAnimations.play("die")
+	var tween = create_tween()
+	tween.tween_property(self, "speed", 0.0, 1.0)
 	await $HurtAnimations.animation_finished
 	queue_free()
