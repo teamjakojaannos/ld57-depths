@@ -25,7 +25,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_entered(other: Area2D) -> void:
 	# Hit something with health => damage
-	if other is Hurtbox:
+	if other is Hitbox:
 		other.health.health -= damage
 
 func _on_body_entered(other: Node2D) -> void:

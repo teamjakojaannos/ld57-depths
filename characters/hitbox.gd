@@ -1,6 +1,6 @@
 @tool
 extends Area2D
-class_name Hurtbox
+class_name Hitbox
 
 @export var health: Health
 
