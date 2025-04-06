@@ -1,7 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
-const AIR_ACCEL: float = 2000.0
+const AIR_ACCEL: float = 2500.0
+const AIR_DECEL_MULT: float = 2.0
 const SPEED: float = 150.0
 const JUMP_VELOCITY: float = -250.0
 
@@ -62,7 +63,9 @@ static func look_at_str(direction: LookingAt) -> String:
 			return "right"
 		_:
 			return "unknown"
-			
+
+func _ready() -> void:
+	Globals.player = self
 
 
 func _physics_process(delta: float) -> void:
@@ -80,8 +83,19 @@ func _physics_process(delta: float) -> void:
 	else:
 		var d = SPEED
 		if not is_on_floor():
-			d = 2.0 * SPEED * delta
+			d = AIR_DECEL_MULT * SPEED * delta
 		velocity.x = move_toward(velocity.x, 0, d)
+		
+	# Dampen v velocities
+	if velocity.y < JUMP_VELOCITY * 2.0:
+		velocity.y = lerp(velocity.y, 0.0, 10.0 * delta)
+	elif velocity.y < JUMP_VELOCITY:
+		var d = AIR_DECEL_MULT * 10.0 * SPEED * delta
+		velocity.y = move_toward(velocity.y, 0, d)
+
+	# Dampen high h velocities
+	if abs(velocity.x) > JUMP_VELOCITY * 2.0:
+		velocity.x = sign(velocity.x) * lerp(abs(velocity.x), 0.0, 10.0 * delta)
 
 	if direction:
 		looking_at = LookingAt.LEFT if direction < 0 else LookingAt.RIGHT

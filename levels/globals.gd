@@ -6,6 +6,10 @@ class_name GameGlobals
 
 @export var player: Player
 @export var level: EndlessLevel
+@export var current_level: Level
+
+func _ready() -> void:
+	reset()
 
 func reset() -> void:
 	depth = 0.0

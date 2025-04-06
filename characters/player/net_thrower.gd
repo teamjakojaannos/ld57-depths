@@ -27,5 +27,5 @@ func _spawn_projectile(shooter: CharacterBody2D, direction: Vector2) -> void:
 	projectile.velocity = net_velocity + inherited_velocity
 	projectile.fall_speed = net_fall_speed
 	
-	var current_map = Globals.level.current_level
+	var current_map = Globals.current_level
 	current_map.add_child(projectile)

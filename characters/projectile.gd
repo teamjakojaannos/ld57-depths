@@ -47,7 +47,7 @@ func _on_body_entered(other: Node2D) -> void:
 	
 func _destroy() -> void:
 	if trail_particle_emitter is GPUParticles2D:
-		trail_particle_emitter.reparent(Globals.level.current_level)
+		trail_particle_emitter.reparent(Globals.current_level)
 		trail_particle_emitter.emitting = false
 		self.queue_free()
 		await get_tree().create_timer(10.0).timeout
