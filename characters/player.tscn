@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
 [ext_resource type="Texture2D" uid="uid://djixa0ojt1h4q" path="res://characters/ukko_kuolee.png" id="2_h1q25"]
-[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hurtbox.gd" id="3_8sqrr"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_8sqrr"]
 [ext_resource type="Texture2D" uid="uid://dhip2doalgtvt" path="res://characters/ukko_fall2.png" id="3_j31ep"]
 [ext_resource type="Texture2D" uid="uid://7cv2cco0ks1s" path="res://characters/ukko_idle2.png" id="4_6t23p"]
 [ext_resource type="Texture2D" uid="uid://bcocl277dytcr" path="res://characters/ukko_jump2.png" id="5_n8jd0"]
@@ -788,14 +788,14 @@ script = ExtResource("1_3eadt")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_eho78")
 
-[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("3_8sqrr")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 
-[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_8sqrr")
 debug_color = Color(0.963989, 0, 0.495441, 0.42)
