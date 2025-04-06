@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=63 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
@@ -12,6 +12,10 @@
 [ext_resource type="Script" uid="uid://3vm0w8ex7f7t" path="res://characters/player/gun.gd" id="8_6t23p"]
 [ext_resource type="Script" uid="uid://oa3iroanwqwb" path="res://characters/player/harpoongun.gd" id="9_n8jd0"]
 [ext_resource type="Script" uid="uid://cqlms1btxml54" path="res://characters/player/net_thrower.gd" id="10_q605b"]
+[ext_resource type="AudioStream" uid="uid://hu2m6xsdop1r" path="res://characters/player/player_death.ogg" id="13_6rrl0"]
+[ext_resource type="AudioStream" uid="uid://d3t024eeopcgr" path="res://characters/player/harpoongun_shoot.ogg" id="14_eus45"]
+[ext_resource type="Script" uid="uid://b8r7hyb7fpo7n" path="res://characters/sfx_harpoon.gd" id="15_vcag3"]
+[ext_resource type="AudioStream" uid="uid://dtuwrmrl18hr4" path="res://characters/player/net_throw2.ogg" id="16_h076o"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sqrr"]
 radius = 9.0
@@ -848,7 +852,24 @@ net_fall_speed = -800.0
 [node name="NetThrowDirection" type="Marker2D" parent="NetThrower"]
 position = Vector2(33, -54)
 
+[node name="SfxDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_6rrl0")
+bus = &"Player SFX"
+
+[node name="SfxHarpoon" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_eus45")
+max_polyphony = 4
+bus = &"Player Guns SFX"
+script = ExtResource("15_vcag3")
+
+[node name="SfxNet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_h076o")
+max_polyphony = 4
+bus = &"Player Guns SFX"
+script = ExtResource("15_vcag3")
+
 [connection signal="Die" from="." to="AnimationPlayer" method="_on_player_die"]
+[connection signal="Die" from="." to="SfxDeath" method="play"]
 [connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]
 [connection signal="Jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
 [connection signal="Die" from="Health" to="." method="_on_health_die"]
@@ -856,4 +877,6 @@ position = Vector2(33, -54)
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
 [connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 [connection signal="Fire" from="HarpoonGun" to="HarpoonGun/HarpoonSpawner" method="_on_harpoon_gun_fire"]
+[connection signal="Fire" from="HarpoonGun" to="SfxHarpoon" method="_on_harpoon_gun_fire"]
 [connection signal="Fire" from="NetThrower" to="NetThrower/NetSpawner" method="_on_net_thrower_fire"]
+[connection signal="Fire" from="NetThrower" to="SfxNet" method="_on_net_thrower_fire"]

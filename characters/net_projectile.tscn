@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc3oxdvccshkj"]
+[gd_scene load_steps=18 format=3 uid="uid://cc3oxdvccshkj"]
 
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_hqja7"]
 [ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="2_ee6op"]
 [ext_resource type="Texture2D" uid="uid://7r0ldnpfl5sr" path="res://characters/player/verkko.png" id="2_hqja7"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_hxwdh"]
+[ext_resource type="Script" uid="uid://cdsehs74oj2vb" path="res://characters/net_hit.gd" id="6_rg887"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxwdh"]
 radius = 3.53553
@@ -157,5 +158,9 @@ rotation = 0.785398
 shape = SubResource("RectangleShape2D_hqja7")
 debug_color = Color(0.983059, 0, 0.356535, 0.42)
 
+[node name="NetHit" type="Node" parent="."]
+script = ExtResource("6_rg887")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="hurt_target" from="Hurtbox" to="." method="_on_hurtbox_hurt_target"]
+[connection signal="hurt_target" from="Hurtbox" to="NetHit" method="_on_hurtbox_hurt_target"]

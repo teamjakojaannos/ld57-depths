@@ -27,6 +27,7 @@ var _level_height_total: float:
 @export var enemy_prefabs: Array[PackedScene] = []
 
 func _ready() -> void:
+	Globals.reset()
 	Globals.level = self
 	Globals.current_level = $Level
 

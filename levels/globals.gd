@@ -8,6 +8,8 @@ class_name GameGlobals
 @export var level: EndlessLevel
 @export var current_level: Level
 
+@export var money: int = 100
+
 func _ready() -> void:
 	reset()
 

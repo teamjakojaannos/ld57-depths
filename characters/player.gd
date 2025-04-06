@@ -125,6 +125,7 @@ func _physics_process(delta: float) -> void:
 	# HACK: quickly diminish the push forces
 	_push_force = _push_force.lerp(Vector2.ZERO, 0.5)
 
+
 func _on_jump_timer_timeout() -> void:
 	_jumping = false
 
@@ -146,6 +147,9 @@ func get_max_health():
 
 func _on_health_die() -> void:
 	Die.emit()
+
+	await Globals.level.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
+	get_tree().change_scene_to_file("res://levels/game.tscn")
 
 func _on_health_hurt() -> void:
 	Hurt.emit()
