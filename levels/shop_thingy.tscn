@@ -1,11 +1,17 @@
-[gd_scene load_steps=22 format=4 uid="uid://cmd0mp6ymi7ud"]
+[gd_scene load_steps=43 format=4 uid="uid://cmd0mp6ymi7ud"]
 
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="1_0alwl"]
+[ext_resource type="Texture2D" uid="uid://cqt6tq7jpu8wx" path="res://ui/UI_shop_thing.png" id="1_8mfk2"]
+[ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="1_bxwj6"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_gkqpf"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="2_0alwl"]
+[ext_resource type="Texture2D" uid="uid://b3xyn7auifgmh" path="res://graphics/environment/verkko.png" id="2_j4twb"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_bxwj6"]
+[ext_resource type="Texture2D" uid="uid://b3tu1ua8e4t1x" path="res://ui/UI_price.png" id="4_iholk"]
 [ext_resource type="Texture2D" uid="uid://cx8inlndxvxbj" path="res://graphics/environment/verkkomeritahdet.png" id="6_7so00"]
 [ext_resource type="Texture2D" uid="uid://orjirnmltqap" path="res://graphics/environment/light1.png" id="6_f1vne"]
 [ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="7_oicxr"]
+[ext_resource type="Script" uid="uid://bbngw2nir6lwi" path="res://levels/shop_detector.gd" id="7_uauoh"]
 [ext_resource type="Texture2D" uid="uid://ihh2tkm104h5" path="res://graphics/environment/light2.png" id="8_2u8mt"]
 [ext_resource type="Texture2D" uid="uid://blmbo6051td5r" path="res://graphics/environment/hyllyt.png" id="8_f1vne"]
 [ext_resource type="Texture2D" uid="uid://dj3c2ut275fvy" path="res://graphics/environment/lamp_orange.png" id="9_2u8mt"]
@@ -18,6 +24,133 @@
 [ext_resource type="Texture2D" uid="uid://ctqdpa3ybbxj3" path="res://graphics/environment/meren_syran.png" id="16_sxfjh"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="17_j4twb"]
 [ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="18_bxwj6"]
+
+[sub_resource type="Animation" id="Animation_uauoh"]
+resource_name = "Trans_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.566667, 0.733333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -600), Vector2(0, 35), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_4c3kr"]
+resource_name = "Trans_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.366667, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -25), Vector2(0, 600), Vector2(0, 600)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_mrxtu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tk23p"]
+_data = {
+&"RESET": SubResource("Animation_mrxtu"),
+&"Trans_in": SubResource("Animation_uauoh"),
+&"Trans_out": SubResource("Animation_4c3kr")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_iholk"]
+font = ExtResource("3_bxwj6")
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_uauoh"]
+font = ExtResource("3_bxwj6")
+font_size = 48
+font_color = Color(0.0627451, 0.0588235, 0.054902, 1)
+outline_color = Color(0.0627451, 0.0588235, 0.054902, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iholk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uauoh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4c3kr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mrxtu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tk23p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v0w1h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vn25w"]
+
+[sub_resource type="Theme" id="Theme_iholk"]
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/font_sizes/font_size = 48
+Button/fonts/font = ExtResource("3_bxwj6")
+Button/styles/disabled = SubResource("StyleBoxEmpty_iholk")
+Button/styles/disabled_mirrored = SubResource("StyleBoxEmpty_uauoh")
+Button/styles/focus = SubResource("StyleBoxEmpty_4c3kr")
+Button/styles/hover = SubResource("StyleBoxEmpty_mrxtu")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_tk23p")
+Button/styles/normal = SubResource("StyleBoxEmpty_v0w1h")
+Button/styles/pressed = SubResource("StyleBoxEmpty_vn25w")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iholk"]
+size = Vector2(231, 150)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h6oo3"]
 texture = ExtResource("2_0alwl")
@@ -34,6 +167,186 @@ sources/0 = SubResource("TileSetAtlasSource_h6oo3")
 [sub_resource type="CanvasTexture" id="CanvasTexture_e47gb"]
 
 [node name="Shop_thingy" type="Node2D"]
+
+[node name="UI_ShopMenu" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+
+[node name="Shopmenu_anim" type="AnimationPlayer" parent="UI_ShopMenu"]
+libraries = {
+&"": SubResource("AnimationLibrary_tk23p")
+}
+
+[node name="Control" type="Control" parent="UI_ShopMenu"]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Slimak_shop" type="TextureRect" parent="UI_ShopMenu/Control"]
+layout_mode = 0
+offset_left = 191.0
+offset_top = 131.0
+offset_right = 463.0
+offset_bottom = 238.0
+texture = ExtResource("1_bxwj6")
+
+[node name="slimak_label" type="Label" parent="UI_ShopMenu/Control/Slimak_shop"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 26.0
+offset_right = 229.0
+offset_bottom = 83.0
+text = "Slimak's shop"
+label_settings = SubResource("LabelSettings_iholk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_template" type="TextureRect" parent="UI_ShopMenu/Control"]
+layout_mode = 2
+offset_left = 478.0
+offset_top = 66.0
+offset_right = 843.0
+offset_bottom = 468.0
+texture = ExtResource("1_8mfk2")
+
+[node name="PriceTag" type="TextureRect" parent="UI_ShopMenu/Control/Item_template"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 28.0
+offset_right = 355.0
+offset_bottom = 272.0
+texture = ExtResource("4_iholk")
+
+[node name="Item_picture" type="TextureRect" parent="UI_ShopMenu/Control/Item_template"]
+modulate = Color(0.49, 0.49, 0.49, 1)
+layout_mode = 0
+offset_left = 102.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 242.0
+texture = ExtResource("2_j4twb")
+
+[node name="Item_name" type="Label" parent="UI_ShopMenu/Control/Item_template"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.107
+anchor_top = 0.821
+anchor_right = 0.649
+anchor_bottom = 0.923
+offset_left = -1.055
+offset_top = -1.04202
+offset_right = 0.114975
+offset_bottom = -0.0460205
+text = "item name here"
+label_settings = SubResource("LabelSettings_iholk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_price" type="Label" parent="UI_ShopMenu/Control/Item_template"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.714
+anchor_top = 0.55
+anchor_right = 0.918
+anchor_bottom = 0.647
+offset_left = 16.39
+offset_top = -3.10001
+offset_right = -13.07
+offset_bottom = -1.09399
+text = "15"
+label_settings = SubResource("LabelSettings_uauoh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_template2" type="TextureRect" parent="UI_ShopMenu/Control"]
+layout_mode = 2
+offset_left = 794.0
+offset_top = 63.0
+offset_right = 1159.0
+offset_bottom = 465.0
+texture = ExtResource("1_8mfk2")
+
+[node name="PriceTag" type="TextureRect" parent="UI_ShopMenu/Control/Item_template2"]
+layout_mode = 0
+offset_left = 240.0
+offset_top = 28.0
+offset_right = 355.0
+offset_bottom = 272.0
+texture = ExtResource("4_iholk")
+
+[node name="Item_picture" type="TextureRect" parent="UI_ShopMenu/Control/Item_template2"]
+modulate = Color(0.49, 0.49, 0.49, 1)
+layout_mode = 0
+offset_left = 102.0
+offset_top = 120.0
+offset_right = 240.0
+offset_bottom = 242.0
+texture = ExtResource("17_j4twb")
+
+[node name="Item_name" type="Label" parent="UI_ShopMenu/Control/Item_template2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.107
+anchor_top = 0.821
+anchor_right = 0.649
+anchor_bottom = 0.923
+offset_left = -1.055
+offset_top = -1.04202
+offset_right = 0.114975
+offset_bottom = -0.0460205
+text = "item name here"
+label_settings = SubResource("LabelSettings_iholk")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Item_price" type="Label" parent="UI_ShopMenu/Control/Item_template2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.714
+anchor_top = 0.55
+anchor_right = 0.918
+anchor_bottom = 0.647
+offset_left = 16.39
+offset_top = -3.10001
+offset_right = -13.07
+offset_bottom = -1.09399
+text = "20"
+label_settings = SubResource("LabelSettings_uauoh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Leave" type="TextureRect" parent="UI_ShopMenu/Control"]
+layout_mode = 0
+offset_left = 679.0
+offset_top = 507.0
+offset_right = 905.0
+offset_bottom = 596.0
+texture = ExtResource("1_bxwj6")
+
+[node name="Leave_button" type="Button" parent="UI_ShopMenu/Control/Leave"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.102
+anchor_top = 0.236
+anchor_right = 0.885
+anchor_bottom = 0.787
+offset_left = -0.052002
+offset_top = -1.004
+offset_right = 3.98999
+offset_bottom = 13.957
+theme = SubResource("Theme_iholk")
+text = "Leave"
+
+[node name="Shop_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_uauoh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shop_detector"]
+position = Vector2(-161.5, -46)
+shape = SubResource("RectangleShape2D_iholk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-22, -52)
@@ -157,7 +470,7 @@ texture_scale = 1.45
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D12" type="Sprite2D" parent="."]
-position = Vector2(-151, -164)
+position = Vector2(-150, -183)
 rotation = 3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("10_tc86n")
@@ -249,3 +562,5 @@ texture = ExtResource("17_j4twb")
 position = Vector2(-82, -42)
 rotation = -0.994838
 texture = ExtResource("18_bxwj6")
+
+[connection signal="body_entered" from="Shop_detector" to="Shop_detector" method="_on_body_entered"]

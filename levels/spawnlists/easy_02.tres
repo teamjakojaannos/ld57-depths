@@ -1,13 +1,15 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://cuii51a4el6ao"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=6 format=3 uid="uid://cuii51a4el6ao"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_2qvev"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="2_ca8xa"]
 [ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="2_x08q6"]
+[ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="3_jn0is"]
+[ext_resource type="Resource" uid="uid://cxtleutuy6mec" path="res://levels/spawnable/enemies/eel_01.tres" id="4_ew3h3"]
 
 [resource]
 script = ExtResource("2_ca8xa")
 min_depth = 2
 max_depth = -1
-total_cost = 30
-enemies = Array[ExtResource("1_2qvev")]([ExtResource("2_x08q6")])
+total_cost = 10
+enemies = Array[ExtResource("1_2qvev")]([ExtResource("2_x08q6"), ExtResource("3_jn0is"), ExtResource("4_ew3h3")])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
