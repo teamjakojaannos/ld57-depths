@@ -7,6 +7,8 @@ extends Area2D
 @export var fall_speed: float = 0.0
 @export var damage: float = 1
 
+@export var trail_particle_emitter: GPUParticles2D
+
 var velocity: Vector2 = Vector2.RIGHT * 100.0
 
 func _ready() -> void:
@@ -36,8 +38,20 @@ func _on_area_entered(other: Area2D) -> void:
 		other.health.take_damage_at(damage, self, global_position + offset)
 		
 		if destroy_on_damage:
-			self.queue_free()
+			_destroy()
 
 func _on_body_entered(other: Node2D) -> void:
 	# Hit something hard => destroy
-	self.queue_free()
+	_destroy()
+	
+	
+func _destroy() -> void:
+	if trail_particle_emitter is GPUParticles2D:
+		trail_particle_emitter.reparent(Globals.level.current_level)
+		trail_particle_emitter.emitting = false
+		self.queue_free()
+		await get_tree().create_timer(10.0).timeout
+		trail_particle_emitter.queue_free()
+	else:
+		self.queue_free()
+		
