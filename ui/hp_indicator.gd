@@ -1,5 +1,7 @@
 extends Control
 
+var tween: Tween
+
 func _ready() -> void:
 	Globals.player.Hurt.connect(update_indicator)
 	update_indicator()
@@ -15,4 +17,8 @@ func update_indicator():
 	var range = angle_at_full - angle_at_empty
 	var angle = range * percent + angle_at_empty
 	
-	$Hand.rotation_degrees = angle
+	if tween != null:
+		tween.kill()
+	
+	tween = create_tween()
+	tween.tween_property($Hand, "rotation_degrees", angle, 0.5)
