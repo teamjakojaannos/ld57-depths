@@ -4,7 +4,7 @@ extends CharacterBody2D
 const AIR_ACCEL: float = 2500.0
 const AIR_DECEL_MULT: float = 2.0
 const SPEED: float = 150.0
-const JUMP_VELOCITY: float = -250.0
+const JUMP_VELOCITY: float = -150.0
 
 var is_in_transition: bool = false
 var is_dead: bool:
@@ -34,6 +34,8 @@ signal Hurt
 var is_moving: bool:
 	get:
 		return abs(velocity.x) > 0.5
+		
+var _jumping: bool = false
 
 var looking_at: LookingAt = LookingAt.RIGHT
 var looking_at_scalar: float:
@@ -72,6 +74,9 @@ func _physics_process(delta: float) -> void:
 	if is_in_transition:
 		return
 
+	if is_on_floor():
+		_jumping = false
+
 	var direction = Input.get_axis("left", "right")
 	if direction and !is_dead:
 		if is_on_floor():
@@ -87,11 +92,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, d)
 		
 	# Dampen v velocities
-	if velocity.y < JUMP_VELOCITY * 2.0:
+	if velocity.y < JUMP_VELOCITY * 2.5:
 		velocity.y = lerp(velocity.y, 0.0, 10.0 * delta)
-	elif velocity.y < JUMP_VELOCITY:
-		var d = AIR_DECEL_MULT * 10.0 * SPEED * delta
-		velocity.y = move_toward(velocity.y, 0, d)
 
 	# Dampen high h velocities
 	if abs(velocity.x) > JUMP_VELOCITY * 2.0:
@@ -107,13 +109,24 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !is_dead:
 		velocity.y = JUMP_VELOCITY
+		_jumping = true
+		$JumpTimer.start()
+	
 		Jumped.emit()
+
+	if Input.is_action_pressed("jump") and _jumping and !is_on_floor():
+		velocity.y = min(velocity.y, JUMP_VELOCITY)
+		# HACK: small offset to mitigate gravity a bit
+		velocity.y -= 200.0 * delta
 
 	velocity += _push_force
 	move_and_slide()
 
 	# HACK: quickly diminish the push forces
 	_push_force = _push_force.lerp(Vector2.ZERO, 0.5)
+
+func _on_jump_timer_timeout() -> void:
+	_jumping = false
 
 func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:

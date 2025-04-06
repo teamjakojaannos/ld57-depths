@@ -79,6 +79,7 @@ func _transition_to_next_level() -> void:
 
 	var old_level = current_level
 	current_level = new_level
+	Globals.current_level = new_level
 	current_level.Finished.connect(next_level)
 
 	old_level.queue_free()

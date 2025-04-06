@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=4 uid="uid://cij80dcdoxkv3"]
+
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_uing8"]
+[ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="2_d4ux3"]
+[ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="3_8n24m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
+size = Vector2(384, 128)
+
+[node name="LevelPart" type="Node2D"]
+
+[node name="Bounds" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_soyje")
+debug_color = Color(1, 1, 1, 0.0392157)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAD///7/AAAEAAMAAAAAAP7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAD/////AAAEAAQAAAAAAP//AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAA=")
+tile_set = ExtResource("1_uing8")
+
+[node name="SnappyPoints" type="Node2D" parent="."]
+
+[node name="Left" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-30, 10)
+
+[node name="Left2" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-110, 10)
+
+[node name="Left3" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-190, 10)
+
+[node name="Right" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(50, 10)
+
+[node name="Right2" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(130, 10)
+
+[node name="Right3" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(210, 10)
+
+[node name="CrabClaws" type="Node2D" parent="."]
+script = ExtResource("2_d4ux3")
+
+[node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
+position = Vector2(-40, 32)
+points = [NodePath(""), NodePath(""), NodePath("")]
+
+[node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_8n24m")]
+position = Vector2(40, 32)
+points = [NodePath(""), NodePath(""), NodePath("")]
+
+[node name="Sprite" parent="CrabClaws/SnappyRight/Pivot" index="1"]
+flip_h = true
+
+[node name="Timer" type="Timer" parent="CrabClaws"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
+[connection signal="attack_finished" from="CrabClaws/SnappyRight" to="CrabClaws" method="_on_snappy_right_attack_finished"]
+[connection signal="timeout" from="CrabClaws/Timer" to="CrabClaws" method="_on_timer_timeout"]
+
+[editable path="CrabClaws/SnappyRight"]

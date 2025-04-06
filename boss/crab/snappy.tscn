@@ -18,6 +18,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 56)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_h65yr"]
 resource_name = "attack"
@@ -44,6 +56,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 24), Vector2(0, -8), Vector2(0, 16), Vector2(0, 8), Vector2(0, 16), Vector2(0, 56)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, -0.261799, 0.261799, -0.261799]
 }
 
 [sub_resource type="Animation" id="Animation_6u1in"]
@@ -277,7 +301,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_igk4n"]
-radius = 16.0
+radius = 24.0
 
 [node name="Snappy" type="Node2D"]
 script = ExtResource("1_aud8y")
@@ -300,9 +324,10 @@ libraries = {
 sprite_frames = SubResource("SpriteFrames_obwof")
 animation = &"snappy_fast"
 frame = 2
+offset = Vector2(-11, -32)
 
 [node name="Area2D" type="Area2D" parent="Pivot"]
-position = Vector2(0, -8)
+position = Vector2(-8, -40)
 collision_layer = 0
 collision_mask = 2
 gravity_space_override = 1
