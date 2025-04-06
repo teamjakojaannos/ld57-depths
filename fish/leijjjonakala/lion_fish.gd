@@ -30,7 +30,7 @@ func _ready() -> void:
 	start_idling()
 
 func _physics_process(delta: float) -> void:
-	var close_enough = 10.0
+	var close_enough = 100.0
 	
 	if current_state == State.Charge:
 		velocity = (charge_target - position).normalized() * delta * speed
