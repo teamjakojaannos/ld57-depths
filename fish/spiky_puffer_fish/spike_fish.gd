@@ -18,26 +18,51 @@ var is_dead: bool:
 	get:
 		return $Health.is_dead
 
-var target_position: Vector2 = Vector2()
+var movement_tween_1: Tween
+var movement_tween_2: Tween
+var target1: Vector2 = Vector2()
+var target2: Vector2 = Vector2()
 
 func _ready() -> void:
 	# get some variation so fishes don't instantly attack on entering new level
 	start_attack_cooldown(0.0, max_attack_cooldown)
 
-	_create_movement_tween()
+	_create_movement_tweens()
 
-func set_target_position(vec: Vector2):
-	target_position = vec
-
-func _create_movement_tween():
-	var r1 = pick_random_target_position()
-	var r2 = pick_random_target_position()
-	var t1 = create_tween()
-	t1.tween_method(set_target_position, r1, r2, 1.5)
-	t1.tween_callback(_create_movement_tween)
+func _create_movement_tweens(force_recreate: bool = false):
+	var is_tween1_ok = movement_tween_1 != null && movement_tween_1.is_running()
+	var is_tween2_ok = movement_tween_2 != null && movement_tween_2.is_running()
+	
+	if !is_tween1_ok || force_recreate:
+		if movement_tween_1 != null:
+			movement_tween_1.kill()
+		
+		var end = pick_random_target_position()
+		var time = randf_range(1.0, 2.0)
+		
+		movement_tween_1 = create_tween()
+		movement_tween_1.tween_property(self, "target1", end, time)
+		movement_tween_1.tween_callback(_create_movement_tweens)
+	
+	if !is_tween2_ok || force_recreate:
+		if movement_tween_2 != null:
+			movement_tween_2.kill()
+		
+		var end = pick_random_target_position()
+		var time = randf_range(1.0, 2.0)
+		
+		movement_tween_2 = create_tween()
+		movement_tween_2.tween_property(self, "target2", end, time)
+		movement_tween_2.tween_callback(_create_movement_tweens)
 
 func _physics_process(delta: float) -> void:
+	var target_position = (target1 + target1) / 2.0
 	position = position.move_toward(target_position, move_speed * delta)
+	
+	var d2 = position.distance_squared_to(target_position)
+	var close_enough = 10.0
+	if d2 <= close_enough:
+		_create_movement_tweens(true)
 
 	if ready_to_attack and !is_dead:
 		attack()
