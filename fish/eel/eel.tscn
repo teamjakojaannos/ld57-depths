@@ -192,12 +192,11 @@ metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wg4o3")
 autoplay = "default"
-frame_progress = 0.923726
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_43kmr")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="HurtAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_a4hyh")
 }

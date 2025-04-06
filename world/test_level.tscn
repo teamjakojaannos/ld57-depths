@@ -57,4 +57,4 @@ shape = SubResource("RectangleShape2D_vkbyq")
 shape = SubResource("RectangleShape2D_434qw")
 
 [node name="Eel" parent="." instance=ExtResource("4_kfa7i")]
-position = Vector2(-61, -22)
+position = Vector2(-109, -22)
