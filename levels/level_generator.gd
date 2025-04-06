@@ -19,40 +19,33 @@ func _select_spawnlist() -> Spawnlist:
 	
 	var allowed: Array[Spawnlist] = []
 	for list in spawnlists:
-		if current_depth <= list.min_depth:
-			continue
-		if list.max_depth != -1 and current_depth > list.max_depth:
-			continue
-		allowed.push_back(list)
+		if list.is_valid_for_depth(current_depth):
+			if list.is_special:
+				return list
+			allowed.push_back(list)
 	
 	return allowed.pick_random()
 
-func _find_level_parts(slot: LevelPart.Slot) -> Array[LevelPart]:
+func _find_level_parts(slot: LevelPart.Slot, parts_list: Array[LevelPart]) -> Array[LevelPart]:
 	var allowed: Array[LevelPart] = []
-	for part in parts:
+	for part in parts_list:
 		if part.can_be_placed_in(slot):
 			allowed.push_back(part) 
 	
 	return allowed
 
-func generate_crab_rave(container: Node, room_index: int) -> Level:
-	var part = crab_rave_parts[room_index]
-	var spawnlist = crab_rave_spawnlists[room_index]
-	return _generate_from_parts(
-		container,
-		null,
-		part,
-		!part.blocks_left_utility,
-		!part.blocks_right_utility,
-		spawnlist
-	)
+
+func generate(container: Node, room_index: int) -> Level:
+	var parts_list: Array[LevelPart] = parts
+	var spawnlist = _select_spawnlist()
+	if spawnlist.is_special and !spawnlist.level_override.is_empty():
+		parts_list = spawnlist.level_override
 	
-func generate(container: Node) -> Level:
 	var is_left_utility_allowed: bool = true
 	var is_right_utility_allowed: bool = true
 	
-	var first_slot = LevelPart.Slot.TOP if randf() < 0.5 else LevelPart.Slot.BOTTOM
-	var first_part: LevelPart = _find_level_parts(first_slot).pick_random()
+	var first_slot = LevelPart.Slot.BOTTOM
+	var first_part: LevelPart = _find_level_parts(first_slot, parts_list).pick_random()
 	
 	is_left_utility_allowed = is_left_utility_allowed && !first_part.blocks_left_utility
 	is_right_utility_allowed = is_right_utility_allowed && !first_part.blocks_right_utility
@@ -61,7 +54,7 @@ func generate(container: Node) -> Level:
 	var second_slot: LevelPart.Slot
 	if first_part.allowed_placement != LevelPart.AllowedPlacement.DOUBLE_SIZE:
 		second_slot = LevelPart.other_slot(first_slot)
-		var second_part_candidates = _find_level_parts(second_slot)
+		var second_part_candidates = _find_level_parts(second_slot, parts_list)
 		
 		if not second_part_candidates.is_empty():
 			second_part = second_part_candidates.pick_random()
@@ -74,7 +67,7 @@ func generate(container: Node) -> Level:
 		second_part if first_slot == LevelPart.Slot.TOP else first_part,
 		is_left_utility_allowed,
 		is_right_utility_allowed,
-		_select_spawnlist()
+		spawnlist
 	)
 
 func _generate_from_parts(

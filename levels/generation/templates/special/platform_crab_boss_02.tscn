@@ -11,6 +11,7 @@ size = Vector2(384, 128)
 [node name="LevelPart" type="Node2D"]
 
 [node name="Bounds" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -53,11 +54,12 @@ script = ExtResource("2_ase7j")
 
 [node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_pln4j")]
 position = Vector2(-40, 32)
+scale = Vector2(1.25, 1.25)
 points = [NodePath("../../SnappyPoints/Left"), NodePath("../../SnappyPoints/Left2"), NodePath("../../SnappyPoints/Left3")]
 
 [node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("3_pln4j")]
 position = Vector2(40, 32)
-scale = Vector2(-1, 1)
+scale = Vector2(-1.25, 1.25)
 points = [NodePath("../../SnappyPoints/Right"), NodePath("../../SnappyPoints/Right2"), NodePath("../../SnappyPoints/Right3")]
 
 [node name="Timer" type="Timer" parent="CrabClaws"]

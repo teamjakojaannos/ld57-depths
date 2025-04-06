@@ -143,7 +143,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_igk4n"]
-radius = 24.0
+radius = 16.0
 
 [node name="Pivot" type="Node2D"]
 
@@ -171,6 +171,7 @@ gravity = -15000.0
 script = ExtResource("2_eyr67")
 
 [node name="Shape" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.61613, -0.490524)
 shape = SubResource("CircleShape2D_igk4n")
 debug_color = Color(0.971292, 0.170316, 1.92523e-07, 0.42)
 

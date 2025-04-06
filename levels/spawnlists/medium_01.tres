@@ -1,14 +1,17 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://bb4icjxasx3co"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=6 format=3 uid="uid://bb4icjxasx3co"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_mdmss"]
 [ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="3_jilar"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="4_mdmss"]
 [ext_resource type="Resource" uid="uid://cxtleutuy6mec" path="res://levels/spawnable/enemies/eel_01.tres" id="4_ulp2y"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="5_cvgov"]
 
 [resource]
 script = ExtResource("5_cvgov")
-min_depth = 5
-max_depth = 7
+min_depth = 9
+max_depth = -1
 total_cost = 15
 enemies = Array[ExtResource("1_mdmss")]([ExtResource("3_jilar"), ExtResource("4_ulp2y")])
+level_override = Array[ExtResource("4_mdmss")]([])
+special_sequence = 0
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"

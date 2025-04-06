@@ -45,15 +45,8 @@ func _transition_to_next_level() -> void:
 	
 	var new_level: Level
 	var ri = Globals.current_room_index
-	var crab_rave_start = 5
-	var crab_rave_room_count = level_generator.crab_rave_parts.size()
-	var crab_rave_end = crab_rave_start + crab_rave_room_count
-
-	if ri >= crab_rave_start and ri < crab_rave_end:
-		var crab_rave_room_index = Globals.current_room_index - crab_rave_start
-		new_level = level_generator.generate_crab_rave(self, crab_rave_room_index)
-	else:
-		new_level = $LevelGenerator.generate(self)
+	
+	new_level = level_generator.generate(self, ri)
 
 	_play_transition_animation.call_deferred(new_level)
 

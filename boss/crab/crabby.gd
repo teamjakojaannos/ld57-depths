@@ -8,6 +8,8 @@ func _ready() -> void:
 	get_tree().create_timer(2.5).timeout.connect(_start)
 	Globals.current_level.kills_required = 1
 	
+	$DeadCrabby.visible = false
+	
 func _start() -> void:
 	$AnimationPlayer.play("move")
 	$AnimationPlayer.seek(0.5)
@@ -25,4 +27,8 @@ func _on_timer_right_timeout() -> void:
 
 func _on_health_die() -> void:
 	Globals.current_level.record_kill()
+	var ded = $DeadCrabby
+	ded.visible = true
+	ded.play("default")
+	ded.reparent(get_parent())
 	queue_free()

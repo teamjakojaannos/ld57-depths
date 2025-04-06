@@ -14,3 +14,22 @@ class_name Spawnlist
 
 ## Enemy spawnables to use for this spawnlist
 @export var enemies: Array[Spawnable]
+
+## Level parts override to use for this spawnlist
+@export var level_override: Array[LevelPart]
+
+@export var special_sequence: LevelPart.SpecialSequence = LevelPart.SpecialSequence.NONE
+
+var is_special: bool:
+	get:
+		return special_sequence != LevelPart.SpecialSequence.NONE
+
+func is_valid_for_depth(depth: int) -> bool:
+	if depth < min_depth:
+		return false
+	if max_depth == -1:
+		return true
+	if depth > max_depth:
+		return false
+
+	return true

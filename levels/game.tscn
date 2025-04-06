@@ -216,12 +216,14 @@ shadow_color = Color(4.73787e-08, 0.0360551, 0.0618759, 0.403922)
 
 [node name="EndlessLevel" type="Node2D" parent="."]
 script = ExtResource("1_vhr6a")
+transition_duration = null
 level_height_in_tiles = 36
+tile_size = null
 
 [node name="LevelGenerator" type="Node" parent="EndlessLevel"]
 script = ExtResource("10_0u5wd")
 parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
-spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_xr5dp"), ExtResource("11_fbo34"), ExtResource("12_si8kf")])
+spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_xr5dp"), ExtResource("11_fbo34"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), ExtResource("12_si8kf")])
 crab_rave_parts = Array[ExtResource("11_mgpep")]([ExtResource("9_tkgql"), ExtResource("10_si8kf"), ExtResource("11_kw56w")])
 crab_rave_spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn")])
 metadata/_custom_type_script = "uid://bp204dfquw307"

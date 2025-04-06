@@ -1,13 +1,17 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://b02yhagcdocv"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=6 format=3 uid="uid://b02yhagcdocv"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_4v1ue"]
 [ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="2_qn1ot"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_14tn7"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="3_qn1ot"]
+[ext_resource type="Resource" uid="uid://di0yswatohakc" path="res://levels/level_parts/special/crab_boss_stage_2.tres" id="4_14tn7"]
 
 [resource]
 script = ExtResource("3_14tn7")
-min_depth = 0
-max_depth = -1
+min_depth = 7
+max_depth = 7
 total_cost = 10
 enemies = Array[ExtResource("1_4v1ue")]([ExtResource("2_qn1ot")])
+level_override = Array[ExtResource("3_qn1ot")]([ExtResource("4_14tn7")])
+special_sequence = 1
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
