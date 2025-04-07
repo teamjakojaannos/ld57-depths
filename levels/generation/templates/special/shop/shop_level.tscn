@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=4 uid="uid://diymnjm4kwpl5"]
+[gd_scene load_steps=50 format=4 uid="uid://diymnjm4kwpl5"]
 
 [ext_resource type="Script" uid="uid://bk5gxqd8aqc1w" path="res://levels/ui_shop_menu.gd" id="1_tst2u"]
 [ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="2_6ks0g"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="7_e151s"]
 [ext_resource type="Theme" uid="uid://d2smrevun00ki" path="res://ui/shopbutton_theme.tres" id="8_nswsd"]
 [ext_resource type="AudioStream" uid="uid://0du4omic770g" path="res://shop/shop_open.ogg" id="9_iegnv"]
+[ext_resource type="AudioStream" uid="uid://domtg2xkh721c" path="res://shop/creat13.ogg" id="10_k84vo"]
 [ext_resource type="AudioStream" uid="uid://dqeh5fy21unsb" path="res://shop/buy.ogg" id="10_mvqxl"]
 [ext_resource type="Script" uid="uid://bbngw2nir6lwi" path="res://levels/shop_detector.gd" id="11_pk805"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="12_uvrrt"]
@@ -373,6 +374,10 @@ offset_right = 3.98999
 offset_bottom = 13.957
 theme = ExtResource("8_nswsd")
 text = "Leave"
+
+[node name="NotEnoughMoney" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_k84vo")
+volume_db = -8.0
 
 [node name="ShopOpen_sound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(0, -64)

@@ -64,7 +64,7 @@ func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 		return
 
 	if Globals.money < price:
-		_fail_buy(item_name, price)
+		_fail_buy(item_name, price, is_left)
 	else:
 		_success_buy(item_name, price)
 		if is_left:
@@ -96,10 +96,14 @@ func _get_next_item_in_queue() -> ShopItem:
 	shop_queue = shop_queue.filter(func(item: ShopItem): return !Globals.bought_upgrades.has(item.name))
 	return shop_queue[0] if shop_queue.size() > 0 else sold_out
 
-func _fail_buy(item_name: String, price: int) -> void:
+func _fail_buy(item_name: String, price: int, is_left: bool) -> void:
 	print("Could not afford '%s' (cost %s, player has %s)" % [item_name, price, Globals.money])
-	# TODO
-	pass
+	$"../NotEnoughMoney".play()
+	var button = $Control/Item_template/Buy_button if is_left else $Control/Item_template2/Buy_button
+	var tween = create_tween()
+	tween.tween_property(button, "modulate", Color.RED, 0.1)
+	tween.tween_property(button, "modulate", Color.WHITE, 0.1)
+	tween.set_loops(2)
 
 func _success_buy(item_name: String, price: int) -> void:
 	var new_balance = Globals.money - price
