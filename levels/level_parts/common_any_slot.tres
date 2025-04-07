@@ -1,14 +1,15 @@
-[gd_resource type="Resource" script_class="LevelPart" load_steps=6 format=3 uid="uid://bmxxixyyjvvnh"]
+[gd_resource type="Resource" script_class="LevelPart" load_steps=7 format=3 uid="uid://bmxxixyyjvvnh"]
 
 [ext_resource type="PackedScene" uid="uid://dpcnthy4eomun" path="res://levels/generation/templates/platform_01.tscn" id="1_102yl"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="1_vxvtg"]
 [ext_resource type="PackedScene" uid="uid://dqf30nhwiyrkn" path="res://levels/generation/templates/platform_02.tscn" id="2_1j1es"]
 [ext_resource type="PackedScene" uid="uid://dm26lbxt62yt" path="res://levels/generation/templates/platform_03.tscn" id="3_npwo2"]
 [ext_resource type="PackedScene" uid="uid://daf4ocofnmlcr" path="res://levels/generation/templates/platform_04.tscn" id="4_chm0p"]
+[ext_resource type="PackedScene" uid="uid://n6wrw7i3wtd" path="res://levels/generation/templates/platform_02_with_crab.tscn" id="5_1j1es"]
 
 [resource]
 script = ExtResource("1_vxvtg")
-scenes = Array[PackedScene]([ExtResource("1_102yl"), ExtResource("2_1j1es"), ExtResource("3_npwo2"), ExtResource("4_chm0p")])
+scenes = Array[PackedScene]([ExtResource("1_102yl"), ExtResource("2_1j1es"), ExtResource("3_npwo2"), ExtResource("4_chm0p"), ExtResource("5_1j1es")])
 allowed_placement = 0
 special_sequence = 0
 blocks_left_utility = false

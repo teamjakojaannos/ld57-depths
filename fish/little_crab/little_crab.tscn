@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://betjhqmoocxtc"]
+
+[ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
+[ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjv7j"]
+atlas = ExtResource("2_x42bk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8aic4"]
+atlas = ExtResource("2_x42bk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdpxf"]
+atlas = ExtResource("2_x42bk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0i7x"]
+atlas = ExtResource("2_x42bk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gdxh0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjv7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8aic4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdpxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0i7x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3s87"]
+size = Vector2(30, 11)
+
+[node name="LittleCrab" type="PathFollow2D"]
+script = ExtResource("1_x42bk")
+
+[node name="CrabRoot" type="Node2D" parent="."]
+position = Vector2(0, -12)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CrabRoot"]
+sprite_frames = SubResource("SpriteFrames_gdxh0")
+autoplay = "default"
+
+[node name="Hurtbox" type="Area2D" parent="CrabRoot"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_poyks")
+damage = 1.0
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CrabRoot/Hurtbox"]
+position = Vector2(0, -5.5)
+shape = SubResource("RectangleShape2D_k3s87")
+debug_color = Color(0.729412, 0, 0.368627, 0.419608)
