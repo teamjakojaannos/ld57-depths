@@ -166,12 +166,15 @@ func _input(event: InputEvent) -> void:
 
 func unlock_harpoon_gun():
 	$HarpoonGun.is_unlocked = true
+	$"../Hud/Harpoon_tip".visible = true
 
 func unlock_net_thrower():
 	$NetThrower.is_unlocked = true
+	$"../Hud/Net_tip".visible = true
 
 func unlock_anchor_dropper():
 	$AnchorDropper.is_unlocked = true
+	$"../Hud/Anchor_tip".visible = true
 
 func upgrade_harpoon_gun(tier: int):
 	match tier:

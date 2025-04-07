@@ -130,7 +130,7 @@ script = ExtResource("1_17lwr")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("1_vcqoj")
-max_health = 3.0
+max_health = 8.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="PlayerDetector" type="CollisionShape2D" parent="."]

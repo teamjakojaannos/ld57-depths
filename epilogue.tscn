@@ -1,0 +1,165 @@
+[gd_scene load_steps=10 format=3 uid="uid://cqlip6gdwhy5r"]
+
+[ext_resource type="Texture2D" uid="uid://c3ugbup4vacow" path="res://intro/postikortti.png" id="1_ugo6t"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="2_3tug2"]
+[ext_resource type="AudioStream" uid="uid://bstr21jmv4vh1" path="res://intro/syvyysmusoc.mp3" id="3_8f77m"]
+[ext_resource type="AudioStream" uid="uid://h0hynkbrd0jp" path="res://ui/vineboom.ogg" id="4_8f77m"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xtdcm"]
+
+[sub_resource type="Animation" id="Animation_3tug2"]
+resource_name = "epilog"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(577, -198), Vector2(577, 400)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.97667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-3.14159, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 2.53333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(2.53333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8f77m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(577, -198)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-3.14159]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Label:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../AudioStreamPlayer2:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8aw7a"]
+_data = {
+&"RESET": SubResource("Animation_8f77m"),
+&"epilog": SubResource("Animation_3tug2")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_8aw7a"]
+font = ExtResource("2_3tug2")
+font_size = 150
+font_color = Color(0.772549, 0, 0.235294, 1)
+
+[node name="Epilogue" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -25.0
+offset_top = -15.0
+offset_right = 1185.0
+offset_bottom = 678.0
+texture = SubResource("CanvasTexture_xtdcm")
+
+[node name="Postikortti" type="Sprite2D" parent="."]
+position = Vector2(577, -198)
+rotation = -3.14159
+scale = Vector2(5, 5)
+texture = ExtResource("1_ugo6t")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Postikortti"]
+libraries = {
+&"": SubResource("AnimationLibrary_8aw7a")
+}
+autoplay = "epilog"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8f77m")
+volume_db = -3.486
+autoplay = true
+parameters/looping = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 120.0
+offset_top = -21.0
+offset_right = 1039.0
+offset_bottom = 375.0
+text = "The End"
+label_settings = SubResource("LabelSettings_8aw7a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_8f77m")
+volume_db = -10.0
