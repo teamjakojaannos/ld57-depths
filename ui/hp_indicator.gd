@@ -4,6 +4,7 @@ var tween: Tween
 
 func _ready() -> void:
 	Globals.player.Hurt.connect(update_indicator)
+	Globals.player.Heal.connect(update_indicator)
 	update_indicator()
 
 func update_indicator():

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ms66s")
-name = " Harpoon gun +1"
+name = "Harpoon gun +1"
 price = 20
 picture = ExtResource("1_lkeqt")
 metadata/_custom_type_script = "uid://worhpxre6228"

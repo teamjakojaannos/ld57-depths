@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const AIR_ACCEL: float = 2500.0
 const AIR_DECEL_MULT: float = 2.0
-const SPEED: float = 150.0
+var SPEED: float = 150.0 # THIS USED TO BE CONST SO ITS UPPERCASE
 const JUMP_VELOCITY: float = -150.0
 
 var is_in_transition: bool = false
@@ -29,6 +29,7 @@ func apply_slow(amount: float, duration: float) -> void:
 signal Jumped
 signal Die
 signal Hurt
+signal Heal
 
 
 var is_moving: bool:
@@ -152,7 +153,7 @@ func _input(event: InputEvent) -> void:
 		unlock_anchor_dropper()
 	elif event.is_action_pressed("debug_unlock_3"):
 		print("harpoon gun upgraded")
-		upgrade_harpoon_gun()
+		upgrade_harpoon_gun(1)
 	
 	
 	var look_direction = Vector2(looking_at_scalar, 0.0)
@@ -172,9 +173,33 @@ func unlock_net_thrower():
 func unlock_anchor_dropper():
 	$AnchorDropper.is_unlocked = true
 
-func upgrade_harpoon_gun():
-	$HarpoonGun.cooldown = 0.1
-	$HarpoonGun/HarpoonSpawner.projectile_damage = 2
+func upgrade_harpoon_gun(tier: int):
+	match tier:
+		1:
+			$HarpoonGun.cooldown = 0.25
+			$HarpoonGun/HarpoonSpawner.projectile_damage = 2
+		2:
+			$HarpoonGun.cooldown = 0.1
+			$HarpoonGun/HarpoonSpawner.projectile_damage = 3
+		_:
+			push_error("No tier %s implemented for harpoon gun upgrades" % tier)
+
+func heal_to_full():
+	$Health.heal(999, self)
+
+func upgrade_max_health(tier: int):
+	var amount = tier * 2
+	$Health.max_health += amount
+	$Health.heal(amount, self)
+
+func upgrade_speed(tier: int):
+	match tier:
+		1:
+			SPEED = 175
+		2:
+			SPEED = 200
+		_:
+			push_error("No speed upgrade tier %s implemented" % tier)
 
 func get_health():
 	return $Health._health
@@ -190,3 +215,6 @@ func _on_health_die() -> void:
 
 func _on_health_hurt() -> void:
 	Hurt.emit()
+
+func _on_health_heal() -> void:
+	Heal.emit()

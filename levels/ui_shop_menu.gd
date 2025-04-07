@@ -8,6 +8,21 @@ signal item_bought(item: String, price: int)
 @onready var _right_item_ui: ShopItemUI = $Control/Item_template2
 
 const sold_out: ShopItem = preload("uid://5aw8bapnh2tm")
+const health_potion: ShopItem = preload("res://shop/items/Health_potion.tres")
+
+const net_thrower: ShopItem = preload("res://shop/items/net_thrower.tres")
+const anchor: ShopItem = preload("res://shop/items/anchor.tres")
+const harpoon_tier_2: ShopItem = preload("res://shop/items/harpoon_t2.tres")
+const harpoon_tier_3: ShopItem = preload("res://shop/items/harpoon_t3.tres")
+
+const speed_upgrade_1: ShopItem = preload("res://shop/items/upgrade_speed.tres")
+const speed_upgrade_2: ShopItem = preload("res://shop/items/upgrade_speed2.tres")
+const speed_upgrade_3: ShopItem = preload("res://shop/items/upgrade_speed3.tres")
+
+const health_upgrade_1: ShopItem = preload("res://shop/items/upgrade_health.tres")
+const health_upgrade_2: ShopItem = preload("res://shop/items/Upgrade_health2.tres")
+const health_upgrade_3: ShopItem = preload("res://shop/items/Upgrade_health3.tres")
+
 
 var _is_open: bool = false
 
@@ -34,8 +49,33 @@ func open_shop() -> void:
 	shop_open.emit()
 
 func _setup_items() -> void:
-	_left_item_ui.display_item(load("uid://uaurhan33y31"))
-	_right_item_ui.display_item(load("uid://b30ektrdokkl8"))
+	var current_level = Globals.current_room_index
+	if current_level == 9:
+		_left_item_ui.display_item(net_thrower)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 16:
+		_left_item_ui.display_item(anchor)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 23:
+		_left_item_ui.display_item(speed_upgrade_1)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 28:
+		_left_item_ui.display_item(harpoon_tier_2)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 35:
+		_left_item_ui.display_item(speed_upgrade_2)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 42:
+		_left_item_ui.display_item(harpoon_tier_3)
+		_right_item_ui.display_item(health_potion)
+	elif current_level == 49:
+		_left_item_ui.display_item(health_upgrade_1)
+		_right_item_ui.display_item(health_potion)
+	else:
+		push_error("Shop at unexpected location: ", current_level)
+		_left_item_ui.display_item(sold_out)
+		_right_item_ui.display_item(sold_out)
+	
 
 func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	if price < 0:

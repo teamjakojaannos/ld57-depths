@@ -54,10 +54,28 @@ func trigger_level_clear() -> void:
 
 func handle_buy_item(item_name: String) -> void:
 	match item_name:
-		"Anchor":
+		"Anchor weapon":
 			player.unlock_anchor_dropper()
-		"Fishing Net":
+		"Net weapon":
 			player.unlock_net_thrower()
+		"Harpoon gun +1":
+			player.upgrade_harpoon_gun(1)
+		"Harpoon gun +2":
+			player.upgrade_harpoon_gun(2)
+		"Health Potion":
+			player.heal_to_full()
+		"Max health +1":
+			player.upgrade_max_health(1)
+		"Max Health +2":
+			player.upgrade_max_health(2)
+		"Max Health +3":
+			player.upgrade_max_health(3)
+		"Speed +1":
+			player.upgrade_speed(1)
+		"Speed +2":
+			player.upgrade_speed(2)
+		"Speed +3":
+			player.upgrade_speed(3)
 		"Sold out":
 			pass
 		_:
