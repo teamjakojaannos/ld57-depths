@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=74 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://b8r7hyb7fpo7n" path="res://characters/sfx_harpoon.gd" id="15_vcag3"]
 [ext_resource type="AudioStream" uid="uid://dtuwrmrl18hr4" path="res://characters/player/net_throw2.ogg" id="16_h076o"]
 [ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
+[ext_resource type="AudioStream" uid="uid://dqmuxegaqds0j" path="res://characters/player/anchor_hit.ogg" id="20_svrv0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akagt"]
 atlas = ExtResource("5_41yun")
@@ -1409,7 +1410,7 @@ bus = &"Player Guns SFX"
 script = ExtResource("15_vcag3")
 
 [node name="SfxAnchor" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("16_h076o")
+stream = ExtResource("20_svrv0")
 max_polyphony = 4
 bus = &"Player Guns SFX"
 script = ExtResource("18_b0vde")

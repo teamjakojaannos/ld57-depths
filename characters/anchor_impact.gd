@@ -1,8 +1,8 @@
 extends Node
 
 # TODO: replace with proper sounds!
-const mob_impact: AudioStream = preload("uid://dvd74jspqa7l5")
-const wall_impact: AudioStream = preload("uid://dwg51c0vur3xw")
+const mob_impact: AudioStream = preload("res://characters/player/harpoongun_meat_impact.ogg")
+const wall_impact: AudioStream = preload("res://characters/player/anchor_drop.ogg")
 
 func _on_hurtbox_hurt_target(_other: Hitbox) -> void:
 	var stream = AudioStreamPlayer.new()
