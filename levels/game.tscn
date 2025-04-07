@@ -1,14 +1,13 @@
-[gd_scene load_steps=42 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=67 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
 [ext_resource type="Resource" uid="uid://61ukmhorbgv2" path="res://levels/spawnlists/special/tutorial/tutorial_02.tres" id="7_218np"]
-[ext_resource type="Resource" uid="uid://b054sgk0qrnks" path="res://levels/spawnlists/special/shop_01.tres" id="8_kck2e"]
-[ext_resource type="Resource" uid="uid://c70onsm5j3784" path="res://levels/spawnlists/special/shop_02.tres" id="9_6w6r6"]
 [ext_resource type="Resource" uid="uid://3txs88cmr0d8" path="res://levels/spawnlists/special/crab_fight_01.tres" id="9_fbo34"]
 [ext_resource type="Resource" uid="uid://cb53ctfrsyrep" path="res://levels/level_parts/special/crab_boss_stage_1.tres" id="9_tkgql"]
 [ext_resource type="Script" uid="uid://bp204dfquw307" path="res://levels/level_generator.gd" id="10_0u5wd"]
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="10_re6tf"]
 [ext_resource type="Resource" uid="uid://di0yswatohakc" path="res://levels/level_parts/special/crab_boss_stage_2.tres" id="10_si8kf"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="10_yyd14"]
 [ext_resource type="Script" uid="uid://c7m15n72b5j4x" path="res://ui/objective_overlay.gd" id="11_5ycdb"]
@@ -16,24 +15,190 @@
 [ext_resource type="Resource" uid="uid://cuii51a4el6ao" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
 [ext_resource type="Resource" uid="uid://titgidis0ctw" path="res://levels/level_parts/special/crab_boss_stage_3.tres" id="11_kw56w"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="11_mgpep"]
+[ext_resource type="Resource" uid="uid://ckgxvua0i2552" path="res://levels/level_parts/special/shop/shop_01.tres" id="11_nmrji"]
 [ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="11_ughyh"]
+[ext_resource type="Resource" uid="uid://cxtoqp352umox" path="res://levels/level_parts/special/shop/shop_02.tres" id="12_6f4up"]
 [ext_resource type="Resource" uid="uid://b02yhagcdocv" path="res://levels/spawnlists/special/crab_fight_02.tres" id="12_mgpep"]
 [ext_resource type="Resource" uid="uid://bmxxixyyjvvnh" path="res://levels/level_parts/common_any_slot.tres" id="12_pb6kn"]
 [ext_resource type="Resource" uid="uid://bb4icjxasx3co" path="res://levels/spawnlists/medium_01.tres" id="12_si8kf"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="12_yyd14"]
+[ext_resource type="Resource" uid="uid://cvi32wfklm4tx" path="res://levels/spawnlists/easy_03.tres" id="13_07adx"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="13_kw56w"]
 [ext_resource type="Resource" uid="uid://b56fx2xsus5v3" path="res://levels/spawnlists/special/crab_fight_03.tres" id="13_pb6kn"]
 [ext_resource type="Resource" uid="uid://mnknu4kae5i5" path="res://levels/spawnlists/special/tutorial/tutorial_01.tres" id="14_3cl1t"]
+[ext_resource type="Resource" uid="uid://bvno3ufa574sr" path="res://levels/spawnlists/easy_04.tres" id="14_8c5ma"]
 [ext_resource type="Resource" uid="uid://p30hred7cgtr" path="res://levels/spawnlists/easy_01.tres" id="14_xr5dp"]
 [ext_resource type="PackedScene" uid="uid://bj0y1grmkuw1b" path="res://levels/background.tscn" id="15_fbo34"]
+[ext_resource type="Resource" uid="uid://8wamtrt6ry6d" path="res://levels/spawnlists/medium_02.tres" id="16_0ga61"]
 [ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="18_6w6r6"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
+[ext_resource type="Resource" uid="uid://bh4t6rcu1w05v" path="res://levels/spawnlists/medium_03.tres" id="20_k1iig"]
+[ext_resource type="Resource" uid="uid://b26llnculeomv" path="res://levels/spawnlists/medium_04.tres" id="21_ddyuc"]
+[ext_resource type="Resource" uid="uid://b4d0rk17yhgtq" path="res://levels/spawnlists/hard_01.tres" id="22_0ga61"]
 [ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="22_si8kf"]
+[ext_resource type="Resource" uid="uid://smyiaw6rh2co" path="res://levels/spawnlists/hard_02.tres" id="23_k1iig"]
+[ext_resource type="Resource" uid="uid://da28rbnibig8b" path="res://levels/spawnlists/hard_03.tres" id="24_frytq"]
+[ext_resource type="Resource" uid="uid://dvurxd3hxe1du" path="res://levels/spawnlists/hard_04.tres" id="25_hvtst"]
+[ext_resource type="Resource" uid="uid://dnwnby8ncrk1i" path="res://levels/spawnlists/special/squid_boss.tres" id="26_y3vsb"]
 [ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="30_50ih0"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
+
+[sub_resource type="Resource" id="Resource_07adx"]
+script = ExtResource("13_kw56w")
+min_depth = 8
+max_depth = 8
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_8c5ma"]
+script = ExtResource("13_kw56w")
+min_depth = 9
+max_depth = 9
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_frytq"]
+script = ExtResource("13_kw56w")
+min_depth = 15
+max_depth = 15
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_hvtst"]
+script = ExtResource("13_kw56w")
+min_depth = 16
+max_depth = 16
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_y3vsb"]
+script = ExtResource("13_kw56w")
+min_depth = 22
+max_depth = 22
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_ygxck"]
+script = ExtResource("13_kw56w")
+min_depth = 23
+max_depth = 23
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_6hew7"]
+script = ExtResource("13_kw56w")
+min_depth = 27
+max_depth = 27
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_exhqh"]
+script = ExtResource("13_kw56w")
+min_depth = 28
+max_depth = 28
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_ddyuc"]
+script = ExtResource("13_kw56w")
+min_depth = 34
+max_depth = 34
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_7g8xt"]
+script = ExtResource("13_kw56w")
+min_depth = 35
+max_depth = 35
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_5lu4e"]
+script = ExtResource("13_kw56w")
+min_depth = 41
+max_depth = 41
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_qx8it"]
+script = ExtResource("13_kw56w")
+min_depth = 42
+max_depth = 42
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_aolvq"]
+script = ExtResource("13_kw56w")
+min_depth = 48
+max_depth = 48
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("11_nmrji")])
+special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_g1efs"]
+script = ExtResource("13_kw56w")
+min_depth = 49
+max_depth = 49
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+level_override = Array[ExtResource("11_mgpep")]([ExtResource("12_6f4up")])
+special_sequence = 2
+entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbo34"]
 texture = ExtResource("11_6f163")
@@ -229,7 +394,7 @@ level_height_in_tiles = 36
 [node name="LevelGenerator" type="Node" parent="EndlessLevel"]
 script = ExtResource("10_0u5wd")
 parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
-spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), ExtResource("8_kck2e"), ExtResource("9_6w6r6"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), ExtResource("12_si8kf")])
+spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), SubResource("Resource_8c5ma"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), SubResource("Resource_hvtst"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), SubResource("Resource_ygxck"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), SubResource("Resource_6hew7"), SubResource("Resource_exhqh"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), SubResource("Resource_7g8xt"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), SubResource("Resource_qx8it"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), SubResource("Resource_g1efs"), ExtResource("26_y3vsb")])
 crab_rave_parts = Array[ExtResource("11_mgpep")]([ExtResource("9_tkgql"), ExtResource("10_si8kf"), ExtResource("11_kw56w")])
 crab_rave_spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn")])
 metadata/_custom_type_script = "uid://bp204dfquw307"

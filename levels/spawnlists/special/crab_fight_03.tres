@@ -8,10 +8,11 @@
 
 [resource]
 script = ExtResource("3_vmaxn")
-min_depth = 9
-max_depth = 9
+min_depth = 26
+max_depth = 26
 total_cost = 0
 enemies = Array[ExtResource("1_j4acq")]([ExtResource("2_j4acq")])
 level_override = Array[ExtResource("3_sec4w")]([ExtResource("4_vmaxn")])
 special_sequence = 1
+entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
