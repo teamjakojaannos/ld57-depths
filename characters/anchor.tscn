@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dcwntjp1sybhk" path="res://characters/anchor_impact.gd" id="5_ogsqg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vbes"]
-size = Vector2(23, 21)
+size = Vector2(11, 21)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ogsqg"]
 size = Vector2(23, 21)
@@ -41,6 +41,7 @@ metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(-0.5, 4.5)
 shape = SubResource("RectangleShape2D_ogsqg")
+debug_color = Color(1, 0, 0.266667, 0.266667)
 
 [node name="AnchorImpact" type="Node" parent="."]
 script = ExtResource("5_ogsqg")
