@@ -1,9 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cp6d8v6a3w12h"]
+[gd_scene load_steps=11 format=3 uid="uid://cp6d8v6a3w12h"]
 
 [ext_resource type="Texture2D" uid="uid://dx316fnxtyuii" path="res://fish/squid/squid-sheet.png" id="1_l13ey"]
 [ext_resource type="Script" uid="uid://xvpwx5xvcd7m" path="res://fish/squid/squid_boss.gd" id="1_ty4up"]
-[ext_resource type="Script" uid="uid://dqamjpvt2a86k" path="res://fish/squid/attacks/tentacle_attack.gd" id="3_gc4ln"]
-[ext_resource type="Script" uid="uid://doqrm4jkxux7w" path="res://fish/squid/attacks/tentacle_sequence.gd" id="4_48ygg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gc4ln"]
 atlas = ExtResource("1_l13ey")
@@ -132,20 +130,6 @@ script = ExtResource("1_ty4up")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kerth")
 autoplay = "default"
-
-[node name="Moves" type="Node" parent="."]
-
-[node name="TentacleAttack" type="Node" parent="Moves"]
-script = ExtResource("3_gc4ln")
-
-[node name="FastTentacleAttack" type="Node" parent="Moves"]
-script = ExtResource("3_gc4ln")
-wait_time_before_attack = 0.2
-tentacle_speed = 800.0
-tentacle_damage = 3
-
-[node name="TentacleSequence" type="Node" parent="Moves"]
-script = ExtResource("4_48ygg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

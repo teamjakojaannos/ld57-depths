@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4m7jblaqmqlg"]
+
+[ext_resource type="Texture2D" uid="uid://b5r1nvfyoq4f0" path="res://boss/squid/Lonkero.png" id="1_14air"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxd3t"]
+atlas = ExtResource("1_14air")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpyso"]
+atlas = ExtResource("1_14air")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryx8j"]
+atlas = ExtResource("1_14air")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mktvh"]
+atlas = ExtResource("1_14air")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hfd03"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxd3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpyso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryx8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mktvh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Segment" type="Node2D"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(16, 0)
+rotation = 1.57079
+sprite_frames = SubResource("SpriteFrames_hfd03")
+frame_progress = 1.0

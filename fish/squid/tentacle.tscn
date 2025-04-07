@@ -1,136 +1,266 @@
-[gd_scene load_steps=11 format=3 uid="uid://cralgksc31h64"]
+[gd_scene load_steps=24 format=3 uid="uid://cralgksc31h64"]
 
-[ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="1_l2kfb"]
-[ext_resource type="Script" uid="uid://d2pl7dfud331m" path="res://fish/squid/tentacle.gd" id="1_pcm7t"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_3hb5p"]
+[ext_resource type="Script" uid="uid://cwmbpjiybokgk" path="res://boss/squid/tentacle.gd" id="1_jpyso"]
+[ext_resource type="Script" uid="uid://cg7sh665ycy8b" path="res://fish/squid/tentacle_segments.gd" id="3_hxd3t"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_qj5eb"]
+[ext_resource type="PackedScene" uid="uid://d4m7jblaqmqlg" path="res://boss/squid/tentacle_segment.tscn" id="4_jpyso"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_pcm7t"]
+[ext_resource type="Texture2D" uid="uid://c5lmt4qk0g8me" path="res://boss/squid/bad_dragon.png" id="5_jpyso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpyso"]
-size = Vector2(396, 48)
+size = Vector2(576, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd3t"]
-size = Vector2(396, 48)
+size = Vector2(576, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ryx8j"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(0, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mktvh"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(34, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfd03"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(68, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyd0r"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(102, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dndf"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(102, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qu5d"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(68, 0, 34, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xo4fo"]
+atlas = ExtResource("5_jpyso")
+region = Rect2(34, 0, 34, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_faum5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ryx8j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mktvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfd03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyd0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dndf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qu5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xo4fo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [sub_resource type="Animation" id="Animation_hxd3t"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/path = NodePath("Segments:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-590, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pcm7t"]
 resource_name = "emerge"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/path = NodePath("Segments:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.666667),
+"times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+"values": [Vector2(-550, 0), Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:offset")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.666667),
+
+[sub_resource type="Animation" id="Animation_jpyso"]
+resource_name = "peek"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Segments:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-20, 0), Vector2(0, 0)]
+"values": [Vector2(-590, 0), Vector2(-550, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ryx8j"]
+resource_name = "retract"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Segments:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-590, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mktvh"]
+resource_name = "retract_little"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Segments:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-295, 0), Vector2(-590, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hfd03"]
+resource_name = "emerge_little"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Segments:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-550, 0), Vector2(-295, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpyso"]
 _data = {
 &"RESET": SubResource("Animation_hxd3t"),
-&"emerge": SubResource("Animation_pcm7t")
+&"emerge": SubResource("Animation_pcm7t"),
+&"emerge_little": SubResource("Animation_hfd03"),
+&"peek": SubResource("Animation_jpyso"),
+&"retract": SubResource("Animation_ryx8j"),
+&"retract_little": SubResource("Animation_mktvh")
 }
 
 [node name="Tentacle" type="Node2D"]
-script = ExtResource("1_pcm7t")
+script = ExtResource("1_jpyso")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("2_3hb5p")
-max_health = 1e+08
-metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+[node name="Segments" type="Node2D" parent="."]
+position = Vector2(-590, 0)
+rotation = -6.28318
+script = ExtResource("3_hxd3t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-198.25, -0.999999)
-scale = Vector2(3.08984, 0.378906)
-texture = ExtResource("1_l2kfb")
+[node name="Segment1" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(0, -0.042613)
 
-[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+[node name="Hitbox" type="Area2D" parent="Segments/Segment1" node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_pcm7t")
-health = NodePath("../Health")
+health = NodePath("")
 metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-198, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment1/Hitbox"]
+position = Vector2(288, 0)
 shape = SubResource("RectangleShape2D_jpyso")
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="Segments/Segment1"]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("3_qj5eb")
 damage = 3.0
 metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(-198, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment1/Hurtbox"]
+position = Vector2(288, 0)
 shape = SubResource("RectangleShape2D_hxd3t")
 debug_color = Color(0.960784, 0, 0.0901961, 0.419608)
+
+[node name="Segment2" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(32, 1.4378)
+
+[node name="Segment3" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(64, 1.99698)
+
+[node name="Segment4" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(96, 1.27664)
+
+[node name="Segment5" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(128, -0.261681)
+
+[node name="Segment6" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(160, -1.63233)
+
+[node name="Segment7" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(192, -1.95711)
+
+[node name="Segment8" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(224, -1.02791)
+
+[node name="Segment9" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(256, 0.5599)
+
+[node name="Segment10" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(288, 1.78896)
+
+[node name="Segment11" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(320, 1.87179)
+
+[node name="Segment12" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(352, 0.75531)
+
+[node name="Segment13" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(384, -0.845118)
+
+[node name="Segment14" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(416, -1.90406)
+
+[node name="Segment15" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(448, -1.74301)
+
+[node name="Segment16" parent="Segments" instance=ExtResource("4_jpyso")]
+position = Vector2(480, -0.465176)
+
+[node name="TotallyNotAdultToy" type="AnimatedSprite2D" parent="Segments"]
+position = Vector2(512, 1.11071)
+rotation = 1.5708
+sprite_frames = SubResource("SpriteFrames_faum5")
+autoplay = "default"
+frame_progress = 0.437102
+offset = Vector2(0, -38)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

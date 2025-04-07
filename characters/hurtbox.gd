@@ -18,6 +18,6 @@ func _on_area_entered(other: Area2D) -> void:
 	if other is Hitbox and not other.health.is_dead:
 		# FIXME: there should be a reference to the shooter/real source
 		#        here in the projectile to figure out who damaged whom
-		other.health.take_damage_at(damage, self, global_position)
+		other.health.take_damage_at(damage * other.multiplier, self, global_position)
 
 		hurt_target.emit(other)
