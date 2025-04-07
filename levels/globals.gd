@@ -45,8 +45,14 @@ func _ready() -> void:
 
 func reset() -> void:
 	depth = 0.0
-	current_room_index = 2 if tutorial_cleared else 0
+	current_room_index = 5#2 if tutorial_cleared else 0
 	money = money_at_start
 
 func trigger_level_clear() -> void:
 	level_cleared.emit()
+
+
+func handle_buy_item(item_name: String) -> void:
+	match item_name:
+		_:
+			push_error("UNHANDLED ITEM %s" % item_name)

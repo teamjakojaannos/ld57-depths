@@ -32,8 +32,8 @@ func open_shop() -> void:
 	shop_open.emit()
 
 func _setup_items() -> void:
-	_left_item_ui.display_item("Frankin kalsarit", 666)
-	_right_item_ui.display_item("Painis Cupcake", 69)
+	_left_item_ui.display_item(load("uid://uaurhan33y31"))
+	_right_item_ui.display_item(load("uid://b30ektrdokkl8"))
 
 func handle_buy_item(item_name: String, price: int) -> void:
 	if Globals.money < price:
@@ -52,6 +52,8 @@ func _success_buy(item_name: String, price: int) -> void:
 	$"../Buy_sound".play()
 	Globals.money = new_balance
 	item_bought.emit(item_name, price)
+	
+	Globals.handle_buy_item(item_name)
 
 func _on_leave_button_pressed() -> void:
 	close_shop()
