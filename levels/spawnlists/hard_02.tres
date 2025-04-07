@@ -9,7 +9,7 @@
 script = ExtResource("3_vyrwx")
 min_depth = 37
 max_depth = 40
-total_cost = 5
+total_cost = 22
 enemies = Array[ExtResource("1_bhn80")]([ExtResource("2_vyrwx")])
 level_override = Array[ExtResource("2_sdmw7")]([])
 special_sequence = 0

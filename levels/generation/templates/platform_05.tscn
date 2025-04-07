@@ -50,9 +50,6 @@ tile_set = ExtResource("1_glt2c")
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 
-[node name="Spawn1" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(-176, -32)
-
 [node name="Spawn2" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(176, -32)
 

@@ -22,7 +22,8 @@ point_count = 9
 [node name="visualflair" type="Node2D" parent="."]
 
 [node name="Jokukivijuttu3" type="Sprite2D" parent="visualflair"]
-position = Vector2(-7, -74)
+position = Vector2(17, -74)
+scale = Vector2(-1, 1)
 texture = ExtResource("1_xabmm")
 
 [node name="Seaplant" type="Sprite2D" parent="visualflair"]
