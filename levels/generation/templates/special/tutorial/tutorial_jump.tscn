@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=4 uid="uid://bkgh7uaqrjamv"]
+[gd_scene load_steps=14 format=4 uid="uid://bkgh7uaqrjamv"]
 
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="1_3fmlf"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_botvl"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="2_khne5"]
 [ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="2_xik0a"]
 [ext_resource type="Texture2D" uid="uid://cvdlehc4d6sww" path="res://levels/tileset1.png" id="3_aafx2"]
+[ext_resource type="Texture2D" uid="uid://pwlgmx4fbet2" path="res://graphics/environment/jokukivijuttu4.png" id="3_ph4vs"]
+[ext_resource type="Texture2D" uid="uid://ekf074r753ji" path="res://graphics/environment/Simp-ukka.png" id="4_ct6qy"]
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="5_ehxmt"]
+[ext_resource type="Texture2D" uid="uid://da7keoysrnmko" path="res://graphics/environment/vittukoralli.png" id="6_724kj"]
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="7_p4qms"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="11_6yij1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
@@ -12,8 +20,41 @@ size = Vector2(76.5836, 28.8914)
 
 [node name="LevelPart" type="Node2D"]
 
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(97, -233)
+texture = ExtResource("1_3fmlf")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(71, -205)
+texture = ExtResource("2_khne5")
+
+[node name="Jokukivijuttu4" type="Sprite2D" parent="visualflair"]
+position = Vector2(115, -232)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("3_ph4vs")
+
+[node name="Simp-ukka" type="Sprite2D" parent="visualflair"]
+position = Vector2(36, -182)
+rotation = 0.558505
+texture = ExtResource("4_ct6qy")
+
+[node name="KoralliLarge" type="Sprite2D" parent="visualflair"]
+position = Vector2(10, -181)
+texture = ExtResource("5_ehxmt")
+
+[node name="Vittukoralli" type="Sprite2D" parent="visualflair/KoralliLarge"]
+position = Vector2(177, -32)
+texture = ExtResource("6_724kj")
+
+[node name="Tottero" type="Sprite2D" parent="visualflair/KoralliLarge"]
+position = Vector2(200, -4)
+rotation = 0.401426
+texture = ExtResource("7_p4qms")
+
 [node name="Bounds" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -68,3 +109,7 @@ position = Vector2(-17, -6)
 texture = ExtResource("3_aafx2")
 region_enabled = true
 region_rect = Rect2(21, 32, 22, 16)
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="."]
+position = Vector2(-62, -74)
+texture = ExtResource("11_6yij1")

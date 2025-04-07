@@ -1,11 +1,20 @@
-[gd_scene load_steps=10 format=4 uid="uid://c0cjnh31ol7ys"]
+[gd_scene load_steps=19 format=4 uid="uid://c0cjnh31ol7ys"]
 
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="1_3dfnn"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_5fgxw"]
 [ext_resource type="Texture2D" uid="uid://da7keoysrnmko" path="res://graphics/environment/vittukoralli.png" id="1_6ttci"]
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_inm5q"]
 [ext_resource type="PackedScene" uid="uid://betjhqmoocxtc" path="res://fish/little_crab/little_crab.tscn" id="2_ibkcy"]
 [ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="3_5fgxw"]
+[ext_resource type="Texture2D" uid="uid://ci4c6md6c2o8p" path="res://graphics/environment/spagetti.png" id="3_prdpo"]
 [ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="4_a03mg"]
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="4_c7fqr"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="5_dtefu"]
 [ext_resource type="Script" uid="uid://c80dawef5gw2f" path="res://levels/generation/templates/special/tutorial/unlock_harpoon_gun.gd" id="5_w36rs"]
+[ext_resource type="Texture2D" uid="uid://b1fuj47ujwvkj" path="res://graphics/environment/koralli_small.png" id="6_g1cou"]
+[ext_resource type="Texture2D" uid="uid://bixq6xvvkrd81" path="res://graphics/environment/koralli_medium.png" id="7_vk0m6"]
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="8_uvgus"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="15_yjnmt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
@@ -21,6 +30,46 @@ point_count = 3
 radius = 28.0179
 
 [node name="LevelPart" type="Node2D"]
+
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Tottero" type="Sprite2D" parent="visualflair"]
+position = Vector2(-132, -236)
+texture = ExtResource("1_3dfnn")
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="visualflair"]
+position = Vector2(111, -231)
+texture = ExtResource("1_inm5q")
+region_enabled = true
+region_rect = Rect2(99, 0, 157, 128)
+
+[node name="Spagetti" type="Sprite2D" parent="visualflair"]
+position = Vector2(76, -187)
+texture = ExtResource("3_prdpo")
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(56, -222)
+texture = ExtResource("4_c7fqr")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(175, -192)
+texture = ExtResource("5_dtefu")
+
+[node name="KoralliSmall" type="Sprite2D" parent="visualflair"]
+position = Vector2(162, -180)
+texture = ExtResource("6_g1cou")
+
+[node name="KoralliMedium" type="Sprite2D" parent="visualflair"]
+position = Vector2(92, -177)
+texture = ExtResource("7_vk0m6")
+
+[node name="KoralliLarge" type="Sprite2D" parent="visualflair"]
+position = Vector2(-46, -233)
+texture = ExtResource("8_uvgus")
+
+[node name="SeaplantSmol2" type="Sprite2D" parent="visualflair"]
+position = Vector2(-70, -240)
+texture = ExtResource("5_dtefu")
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
@@ -78,6 +127,15 @@ shape = SubResource("CircleShape2D_6ttci")
 [node name="Triplaharppuuna" type="Sprite2D" parent="ItemTrigger"]
 position = Vector2(-2, -12)
 texture = ExtResource("4_a03mg")
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="."]
+position = Vector2(182, -170)
+texture = ExtResource("15_yjnmt")
+
+[node name="Merisuolakurkku2" type="Sprite2D" parent="."]
+position = Vector2(-69, -148)
+rotation = -4.05789
+texture = ExtResource("15_yjnmt")
 
 [connection signal="area_entered" from="ItemTrigger" to="ItemTrigger" method="_on_area_entered"]
 
