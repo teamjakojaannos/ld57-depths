@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://custde0qf4s2t"]
+[gd_scene load_steps=32 format=4 uid="uid://custde0qf4s2t"]
 
 [ext_resource type="Texture2D" uid="uid://b0q1jj1tnte0h" path="res://graphics/environment/clouds.png" id="1_7ufi4"]
 [ext_resource type="Texture2D" uid="uid://5lsk0dadu4nm" path="res://graphics/environment/wadeh.png" id="1_s2ta7"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://natafaamt5j4" path="res://graphics/environment/unsinkable_takkaa.png" id="3_0a7ni"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_smii7"]
 [ext_resource type="Script" uid="uid://bx0q3aae6gkex" path="res://tile_map_layer_2.gd" id="3_y6ycx"]
+[ext_resource type="FontFile" uid="uid://igrdutd3m1iw" path="res://ui/Perfect DOS VGA 437.ttf" id="4_h770g"]
 [ext_resource type="Texture2D" uid="uid://c2421ckms1a0u" path="res://graphics/environment/unsinkable_eesta.png" id="4_y72e6"]
 [ext_resource type="Texture2D" uid="uid://coa65314x5gig" path="res://characters/Frank.png" id="6_dpxxx"]
 [ext_resource type="Texture2D" uid="uid://dkr8mtpkv3hj2" path="res://characters/Fred.png" id="7_dk2oa"]
@@ -20,7 +21,14 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_dmx7j"]
 font = ExtResource("3_smii7")
-font_size = 64
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_qn042"]
+font = ExtResource("4_h770g")
+font_size = 32
+font_color = Color(0.101961, 0.0901961, 0.0784314, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_h770g"]
 
 [sub_resource type="Gradient" id="Gradient_u2rf6"]
 offsets = PackedFloat32Array(0, 0.996564)
@@ -88,6 +96,7 @@ sources/0 = SubResource("TileSetAtlasSource_ayt76")
 
 [sub_resource type="Animation" id="Animation_xsd0a"]
 resource_name = "Frank_falls"
+length = 16.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,7 +104,7 @@ tracks/0/path = NodePath(".:z_index")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667),
+"times": PackedFloat32Array(11, 11.1667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [-1, 0]
@@ -107,7 +116,7 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.16, 1),
+"times": PackedFloat32Array(11, 11.16, 12),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(-46, -55), Vector2(-46.046, -64.43), Vector2(-46.285, 24.595)]
@@ -119,10 +128,10 @@ tracks/2/path = NodePath(".:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(6.63333, 6.96667, 7.33333, 7.66667, 8, 8.33333, 8.7, 9.03333, 9.3, 9.57475, 9.94142, 10.2748, 11, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [0.0, -2.71224]
+"values": [0.0, -0.45204, 0.0, 0.181514, 0.0, -0.45204, 0.0, 0.436332, 0.0, -0.45204, 0.0, 0.884882, 0.0, -2.71224]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -131,7 +140,7 @@ tracks/3/path = NodePath("../../AudioStreamPlayer2D3:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(11.5),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -143,7 +152,7 @@ tracks/4/path = NodePath("../../Bubbles:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.71),
+"times": PackedFloat32Array(11.71),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -155,7 +164,7 @@ tracks/5/path = NodePath("../../Bubbles2:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(11.7),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -167,10 +176,106 @@ tracks/6/path = NodePath("../../Bubbles3:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(11.7),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../Dialogue/Control/Dialoguebox:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2.73333, 5.5, 8.16667, 10.6667, 13.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Dialogue/Control/Frank:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2.73333, 5.5, 8.16667, 10.6667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../Dialogue/Control/Dialogue1:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2.73333, 5.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2.06333, 2.15333, 5.56333, 5.63333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../Dialogue/Control/Dialogue2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(8.16667, 10.6667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../Dialogue/Control/Fred:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 13.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../../Dialogue/Control/Dialogue3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0.0333333, 13.0333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../../Dialogue/FadeOut:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 14.5, 15.6),
+"transitions": PackedFloat32Array(1, 0.615574, 1),
+"update": 1,
+"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_smii7"]
@@ -259,6 +364,102 @@ tracks/6/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../../Dialogue/Control/Dialoguebox:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../../Dialogue/Control/Frank:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../../Dialogue/Control/Dialogue1:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../../Dialogue/Control/Dialogue2:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../Dialogue/Control/Fred:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../../Dialogue/Control/Dialogue3:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../../Dialogue/FadeOut:visible")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmx7j"]
 _data = {
@@ -289,35 +490,102 @@ color_ramp = SubResource("GradientTexture1D_4c2xj")
 
 [node name="Intro" type="Node2D"]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
+[node name="Dialogue" type="CanvasLayer" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="Dialogue"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dialoguebox" type="TextureRect" parent="Dialogue/Control"]
+visible = false
 offset_left = 290.0
 offset_top = 457.0
 offset_right = 866.0
 offset_bottom = 612.0
 texture = ExtResource("1_wby50")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
-offset_left = 352.0
-offset_top = 525.0
-offset_right = 608.0
-offset_bottom = 637.0
+[node name="Frank" type="TextureRect" parent="Dialogue/Control"]
+visible = false
+offset_left = 342.0
+offset_top = 569.0
+offset_right = 526.0
+offset_bottom = 647.0
 texture = ExtResource("2_xsd0a")
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 414.0
-offset_top = 564.0
-offset_right = 546.0
-offset_bottom = 620.0
+[node name="Label" type="Label" parent="Dialogue/Control/Frank"]
+offset_left = 39.0
+offset_top = 26.0
+offset_right = 171.0
+offset_bottom = 82.0
 text = "Frank"
 label_settings = SubResource("LabelSettings_dmx7j")
+
+[node name="Fred" type="TextureRect" parent="Dialogue/Control"]
+offset_left = 633.0
+offset_top = 567.0
+offset_right = 817.0
+offset_bottom = 645.0
+texture = ExtResource("2_xsd0a")
+
+[node name="Label2" type="Label" parent="Dialogue/Control/Fred"]
+offset_left = 51.0
+offset_top = 25.0
+offset_right = 183.0
+offset_bottom = 81.0
+text = "Fred"
+label_settings = SubResource("LabelSettings_dmx7j")
+
+[node name="Dialogue1" type="Label" parent="Dialogue/Control"]
+visible = false
+layout_mode = 0
+offset_left = 351.0
+offset_top = 489.0
+offset_right = 789.0
+offset_bottom = 571.0
+text = "What a beautiful day"
+label_settings = SubResource("LabelSettings_qn042")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue2" type="Label" parent="Dialogue/Control"]
+visible = false
+layout_mode = 0
+offset_left = 331.0
+offset_top = 493.0
+offset_right = 817.0
+offset_bottom = 575.0
+text = "Uhh.. I'm losing 
+my balance"
+label_settings = SubResource("LabelSettings_qn042")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogue3" type="Label" parent="Dialogue/Control"]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 493.0
+offset_right = 817.0
+offset_bottom = 575.0
+text = "Great... I gotta go save
+this guy AGAIN"
+label_settings = SubResource("LabelSettings_qn042")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FadeOut" type="TextureRect" parent="Dialogue"]
+modulate = Color(0, 0, 0, 1)
+offset_left = -8.0
+offset_top = -11.0
+offset_right = 1156.0
+offset_bottom = 650.0
+texture = SubResource("CanvasTexture_h770g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="BG" type="TextureRect" parent="."]
 z_index = -1
 offset_left = -317.0
 offset_top = -181.0

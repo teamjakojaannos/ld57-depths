@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://n36ccijtj8is"]
+[gd_scene load_steps=4 format=3 uid="uid://n36ccijtj8is"]
 
+[ext_resource type="PackedScene" uid="uid://custde0qf4s2t" path="res://intro.tscn" id="1_0xm2m"]
 [ext_resource type="Script" uid="uid://025ul1c73l5t" path="res://world/start_game.gd" id="1_ig7tw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7dm0k"]
@@ -13,7 +14,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Intro" parent="." instance=ExtResource("1_0xm2m")]
+position = Vector2(526, 318)
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,12 +28,13 @@ grow_vertical = 2
 color = Color(0.117057, 0.117057, 0.117057, 1)
 
 [node name="SplashTimeout" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 16.0
 one_shot = true
 autostart = true
 script = ExtResource("1_ig7tw")
 
 [node name="Title" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,12 +49,14 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Title" type="Label" parent="Title"]
+visible = false
 layout_mode = 2
 text = "Depths"
 label_settings = SubResource("LabelSettings_7dm0k")
 horizontal_alignment = 1
 
 [node name="Subtitle" type="Label" parent="Title"]
+visible = false
 layout_mode = 2
 text = "A Ludum Dare 57 Game"
 horizontal_alignment = 1

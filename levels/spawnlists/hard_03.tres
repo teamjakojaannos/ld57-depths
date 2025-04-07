@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://da28rbnibig8b"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=7 format=3 uid="uid://da28rbnibig8b"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_jf6w7"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_1abvq"]
 [ext_resource type="Resource" uid="uid://dmd4cl6pl6rme" path="res://levels/spawnable/enemies/jellyfish_01.tres" id="2_7g6ym"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_7g6ym"]
+[ext_resource type="Resource" uid="uid://c814gqdjyrosc" path="res://levels/spawnable/enemies/pufferfish_hard.tres" id="3_y1wgt"]
+[ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="4_4jgma"]
 
 [resource]
 script = ExtResource("3_7g6ym")
 min_depth = 43
 max_depth = 46
 total_cost = 24
-enemies = Array[ExtResource("1_jf6w7")]([ExtResource("2_7g6ym"), null])
+enemies = Array[ExtResource("1_jf6w7")]([ExtResource("2_7g6ym"), ExtResource("3_y1wgt"), ExtResource("4_4jgma")])
 level_override = Array[ExtResource("2_1abvq")]([])
 special_sequence = 0
 entry_text_override = Array[String]([])

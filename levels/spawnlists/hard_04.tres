@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://dvurxd3hxe1du"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=7 format=3 uid="uid://dvurxd3hxe1du"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_rd53d"]
-[ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="2_k1dn2"]
+[ext_resource type="Resource" uid="uid://dmd4cl6pl6rme" path="res://levels/spawnable/enemies/jellyfish_01.tres" id="2_thu3r"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_y6w4t"]
+[ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="3_hbmbm"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_k1dn2"]
+[ext_resource type="Resource" uid="uid://c814gqdjyrosc" path="res://levels/spawnable/enemies/pufferfish_hard.tres" id="4_qebtt"]
 
 [resource]
 script = ExtResource("3_k1dn2")
 min_depth = 44
 max_depth = 47
 total_cost = 26
-enemies = Array[ExtResource("1_rd53d")]([ExtResource("2_k1dn2")])
+enemies = Array[ExtResource("1_rd53d")]([ExtResource("2_thu3r"), ExtResource("3_hbmbm"), ExtResource("4_qebtt")])
 level_override = Array[ExtResource("2_y6w4t")]([])
 special_sequence = 0
 entry_text_override = Array[String]([])

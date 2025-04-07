@@ -64,11 +64,11 @@ animations = [{
 }]
 
 [node name="SpikeFish" instance=ExtResource("1_sag2v")]
-spike_color = Color(0.34902, 0, 1, 1)
+spike_color = Color(0, 0.156863, 1, 1)
 spike_damage = 2
 min_spike_speed = 125.0
 max_spike_speed = 225.0
-money_per_kill = 5
+money_per_kill = 6
 min_attack_cooldown = 1.0
 max_attack_cooldown = 2.5
 min_spike_count = 8
