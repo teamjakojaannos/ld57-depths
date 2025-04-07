@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="Spawnlist" load_steps=4 format=3 uid="uid://bvno3ufa574sr"]
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://bvno3ufa574sr"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_qiuxt"]
+[ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="2_1ooaw"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_dialr"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_1ooaw"]
 
@@ -9,7 +10,7 @@ script = ExtResource("3_1ooaw")
 min_depth = 11
 max_depth = 14
 total_cost = 5
-enemies = Array[ExtResource("1_qiuxt")]([])
+enemies = Array[ExtResource("1_qiuxt")]([ExtResource("2_1ooaw")])
 level_override = Array[ExtResource("2_dialr")]([])
 special_sequence = 0
 entry_text_override = Array[String]([])
