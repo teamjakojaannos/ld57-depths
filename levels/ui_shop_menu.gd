@@ -25,7 +25,10 @@ const health_upgrade_3: ShopItem = preload("res://shop/items/Upgrade_health3.tre
 
 
 var _is_open: bool = false
-var _room_index_where_i_purchased_hp_potion = -1
+
+var left_queue: Array[ShopItem] = []
+var right_queue: Array[ShopItem] = []
+var _generated_queues_room_index = -1
 
 func close_shop() -> void:
 	if !_is_open:
@@ -50,14 +53,16 @@ func open_shop() -> void:
 	shop_open.emit()
 
 func _setup_items() -> void:
-	var first_item = _get_next_item_in_queue()
-	_left_item_ui.display_item(first_item)
+	var already_generated = _generated_queues_room_index == Globals.current_room_index
+	if already_generated:
+		return
 	
-	var hp_pot_already_bought = _room_index_where_i_purchased_hp_potion == Globals.current_room_index
-	if hp_pot_already_bought:
-		_right_item_ui.display_item(sold_out)
-	else:
-		_right_item_ui.display_item(health_potion)
+	_generated_queues_room_index = Globals.current_room_index
+	left_queue = _get_upgrade_queue()
+	right_queue = [health_potion]
+	
+	_left_item_ui.display_item(_get_first_item_in_queue(left_queue))
+	_right_item_ui.display_item(_get_first_item_in_queue(right_queue))
 
 func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	if price < 0:
@@ -68,13 +73,22 @@ func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	else:
 		_success_buy(item_name, price)
 		if is_left:
-			var item = _get_next_item_in_queue()
+			var item = _remove_first_item_and_get_next_item_in_queue(left_queue)
 			_left_item_ui.display_item(item)
 		else:
-			_room_index_where_i_purchased_hp_potion = Globals.current_room_index
-			_right_item_ui.display_item(sold_out)
+			var item = _remove_first_item_and_get_next_item_in_queue(right_queue)
+			_right_item_ui.display_item(item)
 
-func _get_next_item_in_queue() -> ShopItem:
+func _get_first_item_in_queue(queue: Array[ShopItem]) -> ShopItem:
+	return sold_out if queue.is_empty() else queue[0]
+
+func _remove_first_item_and_get_next_item_in_queue(queue: Array[ShopItem]) -> ShopItem:
+	if queue.size() > 0:
+		queue.remove_at(0)
+	
+	return sold_out if queue.is_empty() else queue[0]
+
+func _get_upgrade_queue() -> Array[ShopItem]:
 	var shop_queue: Array[ShopItem] = []
 	
 	var current_level = Globals.current_room_index
@@ -92,9 +106,12 @@ func _get_next_item_in_queue() -> ShopItem:
 		shop_queue.append(harpoon_tier_3)
 	if current_level >= 49:
 		shop_queue.append(health_upgrade_1)
+		shop_queue.append(health_upgrade_2)
+		shop_queue.append(health_upgrade_3)
+		shop_queue.append(speed_upgrade_2)
+		shop_queue.append(speed_upgrade_3)
 	
-	shop_queue = shop_queue.filter(func(item: ShopItem): return !Globals.bought_upgrades.has(item.name))
-	return shop_queue[0] if shop_queue.size() > 0 else sold_out
+	return _remove_already_obtained(shop_queue)
 
 func _fail_buy(item_name: String, price: int, is_left: bool) -> void:
 	print("Could not afford '%s' (cost %s, player has %s)" % [item_name, price, Globals.money])
@@ -113,7 +130,9 @@ func _success_buy(item_name: String, price: int) -> void:
 	item_bought.emit(item_name, price)
 	
 	Globals.handle_buy_item(item_name)
-	
+
+func _remove_already_obtained(items: Array[ShopItem]) -> Array[ShopItem]:
+	return items.filter(func(item: ShopItem): return !Globals.bought_upgrades.has(item.name))
 
 func _on_leave_button_pressed() -> void:
 	close_shop()
