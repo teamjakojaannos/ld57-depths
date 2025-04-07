@@ -10,7 +10,17 @@ class_name GameGlobals
 
 @export var money: int = 100
 
+var _music_volume_percent: float = 0.5
+@export_range(0.0, 1.0) var music_volume_percent: float:
+	get:
+		return _music_volume_percent
+	set(value):
+		_music_volume_percent = clampf(value, 0.0, 1.0)
+		volume_changed.emit()
+	
+
 signal level_cleared
+signal volume_changed
 
 func _ready() -> void:
 	reset()

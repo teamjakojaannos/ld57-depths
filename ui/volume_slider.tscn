@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://drrjumcqgco42"]
+
+[ext_resource type="Script" uid="uid://rf8ahsact8lh" path="res://ui/volume_slider.gd" id="1_dmp5s"]
+
+[node name="VolumeSlider" type="HBoxContainer"]
+anchors_preset = -1
+anchor_right = 0.253
+anchor_bottom = 0.035
+offset_right = 0.543976
+offset_bottom = 0.32
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dmp5s")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Music volume"
+
+[node name="Slider" type="HSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[connection signal="value_changed" from="Slider" to="." method="_on_slider_value_changed"]

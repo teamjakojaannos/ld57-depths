@@ -11,8 +11,14 @@ const music_track_2: AudioStream = preload("res://levels/bgm2.ogg")
 const boss_music_1: AudioStream = preload("res://levels/bgm3.ogg")
 
 func _ready() -> void:
+	Globals.volume_changed.connect(update_volume)
+	
 	stream = music_track_1
+	update_volume()
 	play()
+
+func update_volume():
+	self.volume_linear = Globals.music_volume_percent
 
 func play_song(song: Song):
 	if song == Song.Music_1:
