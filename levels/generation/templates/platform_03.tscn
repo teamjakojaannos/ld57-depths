@@ -1,9 +1,23 @@
-[gd_scene load_steps=3 format=4 uid="uid://dm26lbxt62yt"]
+[gd_scene load_steps=5 format=4 uid="uid://dm26lbxt62yt"]
 
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_jgi06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_jgi06"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -134, -14, 0, 0, 0, 0, -130, -10, 0, 0, 0, 0, -130, 13, 0, 0, 0, 0, -133, 16, 0, 0, 0, 0, -187, 16, 0, 0, 0, 0, -190, 13, 0, 0, 0, 0, -190, -11, 0, 0, 0, 0, -187, -14, 0, 0, 0, 0, -134, -14)
+}
+point_count = 9
+
+[sub_resource type="Curve2D" id="Curve2D_o2ecj"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -165, -14, 0, 0, 0, 0, -162, -10, 0, 0, 0, 0, -162, 12, 0, 0, 0, 0, -165, 16, 0, 0, 0, 0, -187, 16, 0, 0, 0, 0, -190, 13, 0, 0, 0, 0, -190, -11, 0, 0, 0, 0, -187, -14, 0, 0, 0, 0, -165, -14)
+}
+point_count = 9
 
 [node name="LevelPart" type="Node2D"]
 
@@ -48,3 +62,30 @@ position = Vector2(144, -32)
 
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
+
+[node name="CrabPath2" type="Path2D" parent="EnemySpawns"]
+position = Vector2(320, 0)
+curve = SubResource("Curve2D_jgi06")
+
+[node name="CrabPath3" type="Path2D" parent="EnemySpawns"]
+position = Vector2(80, 0)
+curve = SubResource("Curve2D_o2ecj")
+
+[node name="CrabPath4" type="Path2D" parent="EnemySpawns"]
+position = Vector2(128, 0)
+curve = SubResource("Curve2D_o2ecj")
+
+[node name="CrabPath5" type="Path2D" parent="EnemySpawns"]
+position = Vector2(176, 0)
+curve = SubResource("Curve2D_o2ecj")
+
+[node name="CrabPath6" type="Path2D" parent="EnemySpawns"]
+position = Vector2(224, 0)
+curve = SubResource("Curve2D_o2ecj")
+
+[node name="CrabPath7" type="Path2D" parent="EnemySpawns"]
+position = Vector2(272, 0)
+curve = SubResource("Curve2D_o2ecj")
+
+[node name="CrabPath" type="Path2D" parent="EnemySpawns"]
+curve = SubResource("Curve2D_jgi06")

@@ -73,7 +73,10 @@ func _play_transition_animation(new_level: Level) -> void:
 	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
 	transition.tween_property(player, "position", player_goal_position, transition_duration)
 	
-	objective_overlay.show_objective("KILL", "EVERY", "FISH", 1.0)
+	var entry_text = ["KILL", "EVERY", "FISH"]
+	if new_level.entry_text != null && !new_level.entry_text.is_empty():
+		entry_text = new_level.entry_text
+	objective_overlay.show_objective(entry_text[0], entry_text[1], entry_text[2], 1.0)
 
 	var d = Globals.current_room_index / 100.0
 	$Bubbles.pitch_scale = lerp(1.05, 0.35, d)

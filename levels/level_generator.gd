@@ -100,6 +100,9 @@ func _generate_from_parts(
 		level.no_blocker = true
 		level.unlock_exit()
 
+	if spawnlist.entry_text_override != null && !spawnlist.entry_text_override.is_empty():
+		level.entry_text = spawnlist.entry_text_override
+
 	return level
 
 
@@ -110,8 +113,18 @@ func _spawn_enemies(level: Level, spawnlist: Spawnlist) -> void:
 		var s: Spawnable = spawnlist.enemies.pick_random()
 		spent_cost += s.spawn_cost
 
+		var spawn_group: String
+		match s.spawnpoint_group:
+			Spawnable.SpawnGroup.NORMAL:
+				spawn_group = "enemy_spawn"
+			Spawnable.SpawnGroup.PATH_FOLLOWER:
+				spawn_group = "path_enemy_spawn"
+			_:
+				print("Unexpected spawnpoint group %s" % s.spawnpoint_group)
+				spawn_group = "enemy_spawn"
+
 		# FIXME: cache these
-		var enemy_spawns = get_tree().get_nodes_in_group(s.spawnpoint_group)
+		var enemy_spawns = get_tree().get_nodes_in_group(spawn_group)
 		var allowed_spawns: Array[Node2D] = []
 		for spawnpoint in enemy_spawns:
 			if !level.is_ancestor_of(spawnpoint):
@@ -121,9 +134,12 @@ func _spawn_enemies(level: Level, spawnlist: Spawnlist) -> void:
 		
 		var spawnpoint = allowed_spawns.pick_random()
 		var enemy: Node2D = s.prefab.instantiate()
-		level.add_child(enemy)
-		var point = spawnpoint.global_position
-		enemy.global_position = point
+		match s.spawnpoint_group:
+			Spawnable.SpawnGroup.NORMAL:
+				level.add_child(enemy)
+			Spawnable.SpawnGroup.PATH_FOLLOWER:
+				spawnpoint.add_child(enemy)
+		enemy.global_position = spawnpoint.global_position
 		
 		spawned_enemies += 1
 

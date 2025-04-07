@@ -20,6 +20,8 @@ class_name Spawnlist
 
 @export var special_sequence: LevelPart.SpecialSequence = LevelPart.SpecialSequence.NONE
 
+@export var entry_text_override: Array[String] = []
+
 var is_special: bool:
 	get:
 		return special_sequence != LevelPart.SpecialSequence.NONE

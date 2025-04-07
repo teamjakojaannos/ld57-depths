@@ -8,6 +8,8 @@ const spike_fish_prefab = preload("res://fish/spiky_puffer_fish/spike_fish.tscn"
 var _kills: int = 0
 var kills_required: int = 999
 
+var entry_text: Array[String] = []
+
 @export var no_blocker: bool = false
 
 @onready var top_slot: Node2D = $TopLevelPart

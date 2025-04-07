@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
 
 player=""
 enemy_spawn=""
+path_enemy_spawn=""
 
 [input]
 

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Spawnable" load_steps=3 format=3 uid="uid://cprfu86nrtff1"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_8q8a3"]
+[ext_resource type="PackedScene" uid="uid://betjhqmoocxtc" path="res://fish/little_crab/little_crab.tscn" id="1_fh5im"]
+
+[resource]
+script = ExtResource("1_8q8a3")
+prefab = ExtResource("1_fh5im")
+spawnpoint_group = 1
+spawn_cost = 1
+optional = true
+metadata/_custom_type_script = "uid://b5ri76voq74fo"

@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=4 uid="uid://dqf30nhwiyrkn"]
+[gd_scene load_steps=4 format=4 uid="uid://ijxy2qa50s1a"]
 
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_ocep8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_ktneu"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -100, -14, 0, 0, 0, 0, -57, -14, 0, 0, 0, 0, -50, -7, 0, 0, 0, 0, -50, 10, 0, 0, 0, 0, -56, 16, 0, 0, 0, 0, -168, 16, 0, 0, 0, 0, -175, 9, 0, 0, 0, 0, -174, -8, 0, 0, 0, 0, -167, -14, 0, 0, 0, 0, -99, -13)
+}
+point_count = 10
 
 [node name="LevelPart" type="Node2D"]
 
@@ -48,3 +55,6 @@ position = Vector2(144, -32)
 
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
+
+[node name="CrabPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_ktneu")

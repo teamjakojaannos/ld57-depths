@@ -13,4 +13,5 @@ total_cost = 0
 enemies = Array[ExtResource("1_c50rx")]([])
 level_override = Array[ExtResource("2_2whgu")]([ExtResource("3_2whgu")])
 special_sequence = 2
+entry_text_override = Array[String](["OPEN", "THE", "SHOP"])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"

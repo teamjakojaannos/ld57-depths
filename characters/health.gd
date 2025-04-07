@@ -7,6 +7,7 @@ signal Die
 signal Heal
 signal Hurt
 
+signal hurt_invincible
 signal hurt_at(position: Vector2)
 
 @export var max_health: float = 10
@@ -34,6 +35,7 @@ func take_damage_at(amount: float, _from: Node, point: Vector2) -> void:
 
 func _try_take_damage(amount: float, _from: Node, point: Vector2) -> void:
 	if _is_invincible:
+		hurt_invincible.emit()
 		return
 	
 	var old_health = _health
