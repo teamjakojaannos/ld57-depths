@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://1bvqgpst3ypf"]
+[gd_scene load_steps=10 format=3 uid="uid://1bvqgpst3ypf"]
 
 [ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_aud8y"]
 [ext_resource type="PackedScene" uid="uid://dqngjdi7feqd4" path="res://boss/crab/snappy_arm.tscn" id="2_8y5u7"]
+[ext_resource type="AudioStream" uid="uid://clghm8gts3qpq" path="res://boss/crab/crabclaw_long.ogg" id="3_aud8y"]
 
 [sub_resource type="Animation" id="Animation_m6qkv"]
 length = 0.001
@@ -67,6 +68,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.261799, -0.261799, 0.261799, -0.261799]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6u1in"]
@@ -170,3 +185,8 @@ libraries = {
 
 [node name="Pivot" parent="." instance=ExtResource("2_8y5u7")]
 position = Vector2(0, 56)
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aud8y")
+max_polyphony = 4
+bus = &"Enemy SFX"
