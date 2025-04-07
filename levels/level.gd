@@ -38,6 +38,7 @@ func _ready() -> void:
 		unlock_exit()
 
 func record_kill() -> void:
+	Globals.money += 1
 	_kills += 1
 
 	if _kills >= kills_required:

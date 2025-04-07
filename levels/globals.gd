@@ -8,7 +8,9 @@ class_name GameGlobals
 @export var level: EndlessLevel
 @export var current_level: Level
 
-var _money: int = 100
+var money_at_start = 100
+
+var _money: int = money_at_start
 @export var money: int :
 	get:
 		return _money
@@ -35,6 +37,7 @@ func _ready() -> void:
 func reset() -> void:
 	depth = 0.0
 	current_room_index = 0
+	money = money_at_start
 
 func trigger_level_clear() -> void:
 	level_cleared.emit()
