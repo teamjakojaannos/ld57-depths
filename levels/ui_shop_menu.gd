@@ -7,10 +7,17 @@ signal item_bought(item: String, price: int)
 @onready var _left_item_ui: ShopItemUI = $Control/Item_template
 @onready var _right_item_ui: ShopItemUI = $Control/Item_template2
 
+var _is_open: bool = false
+
 func close_shop() -> void:
+	if !_is_open:
+		return
+
 	$Shopmenu_anim.clear_queue()
 	if !$Shopmenu_anim.current_animation == "Trans_out":
 		$Shopmenu_anim.queue("Trans_out")
+
+	_is_open = false
 	shop_closed.emit()
 
 func open_shop() -> void:
@@ -20,6 +27,9 @@ func open_shop() -> void:
 	$"../ShopOpen_sound".play()
 	
 	_setup_items()
+	
+	_is_open = true
+	shop_open.emit()
 
 func _setup_items() -> void:
 	_left_item_ui.display_item("Frankin kalsarit", 666)

@@ -27,7 +27,7 @@ func _ready() -> void:
 
 func reset() -> void:
 	depth = 0.0
-	current_room_index = 4
+	current_room_index = 0
 
 func trigger_level_clear() -> void:
 	level_cleared.emit()

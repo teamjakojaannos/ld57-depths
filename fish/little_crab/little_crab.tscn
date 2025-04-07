@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://betjhqmoocxtc"]
+[gd_scene load_steps=13 format=3 uid="uid://betjhqmoocxtc"]
 
 [ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
 [ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="4_cn5n1"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_x42bk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjv7j"]
 atlas = ExtResource("2_x42bk")
@@ -43,8 +45,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3s87"]
 size = Vector2(30, 11)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y25ns"]
+radius = 18.0
+
 [node name="LittleCrab" type="PathFollow2D"]
 script = ExtResource("1_x42bk")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_cn5n1")
+max_health = 3.0
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="CrabRoot" type="Node2D" parent="."]
 position = Vector2(0, -12)
@@ -64,3 +74,18 @@ metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_k3s87")
 debug_color = Color(0.729412, 0, 0.368627, 0.419608)
+
+[node name="Hitbox" type="Area2D" parent="CrabRoot" node_paths=PackedStringArray("health")]
+position = Vector2(0, 12)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("5_x42bk")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="Shape" type="CollisionShape2D" parent="CrabRoot/Hitbox"]
+position = Vector2(0, -11)
+shape = SubResource("CircleShape2D_y25ns")
+
+[connection signal="Die" from="Health" to="." method="_on_health_die"]
+[connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]

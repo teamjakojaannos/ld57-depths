@@ -56,9 +56,9 @@ position = Vector2(144, -32)
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
 
-[node name="CrabPath3" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath3" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_d3uve")
 
-[node name="CrabPath2" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath2" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(320, 0)
 curve = SubResource("Curve2D_d3uve")

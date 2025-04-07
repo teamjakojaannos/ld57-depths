@@ -43,10 +43,7 @@ func _transition_to_next_level() -> void:
 
 	Globals.current_room_index += 1
 	
-	var new_level: Level
-	var ri = Globals.current_room_index
-	
-	new_level = level_generator.generate(self, ri)
+	var new_level: Level = level_generator.generate(self)
 
 	_play_transition_animation.call_deferred(new_level)
 

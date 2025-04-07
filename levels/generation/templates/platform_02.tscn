@@ -56,5 +56,5 @@ position = Vector2(144, -32)
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
 
-[node name="CrabPath" type="Path2D" parent="."]
+[node name="CrabPath" type="Path2D" parent="." groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_ktneu")

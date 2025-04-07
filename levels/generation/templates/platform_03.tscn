@@ -63,29 +63,29 @@ position = Vector2(144, -32)
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
 
-[node name="CrabPath2" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath2" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(320, 0)
 curve = SubResource("Curve2D_jgi06")
 
-[node name="CrabPath3" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath3" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(80, 0)
 curve = SubResource("Curve2D_o2ecj")
 
-[node name="CrabPath4" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath4" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(128, 0)
 curve = SubResource("Curve2D_o2ecj")
 
-[node name="CrabPath5" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath5" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(176, 0)
 curve = SubResource("Curve2D_o2ecj")
 
-[node name="CrabPath6" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath6" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(224, 0)
 curve = SubResource("Curve2D_o2ecj")
 
-[node name="CrabPath7" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath7" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 position = Vector2(272, 0)
 curve = SubResource("Curve2D_o2ecj")
 
-[node name="CrabPath" type="Path2D" parent="EnemySpawns"]
+[node name="CrabPath" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_jgi06")

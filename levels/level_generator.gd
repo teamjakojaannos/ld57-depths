@@ -35,7 +35,7 @@ func _find_level_parts(slot: LevelPart.Slot, parts_list: Array[LevelPart]) -> Ar
 	return allowed
 
 
-func generate(container: Node, room_index: int) -> Level:
+func generate(container: Node) -> Level:
 	var parts_list: Array[LevelPart] = parts
 	var spawnlist = _select_spawnlist()
 	if spawnlist.is_special and !spawnlist.level_override.is_empty():
