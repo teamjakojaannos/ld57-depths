@@ -72,6 +72,7 @@ color = Color(0.0196078, 0.0588235, 0.105882, 1)
 position = Vector2(149, -126)
 
 [node name="TentacleSpawns" type="Node2D" parent="."]
+visible = false
 
 [node name="Spawn1" type="Node2D" parent="TentacleSpawns" node_paths=PackedStringArray("spawn", "end")]
 script = ExtResource("6_tb6c1")
@@ -117,5 +118,43 @@ collision_mask = 2
 position = Vector2(5, -29)
 shape = SubResource("RectangleShape2D_tb6c1")
 debug_color = Color(1, 1, 1, 0.192157)
+
+[node name="TentacleSequence" type="Node2D" parent="."]
+
+[node name="First" type="Node2D" parent="TentacleSequence" node_paths=PackedStringArray("spawn", "end")]
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Start")
+end = NodePath("End")
+
+[node name="Start" type="Marker2D" parent="TentacleSequence/First"]
+position = Vector2(-230, -83)
+
+[node name="End" type="Marker2D" parent="TentacleSequence/First"]
+position = Vector2(79, -83)
+
+[node name="Second" type="Node2D" parent="TentacleSequence" node_paths=PackedStringArray("spawn", "end")]
+position = Vector2(0, -58)
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Start")
+end = NodePath("End")
+is_left_to_right = false
+
+[node name="Start" type="Marker2D" parent="TentacleSequence/Second"]
+position = Vector2(230, -75)
+
+[node name="End" type="Marker2D" parent="TentacleSequence/Second"]
+position = Vector2(-88, -75)
+
+[node name="Third" type="Node2D" parent="TentacleSequence" node_paths=PackedStringArray("spawn", "end")]
+position = Vector2(0, -123)
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Start")
+end = NodePath("End")
+
+[node name="Start" type="Marker2D" parent="TentacleSequence/Third"]
+position = Vector2(-230, -83)
+
+[node name="End" type="Marker2D" parent="TentacleSequence/Third"]
+position = Vector2(79, -83)
 
 [connection signal="area_entered" from="StartFightTrigger" to="SquidBoss" method="_on_start_fight_trigger_area_entered"]
