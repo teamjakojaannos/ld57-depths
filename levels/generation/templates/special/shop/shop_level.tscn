@@ -1,9 +1,10 @@
-[gd_scene load_steps=49 format=4 uid="uid://diymnjm4kwpl5"]
+[gd_scene load_steps=50 format=4 uid="uid://diymnjm4kwpl5"]
 
 [ext_resource type="Script" uid="uid://bk5gxqd8aqc1w" path="res://levels/ui_shop_menu.gd" id="1_tst2u"]
 [ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="2_6ks0g"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_5366v"]
 [ext_resource type="Texture2D" uid="uid://ba341wigdrrnp" path="res://ui/UI_shop_thing_2.png" id="4_k84vo"]
+[ext_resource type="Script" uid="uid://nhjsercl8gky" path="res://shop/item_template.gd" id="5_6ks0g"]
 [ext_resource type="Texture2D" uid="uid://b3tu1ua8e4t1x" path="res://ui/UI_price.png" id="5_amd4p"]
 [ext_resource type="Texture2D" uid="uid://b3xyn7auifgmh" path="res://graphics/environment/verkko.png" id="6_jnm2e"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="7_e151s"]
@@ -220,6 +221,7 @@ offset_top = 66.0
 offset_right = 843.0
 offset_bottom = 468.0
 texture = ExtResource("4_k84vo")
+script = ExtResource("5_6ks0g")
 
 [node name="Buy_button" type="Button" parent="UI_ShopMenu/Control/Item_template"]
 layout_mode = 1
@@ -293,6 +295,7 @@ offset_top = 65.0
 offset_right = 1158.0
 offset_bottom = 467.0
 texture = ExtResource("4_k84vo")
+script = ExtResource("5_6ks0g")
 
 [node name="Buy_button" type="Button" parent="UI_ShopMenu/Control/Item_template2"]
 layout_mode = 1
@@ -630,6 +633,8 @@ position = Vector2(-147, -141)
 rotation = -1.35263
 texture = ExtResource("29_4wfoa")
 
-[connection signal="pressed" from="UI_ShopMenu/Control/Item_template/Buy_button" to="UI_ShopMenu" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="UI_ShopMenu/Control/Item_template/Buy_button" to="UI_ShopMenu/Control/Item_template" method="_on_buy_button_pressed"]
+[connection signal="pressed" from="UI_ShopMenu/Control/Item_template2/Buy_button" to="UI_ShopMenu/Control/Item_template2" method="_on_buy_button_pressed"]
 [connection signal="pressed" from="UI_ShopMenu/Control/Leave/Leave_button" to="UI_ShopMenu" method="_on_leave_button_pressed"]
 [connection signal="body_entered" from="Shop_detector" to="Shop_detector" method="_on_body_entered"]
+[connection signal="body_exited" from="Shop_detector" to="Shop_detector" method="_on_body_exited"]
