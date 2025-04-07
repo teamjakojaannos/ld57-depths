@@ -12,8 +12,8 @@ dest_files=["res://.godot/imported/waves1.ogg-21b0299b448a46bdac7b3731148ef585.o
 
 [params]
 
-loop=false
-loop_offset=0
-bpm=0
+loop=true
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4
