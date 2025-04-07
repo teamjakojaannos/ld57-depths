@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://lpjtb8lmu68i"]
+[gd_scene load_steps=18 format=3 uid="uid://lpjtb8lmu68i"]
 
 [ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="1_43kmr"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="1_hl0h3"]
 [ext_resource type="Script" uid="uid://dm26ku20d8btu" path="res://fish/eel/eel.gd" id="1_ucu2c"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_a4hyh"]
+[ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="5_wg4o3"]
+[ext_resource type="PackedScene" uid="uid://dkgpgoo61sytr" path="res://particles/hurtsplosion.tscn" id="6_1wa5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4hyh"]
 size = Vector2(64, 20)
@@ -219,6 +221,12 @@ libraries = {
 [node name="DamageTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="DamageParticles" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("5_wg4o3")
+particle_emitter = ExtResource("6_1wa5i")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://dwn263h6kvyyo"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]

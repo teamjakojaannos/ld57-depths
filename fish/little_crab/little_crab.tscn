@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://betjhqmoocxtc"]
+[gd_scene load_steps=15 format=3 uid="uid://betjhqmoocxtc"]
 
 [ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
 [ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="4_cn5n1"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_x42bk"]
+[ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="6_poyks"]
+[ext_resource type="PackedScene" uid="uid://dkgpgoo61sytr" path="res://particles/hurtsplosion.tscn" id="7_fjv7j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjv7j"]
 atlas = ExtResource("2_x42bk")
@@ -86,6 +88,12 @@ metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 [node name="Shape" type="CollisionShape2D" parent="CrabRoot/Hitbox"]
 position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_y25ns")
+
+[node name="DamageParticles" type="Node2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("6_poyks")
+particle_emitter = ExtResource("7_fjv7j")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://dwn263h6kvyyo"
 
 [connection signal="Die" from="Health" to="." method="_on_health_die"]
 [connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]
