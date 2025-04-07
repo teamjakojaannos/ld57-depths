@@ -1,12 +1,74 @@
-[gd_scene load_steps=2 format=3 uid="uid://ex2yq61nhl0k"]
+[gd_scene load_steps=10 format=3 uid="uid://ex2yq61nhl0k"]
 
 [ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="1_sag2v"]
+[ext_resource type="Texture2D" uid="uid://ccc8mrvfn1l38" path="res://fish/spiky_puffer_fish/pallokala_hard.png" id="2_c1ypa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1ypa"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dr5fe"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ourey"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yytij"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3pjp"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wauc"]
+atlas = ExtResource("2_c1ypa")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr5fe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1ypa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dr5fe")
+}],
+"loop": true,
+"name": &"balloon",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ourey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yytij")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3pjp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wauc")
+}],
+"loop": true,
+"name": &"pre_attack",
+"speed": 5.0
+}]
 
 [node name="SpikeFish" instance=ExtResource("1_sag2v")]
-modulate = Color(0, 1, 0.74902, 1)
+spike_color = Color(0.34902, 0, 1, 1)
 spike_damage = 2
 min_spike_speed = 125.0
 max_spike_speed = 225.0
+money_per_kill = 5
 min_attack_cooldown = 1.0
 max_attack_cooldown = 2.5
 min_spike_count = 8
@@ -15,4 +77,13 @@ normal_move_speed = 75.0
 attack_move_speed = 25.0
 
 [node name="Health" parent="." index="0"]
-max_health = 8.0
+max_health = 10.0
+
+[node name="Shape" parent="Hitbox" index="0"]
+visible = false
+
+[node name="AnimatedSprite2D" parent="." index="3"]
+sprite_frames = SubResource("SpriteFrames_dr5fe")
+
+[node name="CollisionShape2D" parent="." index="4"]
+visible = false

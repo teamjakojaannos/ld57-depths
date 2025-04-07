@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_yr71o")
 name = "Speed +2"
-price = 25
+price = 35
 picture = ExtResource("1_3m8e2")
 metadata/_custom_type_script = "uid://worhpxre6228"

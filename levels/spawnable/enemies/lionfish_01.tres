@@ -7,6 +7,6 @@
 script = ExtResource("1_6wuni")
 prefab = ExtResource("1_tvg4v")
 spawnpoint_group = 0
-spawn_cost = 8
+spawn_cost = 9
 optional = false
 metadata/_custom_type_script = "uid://b5ri76voq74fo"

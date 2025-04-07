@@ -2,9 +2,12 @@ class_name SpikeFish
 extends Area2D
 
 const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
+@export var spike_color:Color = Color(1,1,1,1)
 @export var spike_damage = 1
 @export var min_spike_speed = 100.0
 @export var max_spike_speed = 200.0
+
+@export var money_per_kill = 2
 
 var ready_to_attack: bool = false
 @export var min_attack_cooldown = 5.0
@@ -106,6 +109,7 @@ func _shoot_spikes() -> void:
 		var velocity = spawn * randf_range(min_spike_speed, max_spike_speed)
 		
 		var spike: Projectile = spike_scene.instantiate()
+		spike.modulate = spike_color 
 		spike.velocity = velocity
 		spike.global_position = $SpikeOrigin.global_position + spawn
 		spike.damage = spike_damage
@@ -134,7 +138,7 @@ func _on_health_hurt() -> void:
 
 
 func _on_health_die() -> void:
-	Globals.level.current_level.record_kill(2)
+	Globals.level.current_level.record_kill(money_per_kill)
 
 	$AnimationPlayer.play("die")
 	await $AnimationPlayer.animation_finished

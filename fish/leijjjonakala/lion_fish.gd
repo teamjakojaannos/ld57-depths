@@ -105,7 +105,7 @@ func _on_health_hurt() -> void:
 	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	Globals.level.current_level.record_kill(5)
+	Globals.level.current_level.record_kill(7)
 
 	$HurtAnimations.play("die")
 	if braking_tween != null:

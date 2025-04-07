@@ -26,9 +26,11 @@ rotation = 1.5708
 texture = ExtResource("1_k8k4s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_wovym")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_uq8tb")

@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_snhcc")
 name = "Max Health +2"
-price = 20
+price = 30
 picture = ExtResource("1_xtxve")
 metadata/_custom_type_script = "uid://worhpxre6228"

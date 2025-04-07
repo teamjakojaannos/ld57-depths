@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Spawnable" load_steps=3 format=3 uid="uid://c814gqdjyrosc"]
+
+[ext_resource type="PackedScene" uid="uid://ex2yq61nhl0k" path="res://fish/spiky_puffer_fish/spike_fish_hard.tscn" id="1_2drrw"]
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_mgntp"]
+
+[resource]
+script = ExtResource("1_mgntp")
+prefab = ExtResource("1_2drrw")
+spawnpoint_group = 0
+spawn_cost = 8
+optional = false
+metadata/_custom_type_script = "uid://b5ri76voq74fo"
