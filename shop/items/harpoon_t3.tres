@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://dp7imxerau6xs"]
+
+[ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="1_0i1ku"]
+[ext_resource type="Script" uid="uid://worhpxre6228" path="res://shop/item.gd" id="2_xqrja"]
+
+[resource]
+script = ExtResource("2_xqrja")
+name = "Abyssal Harpoon"
+price = 10
+picture = ExtResource("1_0i1ku")
+metadata/_custom_type_script = "uid://worhpxre6228"
