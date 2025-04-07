@@ -8,9 +8,9 @@ size = Vector2(384, 128)
 
 [sub_resource type="Curve2D" id="Curve2D_ktneu"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -50, -14, 0, 0, 0, 0, -50, 16, 0, 0, 0, 0, -174, 16, 0, 0, 0, 0, -174, -14, 0, 0, 0, 0, -50, -14)
+"points": PackedVector2Array(0, 0, 0, 0, -100, -14, 0, 0, 0, 0, -57, -14, 0, 0, 0, 0, -50, -7, 0, 0, 0, 0, -50, 10, 0, 0, 0, 0, -56, 16, 0, 0, 0, 0, -168, 16, 0, 0, 0, 0, -175, 9, 0, 0, 0, 0, -174, -8, 0, 0, 0, 0, -167, -14, 0, 0, 0, 0, -99, -13)
 }
-point_count = 5
+point_count = 10
 
 [node name="LevelPart" type="Node2D"]
 
@@ -60,5 +60,4 @@ position = Vector2(144, -64)
 curve = SubResource("Curve2D_ktneu")
 
 [node name="LittleCrab" parent="CrabPath" instance=ExtResource("2_7y7rw")]
-position = Vector2(-148.753, -14)
-progress = 209.209
+position = Vector2(-100, -14)
