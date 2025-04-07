@@ -5,12 +5,14 @@ extends Node2D
 @export var knockback: float = 20.0
 @export var slowdown: float = 0.15
 
+@export var is_unlocked: bool = false
+
 var _is_ready: bool = true
 
 signal Fire(shooter: CharacterBody2D, direction: Vector2)
 
 func fire(shooter: Player, direction: Vector2):
-	if !_is_ready:
+	if !_is_ready || !is_unlocked:
 		return
 
 	Fire.emit(shooter, direction)

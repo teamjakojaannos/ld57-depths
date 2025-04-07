@@ -1368,6 +1368,8 @@ script = ExtResource("7_j31ep")
 
 [node name="HarpoonGun" type="Node2D" parent="."]
 script = ExtResource("8_6t23p")
+cooldown = 0.4
+is_unlocked = true
 
 [node name="HarpoonSpawner" type="Marker2D" parent="HarpoonGun"]
 position = Vector2(20, -21)

@@ -140,6 +140,18 @@ func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:
 		return
 	
+	# debug unlocks, replaced with "buy from shop" once that is implemented
+	if event.is_action_pressed("debug_unlock_1"):
+		print("net thrower unlocked")
+		unlock_net_thrower()
+	elif event.is_action_pressed("debug_unlock_2"):
+		print("anchor unlocked")
+		unlock_anchor_dropper()
+	elif event.is_action_pressed("debug_unlock_3"):
+		print("harpoon gun upgraded")
+		upgrade_harpoon_gun()
+	
+	
 	var look_direction = Vector2(looking_at_scalar, 0.0)
 	if event.is_action_pressed("attack_1"):
 		$HarpoonGun.fire(self, look_direction)
@@ -147,6 +159,16 @@ func _input(event: InputEvent) -> void:
 		$NetThrower.fire(self, look_direction)
 	elif event.is_action_pressed("attack_3"):
 		$AnchorDropper.fire(self, look_direction)
+
+func unlock_net_thrower():
+	$NetThrower.is_unlocked = true
+
+func unlock_anchor_dropper():
+	$AnchorDropper.is_unlocked = true
+
+func upgrade_harpoon_gun():
+	$HarpoonGun.cooldown = 0.1
+	$HarpoonGun/HarpoonSpawner.projectile_damage = 2
 
 func get_health():
 	return $Health._health
