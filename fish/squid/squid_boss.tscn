@@ -137,6 +137,12 @@ autoplay = "default"
 [node name="TentacleAttack" type="Node" parent="Moves"]
 script = ExtResource("3_gc4ln")
 
+[node name="FastTentacleAttack" type="Node" parent="Moves"]
+script = ExtResource("3_gc4ln")
+wait_time_before_attack = 0.2
+tentacle_speed = 800.0
+tentacle_damage = 3
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_kerth")
