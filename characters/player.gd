@@ -69,6 +69,9 @@ static func look_at_str(direction: LookingAt) -> String:
 
 func _ready() -> void:
 	Globals.player = self
+	
+	if Globals.tutorial_cleared:
+		unlock_harpoon_gun()
 
 
 func _physics_process(delta: float) -> void:
