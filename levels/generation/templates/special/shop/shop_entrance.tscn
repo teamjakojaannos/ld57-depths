@@ -1,12 +1,19 @@
-[gd_scene load_steps=29 format=4 uid="uid://57civxrguiuv"]
+[gd_scene load_steps=36 format=4 uid="uid://57civxrguiuv"]
 
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_8wos5"]
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="1_ihbhf"]
 [ext_resource type="Texture2D" uid="uid://b2jxvbfxwmgcs" path="res://shop/puuta.png" id="1_wpuul"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="2_r3ibk"]
 [ext_resource type="Texture2D" uid="uid://buuryffkq1s70" path="res://shop/kyltti-sheet.png" id="2_xydym"]
+[ext_resource type="Texture2D" uid="uid://pwlgmx4fbet2" path="res://graphics/environment/jokukivijuttu4.png" id="3_4b3bg"]
 [ext_resource type="Texture2D" uid="uid://lul85doj4at" path="res://shop/closed.png" id="3_xvhsa"]
+[ext_resource type="Texture2D" uid="uid://ekf074r753ji" path="res://graphics/environment/Simp-ukka.png" id="4_4j0u3"]
 [ext_resource type="Texture2D" uid="uid://c3vmkr71tmgt2" path="res://shop/open.png" id="4_rwyhk"]
 [ext_resource type="Script" uid="uid://cf23cwea8piij" path="res://shop/shop_open_trigger.gd" id="5_2cs60"]
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="5_u0r6g"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="6_dxs3c"]
+[ext_resource type="Texture2D" uid="uid://da7keoysrnmko" path="res://graphics/environment/vittukoralli.png" id="6_wtj3a"]
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="7_q4myr"]
 [ext_resource type="Script" uid="uid://btkldmbsdghis" path="res://shop/shop_door.gd" id="8_b7r0d"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="8_i2jmf"]
 [ext_resource type="AudioStream" uid="uid://dvd74jspqa7l5" path="res://characters/player/harpoongun_wall_impact.ogg" id="8_r2hop"]
@@ -151,6 +158,41 @@ size = Vector2(50, 10.5)
 size = Vector2(55, 59)
 
 [node name="LevelPart" type="Node2D"]
+
+[node name="visualflair" type="Node2D" parent="."]
+position = Vector2(-7, 31)
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(97, -233)
+texture = ExtResource("1_ihbhf")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(71, -205)
+texture = ExtResource("2_r3ibk")
+
+[node name="Jokukivijuttu4" type="Sprite2D" parent="visualflair"]
+position = Vector2(115, -232)
+rotation = -3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("3_4b3bg")
+
+[node name="Simp-ukka" type="Sprite2D" parent="visualflair"]
+position = Vector2(36, -182)
+rotation = 0.558505
+texture = ExtResource("4_4j0u3")
+
+[node name="KoralliLarge" type="Sprite2D" parent="visualflair"]
+position = Vector2(10, -181)
+texture = ExtResource("5_u0r6g")
+
+[node name="Vittukoralli" type="Sprite2D" parent="visualflair/KoralliLarge"]
+position = Vector2(177, -32)
+texture = ExtResource("6_wtj3a")
+
+[node name="Tottero" type="Sprite2D" parent="visualflair/KoralliLarge"]
+position = Vector2(200, -4)
+rotation = 0.401426
+texture = ExtResource("7_q4myr")
 
 [node name="Kyltti" type="Node2D" parent="."]
 script = ExtResource("5_2cs60")
