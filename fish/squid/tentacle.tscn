@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cralgksc31h64"]
+
+[ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="1_l2kfb"]
+[ext_resource type="Script" uid="uid://d2pl7dfud331m" path="res://fish/squid/tentacle.gd" id="1_pcm7t"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_3hb5p"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_qj5eb"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_pcm7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpyso"]
+size = Vector2(396, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd3t"]
+size = Vector2(396, 48)
+
+[node name="Tentacle" type="Node2D"]
+script = ExtResource("1_pcm7t")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_3hb5p")
+max_health = 1e+08
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-198.25, -0.999999)
+scale = Vector2(3.08984, 0.378906)
+texture = ExtResource("1_l2kfb")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_pcm7t")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-198, -1)
+shape = SubResource("RectangleShape2D_jpyso")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_qj5eb")
+damage = 3.0
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-198, -1)
+shape = SubResource("RectangleShape2D_hxd3t")
+debug_color = Color(0.960784, 0, 0.0901961, 0.419608)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://bchdxhibo8f0g"]
+[gd_scene load_steps=10 format=4 uid="uid://bchdxhibo8f0g"]
 
+[ext_resource type="Script" uid="uid://bk218myvtqqan" path="res://levels/generation/templates/special/squid_fight/squid_fight_level.gd" id="1_hb6gp"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_i0yvx"]
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="2_wqqik"]
 [ext_resource type="Texture2D" uid="uid://cka8hukkpfe5b" path="res://levels/wall.png" id="3_iioni"]
 [ext_resource type="PackedScene" uid="uid://cp6d8v6a3w12h" path="res://fish/squid/squid_boss.tscn" id="4_iioni"]
+[ext_resource type="Script" uid="uid://du0s5w32hmwpp" path="res://levels/generation/templates/special/squid_fight/tentacle_markers.gd" id="6_tb6c1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_suh22"]
 size = Vector2(384, 128)
@@ -21,8 +23,10 @@ tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_hb6gp")
 
 [node name="LevelPart" type="Node2D"]
+script = ExtResource("1_hb6gp")
 
 [node name="Bounds" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -34,7 +38,7 @@ shape = SubResource("RectangleShape2D_suh22")
 debug_color = Color(1, 1, 1, 0.0392157)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAALAAEAAAAHAAQAAAAKAAEAAAAFAAQAAAAJAAEAAAAGAAQAAAAIAAEAAAAGAAQAAAAHAAEAAAAFAAQAAAAGAAEAAAAFAAQAAAAFAAEAAAAFAAQAAAAEAAEAAAAGAAQAAAADAAEAAAAFAAQAAAACAAEAAAAFAAQAAAABAAEAAAAGAAQAAAAAAAEAAAAGAAQAAAD//wEAAAAFAAQAAAD+/wEAAAAFAAQAAAD9/wEAAAAFAAQAAAD8/wEAAAAGAAQAAAD7/wEAAAAFAAQAAAD6/wEAAAAGAAQAAAD5/wEAAAAGAAQAAAD4/wEAAAAGAAQAAAD3/wEAAAAGAAQAAAD2/wEAAAAFAAQAAAD1/wEAAAAFAAQAAAD0/wEAAAAEAAQAAAALAAAAAAAHAAMAAAAKAAAAAAAFAAMAAAAJAAAAAAAFAAMAAAAIAAAAAAAFAAMAAAAHAAAAAAAGAAMAAAAGAAAAAAAGAAMAAAAFAAAAAAAFAAMAAAAEAAAAAAAGAAMAAAADAAAAAAAFAAMAAAACAAAAAAAGAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAGAAMAAAD//wAAAAAFAAMAAAD+/wAAAAAFAAMAAAD9/wAAAAAFAAMAAAD8/wAAAAAFAAMAAAD7/wAAAAAGAAMAAAD6/wAAAAAGAAMAAAD5/wAAAAAFAAMAAAD4/wAAAAAFAAMAAAD3/wAAAAAGAAMAAAD2/wAAAAAGAAMAAAD1/wAAAAAGAAMAAAD0/wAAAAAEAAMAAAA=")
+tile_map_data = PackedByteArray("AAALAAEAAAAHAAQAAAAKAAEAAAAFAAQAAAAJAAEAAAAGAAQAAAAIAAEAAAAGAAQAAAAHAAEAAAAFAAQAAAAGAAEAAAAFAAQAAAAFAAEAAAAFAAQAAAAEAAEAAAAGAAQAAAADAAEAAAAFAAQAAAACAAEAAAAFAAQAAAABAAEAAAAGAAQAAAAAAAEAAAAGAAQAAAD//wEAAAAFAAQAAAD+/wEAAAAFAAQAAAD9/wEAAAAFAAQAAAD8/wEAAAAGAAQAAAD7/wEAAAAFAAQAAAD6/wEAAAAGAAQAAAD5/wEAAAAGAAQAAAD4/wEAAAAGAAQAAAD3/wEAAAAGAAQAAAD2/wEAAAAFAAQAAAD1/wEAAAAFAAQAAAD0/wEAAAAEAAQAAAALAAAAAAAHAAMAAAAKAAAAAAAFAAMAAAAJAAAAAAAFAAMAAAAIAAAAAAAFAAMAAAAHAAAAAAAGAAMAAAAGAAAAAAAGAAMAAAAFAAAAAAAFAAMAAAAEAAAAAAAGAAMAAAADAAAAAAAFAAMAAAACAAAAAAAGAAMAAAABAAAAAAAGAAMAAAAAAAAAAAAGAAMAAAD//wAAAAAFAAMAAAD+/wAAAAAFAAMAAAD9/wAAAAAFAAMAAAD8/wAAAAAFAAMAAAD7/wAAAAAGAAMAAAD6/wAAAAAGAAMAAAD5/wAAAAAFAAMAAAD4/wAAAAAFAAMAAAD3/wAAAAAGAAMAAAD2/wAAAAAGAAMAAAD1/wAAAAAGAAMAAAD0/wAAAAAEAAMAAAD0//H/AAADAAYAAAD1//H/AAAEAAYAAAD2//H/AAAFAAYAAAD3//H/AAAGAAYAAAD4//H/AAAHAAYAAAD5//H/AAAIAAYAAAD0//z/AAADAAEAAAD1//z/AAAFAAEAAAD2//z/AAAFAAEAAAD3//z/AAAEAAEAAAD4//z/AAAGAAEAAAA=")
 tile_set = ExtResource("1_i0yvx")
 
 [node name="Walls" type="Parallax2D" parent="."]
@@ -63,3 +67,16 @@ color = Color(0.0196078, 0.0588235, 0.105882, 1)
 
 [node name="SquidBoss" parent="." instance=ExtResource("4_iioni")]
 position = Vector2(149, -126)
+
+[node name="TentacleSpawns" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Node2D" parent="TentacleSpawns" node_paths=PackedStringArray("spawn", "end")]
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Spawn")
+end = NodePath("End")
+
+[node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn1"]
+position = Vector2(-266, -79)
+
+[node name="End" type="Marker2D" parent="TentacleSpawns/Spawn1"]
+position = Vector2(97, -79)

@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cp6d8v6a3w12h"]
+[gd_scene load_steps=8 format=3 uid="uid://cp6d8v6a3w12h"]
 
 [ext_resource type="Texture2D" uid="uid://dx316fnxtyuii" path="res://fish/squid/squid-sheet.png" id="1_l13ey"]
+[ext_resource type="Script" uid="uid://xvpwx5xvcd7m" path="res://fish/squid/squid_boss.gd" id="1_ty4up"]
+[ext_resource type="Script" uid="uid://dqamjpvt2a86k" path="res://fish/squid/attacks/tentacle_attack.gd" id="3_gc4ln"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ty4up"]
 atlas = ExtResource("1_l13ey")
@@ -32,7 +34,13 @@ animations = [{
 }]
 
 [node name="SquidBoss" type="Node2D"]
+script = ExtResource("1_ty4up")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_kerth")
 autoplay = "default"
+
+[node name="Moves" type="Node" parent="."]
+
+[node name="TentacleAttack" type="Node" parent="Moves"]
+script = ExtResource("3_gc4ln")
