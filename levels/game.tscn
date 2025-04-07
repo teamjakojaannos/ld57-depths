@@ -360,6 +360,7 @@ libraries = {
 }
 
 [node name="Hud" type="CanvasLayer" parent="."]
+layer = 3
 
 [node name="HpIndicator" parent="Hud" instance=ExtResource("18_aumgp")]
 

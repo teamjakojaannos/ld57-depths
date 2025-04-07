@@ -5,3 +5,4 @@ func _ready() -> void:
 
 func _on_slider_value_changed(value: float) -> void:
 	Globals.music_volume_percent = value / 100.0
+	$Slider.release_focus()
