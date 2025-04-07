@@ -1,21 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://drrjumcqgco42"]
+[gd_scene load_steps=9 format=3 uid="uid://drrjumcqgco42"]
 
 [ext_resource type="Script" uid="uid://rf8ahsact8lh" path="res://ui/volume_slider.gd" id="1_dmp5s"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="2_3qf2g"]
+[ext_resource type="Texture2D" uid="uid://df8huynpxxfrx" path="res://ui/balls.png" id="3_2ouuc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ouuc"]
+font = ExtResource("2_3qf2g")
+font_size = 32
+font_color = Color(1, 1, 0.678431, 1)
+
+[sub_resource type="Theme" id="Theme_dt855"]
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_2ouuc"]
+color = Color(0.0222055, 0.00814344, 0.00177842, 1)
+grow_begin = -4.0
+grow_end = -4.0
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_wq4ht"]
+color = Color(1, 1, 0.678431, 1)
+grow_begin = -4.0
+grow_end = -4.0
+thickness = 9
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_dt855"]
+color = Color(1, 1, 0.678431, 1)
+grow_begin = -4.0
+grow_end = -4.0
+thickness = 9
 
 [node name="VolumeSlider" type="HBoxContainer"]
-offset_right = 311.0
-offset_bottom = 23.0
+offset_right = 354.0
+offset_bottom = 28.0
 script = ExtResource("1_dmp5s")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Music volume"
+label_settings = SubResource("LabelSettings_2ouuc")
 
 [node name="Slider" type="HSlider" parent="."]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme = SubResource("Theme_dt855")
+theme_override_icons/grabber = ExtResource("3_2ouuc")
+theme_override_icons/grabber_highlight = ExtResource("3_2ouuc")
+theme_override_styles/slider = SubResource("StyleBoxLine_2ouuc")
+theme_override_styles/grabber_area = SubResource("StyleBoxLine_wq4ht")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_dt855")
 
 [connection signal="value_changed" from="Slider" to="." method="_on_slider_value_changed"]

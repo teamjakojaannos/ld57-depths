@@ -27,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="18_6w6r6"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
-[ext_resource type="Script" path="res://levels/level_indicator.gd" id="22_si8kf"]
+[ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="22_si8kf"]
 [ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="30_50ih0"]
