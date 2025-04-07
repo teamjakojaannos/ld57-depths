@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=73 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
@@ -20,10 +20,6 @@
 [ext_resource type="Script" uid="uid://b8r7hyb7fpo7n" path="res://characters/sfx_harpoon.gd" id="15_vcag3"]
 [ext_resource type="AudioStream" uid="uid://dtuwrmrl18hr4" path="res://characters/player/net_throw2.ogg" id="16_h076o"]
 [ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8c8i"]
-atlas = ExtResource("4_6t23p")
-region = Rect2(0, 0, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akagt"]
 atlas = ExtResource("5_41yun")
@@ -141,9 +137,6 @@ region = Rect2(336, 0, 48, 48)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8c8i")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_akagt")
 }, {
 "duration": 1.0,
@@ -151,7 +144,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"crouch",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -262,7 +255,7 @@ radius = 9.0
 height = 42.0
 
 [sub_resource type="Animation" id="Animation_41yun"]
-length = 0.3
+length = 0.133333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -270,10 +263,10 @@ tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -532,7 +525,7 @@ radius = 9.0
 
 [sub_resource type="Animation" id="Animation_svrv0"]
 resource_name = "crouch_left"
-length = 0.3
+length = 0.133
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -574,7 +567,7 @@ tracks/3/path = NodePath("Hitbox/Shape:shape")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.133333),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("CapsuleShape2D_8sqrr"), SubResource("CapsuleShape2D_41yun")]
@@ -586,7 +579,7 @@ tracks/4/path = NodePath("Hitbox/Shape:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.133333),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -21), Vector2(0, -15)]
@@ -598,7 +591,7 @@ tracks/5/path = NodePath("HarpoonGun/HarpoonSpawner:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(-20, -21), Vector2(-20, -12)]
@@ -606,7 +599,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_4rspn"]
 resource_name = "crouch_right"
-length = 0.3
+length = 0.1333
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -648,7 +641,7 @@ tracks/3/path = NodePath("Hitbox/Shape:shape")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.133333),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [SubResource("CapsuleShape2D_8sqrr"), SubResource("CapsuleShape2D_41yun")]
@@ -660,7 +653,7 @@ tracks/4/path = NodePath("Hitbox/Shape:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.133333),
+"times": PackedFloat32Array(0, 0.0333333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [Vector2(0, -21), Vector2(0, -15)]
@@ -672,7 +665,7 @@ tracks/5/path = NodePath("HarpoonGun/HarpoonSpawner:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.0666667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(20, -21), Vector2(20, -12)]
@@ -1369,7 +1362,6 @@ script = ExtResource("7_j31ep")
 [node name="HarpoonGun" type="Node2D" parent="."]
 script = ExtResource("8_6t23p")
 cooldown = 0.4
-is_unlocked = true
 
 [node name="HarpoonSpawner" type="Marker2D" parent="HarpoonGun"]
 position = Vector2(20, -21)

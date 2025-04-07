@@ -8,8 +8,8 @@ enum Direction {
 }
 
 var move_direction = Direction.Left
-var level_bound_left = -200
-var level_bound_right = 200
+@export var level_bound_left = -200
+@export var level_bound_right = 200
 
 var entities_inside_area = {}
 

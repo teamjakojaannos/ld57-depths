@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
 [ext_resource type="PackedScene" uid="uid://c7cixyoixeqxe" path="res://characters/player.tscn" id="4_vpik0"]
+[ext_resource type="Resource" uid="uid://61ukmhorbgv2" path="res://levels/spawnlists/special/tutorial/tutorial_02.tres" id="7_218np"]
 [ext_resource type="Resource" uid="uid://b054sgk0qrnks" path="res://levels/spawnlists/special/shop_01.tres" id="8_kck2e"]
 [ext_resource type="Resource" uid="uid://c70onsm5j3784" path="res://levels/spawnlists/special/shop_02.tres" id="9_6w6r6"]
 [ext_resource type="Resource" uid="uid://3txs88cmr0d8" path="res://levels/spawnlists/special/crab_fight_01.tres" id="9_fbo34"]
@@ -22,13 +23,13 @@
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="12_yyd14"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="13_kw56w"]
 [ext_resource type="Resource" uid="uid://b56fx2xsus5v3" path="res://levels/spawnlists/special/crab_fight_03.tres" id="13_pb6kn"]
-[ext_resource type="Resource" uid="uid://dnwnby8ncrk1i" path="res://levels/spawnlists/special/squid_boss.tres" id="14_3cl1t"]
+[ext_resource type="Resource" uid="uid://mnknu4kae5i5" path="res://levels/spawnlists/special/tutorial/tutorial_01.tres" id="14_3cl1t"]
 [ext_resource type="Resource" uid="uid://p30hred7cgtr" path="res://levels/spawnlists/easy_01.tres" id="14_xr5dp"]
 [ext_resource type="PackedScene" uid="uid://bj0y1grmkuw1b" path="res://levels/background.tscn" id="15_fbo34"]
 [ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="18_6w6r6"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
-[ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="22_si8kf"]
+[ext_resource type="Script" path="res://levels/level_indicator.gd" id="22_si8kf"]
 [ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="30_50ih0"]
@@ -142,10 +143,10 @@ tracks/0/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:modulate
 tracks/0/interp = 0
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -154,7 +155,7 @@ tracks/1/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:modulate
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 3),
+"times": PackedFloat32Array(0, 0.5, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -166,7 +167,7 @@ tracks/2/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:modulate
 tracks/2/interp = 0
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5, 3),
+"times": PackedFloat32Array(0, 1, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -178,7 +179,7 @@ tracks/3/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:slide_of
 tracks/3/interp = 1
 tracks/3/loop_wrap = false
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 2.4, 3),
+"times": PackedFloat32Array(0, 1.9, 2.5),
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0]
@@ -190,7 +191,7 @@ tracks/4/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:slide_of
 tracks/4/interp = 1
 tracks/4/loop_wrap = false
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2.4, 3),
+"times": PackedFloat32Array(0, 1.9, 2.5),
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [0.0, 0.0, -1.0]
@@ -202,7 +203,7 @@ tracks/5/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:slide_of
 tracks/5/interp = 1
 tracks/5/loop_wrap = false
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2.4, 3),
+"times": PackedFloat32Array(0, 1.9, 2.5),
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0]
@@ -228,7 +229,7 @@ level_height_in_tiles = 36
 [node name="LevelGenerator" type="Node" parent="EndlessLevel"]
 script = ExtResource("10_0u5wd")
 parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
-spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_xr5dp"), ExtResource("11_fbo34"), ExtResource("8_kck2e"), ExtResource("9_6w6r6"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), ExtResource("12_si8kf"), ExtResource("14_3cl1t")])
+spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), ExtResource("8_kck2e"), ExtResource("9_6w6r6"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), ExtResource("12_si8kf")])
 crab_rave_parts = Array[ExtResource("11_mgpep")]([ExtResource("9_tkgql"), ExtResource("10_si8kf"), ExtResource("11_kw56w")])
 crab_rave_spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn")])
 metadata/_custom_type_script = "uid://bp204dfquw307"

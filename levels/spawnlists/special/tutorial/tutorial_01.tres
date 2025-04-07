@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://mnknu4kae5i5"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_gh5l7"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_bgry5"]
+[ext_resource type="Resource" uid="uid://c5smpw85j7uqp" path="res://levels/level_parts/special/tutorial/tutorial_stage_1.tres" id="3_bgry5"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_yb67c"]
+
+[resource]
+script = ExtResource("3_yb67c")
+min_depth = 1
+max_depth = 1
+total_cost = 0
+enemies = Array[ExtResource("1_gh5l7")]([])
+level_override = Array[ExtResource("2_bgry5")]([ExtResource("3_bgry5")])
+special_sequence = 3
+entry_text_override = Array[String](["SPACE", "TO", "JUMP"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"

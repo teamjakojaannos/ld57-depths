@@ -22,6 +22,9 @@ func finish() -> void:
 	Finished.emit()
 
 func unlock_exit() -> void:
+	if get_node_or_null("Blocker") == null:
+		return
+
 	$Blocker.queue_free()
 	Globals.trigger_level_clear()
 	
@@ -41,7 +44,7 @@ func record_kill() -> void:
 	Globals.money += 1
 	_kills += 1
 
-	if _kills >= kills_required:
+	if _kills >= kills_required and !no_blocker:
 		Globals.level.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
 		unlock_exit()
 

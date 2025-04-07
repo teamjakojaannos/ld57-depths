@@ -36,6 +36,8 @@ enum SpecialSequence {
 	## Part is part of shop sequence
 	SHOP,
 	SQUID_FIGHT,
+
+	TUTORIAL,
 }
 
 func can_be_placed_in(slot: Slot) -> bool:

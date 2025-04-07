@@ -160,6 +160,9 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("attack_3"):
 		$AnchorDropper.fire(self, look_direction)
 
+func unlock_harpoon_gun():
+	$HarpoonGun.is_unlocked = true
+
 func unlock_net_thrower():
 	$NetThrower.is_unlocked = true
 
