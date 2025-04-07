@@ -12,7 +12,9 @@ func _on_resume_pressed() -> void:
 	visible = false
 
 func _on_restart_pressed() -> void:
-	print("restarting...")
+	visible = false
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://levels/game.tscn")
 
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
