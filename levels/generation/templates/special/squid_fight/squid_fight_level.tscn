@@ -79,7 +79,7 @@ spawn = NodePath("Spawn")
 end = NodePath("End")
 
 [node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn1"]
-position = Vector2(-266, -79)
+position = Vector2(-230, -79)
 
 [node name="End" type="Marker2D" parent="TentacleSpawns/Spawn1"]
 position = Vector2(97, -79)
@@ -91,7 +91,7 @@ spawn = NodePath("Spawn")
 end = NodePath("End")
 
 [node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn2"]
-position = Vector2(-266, -79)
+position = Vector2(-230, -79)
 
 [node name="End" type="Marker2D" parent="TentacleSpawns/Spawn2"]
 position = Vector2(97, -79)
@@ -104,7 +104,7 @@ end = NodePath("End")
 is_left_to_right = false
 
 [node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn3"]
-position = Vector2(266, -86)
+position = Vector2(230, -86)
 
 [node name="End" type="Marker2D" parent="TentacleSpawns/Spawn3"]
 position = Vector2(-125, -86)
