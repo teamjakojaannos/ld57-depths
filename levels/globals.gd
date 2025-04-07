@@ -8,8 +8,8 @@ class_name GameGlobals
 	set(value):
 		current_room_index = value
 		if value > 2:
-			_tutorial_cleared = true
-var _tutorial_cleared: bool = false
+			tutorial_cleared = true
+var tutorial_cleared: bool = false
 
 @export var player: Player
 @export var level: EndlessLevel
@@ -45,7 +45,7 @@ func _ready() -> void:
 
 func reset() -> void:
 	depth = 0.0
-	current_room_index = 2 if _tutorial_cleared else 0
+	current_room_index = 2 if tutorial_cleared else 0
 	money = money_at_start
 
 func trigger_level_clear() -> void:

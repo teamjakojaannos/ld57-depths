@@ -57,10 +57,10 @@ rotates = false
 
 [node name="Eel" parent="." instance=ExtResource("3_5fgxw")]
 modulate = Color(0.67978, 0.82, 0.6724, 1)
-position = Vector2(50, -121)
+position = Vector2(35, -121)
 speed = 75.0
 level_bound_left = 50
-level_bound_right = 250
+level_bound_right = 215
 
 [node name="Health" parent="Eel" index="0"]
 max_health = 5.0
