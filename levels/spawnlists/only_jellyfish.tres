@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://b7l21eng7qm40"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_bkmiw"]
+[ext_resource type="Resource" uid="uid://dmd4cl6pl6rme" path="res://levels/spawnable/enemies/jellyfish_01.tres" id="2_cb6ch"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="3_nr8kh"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="4_tfde3"]
+
+[resource]
+script = ExtResource("4_tfde3")
+min_depth = 0
+max_depth = -1
+total_cost = 5
+enemies = Array[ExtResource("1_bkmiw")]([ExtResource("2_cb6ch")])
+level_override = Array[ExtResource("3_nr8kh")]([])
+special_sequence = 0
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"

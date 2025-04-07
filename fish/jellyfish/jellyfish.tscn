@@ -1,0 +1,163 @@
+[gd_scene load_steps=16 format=3 uid="uid://dfrg8crfsmvo"]
+
+[ext_resource type="Script" uid="uid://fttqk527cwp6" path="res://fish/jellyfish/jellyfish.gd" id="1_17lwr"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="1_vcqoj"]
+[ext_resource type="Texture2D" uid="uid://dthctbomti45x" path="res://fish/jellyfish/jelly.png" id="2_snfv6"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_17lwr"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_snfv6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcq4l"]
+atlas = ExtResource("2_snfv6")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwf45"]
+atlas = ExtResource("2_snfv6")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gcnt"]
+atlas = ExtResource("2_snfv6")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lg2yy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcq4l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwf45")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gcnt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_17lwr"]
+radius = 17.0294
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_scy40"]
+radius = 18.0
+
+[sub_resource type="Animation" id="Animation_snfv6"]
+resource_name = "hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_17lwr"]
+resource_name = "die"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mcq4l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qwf45"]
+_data = {
+&"RESET": SubResource("Animation_mcq4l"),
+&"die": SubResource("Animation_17lwr"),
+&"hurt": SubResource("Animation_snfv6")
+}
+
+[node name="Jellyfish" type="Node2D"]
+script = ExtResource("1_17lwr")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("1_vcqoj")
+max_health = 3.0
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lg2yy")
+autoplay = "default"
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("3_snfv6")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(-7, -14)
+shape = SubResource("CircleShape2D_17lwr")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_17lwr")
+damage = 1.0
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(4, 6)
+shape = SubResource("CircleShape2D_scy40")
+debug_color = Color(1, 0, 0.321569, 0.419608)
+
+[node name="HurtAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qwf45")
+}
+
+[connection signal="Die" from="Health" to="." method="_on_health_die"]
+[connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]

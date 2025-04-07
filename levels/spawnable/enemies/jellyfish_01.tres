@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Spawnable" load_steps=3 format=3 uid="uid://dmd4cl6pl6rme"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_olqan"]
+[ext_resource type="PackedScene" uid="uid://dfrg8crfsmvo" path="res://fish/jellyfish/jellyfish.tscn" id="1_xgw2b"]
+
+[resource]
+script = ExtResource("1_olqan")
+prefab = ExtResource("1_xgw2b")
+spawnpoint_group = &"enemy_spawn"
+spawn_cost = 1
+metadata/_custom_type_script = "uid://b5ri76voq74fo"
