@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=68 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -45,6 +45,7 @@
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="30_50ih0"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
+[ext_resource type="AudioStream" uid="uid://h0hynkbrd0jp" path="res://ui/vineboom.ogg" id="40_hvtst"]
 
 [sub_resource type="Resource" id="Resource_07adx"]
 script = ExtResource("13_kw56w")
@@ -296,6 +297,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ObjectiveOverlay/AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ObjectiveOverlay/AudioStreamPlayer2:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ObjectiveOverlay/AudioStreamPlayer3:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_y7kp8"]
 resource_name = "enter"
@@ -372,6 +409,42 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, -2, 1),
 "update": 0,
 "values": [0.0, 0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ObjectiveOverlay/AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ObjectiveOverlay/AudioStreamPlayer2:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ObjectiveOverlay/AudioStreamPlayer3:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ughyh"]
@@ -526,6 +599,21 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_ughyh")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("40_hvtst")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("40_hvtst")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("40_hvtst")
+volume_db = -5.0
+bus = &"SFX"
 
 [node name="Hud" type="CanvasLayer" parent="."]
 layer = 3

@@ -19,6 +19,10 @@ var is_dead: bool:
 	get:
 		return _health <= 0
 
+var current_health: float:
+	get:
+		return _health
+
 var _is_killed: bool = false
 var _health: float = 10
 

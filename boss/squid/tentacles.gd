@@ -28,6 +28,15 @@ func attack_vertical(indices: Array) -> void:
 
 	await _attack_wave(tents, 0.5, 1.5, 1.5, 1.5)
 
+func retract_all() -> void:
+	for t in left_side():
+		t.stop()
+	for t in right_side():
+		t.stop()
+	for t in bottom():
+		t.stop()
+		
+
 func _attack_wave(
 	tents: Array,
 	min_delay: float,

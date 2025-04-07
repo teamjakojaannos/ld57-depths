@@ -11,7 +11,7 @@
 size = Vector2(576, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxd3t"]
-size = Vector2(576, 28)
+size = Vector2(576, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ryx8j"]
 atlas = ExtResource("5_jpyso")
@@ -101,6 +101,22 @@ tracks/0/keys = {
 "values": [Vector2(-550, 0), Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_hfd03"]
+resource_name = "emerge_little"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Segments:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-550, 0), Vector2(-295, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_jpyso"]
 resource_name = "peek"
 length = 0.5
@@ -149,22 +165,6 @@ tracks/0/keys = {
 "values": [Vector2(-295, 0), Vector2(-590, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_hfd03"]
-resource_name = "emerge_little"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Segments:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-550, 0), Vector2(-295, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jpyso"]
 _data = {
 &"RESET": SubResource("Animation_hxd3t"),
@@ -184,13 +184,12 @@ rotation = -6.28318
 script = ExtResource("3_hxd3t")
 
 [node name="Segment1" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(0, -0.042613)
+position = Vector2(0, 1.96584)
 
-[node name="Hitbox" type="Area2D" parent="Segments/Segment1" node_paths=PackedStringArray("health")]
+[node name="Hitbox" type="Area2D" parent="Segments/Segment1"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("4_pcm7t")
-health = NodePath("")
 metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Segments/Segment1/Hitbox"]
@@ -210,52 +209,52 @@ shape = SubResource("RectangleShape2D_hxd3t")
 debug_color = Color(0.960784, 0, 0.0901961, 0.419608)
 
 [node name="Segment2" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(32, 1.4378)
+position = Vector2(32, 1.60606)
 
 [node name="Segment3" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(64, 1.99698)
+position = Vector2(64, 0.21723)
 
 [node name="Segment4" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(96, 1.27664)
+position = Vector2(96, -1.31078)
 
 [node name="Segment5" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(128, -0.261681)
+position = Vector2(128, -1.99894)
 
 [node name="Segment6" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(160, -1.63233)
+position = Vector2(160, -1.40632)
 
 [node name="Segment7" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(192, -1.95711)
+position = Vector2(192, 0.087363)
 
 [node name="Segment8" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(224, -1.02791)
+position = Vector2(224, 1.52507)
 
 [node name="Segment9" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(256, 0.5599)
+position = Vector2(256, 1.98563)
 
 [node name="Segment10" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(288, 1.78896)
+position = Vector2(288, 1.17394)
 
 [node name="Segment11" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(320, 1.87179)
+position = Vector2(320, -0.389927)
 
 [node name="Segment12" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(352, 0.75531)
+position = Vector2(352, -1.70395)
 
 [node name="Segment13" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(384, -0.845118)
+position = Vector2(384, -1.92621)
 
 [node name="Segment14" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(416, -1.90406)
+position = Vector2(416, -0.914293)
 
 [node name="Segment15" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(448, -1.74301)
+position = Vector2(448, 0.683438)
 
 [node name="Segment16" parent="Segments" instance=ExtResource("4_jpyso")]
-position = Vector2(480, -0.465176)
+position = Vector2(480, 1.84327)
 
 [node name="TotallyNotAdultToy" type="AnimatedSprite2D" parent="Segments"]
-position = Vector2(512, 1.11071)
+position = Vector2(512, 1.82207)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_faum5")
 autoplay = "default"
