@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://dnwnby8ncrk1i"]
+
+[ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_cdhu6"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_vrr2x"]
+[ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_gpa4f"]
+[ext_resource type="Resource" uid="uid://b4eyju6i4cc3" path="res://levels/level_parts/special/squid_fight/squid_fight.tres" id="3_vrr2x"]
+
+[resource]
+script = ExtResource("3_gpa4f")
+min_depth = 1
+max_depth = 1
+total_cost = 0
+enemies = Array[ExtResource("1_cdhu6")]([])
+level_override = Array[ExtResource("2_vrr2x")]([ExtResource("3_vrr2x")])
+special_sequence = 3
+entry_text_override = Array[String](["Oh lawd", "he", "coming!"])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"

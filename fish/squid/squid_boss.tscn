@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cp6d8v6a3w12h"]
+
+[ext_resource type="Texture2D" uid="uid://dx316fnxtyuii" path="res://fish/squid/squid-sheet.png" id="1_l13ey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty4up"]
+atlas = ExtResource("1_l13ey")
+region = Rect2(0, 0, 104, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc4ln"]
+atlas = ExtResource("1_l13ey")
+region = Rect2(104, 0, 104, 160)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48ygg"]
+atlas = ExtResource("1_l13ey")
+region = Rect2(208, 0, 104, 160)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kerth"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty4up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc4ln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48ygg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="SquidBoss" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kerth")
+autoplay = "default"
