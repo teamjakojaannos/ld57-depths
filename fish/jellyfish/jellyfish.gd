@@ -27,6 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	if is_player_in_range && ready_to_charge:
 		charge += charge_per_second * delta
+		charge = min(charge, 200.0)
 	else:
 		charge -= charge_decay_per_second * delta
 		charge = max(charge, 0.0)
@@ -37,6 +38,8 @@ func _physics_process(delta: float) -> void:
 func try_explode():
 	if player_hitbox == null:
 		return
+	
+	$Sfx.play()
 	
 	charge = 0.0
 	player_hitbox.health.take_damage(damage, self)

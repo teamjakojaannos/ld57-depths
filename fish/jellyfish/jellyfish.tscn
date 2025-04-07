@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfrg8crfsmvo"]
+[gd_scene load_steps=18 format=3 uid="uid://dfrg8crfsmvo"]
 
 [ext_resource type="Script" uid="uid://fttqk527cwp6" path="res://fish/jellyfish/jellyfish.gd" id="1_17lwr"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="1_vcqoj"]
 [ext_resource type="Texture2D" uid="uid://dthctbomti45x" path="res://fish/jellyfish/jelly.png" id="2_snfv6"]
 [ext_resource type="Texture2D" uid="uid://ch5e2g45hf3f4" path="res://graphics/environment/light_cyan.png" id="3_mcq4l"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_snfv6"]
+[ext_resource type="AudioStream" uid="uid://eh58fv8c4x7o" path="res://fish/jellyfish/creat6.ogg" id="6_mcq4l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mcq4l"]
 radius = 82.0244
@@ -167,6 +168,13 @@ debug_color = Color(0.910142, 0.197782, 0.558543, 0.42)
 libraries = {
 &"": SubResource("AnimationLibrary_qwf45")
 }
+
+[node name="Sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mcq4l")
+volume_db = -8.0
+max_polyphony = 4
+bus = &"Enemy SFX"
+parameters/looping = false
 
 [connection signal="area_entered" from="." to="." method="_on_detection_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_detection_area_exited"]
