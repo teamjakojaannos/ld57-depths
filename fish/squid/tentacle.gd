@@ -11,7 +11,8 @@ var _going_forward = true
 
 signal attack_done
 
-
+func set_flipped(flipped: bool):
+	scale = Vector2(-1, 1) if flipped else Vector2(1, 1)
 
 func _physics_process(delta: float) -> void:
 	var close_enough = 20.0

@@ -11,9 +11,16 @@ func do_attack(level: SquidFightLevel):
 	
 	tentacle.damage = tentacle_damage
 	tentacle.speed = tentacle_speed
-	tentacle.position = positions.spawn.position
-	tentacle.start_pos = positions.spawn.position
-	tentacle.end_pos = positions.end.position
+	
+	# get pos relative to level
+	var spawn_position = positions.spawn.position + positions.position
+	var end_position = positions.end.position + positions.position
+	
+	tentacle.position = spawn_position
+	tentacle.start_pos = spawn_position
+	tentacle.end_pos = end_position
+	tentacle.set_flipped(!positions.is_left_to_right)
+	
 	level.add_child(tentacle)
 	
 	await tentacle.attack_done

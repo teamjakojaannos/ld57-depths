@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	ready_to_attack = true
 
 
-func _on_start_fight_trigger_area_entered(area: Area2D) -> void:
+func _on_start_fight_trigger_area_entered(_area: Area2D) -> void:
 	if fight_has_started:
 		return
 	

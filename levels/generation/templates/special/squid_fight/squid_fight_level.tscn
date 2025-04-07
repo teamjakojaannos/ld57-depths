@@ -84,6 +84,31 @@ position = Vector2(-266, -79)
 [node name="End" type="Marker2D" parent="TentacleSpawns/Spawn1"]
 position = Vector2(97, -79)
 
+[node name="Spawn2" type="Node2D" parent="TentacleSpawns" node_paths=PackedStringArray("spawn", "end")]
+position = Vector2(0, -113)
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Spawn")
+end = NodePath("End")
+
+[node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn2"]
+position = Vector2(-266, -79)
+
+[node name="End" type="Marker2D" parent="TentacleSpawns/Spawn2"]
+position = Vector2(97, -79)
+
+[node name="Spawn3" type="Node2D" parent="TentacleSpawns" node_paths=PackedStringArray("spawn", "end")]
+position = Vector2(0, -61)
+script = ExtResource("6_tb6c1")
+spawn = NodePath("Spawn")
+end = NodePath("End")
+is_left_to_right = false
+
+[node name="Spawn" type="Marker2D" parent="TentacleSpawns/Spawn3"]
+position = Vector2(266, -86)
+
+[node name="End" type="Marker2D" parent="TentacleSpawns/Spawn3"]
+position = Vector2(-125, -86)
+
 [node name="StartFightTrigger" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
