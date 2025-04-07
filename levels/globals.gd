@@ -8,7 +8,13 @@ class_name GameGlobals
 @export var level: EndlessLevel
 @export var current_level: Level
 
-@export var money: int = 100
+var _money: int = 100
+@export var money: int :
+	get:
+		return _money
+	set(value):
+		_money = value
+		money_changed.emit()
 
 var _music_volume_percent: float = 0.5
 var music_volume_percent: float:
@@ -21,6 +27,7 @@ var music_volume_percent: float:
 
 signal level_cleared
 signal volume_changed
+signal money_changed
 
 func _ready() -> void:
 	reset()

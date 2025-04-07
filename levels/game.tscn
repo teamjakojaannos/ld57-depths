@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=40 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/level.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -28,6 +28,7 @@
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="18_6w6r6"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
 [ext_resource type="Script" path="res://levels/level_indicator.gd" id="22_si8kf"]
+[ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="30_50ih0"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
@@ -374,6 +375,19 @@ theme_override_font_sizes/font_size = 32
 text = "level: 666"
 label_settings = SubResource("LabelSettings_si8kf")
 script = ExtResource("22_si8kf")
+
+[node name="MoneyCounter" parent="Hud" instance=ExtResource("29_50ih0")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -59.0
+offset_right = -74.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 layer = 4
