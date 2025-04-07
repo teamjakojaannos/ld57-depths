@@ -3,20 +3,17 @@
 [ext_resource type="Script" uid="uid://rf8ahsact8lh" path="res://ui/volume_slider.gd" id="1_dmp5s"]
 
 [node name="VolumeSlider" type="HBoxContainer"]
-anchors_preset = -1
-anchor_right = 0.253
-anchor_bottom = 0.035
-offset_right = 0.543976
-offset_bottom = 0.32
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 311.0
+offset_bottom = 23.0
 script = ExtResource("1_dmp5s")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Music volume"
 
 [node name="Slider" type="HSlider" parent="."]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
