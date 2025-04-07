@@ -16,8 +16,6 @@ func _open_shop() -> void:
 func _ready() -> void:
 	$Open.visible = false
 	$Closed.visible = true
-	
-	Globals.music.fade_out(2.5)
 
 func _on_health_hurt() -> void:
 	print("CLING! TODO: sfx")

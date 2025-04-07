@@ -4,21 +4,25 @@ class_name Jukebox
 enum Song {
 	Music_1,
 	Music_2,
-	Boss_1
+	Boss_1,
+	Shop,
 }
 
 const music_track_1: AudioStream = preload("res://levels/bgm1.ogg")
 const music_track_2: AudioStream = preload("res://levels/bgm2.ogg")
 const boss_music_1: AudioStream = preload("res://levels/bgm3.ogg")
+const shop_music: AudioStream = preload("res://shop/shopbgm.ogg")
 
 var music_fade_tween: Tween
 var music_fade_mult = 1.0
 var counter = 0
+var current_song: Song
 
 func _ready() -> void:
 	Globals.music = self
 	Globals.volume_changed.connect(update_volume)
 	
+	current_song = Song.Music_1
 	stream = music_track_1
 	update_volume()
 	play()
@@ -27,16 +31,20 @@ func update_volume():
 	self.volume_linear = Globals.music_volume_percent * music_fade_mult
 
 func play_song(song: Song):
+	current_song = song
 	var song_to_play
-	if song == Song.Music_1:
-		song_to_play = music_track_1
-	elif song == Song.Music_2:
-		song_to_play = music_track_2
-	elif song == Song.Boss_1:
-		song_to_play = boss_music_1
-	else:
-		print("Trying to play song that doesn't exist: ", song)
-		return
+	match song:
+		Song.Music_1:
+			song_to_play = music_track_1
+		Song.Music_2:
+			song_to_play = music_track_2
+		Song.Boss_1:
+			song_to_play = boss_music_1
+		Song.Shop:
+			song_to_play = shop_music
+		_ :
+			print("Trying to play song that doesn't exist: ", song)
+			return
 	
 	
 	if music_fade_tween != null:

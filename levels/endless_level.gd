@@ -46,6 +46,25 @@ func _transition_to_next_level() -> void:
 	var new_level: Level = level_generator.generate(self)
 
 	_play_transition_animation.call_deferred(new_level)
+	
+	var music_to_play = _get_music_to_play()
+	var current_song = Globals.music.current_song
+	
+	if music_to_play != current_song:
+		Globals.music.play_song(music_to_play)
+
+func _get_music_to_play() -> Jukebox.Song:
+	var room_index = Globals.current_room_index
+	var boss_rooms = [24, 25, 26, 50]
+	var shop_rooms = [8, 9, 15, 16, 22, 23, 27, 28, 34, 35, 41, 42, 48, 49]
+	if boss_rooms.has(room_index):
+		return Jukebox.Song.Boss_1
+	
+	if shop_rooms.has(room_index):
+		return Jukebox.Song.Shop
+	
+	var medium_depth = 17
+	return Jukebox.Song.Music_1 if room_index < medium_depth else Jukebox.Song.Music_2
 
 
 func _play_transition_animation(new_level: Level) -> void:
