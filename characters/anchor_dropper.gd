@@ -13,7 +13,7 @@ func _on_anchor_dropper_fire(shooter: CharacterBody2D, _direction: Vector2) -> v
 	var inherited_speed = max(0.0, shooter.velocity.y * 1.3333)
 	anchor.velocity = Vector2(0, inherited_speed)
 	
-	if shooter is Player:
+	if shooter is Player and not shooter.is_on_floor():
 		shooter.push(Vector2.UP * -anchor_fall_speed * 0.2)
 	
 	anchor.fall_speed = anchor_fall_speed + inherited_speed

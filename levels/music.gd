@@ -1,4 +1,5 @@
 extends AudioStreamPlayer
+class_name Jukebox
 
 enum Song {
 	Music_1,
@@ -15,6 +16,7 @@ var music_fade_mult = 1.0
 var counter = 0
 
 func _ready() -> void:
+	Globals.music = self
 	Globals.volume_changed.connect(update_volume)
 	
 	stream = music_track_1
@@ -45,7 +47,7 @@ func play_song(song: Song):
 	
 	music_fade_tween = create_tween()
 	var fade_time = 1.0
-	await music_fade_tween.tween_method(do_music_fade, music_fade_mult, 0.0, fade_time).finished
+	await fade_out(fade_time)
 	
 	# if we switched to another song while fading out, cancel the song-switch
 	if current_id != counter:
@@ -54,13 +56,25 @@ func play_song(song: Song):
 	stream = song_to_play
 	play()
 	
-	music_fade_tween = create_tween()
-	var un_fade_time = 1.0
-	await music_fade_tween.tween_method(do_music_fade, music_fade_mult, 1.0, un_fade_time).finished
+	await fade_in(1.0)
 
 func do_music_fade(fade_mult: float):
 	music_fade_mult = fade_mult
 	update_volume()
+
+func fade_out(fade_time: float) -> void:
+	if music_fade_tween != null:
+		music_fade_tween.kill()
+
+	music_fade_tween = create_tween()
+	await music_fade_tween.tween_method(do_music_fade, music_fade_mult, 0.0, fade_time).finished
+
+func fade_in(un_fade_time: float) -> void:
+	if music_fade_tween != null:
+		music_fade_tween.kill()
+
+	music_fade_tween = create_tween()
+	await music_fade_tween.tween_method(do_music_fade, music_fade_mult, 1.0, un_fade_time).finished
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_track_1"):

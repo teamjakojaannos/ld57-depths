@@ -18,6 +18,8 @@ var _money: int = money_at_start
 		_money = value
 		money_changed.emit()
 
+@export var music: Jukebox
+
 var _music_volume_percent: float = 0.5
 var music_volume_percent: float:
 	get:
