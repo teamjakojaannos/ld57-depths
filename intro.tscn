@@ -1,15 +1,22 @@
-[gd_scene load_steps=15 format=4 uid="uid://custde0qf4s2t"]
+[gd_scene load_steps=19 format=4 uid="uid://custde0qf4s2t"]
 
 [ext_resource type="Texture2D" uid="uid://b0q1jj1tnte0h" path="res://graphics/environment/clouds.png" id="1_7ufi4"]
 [ext_resource type="Texture2D" uid="uid://5lsk0dadu4nm" path="res://graphics/environment/wadeh.png" id="1_s2ta7"]
+[ext_resource type="Texture2D" uid="uid://bwfke4cuql1h2" path="res://ui/dialogue_box.png" id="1_wby50"]
 [ext_resource type="Script" uid="uid://chry2uce8ffxd" path="res://tile_map_layer.gd" id="2_ayt76"]
 [ext_resource type="Script" uid="uid://cmqvpexdmb1lo" path="res://tile_map_layer_3.gd" id="2_u2rf6"]
+[ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="2_xsd0a"]
 [ext_resource type="Texture2D" uid="uid://natafaamt5j4" path="res://graphics/environment/unsinkable_takkaa.png" id="3_0a7ni"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_smii7"]
 [ext_resource type="Script" uid="uid://bx0q3aae6gkex" path="res://tile_map_layer_2.gd" id="3_y6ycx"]
 [ext_resource type="Texture2D" uid="uid://c2421ckms1a0u" path="res://graphics/environment/unsinkable_eesta.png" id="4_y72e6"]
 [ext_resource type="Texture2D" uid="uid://coa65314x5gig" path="res://characters/Frank.png" id="6_dpxxx"]
 [ext_resource type="Texture2D" uid="uid://dkr8mtpkv3hj2" path="res://characters/Fred.png" id="7_dk2oa"]
 [ext_resource type="Script" uid="uid://c7i8u4psuvol5" path="res://sprite_2d.gd" id="9_dk2oa"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmx7j"]
+font = ExtResource("3_smii7")
+font_size = 64
 
 [sub_resource type="Gradient" id="Gradient_u2rf6"]
 offsets = PackedFloat32Array(0, 0.996564)
@@ -76,6 +83,30 @@ texture_region_size = Vector2i(64, 192)
 sources/0 = SubResource("TileSetAtlasSource_ayt76")
 
 [node name="Intro" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 290.0
+offset_top = 457.0
+offset_right = 866.0
+offset_bottom = 612.0
+texture = ExtResource("1_wby50")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+offset_left = 352.0
+offset_top = 525.0
+offset_right = 608.0
+offset_bottom = 637.0
+texture = ExtResource("2_xsd0a")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 414.0
+offset_top = 564.0
+offset_right = 546.0
+offset_bottom = 620.0
+text = "Frank"
+label_settings = SubResource("LabelSettings_dmx7j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
