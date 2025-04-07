@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=2 format=3 uid="uid://5aw8bapnh2tm"]
+
+[ext_resource type="Script" uid="uid://worhpxre6228" path="res://shop/item.gd" id="2_wk20v"]
+
+[resource]
+script = ExtResource("2_wk20v")
+name = "Sold out"
+price = -1
+metadata/_custom_type_script = "uid://worhpxre6228"

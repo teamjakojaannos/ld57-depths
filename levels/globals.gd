@@ -54,5 +54,11 @@ func trigger_level_clear() -> void:
 
 func handle_buy_item(item_name: String) -> void:
 	match item_name:
+		"Anchor":
+			player.unlock_anchor_dropper()
+		"Fishing Net":
+			player.unlock_net_thrower()
+		"Sold out":
+			pass
 		_:
 			push_error("UNHANDLED ITEM %s" % item_name)

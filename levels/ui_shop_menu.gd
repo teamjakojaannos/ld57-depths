@@ -7,6 +7,8 @@ signal item_bought(item: String, price: int)
 @onready var _left_item_ui: ShopItemUI = $Control/Item_template
 @onready var _right_item_ui: ShopItemUI = $Control/Item_template2
 
+const sold_out: ShopItem = preload("uid://5aw8bapnh2tm")
+
 var _is_open: bool = false
 
 func close_shop() -> void:
@@ -35,11 +37,18 @@ func _setup_items() -> void:
 	_left_item_ui.display_item(load("uid://uaurhan33y31"))
 	_right_item_ui.display_item(load("uid://b30ektrdokkl8"))
 
-func handle_buy_item(item_name: String, price: int) -> void:
+func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
+	if price < 0:
+		return
+
 	if Globals.money < price:
 		_fail_buy(item_name, price)
 	else:
 		_success_buy(item_name, price)
+		if is_left:
+			_left_item_ui.display_item(sold_out)
+		else:
+			_right_item_ui.display_item(sold_out)
 
 func _fail_buy(item_name: String, price: int) -> void:
 	print("Could not afford '%s' (cost %s, player has %s)" % [item_name, price, Globals.money])
@@ -54,6 +63,7 @@ func _success_buy(item_name: String, price: int) -> void:
 	item_bought.emit(item_name, price)
 	
 	Globals.handle_buy_item(item_name)
+	
 
 func _on_leave_button_pressed() -> void:
 	close_shop()

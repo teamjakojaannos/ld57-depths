@@ -212,6 +212,7 @@ offset_right = 843.0
 offset_bottom = 468.0
 texture = ExtResource("4_k84vo")
 script = ExtResource("5_6ks0g")
+is_left = true
 
 [node name="Buy_button" type="Button" parent="UI_ShopMenu/Control/Item_template"]
 layout_mode = 1
