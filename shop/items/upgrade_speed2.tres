@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://chd7di3jrfaob"]
+
+[ext_resource type="Texture2D" uid="uid://bc4epib87s1mw" path="res://shop/items/images/speed_upgrade2.png" id="1_3m8e2"]
+[ext_resource type="Script" uid="uid://worhpxre6228" path="res://shop/item.gd" id="2_yr71o"]
+
+[resource]
+script = ExtResource("2_yr71o")
+name = "Speed +2"
+price = 25
+picture = ExtResource("1_3m8e2")
+metadata/_custom_type_script = "uid://worhpxre6228"

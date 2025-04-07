@@ -40,8 +40,8 @@ func _ready() -> void:
 	if no_blocker:
 		unlock_exit()
 
-func record_kill() -> void:
-	Globals.money += 1
+func record_kill(money_gained:int = 1) -> void:
+	Globals.money += money_gained
 	_kills += 1
 
 	if _kills >= kills_required and !no_blocker:

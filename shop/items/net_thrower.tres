@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://uaurhan33y31"]
 
-[ext_resource type="Texture2D" uid="uid://b3xyn7auifgmh" path="res://graphics/environment/verkko.png" id="1_jsqvq"]
+[ext_resource type="Texture2D" uid="uid://lx5sc04e8lx0" path="res://shop/items/images/shop_verkko.png" id="1_jsqvq"]
 [ext_resource type="Script" uid="uid://worhpxre6228" path="res://shop/item.gd" id="2_v5rq8"]
 
 [resource]
 script = ExtResource("2_v5rq8")
-name = "Fishing Net"
-price = 10
+name = "Net weapon"
+price = 15
 picture = ExtResource("1_jsqvq")
 metadata/_custom_type_script = "uid://worhpxre6228"

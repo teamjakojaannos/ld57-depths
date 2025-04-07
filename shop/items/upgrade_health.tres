@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="ShopItem" load_steps=3 format=3 uid="uid://mxeabhsx13cw"]
 
-[ext_resource type="Texture2D" uid="uid://c2f3rh0c4m7w6" path="res://icon.svg" id="1_kx76q"]
+[ext_resource type="Texture2D" uid="uid://hmidnxb2rn8g" path="res://shop/items/images/health_upgrade_1.png" id="1_kx76q"]
 [ext_resource type="Script" uid="uid://worhpxre6228" path="res://shop/item.gd" id="2_42mb1"]
 
 [resource]
 script = ExtResource("2_42mb1")
-name = "Health"
-price = 10
+name = "Max health +1"
+price = 15
 picture = ExtResource("1_kx76q")
 metadata/_custom_type_script = "uid://worhpxre6228"

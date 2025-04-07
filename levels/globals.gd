@@ -15,7 +15,7 @@ var tutorial_cleared: bool = false
 @export var level: EndlessLevel
 @export var current_level: Level
 
-var money_at_start = 100
+var money_at_start = 0
 
 var _money: int = money_at_start
 var money: int :
