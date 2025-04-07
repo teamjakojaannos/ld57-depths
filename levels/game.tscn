@@ -27,7 +27,7 @@
 [ext_resource type="PackedScene" uid="uid://bj0y1grmkuw1b" path="res://levels/background.tscn" id="15_fbo34"]
 [ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="18_aumgp"]
-[ext_resource type="Script" path="res://levels/level_indicator.gd" id="22_si8kf"]
+[ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="22_si8kf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fbo34"]
 texture = ExtResource("11_6f163")
