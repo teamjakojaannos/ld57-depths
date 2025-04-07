@@ -41,7 +41,8 @@ var music_volume_percent: float:
 	set(value):
 		_music_volume_percent = clampf(value, 0.0, 1.0)
 		volume_changed.emit()
-	
+
+var bought_upgrades: Array[String] = []
 
 signal level_cleared
 signal volume_changed
@@ -55,6 +56,7 @@ func reset() -> void:
 	current_room_index = 2 if tutorial_cleared else 0
 	
 	money = money_at_start
+	bought_upgrades.clear()
 
 func trigger_level_clear() -> void:
 	level_cleared.emit()
@@ -88,3 +90,7 @@ func handle_buy_item(item_name: String) -> void:
 			pass
 		_:
 			push_error("UNHANDLED ITEM %s" % item_name)
+	
+	
+	if item_name != "Sold out" && item_name != "Health Potion":
+		bought_upgrades.append(item_name)

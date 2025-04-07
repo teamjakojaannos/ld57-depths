@@ -25,6 +25,7 @@ const health_upgrade_3: ShopItem = preload("res://shop/items/Upgrade_health3.tre
 
 
 var _is_open: bool = false
+var _room_index_where_i_purchased_hp_potion = -1
 
 func close_shop() -> void:
 	if !_is_open:
@@ -49,33 +50,14 @@ func open_shop() -> void:
 	shop_open.emit()
 
 func _setup_items() -> void:
-	var current_level = Globals.current_room_index
-	if current_level == 9:
-		_left_item_ui.display_item(net_thrower)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 16:
-		_left_item_ui.display_item(anchor)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 23:
-		_left_item_ui.display_item(speed_upgrade_1)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 28:
-		_left_item_ui.display_item(harpoon_tier_2)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 35:
-		_left_item_ui.display_item(speed_upgrade_2)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 42:
-		_left_item_ui.display_item(harpoon_tier_3)
-		_right_item_ui.display_item(health_potion)
-	elif current_level == 49:
-		_left_item_ui.display_item(health_upgrade_1)
-		_right_item_ui.display_item(health_potion)
-	else:
-		push_error("Shop at unexpected location: ", current_level)
-		_left_item_ui.display_item(sold_out)
-		_right_item_ui.display_item(sold_out)
+	var first_item = _get_next_item_in_queue()
+	_left_item_ui.display_item(first_item)
 	
+	var hp_pot_already_bought = _room_index_where_i_purchased_hp_potion == Globals.current_room_index
+	if hp_pot_already_bought:
+		_right_item_ui.display_item(sold_out)
+	else:
+		_right_item_ui.display_item(health_potion)
 
 func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	if price < 0:
@@ -86,9 +68,33 @@ func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	else:
 		_success_buy(item_name, price)
 		if is_left:
-			_left_item_ui.display_item(sold_out)
+			var item = _get_next_item_in_queue()
+			_left_item_ui.display_item(item)
 		else:
+			_room_index_where_i_purchased_hp_potion = Globals.current_room_index
 			_right_item_ui.display_item(sold_out)
+
+func _get_next_item_in_queue() -> ShopItem:
+	var shop_queue: Array[ShopItem] = []
+	
+	var current_level = Globals.current_room_index
+	if current_level >= 9:
+		shop_queue.append(net_thrower)
+	if current_level >= 16:
+		shop_queue.append(anchor)
+	if current_level >= 23:
+		shop_queue.append(speed_upgrade_1)
+	if current_level >= 28:
+		shop_queue.append(harpoon_tier_2)
+	if current_level >= 35:
+		shop_queue.append(speed_upgrade_2)
+	if current_level >= 42:
+		shop_queue.append(harpoon_tier_3)
+	if current_level >= 49:
+		shop_queue.append(health_upgrade_1)
+	
+	shop_queue = shop_queue.filter(func(item: ShopItem): return !Globals.bought_upgrades.has(item.name))
+	return shop_queue[0] if shop_queue.size() > 0 else sold_out
 
 func _fail_buy(item_name: String, price: int) -> void:
 	print("Could not afford '%s' (cost %s, player has %s)" % [item_name, price, Globals.money])
