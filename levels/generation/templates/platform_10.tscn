@@ -1,0 +1,86 @@
+[gd_scene load_steps=6 format=4 uid="uid://de8mqofsbs02a"]
+
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_52b5i"]
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_dc5ew"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="3_s2l5e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
+size = Vector2(384, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_ktneu"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -161, -15, 0, 0, 0, 0, -140, -15, 0, 0, 0, 0, -133, -11, 0, 0, 0, 0, -133, 10, 0, 0, 0, 0, -135, 14, 0, 0, 0, 0, -170, 15, 0, 0, 0, 0, -175, 9, 0, 0, 0, 0, -174, -8, 0, 0, 0, 0, -173, -15, 0, 0, 0, 0, -150, -14)
+}
+point_count = 10
+
+[node name="LevelPart" type="Node2D"]
+
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="visualflair"]
+position = Vector2(-23, -73)
+texture = ExtResource("1_dc5ew")
+
+[node name="Bounds" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+
+[node name="Shape" type="CollisionShape2D" parent="Bounds"]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_soyje")
+debug_color = Color(1, 1, 1, 0.0392157)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD3//r/AAAHAAMAAAD3//v/AAAHAAQAAAD3//z/AAAHAAQAAAD3//3/AAAHAAQAAAD3//7/AAAHAAQAAAD3////AAAHAAIAAAD2//r/AAAGAAMAAAD1//r/AAAFAAMAAAD0//r/AAAEAAMAAAD4////AAAGAAMAAAD5////AAAGAAMAAAD6////AAAGAAMAAAD7////AAAGAAMAAAD8////AAAGAAMAAAD9////AAAGAAMAAAD+////AAAGAAMAAAD/////AAAGAAMAAAAAAP//AAAGAAMAAAABAP//AAAGAAMAAAACAP//AAAGAAMAAAADAP//AAAGAAMAAAAEAP//AAAGAAMAAAAFAP//AAAGAAMAAAAGAP//AAAGAAMAAAAHAP//AAAGAAMAAAD0//v/AAAEAAQAAAD0//z/AAAEAAQAAAD0//3/AAAEAAQAAAD0//7/AAAEAAQAAAD0////AAAEAAQAAAD0/wAAAAAEAAQAAAD1/wAAAAAFAAQAAAD2/wAAAAAFAAQAAAD3/wAAAAAFAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAFAAQAAAD9/wAAAAAFAAQAAAD+/wAAAAAFAAQAAAD//wAAAAAFAAQAAAAAAAAAAAAFAAQAAAABAAAAAAAFAAQAAAACAAAAAAAFAAQAAAADAAAAAAAFAAQAAAAEAAAAAAAFAAQAAAAFAAAAAAAFAAQAAAAGAAAAAAAFAAQAAAAHAAAAAAAFAAQAAAD2////AAAHAAIAAAD2//7/AAAHAAIAAAD2//3/AAAHAAIAAAD2//z/AAAHAAIAAAD2//v/AAAHAAIAAAD1//v/AAAHAAIAAAD1//z/AAAHAAIAAAD1//3/AAAHAAIAAAD1//7/AAAHAAIAAAD1////AAAHAAIAAAAIAP//AAAHAAMAAAAIAAAAAAAHAAQAAAAHAPr/AAAEAAMAAAAHAPv/AAAEAAQAAAAJAPr/AAAHAAMAAAAJAPv/AAAHAAQAAAAIAPr/AAAFAAMAAAAIAPv/AAAFAAQAAAD6//n/AAAEAAMAAAD6//r/AAAEAAQAAAD7//n/AAAFAAMAAAD7//r/AAAFAAQAAAD8//n/AAAHAAMAAAD8//r/AAAHAAQAAAA=")
+tile_set = ExtResource("1_52b5i")
+
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="Spawn1" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(-176, -32)
+
+[node name="Spawn2" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(176, -32)
+
+[node name="Spawn3" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(176, -64)
+
+[node name="Spawn4" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(-176, -64)
+
+[node name="Spawn5" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(-136, -64)
+
+[node name="Spawn6" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(-136, -32)
+
+[node name="Spawn7" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(144, -32)
+
+[node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
+position = Vector2(144, -64)
+
+[node name="CrabPath2" type="Path2D" parent="." groups=["path_enemy_spawn"]]
+position = Vector2(289, -81)
+curve = SubResource("Curve2D_ktneu")
+
+[node name="CrabPath" type="Path2D" parent="." groups=["path_enemy_spawn"]]
+position = Vector2(82, -95)
+curve = SubResource("Curve2D_ktneu")
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="."]
+position = Vector2(-141, -90)
+texture = ExtResource("3_s2l5e")
+
+[node name="Merisuolakurkku2" type="Sprite2D" parent="."]
+position = Vector2(131, -8)
+texture = ExtResource("3_s2l5e")
+
+[node name="Merisuolakurkku3" type="Sprite2D" parent="."]
+position = Vector2(128, -90)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_s2l5e")

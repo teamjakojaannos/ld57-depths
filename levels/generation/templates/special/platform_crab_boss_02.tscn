@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cij80dcdoxkv3"]
+[gd_scene load_steps=9 format=4 uid="uid://cij80dcdoxkv3"]
 
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="1_uopbt"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_ydjcr"]
 [ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="2_ase7j"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="2_o7wuc"]
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="3_1xyo6"]
 [ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="3_pln4j"]
 [ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="4_ase7j"]
 
@@ -10,8 +13,24 @@ size = Vector2(384, 128)
 
 [node name="LevelPart" type="Node2D"]
 
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(-156, -47)
+scale = Vector2(-1, 1)
+texture = ExtResource("1_uopbt")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(80, -26)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_o7wuc")
+
+[node name="Tottero" type="Sprite2D" parent="visualflair"]
+position = Vector2(149, -128)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_1xyo6")
+
 [node name="Bounds" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -23,8 +42,8 @@ shape = SubResource("RectangleShape2D_soyje")
 debug_color = Color(1, 1, 1, 0.0392157)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(0, 24)
-tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAD+//7/AAADAAYAAAD///7/AAAEAAYAAAAAAP7/AAAHAAYAAAABAP7/AAAIAAYAAAAOAP3/AAAEAAYAAAAPAP3/AAAFAAYAAAAQAP3/AAAGAAYAAAARAP3/AAAHAAYAAAASAP3/AAAIAAYAAAANAP3/AAADAAYAAADt//3/AAADAAYAAADu//3/AAAEAAYAAADv//3/AAAFAAYAAADw//3/AAAGAAYAAADx//3/AAAHAAYAAADy//3/AAAIAAYAAAA=")
+position = Vector2(-1, 27)
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAD+//7/AAADAAYAAAD///7/AAAEAAYAAAAAAP7/AAAHAAYAAAABAP7/AAAIAAYAAAAOAP3/AAAEAAYAAAAPAP3/AAAFAAYAAAAQAP3/AAAGAAYAAAARAP3/AAAHAAYAAAASAP3/AAAIAAYAAAANAP3/AAADAAYAAADt//3/AAADAAYAAADu//3/AAAEAAYAAADv//3/AAAFAAYAAADw//3/AAAGAAYAAADx//3/AAAHAAYAAADy//3/AAAIAAYAAAAGAPf/AAAEAAMAAAAGAPj/AAAEAAQAAAAHAPf/AAAFAAMAAAAHAPj/AAAFAAQAAAAIAPf/AAAGAAMAAAAIAPj/AAAGAAQAAAAJAPf/AAAHAAMAAAAJAPj/AAAHAAQAAAA=")
 tile_set = ExtResource("1_ydjcr")
 
 [node name="SnappyPoints" type="Node2D" parent="."]

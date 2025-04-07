@@ -1,13 +1,37 @@
-[gd_scene load_steps=5 format=4 uid="uid://vxxeln7q6wqf"]
+[gd_scene load_steps=10 format=4 uid="uid://vxxeln7q6wqf"]
 
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="1_eew3d"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_uing8"]
 [ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="2_d4ux3"]
+[ext_resource type="Texture2D" uid="uid://bixq6xvvkrd81" path="res://graphics/environment/koralli_medium.png" id="2_ocjrl"]
+[ext_resource type="Texture2D" uid="uid://b1fuj47ujwvkj" path="res://graphics/environment/koralli_small.png" id="3_3e4ni"]
 [ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="3_8n24m"]
+[ext_resource type="Texture2D" uid="uid://ekf074r753ji" path="res://graphics/environment/Simp-ukka.png" id="4_a0rv1"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="8_5cb7y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
 
 [node name="LevelPart" type="Node2D"]
+
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="KoralliLarge" type="Sprite2D" parent="visualflair"]
+position = Vector2(-80, -82)
+texture = ExtResource("1_eew3d")
+
+[node name="KoralliMedium" type="Sprite2D" parent="visualflair"]
+position = Vector2(219, -43)
+texture = ExtResource("2_ocjrl")
+
+[node name="KoralliSmall" type="Sprite2D" parent="visualflair"]
+position = Vector2(255, -44)
+texture = ExtResource("3_3e4ni")
+
+[node name="Simp-ukka" type="Sprite2D" parent="visualflair"]
+position = Vector2(-150, -17)
+rotation = 1.10828
+texture = ExtResource("4_a0rv1")
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
@@ -72,6 +96,10 @@ position = Vector2(144, -128)
 
 [node name="Spawn2" type="Marker2D" parent="Node2D" groups=["enemy_spawn"]]
 position = Vector2(200, -56)
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="."]
+position = Vector2(144, -98)
+texture = ExtResource("8_5cb7y")
 
 [connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
 [connection signal="attack_finished" from="CrabClaws/SnappyRight" to="CrabClaws" method="_on_snappy_right_attack_finished"]

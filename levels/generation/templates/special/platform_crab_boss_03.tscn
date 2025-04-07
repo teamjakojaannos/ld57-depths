@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=4 uid="uid://dbd15nsvh32v8"]
+[gd_scene load_steps=24 format=4 uid="uid://dbd15nsvh32v8"]
 
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_45iwu"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_lv1vk"]
 [ext_resource type="Script" uid="uid://btsoo67jwmhcf" path="res://boss/crab/crabby.gd" id="2_ncljd"]
 [ext_resource type="Texture2D" uid="uid://dyyewpvcbqr5x" path="res://boss/crab/rapuwalk.png" id="2_pg21e"]
@@ -150,6 +151,10 @@ monitorable = false
 position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_soyje")
 debug_color = Color(1, 1, 1, 0.0392157)
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="."]
+position = Vector2(44, -71)
+texture = ExtResource("1_45iwu")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAD1/wAAAAAGAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD0/wAAAAAEAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAFAAQAAAD9/wAAAAAGAAQAAAD+/wAAAAAGAAQAAAD//wAAAAAFAAQAAAAAAAAAAAAFAAQAAAABAAAAAAAFAAQAAAACAAAAAAAFAAQAAAADAAAAAAAGAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAGAAQAAAALAAAAAAAHAAQAAAALAP//AAAHAAMAAAAKAP//AAAGAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAFAAMAAAACAP//AAAFAAMAAAABAP//AAAFAAMAAAAAAP//AAAFAAMAAAD/////AAAFAAMAAAD+////AAAFAAMAAAD9////AAAGAAMAAAD8////AAAFAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAFAAMAAAD0////AAAEAAMAAAD+//f/AAADAAYAAAD///f/AAAEAAYAAAAAAPf/AAAHAAYAAAABAPf/AAAIAAYAAAAJAPf/AAAGAAYAAAAKAPf/AAAHAAYAAAALAPf/AAAIAAYAAAAGAPf/AAADAAYAAAAHAPf/AAAEAAYAAAAIAPf/AAAFAAYAAAD0//f/AAADAAYAAAD1//f/AAAEAAYAAAD2//f/AAAFAAYAAAD3//f/AAAGAAYAAAD4//f/AAAHAAYAAAD5//f/AAAIAAYAAAA=")

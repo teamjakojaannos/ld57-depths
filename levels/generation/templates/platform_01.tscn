@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=4 uid="uid://dpcnthy4eomun"]
+[gd_scene load_steps=8 format=4 uid="uid://dpcnthy4eomun"]
 
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="1_qns4o"]
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_xabmm"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_yxsmy"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="2_xabmm"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="4_bwbgc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
@@ -14,6 +18,26 @@ _data = {
 point_count = 9
 
 [node name="LevelPart" type="Node2D"]
+
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="visualflair"]
+position = Vector2(-7, -74)
+texture = ExtResource("1_xabmm")
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(111, -53)
+texture = ExtResource("1_qns4o")
+
+[node name="Seaplant2" type="Sprite2D" parent="visualflair"]
+position = Vector2(-120, -56)
+rotation = 3.14159
+scale = Vector2(1, -1)
+texture = ExtResource("1_qns4o")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(143, -31)
+texture = ExtResource("2_xabmm")
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
@@ -60,3 +84,12 @@ position = Vector2(144, -64)
 [node name="CrabPath" type="Path2D" parent="." groups=["path_enemy_spawn"]]
 position = Vector2(340.2, 0)
 curve = SubResource("Curve2D_yxsmy")
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="."]
+position = Vector2(167, -10)
+texture = ExtResource("4_bwbgc")
+
+[node name="Merisuolakurkku2" type="Sprite2D" parent="."]
+position = Vector2(-68, -8)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_bwbgc")

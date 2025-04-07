@@ -1,6 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://dm26lbxt62yt"]
+[gd_scene load_steps=8 format=4 uid="uid://dm26lbxt62yt"]
 
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="1_6pd6m"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_jgi06"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="2_uappt"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="4_26073"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
@@ -20,6 +23,19 @@ _data = {
 point_count = 9
 
 [node name="LevelPart" type="Node2D"]
+
+[node name="Seaplant" type="Sprite2D" parent="."]
+position = Vector2(-50, -56)
+texture = ExtResource("1_6pd6m")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="."]
+position = Vector2(94, -35)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_uappt")
+
+[node name="SeaplantSmol2" type="Sprite2D" parent="."]
+position = Vector2(-188, -30)
+texture = ExtResource("2_uappt")
 
 [node name="Bounds" type="Area2D" parent="."]
 visible = false
@@ -89,3 +105,14 @@ curve = SubResource("Curve2D_o2ecj")
 
 [node name="CrabPath" type="Path2D" parent="EnemySpawns" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_jgi06")
+
+[node name="visualflair" type="Node2D" parent="."]
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="visualflair"]
+position = Vector2(175, -13)
+texture = ExtResource("4_26073")
+
+[node name="Merisuolakurkku2" type="Sprite2D" parent="visualflair"]
+position = Vector2(-176, -2)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_26073")
