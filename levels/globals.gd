@@ -11,7 +11,7 @@ class_name GameGlobals
 var money_at_start = 100
 
 var _money: int = money_at_start
-@export var money: int :
+var money: int :
 	get:
 		return _money
 	set(value):
