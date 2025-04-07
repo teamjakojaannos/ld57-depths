@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
 [ext_resource type="AudioStream" uid="uid://dqmuxegaqds0j" path="res://characters/player/anchor_hit.ogg" id="20_svrv0"]
 [ext_resource type="AudioStream" uid="uid://dxqqi4exsfn3" path="res://characters/player/player_hurt.ogg" id="22_4rspn"]
-[ext_resource type="Script" uid="uid://3setwup0vq41" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
+[ext_resource type="Script" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akagt"]
 atlas = ExtResource("5_41yun")

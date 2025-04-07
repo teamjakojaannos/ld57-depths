@@ -6,10 +6,17 @@ class_name GameGlobals
 	get:
 		return current_room_index
 	set(value):
+		var old = current_room_index
 		current_room_index = value
+		if old != value:
+			stage_changed.emit()
+
 		if value > 2:
 			tutorial_cleared = true
+
 var tutorial_cleared: bool = false
+
+signal stage_changed
 
 @export var player: Player
 @export var level: EndlessLevel

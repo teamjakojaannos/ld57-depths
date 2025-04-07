@@ -500,6 +500,7 @@ offset_bottom = 40.0
 
 [node name="Dialoguebox" type="TextureRect" parent="Dialogue/Control"]
 visible = false
+layout_mode = 0
 offset_left = 290.0
 offset_top = 457.0
 offset_right = 866.0
@@ -508,6 +509,7 @@ texture = ExtResource("1_wby50")
 
 [node name="Frank" type="TextureRect" parent="Dialogue/Control"]
 visible = false
+layout_mode = 0
 offset_left = 342.0
 offset_top = 569.0
 offset_right = 526.0
@@ -515,6 +517,7 @@ offset_bottom = 647.0
 texture = ExtResource("2_xsd0a")
 
 [node name="Label" type="Label" parent="Dialogue/Control/Frank"]
+layout_mode = 0
 offset_left = 39.0
 offset_top = 26.0
 offset_right = 171.0
@@ -523,6 +526,7 @@ text = "Frank"
 label_settings = SubResource("LabelSettings_dmx7j")
 
 [node name="Fred" type="TextureRect" parent="Dialogue/Control"]
+layout_mode = 0
 offset_left = 633.0
 offset_top = 567.0
 offset_right = 817.0
@@ -530,6 +534,7 @@ offset_bottom = 645.0
 texture = ExtResource("2_xsd0a")
 
 [node name="Label2" type="Label" parent="Dialogue/Control/Fred"]
+layout_mode = 0
 offset_left = 51.0
 offset_top = 25.0
 offset_right = 183.0

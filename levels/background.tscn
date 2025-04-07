@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bj0y1grmkuw1b"]
+[gd_scene load_steps=13 format=3 uid="uid://bj0y1grmkuw1b"]
 
 [ext_resource type="Script" uid="uid://jcukg176hd42" path="res://levels/background.gd" id="1_i7suw"]
 [ext_resource type="Texture2D" uid="uid://b4yqypvnttqx3" path="res://fish/vittumies.png" id="2_3h817"]
 [ext_resource type="PackedScene" uid="uid://dhnr4iaiiaf5p" path="res://levels/bg_fishy.tscn" id="3_qjryw"]
 [ext_resource type="PackedScene" uid="uid://cbhx15hlcg32f" path="res://levels/bg_fishy2.tscn" id="4_3h817"]
+[ext_resource type="Script" uid="uid://75pllfk1t1h4" path="res://levels/background_dimmer.gd" id="5_qjryw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p0d6h"]
 atlas = ExtResource("2_3h817")
@@ -116,6 +117,7 @@ offset_top = -335.0
 offset_right = 293.0
 offset_bottom = 4.0
 texture = SubResource("GradientTexture2D_qjryw")
+script = ExtResource("5_qjryw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -162)
