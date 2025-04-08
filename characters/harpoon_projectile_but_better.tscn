@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4ihrofg5ok6j"]
+
+[ext_resource type="PackedScene" uid="uid://c6swhl7gcqc5y" path="res://characters/harpoon_projectile.tscn" id="1_slm22"]
+[ext_resource type="Texture2D" uid="uid://bllrh3c0wbbcl" path="res://characters/player/trident.png" id="2_58anw"]
+
+[node name="HarpoonProjectile" instance=ExtResource("1_slm22")]
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-15, -4)
+texture = ExtResource("2_58anw")
+centered = false
