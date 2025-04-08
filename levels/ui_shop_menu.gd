@@ -58,11 +58,31 @@ func _setup_items() -> void:
 		return
 	
 	_generated_queues_room_index = Globals.current_room_index
-	left_queue = _get_upgrade_queue()
-	right_queue = [health_potion]
+	
+	var p = Globals.player
+	var hp_percent = p.get_health() / p.get_max_health()
+	var is_almost_full_hp = hp_percent > 0.80
+
+	if is_almost_full_hp:
+		var stat_upgrade = _get_next_stat_upgrade()
+		if stat_upgrade != null:
+			right_queue = [stat_upgrade, health_potion]
+		else:
+			right_queue = [health_potion]
+		# hopefully my code works and the stat upgrade gets removed from left queue
+		# so its not in both queues
+		left_queue = _get_upgrade_queue(stat_upgrade)
+	else:
+		right_queue = [health_potion]
+		left_queue = _get_upgrade_queue()
 	
 	_left_item_ui.display_item(_get_first_item_in_queue(left_queue))
 	_right_item_ui.display_item(_get_first_item_in_queue(right_queue))
+
+func _get_next_stat_upgrade():
+	var upgrades: Array[ShopItem] = [speed_upgrade_1, health_upgrade_1, speed_upgrade_2, health_upgrade_2, speed_upgrade_3, health_upgrade_3]
+	var not_bought = _remove_already_obtained(upgrades)
+	return null if not_bought.is_empty() else not_bought[0]
 
 func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 	if price < 0:
@@ -79,6 +99,8 @@ func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 			var item = _remove_first_item_and_get_next_item_in_queue(right_queue)
 			_right_item_ui.display_item(item)
 
+
+
 func _get_first_item_in_queue(queue: Array[ShopItem]) -> ShopItem:
 	return sold_out if queue.is_empty() else queue[0]
 
@@ -88,7 +110,7 @@ func _remove_first_item_and_get_next_item_in_queue(queue: Array[ShopItem]) -> Sh
 	
 	return sold_out if queue.is_empty() else queue[0]
 
-func _get_upgrade_queue() -> Array[ShopItem]:
+func _get_upgrade_queue(stat_upgrade_in_right_queue:ShopItem = null) -> Array[ShopItem]:
 	var shop_queue: Array[ShopItem] = []
 	
 	var current_level = Globals.current_room_index
@@ -96,20 +118,27 @@ func _get_upgrade_queue() -> Array[ShopItem]:
 		shop_queue.append(net_thrower)
 	if current_level >= 16:
 		shop_queue.append(anchor)
-	if current_level >= 23:
-		shop_queue.append(speed_upgrade_1)
 	if current_level >= 28:
 		shop_queue.append(harpoon_tier_2)
 	if current_level >= 35:
 		shop_queue.append(speed_upgrade_2)
 	if current_level >= 42:
 		shop_queue.append(harpoon_tier_3)
+	# we offer this upgrade earlier, but if the player doesn't buy it, we prioritize
+	# offering weapon upgrades in later stages
+	# TODO: do similar stuff for other non-weapon upgrades
+	if current_level >= 23:
+		shop_queue.append(speed_upgrade_1)
 	if current_level >= 49:
 		shop_queue.append(health_upgrade_1)
 		shop_queue.append(health_upgrade_2)
 		shop_queue.append(health_upgrade_3)
 		shop_queue.append(speed_upgrade_2)
 		shop_queue.append(speed_upgrade_3)
+	
+	if stat_upgrade_in_right_queue != null:
+		# avoid duplicate upgrades
+		shop_queue = shop_queue.filter(func(item: ShopItem): return item.name != stat_upgrade_in_right_queue.name)
 	
 	return _remove_already_obtained(shop_queue)
 
