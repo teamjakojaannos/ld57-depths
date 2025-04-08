@@ -59,7 +59,7 @@ func reset() -> void:
 
 		# "restore previous checkpoint"
 		if current_room_index >= 48:
-			current_room_index = 48
+			current_room_index = 49
 		elif current_room_index >= 41:
 			current_room_index = 42
 		elif current_room_index >= 34:
