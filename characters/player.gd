@@ -144,18 +144,6 @@ func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:
 		return
 	
-	# debug unlocks, replaced with "buy from shop" once that is implemented
-	if event.is_action_pressed("debug_unlock_1"):
-		print("net thrower unlocked")
-		unlock_net_thrower()
-	elif event.is_action_pressed("debug_unlock_2"):
-		print("anchor unlocked")
-		unlock_anchor_dropper()
-	elif event.is_action_pressed("debug_unlock_3"):
-		print("harpoon gun upgraded")
-		upgrade_harpoon_gun(1)
-	
-	
 	var look_direction = Vector2(looking_at_scalar, 0.0)
 	if event.is_action_pressed("attack_1"):
 		$HarpoonGun.fire(self, look_direction)
@@ -214,6 +202,7 @@ func _on_health_die() -> void:
 	Die.emit()
 
 	await Globals.level.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
+	Globals._restoring_dying_state = true
 	get_tree().change_scene_to_file("res://levels/game.tscn")
 
 func _on_health_hurt() -> void:

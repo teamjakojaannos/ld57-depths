@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://dbd15nsvh32v8"]
+[gd_scene load_steps=26 format=4 uid="uid://dbd15nsvh32v8"]
 
 [ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_45iwu"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_lv1vk"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_uqmkm"]
 [ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="5_km4n6"]
 [ext_resource type="Texture2D" uid="uid://pw7s3hg04pje" path="res://boss/crab/rapu_delaa.png" id="8_x8oc7"]
+[ext_resource type="Script" uid="uid://djfpp2d3fbril" path="res://boss/boss_healthbar.gd" id="10_1egj7"]
+[ext_resource type="Texture2D" uid="uid://bsou74tb8aokn" path="res://ui/UI_slideri.png" id="11_wedas"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
@@ -236,6 +238,42 @@ debug_color = Color(0.971292, 0.170316, 1.92523e-07, 0.42)
 visible = false
 sprite_frames = SubResource("SpriteFrames_wedas")
 offset = Vector2(0, -34)
+
+[node name="BossHealthbar" type="CanvasLayer" parent="Crabby" node_paths=PackedStringArray("boss")]
+layer = 8
+script = ExtResource("10_1egj7")
+health_percentage = 1.0
+boss = NodePath("../Health")
+
+[node name="Control" type="Control" parent="Crabby/BossHealthbar"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Healthbar" type="TextureRect" parent="Crabby/BossHealthbar/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 12.0
+offset_right = 128.0
+offset_bottom = 52.0
+grow_horizontal = 2
+texture = ExtResource("11_wedas")
+
+[node name="Progress" type="ColorRect" parent="Crabby/BossHealthbar/Control"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 26.0
+offset_right = 138.0
+offset_bottom = 40.0
+color = Color(0.62, 0.124, 0.124, 1)
 
 [connection signal="Die" from="Crabby/Health" to="Crabby" method="_on_health_die"]
 [connection signal="timeout" from="Crabby/TimerLeft" to="Crabby" method="_on_timer_left_timeout"]

@@ -41,6 +41,9 @@ func generate(container: Node) -> Level:
 	if spawnlist.is_special and !spawnlist.level_override.is_empty():
 		parts_list = spawnlist.level_override
 	
+	if spawnlist.is_special and spawnlist.special_sequence == LevelPart.SpecialSequence.SHOP:
+		Globals.money_at_checkpoint = Globals.money
+	
 	var is_left_utility_allowed: bool = true
 	var is_right_utility_allowed: bool = true
 	

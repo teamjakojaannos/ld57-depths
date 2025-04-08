@@ -23,6 +23,8 @@ signal stage_changed
 @export var current_level: Level
 
 var money_at_start = 0
+var money_at_checkpoint = 0
+var _restoring_dying_state: bool = false
 
 var _money: int = money_at_start
 var money: int :
@@ -52,12 +54,40 @@ func _ready() -> void:
 	reset()
 
 func reset() -> void:
-	depth = 0.0
-	current_room_index = 2 if tutorial_cleared else 0
-	
-	
-	money = money_at_start
+	if _restoring_dying_state:
+		_restoring_dying_state = false
+
+		# "restore previous checkpoint"
+		if current_room_index >= 48:
+			current_room_index = 48
+		elif current_room_index >= 41:
+			current_room_index = 42
+		elif current_room_index >= 34:
+			current_room_index = 35
+		elif current_room_index >= 27:
+			current_room_index = 28
+		elif current_room_index >= 22:
+			current_room_index = 23
+		elif current_room_index >= 15:
+			current_room_index = 16
+		elif current_room_index >= 8:
+			current_room_index = 9
+		elif tutorial_cleared:
+			current_room_index = 2
+
+		_replay_upgrades.call_deferred()
+	else:
+		depth = 0.0
+		current_room_index = 0
+		money = money_at_start
+		bought_upgrades.clear()
+
+func _replay_upgrades() -> void:
+	money = money_at_checkpoint
+	var uppies = bought_upgrades.duplicate()
 	bought_upgrades.clear()
+	for item in uppies:
+		handle_buy_item(item)
 
 func trigger_level_clear() -> void:
 	level_cleared.emit()
