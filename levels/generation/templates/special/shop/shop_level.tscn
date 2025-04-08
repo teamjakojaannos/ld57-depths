@@ -170,7 +170,7 @@ size = Vector2(175, 119)
 
 [node name="UI_ShopMenu" type="CanvasLayer" parent="."]
 process_mode = 3
-layer = 3
+layer = 4
 visible = false
 script = ExtResource("1_tst2u")
 
