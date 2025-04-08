@@ -37,4 +37,4 @@ func _on_health_die() -> void:
 	await tween.finished
 	await Globals.level.objective_overlay.show_objective("YOU", "ARE", "VICTORIOUS", 0.5)
 	await get_tree().create_timer(5.0).timeout
-	get_tree().change_scene_to_file("res://levels/game.tscn")
+	get_tree().change_scene_to_file("res://epilogue.tscn")

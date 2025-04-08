@@ -665,6 +665,7 @@ offset_bottom = 92.0
 texture = ExtResource("44_ygxck")
 
 [node name="tiptext" type="Label" parent="Hud/Anchor_tip"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 63.0
 offset_right = 123.0
@@ -692,6 +693,7 @@ offset_bottom = 93.0
 texture = ExtResource("45_exhqh")
 
 [node name="tiptext" type="Label" parent="Hud/Harpoon_tip"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 63.0
 offset_right = 123.0
@@ -719,6 +721,7 @@ offset_bottom = 71.0
 texture = ExtResource("45_6hew7")
 
 [node name="tiptext" type="Label" parent="Hud/Net_tip"]
+layout_mode = 0
 offset_left = 69.0
 offset_top = 30.0
 offset_right = 182.0
