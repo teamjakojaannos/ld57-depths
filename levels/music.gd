@@ -83,11 +83,3 @@ func fade_in(un_fade_time: float) -> void:
 
 	music_fade_tween = create_tween()
 	await music_fade_tween.tween_method(do_music_fade, music_fade_mult, 1.0, un_fade_time).finished
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("switch_track_1"):
-		play_song(Song.Music_1)
-	if event.is_action_pressed("switch_track_2"):
-		play_song(Song.Music_2)
-	if event.is_action_pressed("switch_track_3"):
-		play_song(Song.Boss_1)
