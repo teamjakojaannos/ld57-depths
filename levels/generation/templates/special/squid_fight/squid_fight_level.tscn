@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://bchdxhibo8f0g"]
+[gd_scene load_steps=27 format=4 uid="uid://bchdxhibo8f0g"]
 
 [ext_resource type="Script" uid="uid://bk218myvtqqan" path="res://levels/generation/templates/special/squid_fight/squid_fight_level.gd" id="1_hb6gp"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_i0yvx"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cralgksc31h64" path="res://fish/squid/tentacle.tscn" id="7_oldw0"]
 [ext_resource type="Script" uid="uid://djfpp2d3fbril" path="res://boss/boss_healthbar.gd" id="9_mb7w1"]
 [ext_resource type="Texture2D" uid="uid://bsou74tb8aokn" path="res://ui/UI_slideri.png" id="9_sbyas"]
+[ext_resource type="Texture2D" uid="uid://dw11lsbgl6ah2" path="res://boss/squid/bad_dragon_x_Frank.png" id="10_0rs68"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oldw0"]
 size = Vector2(12, 48)
@@ -58,6 +59,63 @@ _data = {
 &"RESET": SubResource("Animation_0rs68"),
 &"idle": SubResource("Animation_ni1r6")
 }
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uufir"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(0, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxy86"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(50, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hwey3"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(100, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8vfx"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(150, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqn8n"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(150, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dgmi5"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(100, 0, 50, 76)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu4u3"]
+atlas = ExtResource("10_0rs68")
+region = Rect2(50, 0, 50, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mdr4q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uufir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxy86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hwey3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8vfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqn8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dgmi5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu4u3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
 
 [node name="LevelPart" type="Node2D"]
 script = ExtResource("1_hb6gp")
@@ -142,6 +200,60 @@ rotation = -1.5708
 scale = Vector2(1, -1)
 is_vertical = true
 
+[node name="Segment1" parent="Tentacles/Tentacle3/Segments" index="0"]
+position = Vector2(0, 1.33996)
+
+[node name="Segment2" parent="Tentacles/Tentacle3/Segments" index="1"]
+position = Vector2(32, 1.99983)
+
+[node name="Segment3" parent="Tentacles/Tentacle3/Segments" index="2"]
+position = Vector2(64, 1.37836)
+
+[node name="Segment4" parent="Tentacles/Tentacle3/Segments" index="3"]
+position = Vector2(96, -0.126264)
+
+[node name="Segment5" parent="Tentacles/Tentacle3/Segments" index="4"]
+position = Vector2(128, -1.54999)
+
+[node name="Segment6" parent="Tentacles/Tentacle3/Segments" index="5"]
+position = Vector2(160, -1.98059)
+
+[node name="Segment7" parent="Tentacles/Tentacle3/Segments" index="6"]
+position = Vector2(192, -1.14218)
+
+[node name="Segment8" parent="Tentacles/Tentacle3/Segments" index="7"]
+position = Vector2(224, 0.428061)
+
+[node name="Segment9" parent="Tentacles/Tentacle3/Segments" index="8"]
+position = Vector2(256, 1.72403)
+
+[node name="Segment10" parent="Tentacles/Tentacle3/Segments" index="9"]
+position = Vector2(288, 1.91536)
+
+[node name="Segment11" parent="Tentacles/Tentacle3/Segments" index="10"]
+position = Vector2(320, 0.879473)
+
+[node name="Segment12" parent="Tentacles/Tentacle3/Segments" index="11"]
+position = Vector2(352, -0.719918)
+
+[node name="Segment13" parent="Tentacles/Tentacle3/Segments" index="12"]
+position = Vector2(384, -1.85804)
+
+[node name="Segment14" parent="Tentacles/Tentacle3/Segments" index="13"]
+position = Vector2(416, -1.80566)
+
+[node name="Segment15" parent="Tentacles/Tentacle3/Segments" index="14"]
+position = Vector2(448, -0.59635)
+
+[node name="Segment16" parent="Tentacles/Tentacle3/Segments" index="15"]
+position = Vector2(480, 0.99506)
+
+[node name="TotallyNotAdultToy" parent="Tentacles/Tentacle3/Segments" index="16"]
+position = Vector2(512, 1.94891)
+sprite_frames = SubResource("SpriteFrames_mdr4q")
+frame_progress = 0.866996
+offset = Vector2(-4, -38)
+
 [node name="Tentacle4" parent="Tentacles" instance=ExtResource("7_oldw0")]
 position = Vector2(208, 48)
 rotation = -1.5708
@@ -214,3 +326,5 @@ color = Color(0.62, 0.124, 0.124, 1)
 [connection signal="hurt_at" from="SquidBoss/Health" to="SquidBoss" method="_on_health_hurt_at"]
 [connection signal="timeout" from="HAttackTimer" to="." method="_on_h_attack_timer_timeout"]
 [connection signal="timeout" from="VAttackTimer" to="." method="_on_v_attack_timer_timeout"]
+
+[editable path="Tentacles/Tentacle3"]
