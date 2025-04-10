@@ -1,16 +1,28 @@
-[gd_scene load_steps=4 format=4 uid="uid://bqnj1w08ijveo"]
+[gd_scene load_steps=7 format=4 uid="uid://bqnj1w08ijveo"]
 
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_pu1st"]
+[ext_resource type="Script" uid="uid://ch7kmrfgronvw" path="res://levels/generation/crab_path_generator.gd" id="2_pu1st"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_soyje"]
 size = Vector2(384, 128)
 
-[sub_resource type="Curve2D" id="Curve2D_ktneu"]
-resource_local_to_scene = true
+[sub_resource type="Curve2D" id="Curve2D_pu1st"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -100, -14, 0, 0, 0, 0, -57, -14, 0, 0, 0, 0, -50, -7, 0, 0, 0, 0, -50, 10, 0, 0, 0, 0, -56, 16, 0, 0, 0, 0, -168, 16, 0, 0, 0, 0, -175, 9, 0, 0, 0, 0, -174, -8, 0, 0, 0, 0, -167, -14, 0, 0, 0, 0, -99, -13)
+"points": PackedVector2Array(0, 0, 0, 0, -16, -16, 0, 0, 0, 0, 16, -16, 0, 0, 0, 0, 16, 16, 0, 0, 0, 0, -16, 16, 0, 0, 0, 0, -16, -16)
 }
-point_count = 10
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_wl5ns"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -48, 16, 0, 0, 0, 0, -176, 16, 0, 0, 0, 0, -176, -16, 0, 0, 0, 0, -48, -16, 0, 0, 0, 0, -48, 16)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_5jxt4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 48, -16, 0, 0, 0, 0, 176, -16, 0, 0, 0, 0, 176, 16, 0, 0, 0, 0, 48, 16, 0, 0, 0, 0, 48, -16)
+}
+point_count = 5
 
 [node name="LevelPart" type="Node2D"]
 
@@ -27,8 +39,9 @@ shape = SubResource("RectangleShape2D_soyje")
 debug_color = Color(1, 1, 1, 0.0392157)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAD1/wAAAAAEAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAHAAQAAAD//wAAAAAEAAQAAAAAAAAAAAAHAAQAAAADAAAAAAAEAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAHAAQAAAAKAP//AAAHAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAEAAMAAAAAAP//AAAHAAMAAAD/////AAAEAAMAAAD8////AAAHAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAEAAMAAAA=")
+tile_map_data = PackedByteArray("AAD/////AAAEAAMAAAD//wAAAAAEAAQAAAAAAAAAAAAHAAQAAAAAAP//AAAHAAMAAAD8/wAAAAAHAAQAAAD7/wAAAAAGAAQAAAD6/wAAAAAGAAQAAAD5/wAAAAAGAAQAAAD4/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD2/wAAAAAFAAQAAAD1/wAAAAAEAAQAAAD1////AAAEAAMAAAD2////AAAFAAMAAAD3////AAAFAAMAAAD4////AAAGAAMAAAD5////AAAFAAMAAAD6////AAAGAAMAAAD7////AAAFAAMAAAD8////AAAHAAMAAAADAP//AAAEAAMAAAADAAAAAAAEAAQAAAAEAAAAAAAGAAQAAAAEAP//AAAGAAMAAAAKAAAAAAAHAAQAAAAKAP//AAAHAAMAAAAJAAAAAAAGAAQAAAAJAP//AAAGAAMAAAAIAAAAAAAGAAQAAAAIAP//AAAFAAMAAAAHAAAAAAAGAAQAAAAHAP//AAAGAAMAAAAGAAAAAAAFAAQAAAAGAP//AAAGAAMAAAAFAAAAAAAGAAQAAAAFAP//AAAFAAMAAAA=")
 tile_set = ExtResource("1_pu1st")
+script = ExtResource("2_pu1st")
 
 [node name="EnemySpawns" type="Node2D" parent="."]
 
@@ -56,5 +69,13 @@ position = Vector2(144, -32)
 [node name="Spawn8" type="Marker2D" parent="EnemySpawns" groups=["enemy_spawn"]]
 position = Vector2(144, -64)
 
-[node name="CrabPath" type="Path2D" parent="." groups=["path_enemy_spawn"]]
-curve = SubResource("Curve2D_ktneu")
+[node name="EnemyPaths" type="Node2D" parent="."]
+
+[node name="Path2D" type="Path2D" parent="EnemyPaths"]
+curve = SubResource("Curve2D_pu1st")
+
+[node name="Path2D2" type="Path2D" parent="EnemyPaths"]
+curve = SubResource("Curve2D_wl5ns")
+
+[node name="Path2D3" type="Path2D" parent="EnemyPaths"]
+curve = SubResource("Curve2D_5jxt4")
