@@ -17,7 +17,7 @@ var player_hitbox: Hitbox
 func _ready() -> void:
 	speed = randf_range(min_speed, max_speed)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var alpha = clampf(charge, 0.0, 100.0) / 100.0
 	$Glow.self_modulate = Color(1.0, 1.0, 1.0, alpha)
 

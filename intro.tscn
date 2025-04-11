@@ -1,19 +1,17 @@
-[gd_scene load_steps=32 format=4 uid="uid://custde0qf4s2t"]
+[gd_scene load_steps=28 format=3 uid="uid://custde0qf4s2t"]
 
 [ext_resource type="Texture2D" uid="uid://b0q1jj1tnte0h" path="res://graphics/environment/clouds.png" id="1_7ufi4"]
+[ext_resource type="Script" uid="uid://bk0pvuhw0xdns" path="res://intro/intro.gd" id="1_pwhnr"]
 [ext_resource type="Texture2D" uid="uid://5lsk0dadu4nm" path="res://graphics/environment/wadeh.png" id="1_s2ta7"]
 [ext_resource type="Texture2D" uid="uid://bwfke4cuql1h2" path="res://ui/dialogue_box.png" id="1_wby50"]
-[ext_resource type="Script" uid="uid://chry2uce8ffxd" path="res://tile_map_layer.gd" id="2_ayt76"]
-[ext_resource type="Script" uid="uid://cmqvpexdmb1lo" path="res://tile_map_layer_3.gd" id="2_u2rf6"]
 [ext_resource type="Texture2D" uid="uid://yo3npjdfvgak" path="res://ui/UI_button.png" id="2_xsd0a"]
 [ext_resource type="Texture2D" uid="uid://natafaamt5j4" path="res://graphics/environment/unsinkable_takkaa.png" id="3_0a7ni"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="3_smii7"]
-[ext_resource type="Script" uid="uid://bx0q3aae6gkex" path="res://tile_map_layer_2.gd" id="3_y6ycx"]
 [ext_resource type="FontFile" uid="uid://igrdutd3m1iw" path="res://ui/Perfect DOS VGA 437.ttf" id="4_h770g"]
 [ext_resource type="Texture2D" uid="uid://c2421ckms1a0u" path="res://graphics/environment/unsinkable_eesta.png" id="4_y72e6"]
 [ext_resource type="Texture2D" uid="uid://coa65314x5gig" path="res://characters/Frank.png" id="6_dpxxx"]
 [ext_resource type="Texture2D" uid="uid://dkr8mtpkv3hj2" path="res://characters/Fred.png" id="7_dk2oa"]
-[ext_resource type="Script" uid="uid://c7i8u4psuvol5" path="res://sprite_2d.gd" id="9_dk2oa"]
+[ext_resource type="Script" uid="uid://bld1jlvkcyxue" path="res://utilities/wavy_offset.gd" id="9_h770g"]
 [ext_resource type="Texture2D" uid="uid://brigoy27bkp6p" path="res://particles/mikrokupla.png" id="14_pwhnr"]
 [ext_resource type="AudioStream" uid="uid://cghec736mafkb" path="res://intro/waves1.ogg" id="14_xsd0a"]
 [ext_resource type="AudioStream" uid="uid://du461yy4352k2" path="res://intro/seagullit.ogg" id="15_smii7"]
@@ -38,61 +36,6 @@ colors = PackedColorArray(0.3864, 0.62422, 0.69, 1, 0.9207, 0.929225, 0.93, 1)
 gradient = SubResource("Gradient_u2rf6")
 fill_from = Vector2(0.478632, 0)
 fill_to = Vector2(0.517094, 1)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ayt76"]
-texture = ExtResource("1_s2ta7")
-texture_region_size = Vector2i(64, 192)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_7a8ye"]
-sources/0 = SubResource("TileSetAtlasSource_ayt76")
 
 [sub_resource type="Animation" id="Animation_xsd0a"]
 resource_name = "Frank_falls"
@@ -128,7 +71,7 @@ tracks/2/path = NodePath(".:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(6.63333, 6.96667, 7.33333, 7.66667, 8, 8.33333, 8.7, 9.03333, 9.3, 9.57475, 9.94142, 10.2748, 11, 12),
+"times": PackedFloat32Array(6.66667, 6.96667, 7.33333, 7.66667, 8, 8.33333, 8.7, 9.03333, 9.3, 9.57475, 9.94142, 10.2748, 11, 12),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.45204, 0.0, 0.181514, 0.0, -0.45204, 0.0, 0.436332, 0.0, -0.45204, 0.0, 0.884882, 0.0, -2.71224]
@@ -136,7 +79,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../AudioStreamPlayer2D3:playing")
+tracks/3/path = NodePath("../../../AudioStreamPlayer2D3:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -148,7 +91,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../Bubbles:emitting")
+tracks/4/path = NodePath("../../../Bubbles:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -160,7 +103,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../Bubbles2:emitting")
+tracks/5/path = NodePath("../../../Bubbles2:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -172,7 +115,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../../Bubbles3:emitting")
+tracks/6/path = NodePath("../../../Bubbles3:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -184,7 +127,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../Dialogue/Control/Dialoguebox:visible")
+tracks/7/path = NodePath("../../../Dialogue/Control/Dialoguebox:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -196,7 +139,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../../Dialogue/Control/Frank:visible")
+tracks/8/path = NodePath("../../../Dialogue/Control/Frank:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -208,7 +151,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../../Dialogue/Control/Dialogue1:visible")
+tracks/9/path = NodePath("../../../Dialogue/Control/Dialogue1:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -232,7 +175,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../../Dialogue/Control/Dialogue2:visible")
+tracks/11/path = NodePath("../../../Dialogue/Control/Dialogue2:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -244,7 +187,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../../Dialogue/Control/Fred:visible")
+tracks/12/path = NodePath("../../../Dialogue/Control/Fred:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -256,7 +199,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../../Dialogue/Control/Dialogue3:visible")
+tracks/13/path = NodePath("../../../Dialogue/Control/Dialogue3:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -268,14 +211,26 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../../Dialogue/FadeOut:visible")
+tracks/14/path = NodePath("../../../Dialogue/FadeOut:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0, 14.5, 15.6),
 "transitions": PackedFloat32Array(1, 0.615574, 1),
 "update": 1,
-"values": [false, false, true]
+"values": [false, true, true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../../../Dialogue/FadeOut:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(14.5, 15.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_smii7"]
@@ -287,7 +242,7 @@ tracks/0/path = NodePath(".:z_index")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(-0.0333333),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [-1]
@@ -319,7 +274,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../../AudioStreamPlayer2D3:playing")
+tracks/3/path = NodePath("../../../AudioStreamPlayer2D3:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -331,7 +286,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("../../Bubbles:emitting")
+tracks/4/path = NodePath("../../../Bubbles:emitting")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -343,7 +298,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("../../Bubbles2:emitting")
+tracks/5/path = NodePath("../../../Bubbles2:emitting")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -355,7 +310,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../../Bubbles3:emitting")
+tracks/6/path = NodePath("../../../Bubbles3:emitting")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -367,7 +322,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../../Dialogue/Control/Dialoguebox:visible")
+tracks/7/path = NodePath("../../../Dialogue/Control/Dialoguebox:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -379,7 +334,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../../Dialogue/Control/Frank:visible")
+tracks/8/path = NodePath("../../../Dialogue/Control/Frank:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -391,7 +346,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../../Dialogue/Control/Dialogue1:visible")
+tracks/9/path = NodePath("../../../Dialogue/Control/Dialogue1:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -415,7 +370,7 @@ tracks/10/keys = {
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../../Dialogue/Control/Dialogue2:visible")
+tracks/11/path = NodePath("../../../Dialogue/Control/Dialogue2:visible")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
@@ -427,7 +382,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../../Dialogue/Control/Fred:visible")
+tracks/12/path = NodePath("../../../Dialogue/Control/Fred:visible")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -439,7 +394,7 @@ tracks/12/keys = {
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../../Dialogue/Control/Dialogue3:visible")
+tracks/13/path = NodePath("../../../Dialogue/Control/Dialogue3:visible")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
@@ -451,7 +406,7 @@ tracks/13/keys = {
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../../Dialogue/FadeOut:visible")
+tracks/14/path = NodePath("../../../Dialogue/FadeOut:visible")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
@@ -459,6 +414,18 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../../../Dialogue/FadeOut:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dmx7j"]
@@ -489,6 +456,7 @@ scale_min = 0.5
 color_ramp = SubResource("GradientTexture1D_4c2xj")
 
 [node name="Intro" type="Node2D"]
+script = ExtResource("1_pwhnr")
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
 
@@ -608,61 +576,74 @@ z_index = -1
 position = Vector2(-101, -98)
 texture = ExtResource("1_7ufi4")
 
-[node name="TileMapLayer3" type="TileMapLayer" parent="."]
+[node name="Wadeh" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(8, 0)
-tile_map_data = PackedByteArray("AADv/wQAAAAAAAAAAADz/wQAAAAAAAAAAAD3/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD//wQAAAAAAAAAAAADAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAALAAQAAAAAAAAAAADr/wQAAAAAAAAAAAAPAAQAAAAAAAAAAAATAAQAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_7a8ye")
-script = ExtResource("2_u2rf6")
+texture_repeat = 2
+position = Vector2(-7.03335e-06, 72)
+texture = ExtResource("1_s2ta7")
+region_enabled = true
+region_rect = Rect2(0, 0, 704, 192)
+script = ExtResource("9_h770g")
+wave_size = 5
 
-[node name="TileMapLayer2" type="TileMapLayer" parent="."]
+[node name="Wadeh2" type="Sprite2D" parent="."]
 self_modulate = Color(0.9, 0.9, 0.9, 1)
 z_index = -1
-position = Vector2(7, 26)
-tile_map_data = PackedByteArray("AADv/wQAAAAAAAAAAADz/wQAAAAAAAAAAAD3/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD//wQAAAAAAAAAAAADAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAALAAQAAAAAAAAAAADr/wQAAAAAAAAAAAAPAAQAAAAAAAAAAAATAAQAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_7a8ye")
-script = ExtResource("3_y6ycx")
+texture_repeat = 2
+position = Vector2(-1.00001, 98)
+texture = ExtResource("1_s2ta7")
+region_enabled = true
+region_rect = Rect2(0, 0, 704, 192)
+script = ExtResource("9_h770g")
+wave_size = 10
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
+[node name="Wadeh3" type="Sprite2D" parent="."]
 self_modulate = Color(0.76, 0.76, 0.76, 1)
 z_index = 2
-position = Vector2(8, 56)
-tile_map_data = PackedByteArray("AADv/wQAAAAAAAAAAADz/wQAAAAAAAAAAAD3/wQAAAAAAAAAAAD7/wQAAAAAAAAAAAD//wQAAAAAAAAAAAADAAQAAAAAAAAAAAAHAAQAAAAAAAAAAAALAAQAAAAAAAAAAADr/wQAAAAAAAAAAAAPAAQAAAAAAAAAAAATAAQAAAAAAAAAAAA=")
-tile_set = SubResource("TileSet_7a8ye")
-script = ExtResource("2_ayt76")
+texture_repeat = 2
+position = Vector2(-7.03335e-06, 128)
+texture = ExtResource("1_s2ta7")
+region_enabled = true
+region_rect = Rect2(0, 0, 704, 192)
+script = ExtResource("9_h770g")
 
-[node name="Sprite2D2" type="Sprite2D" parent="TileMapLayer"]
+[node name="Boat" type="Node2D" parent="Wadeh3"]
+position = Vector2(0, -73)
+
+[node name="BoatBackground" type="Sprite2D" parent="Wadeh3/Boat"]
 z_index = -1
 z_as_relative = false
-position = Vector2(13, -86)
+position = Vector2(21, -86)
 texture = ExtResource("3_0a7ni")
 
-[node name="Frank" type="Sprite2D" parent="TileMapLayer"]
+[node name="Frank" type="Sprite2D" parent="Wadeh3/Boat"]
 z_index = -1
 z_as_relative = false
 position = Vector2(-46, -55)
 scale = Vector2(-1, 1)
 texture = ExtResource("6_dpxxx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="TileMapLayer/Frank"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wadeh3/Boat/Frank"]
 libraries = {
 &"": SubResource("AnimationLibrary_dmx7j")
 }
 autoplay = "Frank_falls"
 
-[node name="Sprite2D4" type="Sprite2D" parent="TileMapLayer"]
+[node name="Fred" type="Sprite2D" parent="Wadeh3/Boat"]
 z_index = -1
 z_as_relative = false
-position = Vector2(-19, -56)
-scale = Vector2(-1, 1)
+position = Vector2(-11, -55)
+rotation = 3.14159
+scale = Vector2(1, -1)
 texture = ExtResource("7_dk2oa")
 
-[node name="Sprite2D" type="Sprite2D" parent="TileMapLayer"]
+[node name="BoatForeground" type="Sprite2D" parent="Wadeh3/Boat"]
 z_index = -1
 z_as_relative = false
-position = Vector2(2, -33.5)
+position = Vector2(10, -32.5)
 texture = ExtResource("4_y72e6")
-script = ExtResource("9_dk2oa")
+script = ExtResource("9_h770g")
+wave_size = 2
 
 [node name="Bubbles" type="GPUParticles2D" parent="."]
 process_mode = 3
@@ -715,3 +696,5 @@ parameters/looping = true
 
 [node name="AudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_dmx7j")
+
+[connection signal="animation_finished" from="Wadeh3/Boat/Frank/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

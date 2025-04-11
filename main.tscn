@@ -13,6 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ig7tw")
 
 [node name="Intro" parent="." instance=ExtResource("1_0xm2m")]
 position = Vector2(526, 318)
@@ -26,12 +27,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.117057, 0.117057, 0.117057, 1)
-
-[node name="SplashTimeout" type="Timer" parent="."]
-wait_time = 16.0
-one_shot = true
-autostart = true
-script = ExtResource("1_ig7tw")
 
 [node name="Title" type="VBoxContainer" parent="."]
 visible = false
@@ -61,4 +56,4 @@ layout_mode = 2
 text = "A Ludum Dare 57 Game"
 horizontal_alignment = 1
 
-[connection signal="timeout" from="SplashTimeout" to="SplashTimeout" method="_start_game"]
+[connection signal="finished" from="Intro" to="." method="_on_intro_finished"]

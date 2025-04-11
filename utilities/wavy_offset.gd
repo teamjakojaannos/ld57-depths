@@ -1,8 +1,8 @@
-extends TileMapLayer
+extends Node2D
 
 @onready var start_y = position.y
 
-@export var wave_size = 10
+@export var wave_size = 15
 @export var time_scale = 1
 
 
