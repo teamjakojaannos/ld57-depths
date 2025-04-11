@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=4 uid="uid://dmcjpau04bcb0"]
 
-[ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/level.gd" id="1_bokrc"]
+[ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/room.gd" id="1_bokrc"]
 [ext_resource type="TileSet" uid="uid://djhl6rrvyuldm" path="res://levels/level.tres" id="2_ndswy"]
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="5_slcm8"]
 
