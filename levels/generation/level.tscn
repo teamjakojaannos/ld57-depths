@@ -6,14 +6,14 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ndswy"]
 normal = Vector2(1, 0)
-distance = -232.0
+distance = -240.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bokrc"]
 normal = Vector2(-1, 0)
-distance = -232.0
+distance = -240.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ln7"]
-size = Vector2(480, 32)
+size = Vector2(480, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bokrc"]
 size = Vector2(480, 7)
@@ -41,7 +41,7 @@ collision_mask = 9
 shape = SubResource("WorldBoundaryShape2D_bokrc")
 
 [node name="Blocker" type="TileMapLayer" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 32)
 tile_map_data = PackedByteArray("AADz////AAAEAAEAAAD0////AAAEAAEAAAD1////AAAEAAEAAAD2////AAAEAAEAAAD3////AAAEAAEAAAD4////AAAEAAEAAAD5////AAAEAAEAAAD6////AAAEAAEAAAD7////AAAEAAEAAAD8////AAAEAAEAAAD9////AAAEAAEAAAD+////AAAEAAEAAAD/////AAAEAAEAAAAAAP//AAAEAAEAAAABAP//AAAEAAEAAAACAP//AAAEAAEAAAADAP//AAAEAAEAAAAEAP//AAAEAAEAAAAFAP//AAAEAAEAAAAGAP//AAAEAAEAAAAHAP//AAAEAAEAAAAIAP//AAAEAAEAAAAJAP//AAAEAAEAAAAKAP//AAAEAAEAAAALAP//AAAEAAEAAAAMAP//AAAEAAEAAAAOAP//AAAEAAEAAAANAP//AAAEAAEAAADy////AAAEAAEAAADx////AAAEAAEAAAA=")
 tile_set = ExtResource("2_ndswy")
 
@@ -53,7 +53,7 @@ gravity_direction = Vector2(0, -1)
 gravity = 1470.0
 
 [node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
-position = Vector2(0, -16)
+position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_a6ln7")
 debug_color = Color(0.393465, 0.61037, 0, 0.42)
 
@@ -70,7 +70,7 @@ position = Vector2(0, -176)
 position = Vector2(0, -32)
 
 [node name="NextLevelTrigger" type="Area2D" parent="."]
-position = Vector2(0, 16)
+position = Vector2(0, 32)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("5_slcm8")
@@ -79,17 +79,6 @@ script = ExtResource("5_slcm8")
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_bokrc")
 debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
-
-[node name="SpikeFishSpawns" type="Node2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="SpikeFishSpawns"]
-position = Vector2(-176, -64)
-
-[node name="Marker2D2" type="Marker2D" parent="SpikeFishSpawns"]
-position = Vector2(184, -64)
-
-[node name="Marker2D3" type="Marker2D" parent="SpikeFishSpawns"]
-position = Vector2(0, -208)
 
 [node name="FishNavArea" type="Area2D" parent="."]
 collision_layer = 0
