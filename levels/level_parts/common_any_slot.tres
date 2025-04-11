@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelPart" load_steps=12 format=3 uid="uid://bmxxixyyjvvnh"]
 
 [ext_resource type="PackedScene" uid="uid://dpcnthy4eomun" path="res://levels/generation/templates/platform_01.tscn" id="1_102yl"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="1_vxvtg"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="1_vxvtg"]
 [ext_resource type="PackedScene" uid="uid://ijxy2qa50s1a" path="res://levels/generation/templates/platform_02.tscn" id="2_1j1es"]
 [ext_resource type="PackedScene" uid="uid://dm26lbxt62yt" path="res://levels/generation/templates/platform_03.tscn" id="3_npwo2"]
 [ext_resource type="PackedScene" uid="uid://daf4ocofnmlcr" path="res://levels/generation/templates/platform_04.tscn" id="4_chm0p"]

@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Spawnlist" load_steps=5 format=3 uid="uid://61ukmhorbgv2"]
 
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_hlvp1"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_dj2th"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="2_dj2th"]
 [ext_resource type="Resource" uid="uid://w55j5t33p6a7" path="res://levels/level_parts/special/tutorial/tutorial_stage_2.tres" id="3_hlvp1"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="4_ptttu"]
 

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="1_4v1ue"]
 [ext_resource type="Resource" uid="uid://uhl3v2h0qcj0" path="res://levels/spawnable/enemies/lionfish_01.tres" id="2_qn1ot"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="3_14tn7"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="3_qn1ot"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/room_part.gd" id="3_qn1ot"]
 [ext_resource type="Resource" uid="uid://di0yswatohakc" path="res://levels/level_parts/special/crab_boss_stage_2.tres" id="4_14tn7"]
 
 [resource]

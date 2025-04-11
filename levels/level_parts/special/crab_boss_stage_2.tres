@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelPart" load_steps=3 format=3 uid="uid://di0yswatohakc"]
 
 [ext_resource type="PackedScene" uid="uid://cij80dcdoxkv3" path="res://levels/generation/templates/special/platform_crab_boss_02.tscn" id="1_g4byt"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_2hgcf"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="2_2hgcf"]
 
 [resource]
 script = ExtResource("2_2hgcf")

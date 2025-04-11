@@ -10,7 +10,7 @@
 [ext_resource type="Resource" uid="uid://di0yswatohakc" path="res://levels/level_parts/special/crab_boss_stage_2.tres" id="10_si8kf"]
 [ext_resource type="Resource" uid="uid://cuii51a4el6ao" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
 [ext_resource type="Resource" uid="uid://titgidis0ctw" path="res://levels/level_parts/special/crab_boss_stage_3.tres" id="11_kw56w"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="11_mgpep"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="11_mgpep"]
 [ext_resource type="Resource" uid="uid://ckgxvua0i2552" path="res://levels/level_parts/special/shop/shop_01.tres" id="11_nmrji"]
 [ext_resource type="Resource" uid="uid://cxtoqp352umox" path="res://levels/level_parts/special/shop/shop_02.tres" id="12_6f4up"]
 [ext_resource type="Resource" uid="uid://b02yhagcdocv" path="res://levels/spawnlists/special/crab_fight_02.tres" id="12_mgpep"]

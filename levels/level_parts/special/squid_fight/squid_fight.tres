@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelPart" load_steps=3 format=3 uid="uid://b4eyju6i4cc3"]
 
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="1_opx0h"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/room_part.gd" id="1_opx0h"]
 [ext_resource type="PackedScene" uid="uid://bchdxhibo8f0g" path="res://levels/generation/templates/special/squid_fight/squid_fight_level.tscn" id="1_yh8nd"]
 
 [resource]

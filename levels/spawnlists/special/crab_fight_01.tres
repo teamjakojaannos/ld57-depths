@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="2_43yyr"]
 [ext_resource type="Resource" uid="uid://cxtleutuy6mec" path="res://levels/spawnable/enemies/eel_01.tres" id="2_l7p27"]
 [ext_resource type="Resource" uid="uid://da0ncr4et48yx" path="res://levels/spawnable/enemies/pufferfish_01.tres" id="3_m2ppa"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="4_m2ppa"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/room_part.gd" id="4_m2ppa"]
 [ext_resource type="Resource" uid="uid://cb53ctfrsyrep" path="res://levels/level_parts/special/crab_boss_stage_1.tres" id="5_do2cd"]
 
 [resource]

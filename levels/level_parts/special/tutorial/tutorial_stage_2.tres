@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LevelPart" load_steps=3 format=3 uid="uid://w55j5t33p6a7"]
 
 [ext_resource type="PackedScene" uid="uid://c0cjnh31ol7ys" path="res://levels/generation/templates/special/tutorial/tutorial_crouch.tscn" id="1_m72e8"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/level_part.gd" id="2_s5xha"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="2_s5xha"]
 
 [resource]
 script = ExtResource("2_s5xha")
