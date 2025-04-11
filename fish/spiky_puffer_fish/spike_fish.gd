@@ -1,6 +1,8 @@
 class_name SpikeFish
 extends Area2D
 
+@onready var attack_cooldown_timer: Timer = $AttackCooldown
+
 const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
 @export var spike_color:Color = Color(1,1,1,1)
 @export var spike_damage = 1
@@ -55,7 +57,7 @@ func _create_movement_tweens(force_recreate: bool = false):
 	if !is_tween2_ok || force_recreate:
 		if movement_tween_2 != null:
 			movement_tween_2.kill()
-		
+
 		var end = pick_random_target_position()
 		var time = randf_range(1.0, 2.0)
 		
@@ -63,6 +65,7 @@ func _create_movement_tweens(force_recreate: bool = false):
 		movement_tween_2.tween_property(self, "target2", end, time)
 		movement_tween_2.tween_callback(_create_movement_tweens)
 
+var last_direction: Vector2 = Vector2.RIGHT
 func _physics_process(delta: float) -> void:
 	var target_position = (target1 + target2) / 2.0
 	var previous_position = position
@@ -70,15 +73,24 @@ func _physics_process(delta: float) -> void:
 	var d2 = position.distance_squared_to(target_position)
 	var close_enough = 500.0
 	if d2 <= close_enough:
-		return
-	
-	position = position.move_toward(target_position, move_speed * delta)
-	
+		if _is_allowed_to_stop():
+			return
+		else:
+			position += last_direction * move_speed * delta
+	else:
+		position = position.move_toward(target_position, move_speed * delta)
+		last_direction = (position - previous_position).normalized()
+
 	var movement = position - previous_position
 	$AnimatedSprite2D.flip_h = movement.x > 0
 
 	if ready_to_attack and !is_dead:
-		attack()
+		if _is_allowed_to_stop():
+			attack()
+
+func _is_allowed_to_stop():
+	return Globals.current_room.is_in_navigable_region(global_position)
+
 
 func attack():
 	ready_to_attack = false
@@ -95,8 +107,7 @@ func attack():
 
 func start_attack_cooldown(min_cd: float, max_cd: float):
 	var attack_cooldown = randf_range(min_cd, max_cd)
-	await get_tree().create_timer(attack_cooldown).timeout
-	ready_to_attack = true
+	attack_cooldown_timer.start(attack_cooldown)
 
 func _shoot_spikes() -> void:
 	if is_dead:
@@ -124,6 +135,7 @@ func pick_random_target_position() -> Vector2:
 	
 	return current_room.get_random_fish_nav_point()
 
+
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
 	var x = cos(angle)
@@ -143,3 +155,7 @@ func _on_health_die() -> void:
 	$AnimationPlayer.play("die")
 	await $AnimationPlayer.animation_finished
 	queue_free()
+
+
+func _on_attack_cooldown_timeout() -> void:
+	ready_to_attack = true

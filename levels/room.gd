@@ -17,6 +17,8 @@ var entry_text: Array[String] = []
 @onready var left_slot: Node2D = $"NavRoom/LeftUtility"
 @onready var right_slot: Node2D = $"NavRoom/RightUtility"
 
+@onready var nav_region: NavigationRegion2D = $NavRoom
+
 
 func finish() -> void:
 	Finished.emit()
@@ -54,9 +56,16 @@ func record_kill(money_gained:int = 1) -> void:
 		UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
 		unlock_exit()
 
+
+func is_in_navigable_region(pos: Vector2, threshold: float = 1.0) -> bool:
+	var nav_map = nav_region.get_navigation_map()
+	var closest_point = NavigationServer2D.map_get_closest_point(nav_map, pos)
+
+	return closest_point.distance_squared_to(pos) < threshold * threshold
+
+
 func get_random_fish_nav_point() -> Vector2:
-	var nav_area: CollisionShape2D = $"FishNavArea/Shape"
-	var rect: Rect2 = nav_area.shape.get_rect()
-	var x = randf_range(-rect.size.x, rect.size.x) / 2.0
-	var y = randf_range(-rect.size.y, rect.size.y) / 2.0
-	return Vector2(x, y) + nav_area.position
+	var nav_map = nav_region.get_navigation_map()
+	var all_layers = 1
+	var random_point = NavigationServer2D.map_get_random_point(nav_map, all_layers, true)
+	return random_point

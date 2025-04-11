@@ -20,6 +20,7 @@ resource_local_to_scene = true
 vertices = PackedVector2Array(230, -10, -230, -10, -230, -310, 230, -310)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-240, -320, 240, -320, 240, 0, -240, 0)])
+agent_radius = 20.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bokrc"]
 size = Vector2(480, 7)

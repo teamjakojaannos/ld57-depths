@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LevelPart" load_steps=3 format=3 uid="uid://c5smpw85j7uqp"]
+[gd_resource type="Resource" script_class="RoomPart" load_steps=3 format=3 uid="uid://c5smpw85j7uqp"]
 
 [ext_resource type="PackedScene" uid="uid://bkgh7uaqrjamv" path="res://levels/generation/templates/special/tutorial/tutorial_jump.tscn" id="1_aklpi"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="1_jgag0"]
