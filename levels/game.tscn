@@ -193,7 +193,6 @@ metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
 [node name="EndlessLevel" type="Node2D" parent="."]
 script = ExtResource("1_vhr6a")
-level_height_in_tiles = 36
 
 [node name="LevelGenerator" type="Node" parent="EndlessLevel"]
 script = ExtResource("10_0u5wd")
@@ -203,10 +202,10 @@ crab_rave_parts = Array[ExtResource("11_mgpep")]([ExtResource("9_tkgql"), ExtRes
 crab_rave_spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
-[node name="Level" parent="EndlessLevel" instance=ExtResource("1_748nt")]
+[node name="FirstRoom" parent="EndlessLevel" instance=ExtResource("1_748nt")]
 no_blocker = true
 
-[node name="TileMapLayer" type="TileMapLayer" parent="EndlessLevel/Level"]
+[node name="TileMapLayer" type="TileMapLayer" parent="EndlessLevel/FirstRoom"]
 position = Vector2(0, -32)
 tile_map_data = PackedByteArray("AAD1/wAAAAAEAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAHAAQAAAD//wAAAAAEAAQAAAAAAAAAAAAHAAQAAAADAAAAAAAEAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAHAAQAAAAKAP//AAAHAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAEAAMAAAAAAP//AAAHAAMAAAD/////AAAEAAMAAAD8////AAAHAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAEAAMAAAA=")
 tile_set = ExtResource("18_6w6r6")

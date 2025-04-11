@@ -53,7 +53,7 @@ func _on_health_hurt() -> void:
 	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	Globals.level.current_level.record_kill(5)
+	Globals.current_room.record_kill(5)
 	$HurtAnimations.play("die")
 	await $HurtAnimations.animation_finished
 	queue_free()

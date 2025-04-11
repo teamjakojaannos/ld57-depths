@@ -10,7 +10,7 @@ func _on_hurtbox_hurt_target(_other: Hitbox) -> void:
 	stream.volume_db = -3.0
 	stream.bus = "Player Guns SFX"
 
-	Globals.current_level.add_child(stream)
+	Globals.current_room.add_child(stream)
 	stream.play()
 
 
@@ -20,5 +20,5 @@ func _on_anchor_body_entered(_body: Node2D) -> void:
 	stream.volume_db = -2.5
 	stream.bus = "Player Guns SFX"
 
-	Globals.current_level.add_child(stream)
+	Globals.current_room.add_child(stream)
 	stream.play()

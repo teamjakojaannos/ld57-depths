@@ -63,7 +63,7 @@ func run_away_after_charge():
 	$AnimationPlayer.play_backwards("charge")
 	current_state = State.AfterCharge
 	speed = after_charge_speed
-	target = Globals.current_level.get_random_fish_nav_point()
+	target = Globals.current_room.get_random_fish_nav_point()
 
 	# a bit of explanation here:
 	# when fish reaches the charge target, it picks a random point and starts
@@ -105,7 +105,7 @@ func _on_health_hurt() -> void:
 	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	Globals.level.current_level.record_kill(7)
+	Globals.current_room.record_kill(7)
 
 	$HurtAnimations.play("die")
 	if braking_tween != null:

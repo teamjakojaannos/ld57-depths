@@ -19,5 +19,5 @@ func _on_anchor_dropper_fire(shooter: CharacterBody2D, _direction: Vector2) -> v
 	anchor.fall_speed = anchor_fall_speed + inherited_speed
 	anchor.damage = anchor_damage
 	
-	var current_map = Globals.current_level
+	var current_map = Globals.current_room
 	current_map.add_child(anchor)

@@ -1,5 +1,5 @@
 extends Node2D
-class_name Level
+class_name Room
 
 signal Finished
 
@@ -26,7 +26,7 @@ func unlock_exit() -> void:
 		return
 
 	$Blocker.queue_free()
-	Globals.trigger_level_clear()
+	Globals.trigger_room_clear()
 	
 	for child in $LeftUtility.get_children():
 		if child is BubbleElevator:

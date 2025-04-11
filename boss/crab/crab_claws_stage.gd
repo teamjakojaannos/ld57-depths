@@ -7,9 +7,9 @@ var _attacks_in_progress: int = 0
 func _ready() -> void:
 	get_tree().create_timer(1.5).timeout.connect(attack)
 	
-	Globals.level_cleared.connect(_on_level_cleared)
+	Globals.room_cleared.connect(_on_room_cleared)
 
-func _on_level_cleared() -> void:
+func _on_room_cleared() -> void:
 	$Timer.stop()
 	_attacks_in_progress = 9999
 	$SnappyLeft.retreat()

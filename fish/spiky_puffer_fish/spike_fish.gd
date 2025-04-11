@@ -114,15 +114,15 @@ func _shoot_spikes() -> void:
 		spike.global_position = $SpikeOrigin.global_position + spawn
 		spike.damage = spike_damage
 		
-		Globals.level.current_level.add_child(spike)
+		Globals.current_room.add_child(spike)
 
 
 func pick_random_target_position() -> Vector2:
-	var current_level = Globals.current_level
-	if current_level == null:
+	var current_room = Globals.current_room
+	if current_room == null:
 		return position
 	
-	return current_level.get_random_fish_nav_point()
+	return current_room.get_random_fish_nav_point()
 
 func point_on_unit_circle() -> Vector2:
 	var angle = randf() * 2.0 * PI
@@ -138,7 +138,7 @@ func _on_health_hurt() -> void:
 
 
 func _on_health_die() -> void:
-	Globals.level.current_level.record_kill(money_per_kill)
+	Globals.current_room.record_kill(money_per_kill)
 
 	$AnimationPlayer.play("die")
 	await $AnimationPlayer.animation_finished

@@ -18,4 +18,4 @@ func _ready() -> void:
 func _on_health_hurt_at(pos: Vector2):
 	var emitter: Node2D = particle_emitter.instantiate()
 	emitter.global_position = pos
-	Globals.level.current_level.add_child(emitter)
+	Globals.current_room.add_child(emitter)

@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var level = $".."
+@onready var room = $".."
 
 var _triggered: bool = false
 
@@ -10,5 +10,5 @@ func _on_body_entered(body: Node2D) -> void:
 	_triggered = true
 
 	if body is Player:
-		level.finish()
+		room.finish()
 		queue_free()

@@ -8,5 +8,5 @@ func _on_hurtbox_hurt_target(_other: Hitbox) -> void:
 	stream.volume_db = 0.0
 	stream.bus = "Player Guns SFX"
 
-	Globals.current_level.add_child(stream)
+	Globals.current_room.add_child(stream)
 	stream.play()

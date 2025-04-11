@@ -14,7 +14,7 @@ func _on_health_hurt_at(pos: Vector2) -> void:
 
 	var emitter: Node2D = prefab.instantiate()
 	emitter.global_position = pos
-	Globals.level.current_level.add_child(emitter)
+	Globals.current_room.add_child(emitter)
 
 
 func _on_health_die() -> void:

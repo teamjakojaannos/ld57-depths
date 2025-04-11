@@ -21,7 +21,7 @@ signal upgrade_bought(name: String)
 
 @export var player: Player
 @export var level: EndlessLevel
-@export var current_level: Level
+@export var current_room: Room
 
 var money_at_start = 0
 var money_at_checkpoint = 0
@@ -47,7 +47,7 @@ var music_volume_percent: float:
 
 var bought_upgrades: Array[String] = []
 
-signal level_cleared
+signal room_cleared
 signal volume_changed
 signal money_changed
 
@@ -90,8 +90,8 @@ func _replay_upgrades() -> void:
 	for item in uppies:
 		handle_buy_item(item)
 
-func trigger_level_clear() -> void:
-	level_cleared.emit()
+func trigger_room_clear() -> void:
+	room_cleared.emit()
 
 
 func handle_buy_item(item_name: String) -> void:

@@ -21,5 +21,5 @@ func _spawn_projectile(_shooter: CharacterBody2D, direction: Vector2) -> void:
 	projectile.velocity = direction * projectile_speed
 	projectile.damage = projectile_damage
 	
-	var current_map = Globals.current_level
+	var current_map = Globals.current_room
 	current_map.add_child(projectile)

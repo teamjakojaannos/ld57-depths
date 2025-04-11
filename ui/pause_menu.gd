@@ -15,7 +15,8 @@ func _on_restart_pressed() -> void:
 	visible = false
 	get_tree().paused = false
 	Globals.reset()
-	get_tree().change_scene_to_file("res://levels/game.tscn")
+
+	LevelRig.restart_game(false)
 
 func toggle_pause():
 	get_tree().paused = !get_tree().paused
