@@ -12,10 +12,10 @@ var entry_text: Array[String] = []
 
 @export var no_blocker: bool = false
 
-@onready var top_slot: Node2D = $TopRoomPart
-@onready var bottom_slot: Node2D = $BottomRoomPart
-@onready var left_slot: Node2D = $LeftUtility
-@onready var right_slot: Node2D = $RightUtility
+@onready var top_slot: Node2D = $"NavRoom/TopRoomPart"
+@onready var bottom_slot: Node2D = $"NavRoom/BottomRoomPart"
+@onready var left_slot: Node2D = $"NavRoom/LeftUtility"
+@onready var right_slot: Node2D = $"NavRoom/RightUtility"
 
 
 func finish() -> void:
@@ -28,17 +28,23 @@ func unlock_exit() -> void:
 	$Blocker.queue_free()
 	Globals.trigger_room_clear()
 	
-	for child in $LeftUtility.get_children():
+	for child in left_slot.get_children():
 		if child is BubbleElevator:
 			child.enabled = false
 
-	for child in $RightUtility.get_children():
+	for child in right_slot.get_children():
 		if child is BubbleElevator:
 			child.enabled = false
 	
 func _ready() -> void:
 	if no_blocker:
 		unlock_exit()
+
+	_prepare_nav()
+
+func _prepare_nav() -> void:
+	await get_tree().physics_frame
+	$NavRoom.bake_navigation_polygon()
 
 func record_kill(money_gained:int = 1) -> void:
 	Globals.money += money_gained
