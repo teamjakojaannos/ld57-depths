@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://dmcjpau04bcb0"]
+[gd_scene load_steps=10 format=4 uid="uid://dmcjpau04bcb0"]
 
 [ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/room.gd" id="1_bokrc"]
 [ext_resource type="TileSet" uid="uid://djhl6rrvyuldm" path="res://levels/level.tres" id="2_ndswy"]
@@ -15,13 +15,19 @@ distance = -240.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6ln7"]
 size = Vector2(480, 24)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ndswy"]
+resource_local_to_scene = true
+vertices = PackedVector2Array(230, -10, -230, -10, -230, -310, 230, -310)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-240, -320, 240, -320, 240, 0, -240, 0)])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bokrc"]
 size = Vector2(480, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_slcm8"]
 size = Vector2(406, 265)
 
-[node name="Level" type="Node2D"]
+[node name="Room" type="Node2D"]
 script = ExtResource("1_bokrc")
 
 [node name="Bounds" type="Node2D" parent="."]
@@ -57,16 +63,19 @@ position = Vector2(0, -28)
 shape = SubResource("RectangleShape2D_a6ln7")
 debug_color = Color(0.393465, 0.61037, 0, 0.42)
 
-[node name="LeftUtility" type="Marker2D" parent="."]
+[node name="NavRoom" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ndswy")
+
+[node name="LeftUtility" type="Marker2D" parent="NavRoom"]
 position = Vector2(-208, 0)
 
-[node name="RightUtility" type="Marker2D" parent="."]
+[node name="RightUtility" type="Marker2D" parent="NavRoom"]
 position = Vector2(208, 0)
 
-[node name="TopRoomPart" type="Marker2D" parent="."]
+[node name="TopRoomPart" type="Marker2D" parent="NavRoom"]
 position = Vector2(0, -176)
 
-[node name="BottomRoomPart" type="Marker2D" parent="."]
+[node name="BottomRoomPart" type="Marker2D" parent="NavRoom"]
 position = Vector2(0, -32)
 
 [node name="NextLevelTrigger" type="Area2D" parent="."]
