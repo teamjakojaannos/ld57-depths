@@ -71,11 +71,11 @@ position = Vector2(144, -64)
 
 [node name="EnemyPaths" type="Node2D" parent="."]
 
-[node name="Path2D" type="Path2D" parent="EnemyPaths"]
+[node name="Path2D" type="Path2D" parent="EnemyPaths" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_pu1st")
 
-[node name="Path2D2" type="Path2D" parent="EnemyPaths"]
+[node name="Path2D2" type="Path2D" parent="EnemyPaths" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_wl5ns")
 
-[node name="Path2D3" type="Path2D" parent="EnemyPaths"]
+[node name="Path2D3" type="Path2D" parent="EnemyPaths" groups=["path_enemy_spawn"]]
 curve = SubResource("Curve2D_5jxt4")

@@ -63,7 +63,7 @@ func _do_generate_paths() -> void:
 			path.curve = path_curve
 			enemy_paths.add_child(path, true)
 			path.owner = enemy_paths.get_parent()
-			path.add_to_group("path_enemy_spawn")
+			path.add_to_group("path_enemy_spawn", true)
 		else:
 			print("Could not complete path starting at %s" % start_coords)
 
