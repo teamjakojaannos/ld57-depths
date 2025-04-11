@@ -55,7 +55,7 @@ func _create_movement_tweens(force_recreate: bool = false):
 	if !is_tween2_ok || force_recreate:
 		if movement_tween_2 != null:
 			movement_tween_2.kill()
-		
+
 		var end = pick_random_target_position()
 		var time = randf_range(1.0, 2.0)
 		
@@ -63,6 +63,7 @@ func _create_movement_tweens(force_recreate: bool = false):
 		movement_tween_2.tween_property(self, "target2", end, time)
 		movement_tween_2.tween_callback(_create_movement_tweens)
 
+var last_direction: Vector2 = Vector2.RIGHT
 func _physics_process(delta: float) -> void:
 	var target_position = (target1 + target2) / 2.0
 	var previous_position = position
@@ -70,15 +71,24 @@ func _physics_process(delta: float) -> void:
 	var d2 = position.distance_squared_to(target_position)
 	var close_enough = 500.0
 	if d2 <= close_enough:
-		return
-	
-	position = position.move_toward(target_position, move_speed * delta)
-	
+		if _is_allowed_to_stop():
+			return
+		else:
+			position += last_direction * move_speed * delta
+	else:
+		position = position.move_toward(target_position, move_speed * delta)
+		last_direction = (position - previous_position).normalized()
+
 	var movement = position - previous_position
 	$AnimatedSprite2D.flip_h = movement.x > 0
 
 	if ready_to_attack and !is_dead:
-		attack()
+		if _is_allowed_to_stop():
+			attack()
+
+func _is_allowed_to_stop():
+	return Globals.current_room.is_in_navigable_region(global_position)
+
 
 func attack():
 	ready_to_attack = false
