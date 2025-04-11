@@ -63,10 +63,10 @@ position = Vector2(-208, 0)
 [node name="RightUtility" type="Marker2D" parent="."]
 position = Vector2(208, 0)
 
-[node name="TopLevelPart" type="Marker2D" parent="."]
+[node name="TopRoomPart" type="Marker2D" parent="."]
 position = Vector2(0, -176)
 
-[node name="BottomLevelPart" type="Marker2D" parent="."]
+[node name="BottomRoomPart" type="Marker2D" parent="."]
 position = Vector2(0, -32)
 
 [node name="NextLevelTrigger" type="Area2D" parent="."]

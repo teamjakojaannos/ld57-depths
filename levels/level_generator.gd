@@ -1,11 +1,11 @@
 extends Node
 class_name LevelGenerator
 
-@export var parts: Array[LevelPart] = []
+@export var parts: Array[RoomPart] = []
 @export var spawnlists: Array[Spawnlist] = []
 
 @export_category("Crab Rave")
-@export var crab_rave_parts: Array[LevelPart] = []
+@export var crab_rave_parts: Array[RoomPart] = []
 @export var crab_rave_spawnlists: Array[Spawnlist] = []
 
 # level.tscn
@@ -26,8 +26,8 @@ func _select_spawnlist() -> Spawnlist:
 	
 	return allowed.pick_random()
 
-func _find_level_parts(slot: LevelPart.Slot, parts_list: Array[LevelPart]) -> Array[LevelPart]:
-	var allowed: Array[LevelPart] = []
+func _find_room_parts(slot: RoomPart.Slot, parts_list: Array[RoomPart]) -> Array[RoomPart]:
+	var allowed: Array[RoomPart] = []
 	for part in parts_list:
 		if part.can_be_placed_in(slot):
 			allowed.push_back(part) 
@@ -36,28 +36,28 @@ func _find_level_parts(slot: LevelPart.Slot, parts_list: Array[LevelPart]) -> Ar
 
 
 func generate(container: Node) -> Room:
-	var parts_list: Array[LevelPart] = parts
+	var parts_list: Array[RoomPart] = parts
 	var spawnlist = _select_spawnlist()
 	if spawnlist.is_special and !spawnlist.level_override.is_empty():
 		parts_list = spawnlist.level_override
 	
-	if spawnlist.is_special and spawnlist.special_sequence == LevelPart.SpecialSequence.SHOP:
+	if spawnlist.is_special and spawnlist.special_sequence == RoomPart.SpecialSequence.SHOP:
 		Globals.money_at_checkpoint = Globals.money
 	
 	var is_left_utility_allowed: bool = true
 	var is_right_utility_allowed: bool = true
 	
-	var first_slot = LevelPart.Slot.BOTTOM
-	var first_part: LevelPart = _find_level_parts(first_slot, parts_list).pick_random()
+	var first_slot = RoomPart.Slot.BOTTOM
+	var first_part: RoomPart = _find_room_parts(first_slot, parts_list).pick_random()
 	
 	is_left_utility_allowed = is_left_utility_allowed && !first_part.blocks_left_utility
 	is_right_utility_allowed = is_right_utility_allowed && !first_part.blocks_right_utility
 
-	var second_part: LevelPart
-	var second_slot: LevelPart.Slot
-	if first_part.allowed_placement != LevelPart.AllowedPlacement.DOUBLE_SIZE:
-		second_slot = LevelPart.other_slot(first_slot)
-		var second_part_candidates = _find_level_parts(second_slot, parts_list)
+	var second_part: RoomPart
+	var second_slot: RoomPart.Slot
+	if first_part.allowed_placement != RoomPart.AllowedPlacement.DOUBLE_SIZE:
+		second_slot = RoomPart.other_slot(first_slot)
+		var second_part_candidates = _find_room_parts(second_slot, parts_list)
 		
 		if not second_part_candidates.is_empty():
 			second_part = second_part_candidates.pick_random()
@@ -66,8 +66,8 @@ func generate(container: Node) -> Room:
 
 	return _generate_from_parts(
 		container,
-		first_part if first_slot == LevelPart.Slot.TOP else second_part,
-		second_part if first_slot == LevelPart.Slot.TOP else first_part,
+		first_part if first_slot == RoomPart.Slot.TOP else second_part,
+		second_part if first_slot == RoomPart.Slot.TOP else first_part,
 		is_left_utility_allowed,
 		is_right_utility_allowed,
 		spawnlist
@@ -75,8 +75,8 @@ func generate(container: Node) -> Room:
 
 func _generate_from_parts(
 	container: Node,
-	top_part: LevelPart,
-	bottom_part: LevelPart,
+	top_part: RoomPart,
+	bottom_part: RoomPart,
 	right_utility: bool,
 	left_utility: bool,
 	spawnlist: Spawnlist
@@ -85,12 +85,12 @@ func _generate_from_parts(
 	container.add_child(room)
 
 	var require_completion = false
-	if top_part is LevelPart:
+	if top_part is RoomPart:
 		require_completion = require_completion || top_part.require_completion
-		_place_part.call_deferred(room, LevelPart.Slot.TOP, top_part)
-	if bottom_part is LevelPart:
+		_place_part.call_deferred(room, RoomPart.Slot.TOP, top_part)
+	if bottom_part is RoomPart:
 		require_completion = require_completion || bottom_part.require_completion
-		_place_part.call_deferred(room, LevelPart.Slot.BOTTOM, bottom_part)
+		_place_part.call_deferred(room, RoomPart.Slot.BOTTOM, bottom_part)
 
 	if left_utility:
 		_place_utility.call_deferred(room, true)
@@ -149,11 +149,11 @@ func _spawn_enemies(room: Room, spawnlist: Spawnlist) -> void:
 	room.kills_required = spawned_enemies
 
 
-func _place_part(room: Room, slot: LevelPart.Slot, part: LevelPart) -> void:
+func _place_part(room: Room, slot: RoomPart.Slot, part: RoomPart) -> void:
 	var part_prefab: PackedScene = part.scenes.pick_random()
 	var part_instance: Node2D = part_prefab.instantiate()
 
-	if slot == LevelPart.Slot.BOTTOM:
+	if slot == RoomPart.Slot.BOTTOM:
 		room.bottom_slot.add_child(part_instance)
 		part_instance.global_position = room.bottom_slot.global_position
 	else:
