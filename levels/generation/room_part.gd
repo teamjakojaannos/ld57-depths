@@ -1,6 +1,6 @@
 @tool
 extends Resource
-class_name LevelPart
+class_name RoomPart
 
 @export var scenes: Array[PackedScene] = []
 @export var allowed_placement: AllowedPlacement = AllowedPlacement.EITHER

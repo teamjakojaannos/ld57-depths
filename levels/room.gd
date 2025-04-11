@@ -12,8 +12,8 @@ var entry_text: Array[String] = []
 
 @export var no_blocker: bool = false
 
-@onready var top_slot: Node2D = $TopLevelPart
-@onready var bottom_slot: Node2D = $BottomLevelPart
+@onready var top_slot: Node2D = $TopRoomPart
+@onready var bottom_slot: Node2D = $BottomRoomPart
 @onready var left_slot: Node2D = $LeftUtility
 @onready var right_slot: Node2D = $RightUtility
 
