@@ -6,7 +6,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_7dm0k"]
 font_size = 24
 
-[node name="MainMenu" type="Control"]
+[node name="MainMenu" type="Control" groups=["main_scene", "non_game_scene"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

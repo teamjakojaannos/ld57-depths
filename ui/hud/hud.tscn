@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://c21kxdgros7ub"]
+
+[ext_resource type="Script" uid="uid://da6nqk78r66uc" path="res://ui/hud/hud.gd" id="1_gfles"]
+[ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="1_o2lis"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="2_gfles"]
+[ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="3_aixkq"]
+[ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="4_cxhb7"]
+[ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="5_5uuaq"]
+[ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="6_p3vm3"]
+[ext_resource type="Texture2D" uid="uid://bktyiq1wdb77w" path="res://graphics/environment/verkkh4.png" id="7_gv4gi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bw7v0"]
+font_size = 32
+shadow_size = 3
+shadow_color = Color(4.73787e-08, 0.0360551, 0.0618759, 0.403922)
+
+[node name="Hud" type="CanvasLayer"]
+layer = 3
+script = ExtResource("1_gfles")
+
+[node name="HpIndicator" parent="." instance=ExtResource("1_o2lis")]
+
+[node name="LevelIndicator" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 9.0
+offset_right = 124.0
+offset_bottom = 54.0
+theme_override_fonts/font = ExtResource("2_gfles")
+theme_override_font_sizes/font_size = 32
+text = "level: 666"
+label_settings = SubResource("LabelSettings_bw7v0")
+script = ExtResource("3_aixkq")
+
+[node name="MoneyCounter" parent="." instance=ExtResource("4_cxhb7")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -125.0
+offset_top = -59.0
+offset_right = -74.0
+offset_bottom = -41.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Anchor_tip" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 114.0
+offset_top = 3.0
+offset_right = 1265.0
+offset_bottom = 650.0
+
+[node name="TextureRect" type="TextureRect" parent="Anchor_tip"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 52.0
+offset_right = 68.0
+offset_bottom = 92.0
+texture = ExtResource("5_5uuaq")
+
+[node name="tiptext" type="Label" parent="Anchor_tip"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 63.0
+offset_right = 123.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("2_gfles")
+theme_override_font_sizes/font_size = 32
+text = "C"
+label_settings = SubResource("LabelSettings_bw7v0")
+
+[node name="Harpoon_tip" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 1150.0
+offset_bottom = 650.0
+
+[node name="TextureRect" type="TextureRect" parent="Harpoon_tip"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 53.0
+offset_right = 57.0
+offset_bottom = 93.0
+texture = ExtResource("6_p3vm3")
+
+[node name="tiptext" type="Label" parent="Harpoon_tip"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 63.0
+offset_right = 123.0
+offset_bottom = 108.0
+theme_override_fonts/font = ExtResource("2_gfles")
+theme_override_font_sizes/font_size = 32
+text = "Z"
+label_settings = SubResource("LabelSettings_bw7v0")
+
+[node name="Net_tip" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -9.0
+offset_top = 36.0
+offset_right = 1142.0
+offset_bottom = 683.0
+
+[node name="TextureRect" type="TextureRect" parent="Net_tip"]
+layout_mode = 0
+offset_left = 77.0
+offset_top = 7.0
+offset_right = 141.0
+offset_bottom = 71.0
+texture = ExtResource("7_gv4gi")
+
+[node name="tiptext" type="Label" parent="Net_tip"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 30.0
+offset_right = 182.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("2_gfles")
+theme_override_font_sizes/font_size = 32
+text = "X"
+label_settings = SubResource("LabelSettings_bw7v0")

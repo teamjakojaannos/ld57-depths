@@ -2,7 +2,6 @@ extends Node2D
 class_name EndlessLevel
 
 @onready var current_level: Level = $Level
-@onready var player: Player = $"../Player"
 @onready var level_generator: LevelGenerator = $LevelGenerator
 
 @export var transition_duration: float = 1.5
@@ -70,7 +69,7 @@ func _get_music_to_play() -> Jukebox.Song:
 func _play_transition_animation(new_level: Level) -> void:
 	var old_level_goal_position = Vector2.UP * _level_height_total
 	var new_level_goal_position = Vector2.ZERO
-	var player_goal_position = player.position + Vector2.UP * _level_height_total
+	var player_goal_position = Globals.player.position + Vector2.UP * _level_height_total
 	# HACK: offset slightly to create illusion of falling
 	player_goal_position += Vector2.DOWN * (15.0 * tile_size)
 
@@ -87,12 +86,12 @@ func _play_transition_animation(new_level: Level) -> void:
 	transition.tween_property(current_level, "position", old_level_goal_position, transition_duration)
 	transition.tween_property(new_level, "position", new_level_goal_position, transition_duration)
 	transition.tween_property(Globals, "depth", Globals.depth + _level_height_total, transition_duration)
-	transition.tween_property(player, "position", player_goal_position, transition_duration)
+	transition.tween_property(Globals.player, "position", player_goal_position, transition_duration)
 	
 	var entry_text = ["KILL", "EVERY", "FISH"]
 	if new_level.entry_text != null && !new_level.entry_text.is_empty():
 		entry_text = new_level.entry_text
-	objective_overlay.show_objective(entry_text[0], entry_text[1], entry_text[2], 1.0)
+	UI.objective_overlay.show_objective(entry_text[0], entry_text[1], entry_text[2], 1.0)
 
 	var d = Globals.current_room_index / 100.0
 	$Bubbles.pitch_scale = lerp(1.05, 0.35, d)
@@ -109,11 +108,7 @@ func _play_transition_animation(new_level: Level) -> void:
 	_is_transition_in_progress = false
 
 func _freeze_player() -> void:
-	player.is_in_transition = true
+	Globals.player.is_in_transition = true
 
 func _release_player() -> void:
-	player.is_in_transition = false
-
-var objective_overlay: ObjectiveOverlay:
-	get:
-		return $"../Overlay/ObjectiveOverlay"
+	Globals.player.is_in_transition = false

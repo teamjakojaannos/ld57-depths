@@ -21,7 +21,7 @@ func _do_clear_paths() -> void:
 		path.queue_free()
 
 func _do_generate_paths() -> void:
-	_do_clear_paths()
+	_clear_paths.call()
 	
 	var tile_size = tile_set.tile_size
 	
@@ -54,8 +54,8 @@ func _do_generate_paths() -> void:
 		var is_complete_path = path_curve.point_count >= 4 && coords == start_coords
 
 		# Make the path cyclic
-		var offset = offset_of(start_tile_type)
-		path_curve.add_point((start_coords + offset) * tile_size)
+		var start_offset = offset_of(start_tile_type)
+		path_curve.add_point((start_coords + start_offset) * tile_size)
 
 		if is_complete_path:
 			print("Found a complete path starting at %s" % start_coords)

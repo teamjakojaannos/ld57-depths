@@ -587,7 +587,7 @@ offset_right = 1156.0
 offset_bottom = 650.0
 texture = SubResource("CanvasTexture_h770g")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="IntroCamera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
 [node name="BG" type="TextureRect" parent="."]

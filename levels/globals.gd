@@ -17,6 +17,7 @@ class_name GameGlobals
 var tutorial_cleared: bool = false
 
 signal stage_changed
+signal upgrade_bought(name: String)
 
 @export var player: Player
 @export var level: EndlessLevel
@@ -124,4 +125,5 @@ func handle_buy_item(item_name: String) -> void:
 	
 	
 	if item_name != "Sold out" && item_name != "Health Potion":
+		upgrade_bought.emit(item_name)
 		bought_upgrades.append(item_name)

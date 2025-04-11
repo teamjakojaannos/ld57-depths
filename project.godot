@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://levels/globals.gd"
+LevelRig="*res://levels/level_rig.tscn"
+UI="*res://ui/ui.tscn"
 
 [display]
 
@@ -37,6 +39,8 @@ enabled=PackedStringArray("res://addons/AS2P/plugin.cfg")
 player=""
 enemy_spawn=""
 path_enemy_spawn=""
+main_scene=""
+non_game_scene="Marks the scene as non-game scene (e.g. menu, splash screen), disabling automatic level rig injection via autoloads."
 
 [input]
 

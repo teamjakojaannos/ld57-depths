@@ -14,6 +14,12 @@ var is_dead: bool:
 var _slowdown_amount: float
 var _push_force: Vector2 = Vector2.ZERO
 
+enum Upgrade {
+	UnlockHarpoonGun,
+	UnlockNetThrower,
+	UnlockAnchorDropper,
+}
+
 ## Applies a knockback force (single time "impulse") on the player. 
 func push(force: Vector2) -> void:
 	_push_force += force
@@ -30,6 +36,8 @@ signal Jumped
 signal Die
 signal Hurt
 signal Heal
+
+signal gained_upgrade(upgrade: Upgrade)
 
 
 var is_moving: bool:
@@ -154,15 +162,15 @@ func _input(event: InputEvent) -> void:
 
 func unlock_harpoon_gun():
 	$HarpoonGun.is_unlocked = true
-	$"../Hud/Harpoon_tip".visible = true
+	gained_upgrade.emit(Upgrade.UnlockHarpoonGun)
 
 func unlock_net_thrower():
 	$NetThrower.is_unlocked = true
-	$"../Hud/Net_tip".visible = true
+	gained_upgrade.emit(Upgrade.UnlockNetThrower)
 
 func unlock_anchor_dropper():
 	$AnchorDropper.is_unlocked = true
-	$"../Hud/Anchor_tip".visible = true
+	gained_upgrade.emit(Upgrade.UnlockAnchorDropper)
 
 func upgrade_harpoon_gun(tier: int):
 	match tier:
@@ -201,9 +209,8 @@ func get_max_health():
 func _on_health_die() -> void:
 	Die.emit()
 
-	await Globals.level.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
-	Globals._restoring_dying_state = true
-	get_tree().change_scene_to_file("res://levels/game.tscn")
+	await UI.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
+	LevelRig.restart_game(true)
 
 func _on_health_hurt() -> void:
 	Hurt.emit()

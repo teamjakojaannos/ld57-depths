@@ -1,0 +1,321 @@
+[gd_scene load_steps=11 format=3 uid="uid://djk4bd53j2ov4"]
+
+[ext_resource type="Script" uid="uid://c7m15n72b5j4x" path="res://ui/objective_overlay.gd" id="1_bi8hs"]
+[ext_resource type="Script" uid="uid://bju15cofv8drt" path="res://ui/ui.gd" id="1_hrmpd"]
+[ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="2_hrmpd"]
+[ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="3_x7jpl"]
+[ext_resource type="AudioStream" uid="uid://h0hynkbrd0jp" path="res://ui/vineboom.ogg" id="4_os0ka"]
+[ext_resource type="PackedScene" uid="uid://m133sbmuu2i2" path="res://ui/pause_menu.tscn" id="11_3lbto"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c3fg2"]
+font = ExtResource("2_hrmpd")
+font_size = 48
+font_color = Color(0.57, 0.1425, 0.1425, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.24, 0, 0, 0.443137)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Animation" id="Animation_ughyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:slide_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:slide_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:slide_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ObjectiveOverlay/AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ObjectiveOverlay/AudioStreamPlayer2:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ObjectiveOverlay/AudioStreamPlayer3:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_y7kp8"]
+resource_name = "enter"
+length = 3.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:modulate")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:modulate")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine1:slide_offset")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine2:slide_offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, -1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ObjectiveOverlay/VBoxContainer/ObjectiveLine3:slide_offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.9, 2.5),
+"transitions": PackedFloat32Array(1, -2, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("ObjectiveOverlay/AudioStreamPlayer:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ObjectiveOverlay/AudioStreamPlayer2:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ObjectiveOverlay/AudioStreamPlayer3:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ughyh"]
+_data = {
+&"RESET": SubResource("Animation_ughyh"),
+&"enter": SubResource("Animation_y7kp8")
+}
+
+[node name="UI" type="Node"]
+script = ExtResource("1_hrmpd")
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="ObjectiveOverlay" type="Control" parent="Overlay"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bi8hs")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/ObjectiveOverlay"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -104.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ObjectiveLine1" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "KILL"
+label_settings = SubResource("LabelSettings_c3fg2")
+horizontal_alignment = 1
+script = ExtResource("3_x7jpl")
+
+[node name="ObjectiveLine2" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "THEM"
+label_settings = SubResource("LabelSettings_c3fg2")
+horizontal_alignment = 1
+script = ExtResource("3_x7jpl")
+
+[node name="ObjectiveLine3" type="Label" parent="Overlay/ObjectiveOverlay/VBoxContainer"]
+layout_mode = 2
+text = "ALL"
+label_settings = SubResource("LabelSettings_c3fg2")
+horizontal_alignment = 1
+script = ExtResource("3_x7jpl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Overlay/ObjectiveOverlay"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_ughyh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("4_os0ka")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("4_os0ka")
+volume_db = -7.0
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="Overlay/ObjectiveOverlay"]
+stream = ExtResource("4_os0ka")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="PauseMenuLayer" type="CanvasLayer" parent="."]
+layer = 4
+
+[node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource("11_3lbto")]

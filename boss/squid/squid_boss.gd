@@ -35,6 +35,7 @@ func _on_health_die() -> void:
 	tween.tween_property($"../Tentacles", "global_position", goal2, 5.0)
 	
 	await tween.finished
-	await Globals.level.objective_overlay.show_objective("YOU", "ARE", "VICTORIOUS", 0.5)
+	await UI.objective_overlay.show_objective("YOU", "ARE", "VICTORIOUS", 0.5)
 	await get_tree().create_timer(5.0).timeout
+	UI.remove_hud()
 	get_tree().change_scene_to_file("res://epilogue.tscn")

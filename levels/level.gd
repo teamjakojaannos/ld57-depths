@@ -45,7 +45,7 @@ func record_kill(money_gained:int = 1) -> void:
 	_kills += 1
 
 	if _kills >= kills_required and !no_blocker:
-		Globals.level.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
+		UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
 		unlock_exit()
 
 func get_random_fish_nav_point() -> Vector2:
