@@ -4,14 +4,8 @@ class_name LevelGenerator
 @export var parts: Array[RoomPart] = []
 @export var spawnlists: Array[Spawnlist] = []
 
-@export_category("Crab Rave")
-@export var crab_rave_parts: Array[RoomPart] = []
-@export var crab_rave_spawnlists: Array[Spawnlist] = []
 
-# level.tscn
-const level_base: PackedScene = preload("uid://dmcjpau04bcb0")
-
-# bubble_elevator.tscn
+const room_prefab: PackedScene = preload("uid://dmcjpau04bcb0")
 const utility_prefab: PackedScene = preload("uid://me27a85v8vp3")
 
 func _select_spawnlist() -> Spawnlist:
@@ -81,7 +75,7 @@ func _generate_from_parts(
 	left_utility: bool,
 	spawnlist: Spawnlist
 ) -> Room:
-	var room: Room = level_base.instantiate()
+	var room: Room = room_prefab.instantiate()
 	container.add_child(room)
 
 	var require_completion = false
