@@ -93,6 +93,23 @@ func _replay_upgrades() -> void:
 func trigger_room_clear() -> void:
 	room_cleared.emit()
 
+func unlock_all_upgrades() -> void:
+	var all_upgrades = [
+		"Anchor weapon",
+		"Net weapon",
+		"Harpoon gun +1",
+		"Harpoon gun +2",
+		"Health Potion",
+		"Max health +1",
+		"Max Health +2",
+		"Max Health +3",
+		"Speed +1",
+		"Speed +2"
+	]
+	player.unlock_harpoon_gun()
+	for u in all_upgrades:
+		handle_buy_item(u)
+
 
 func handle_buy_item(item_name: String) -> void:
 	match item_name:
