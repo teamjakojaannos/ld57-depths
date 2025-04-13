@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgbcf2ry81g74"]
+
+[ext_resource type="Script" uid="uid://dqrrog4lhcefr" path="res://fish/oarfish/oarfish_segment.gd" id="1_jncl6"]
+[ext_resource type="Gradient" uid="uid://b70dp6v0tvogb" path="res://fish/oarfish/oarfish_segment_sprite_gradient.tres" id="2_mngyq"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mngyq"]
+gradient = ExtResource("2_mngyq")
+width = 12
+height = 12
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.1, 0.1)
+
+[node name="Segment" type="Node2D"]
+script = ExtResource("1_jncl6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_mngyq")
+
+[node name="AvoidanceTarget" type="NavigationObstacle2D" parent="."]
+radius = 6.0
+vertices = PackedVector2Array(0, -6, -6, 0, 0, 6, 6, 0)

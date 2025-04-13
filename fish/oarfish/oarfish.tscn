@@ -1,0 +1,188 @@
+[gd_scene load_steps=5 format=3 uid="uid://vacodpq36a7l"]
+
+[ext_resource type="Script" uid="uid://b4w7my1d0yhy8" path="res://fish/oarfish/oarfish.gd" id="1_dl7s0"]
+[ext_resource type="Texture2D" uid="uid://bs4fe5y18csh8" path="res://graphics/spike_fish.png" id="2_2ol0p"]
+[ext_resource type="PackedScene" uid="uid://bgbcf2ry81g74" path="res://fish/oarfish/oarfish_segment.tscn" id="3_2ol0p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dl7s0"]
+radius = 5.0
+
+[node name="Oarfish" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_dl7s0")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("2_2ol0p")
+
+[node name="Segments" type="Node2D" parent="."]
+top_level = true
+
+[node name="Segment" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 10)
+enable_nav_avoidance = false
+size = 15
+
+[node name="Segment2" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 20)
+size = 15
+
+[node name="Segment3" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 30)
+size = 15
+
+[node name="Segment4" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 39)
+distance_constraint = 9.0
+size = 14
+
+[node name="Segment5" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 48)
+distance_constraint = 9.0
+size = 14
+
+[node name="Segment6" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 57)
+distance_constraint = 9.0
+size = 14
+
+[node name="Segment7" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 66)
+distance_constraint = 9.0
+size = 14
+
+[node name="Segment8" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 74)
+distance_constraint = 8.0
+size = 13
+
+[node name="Segment9" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 82)
+distance_constraint = 8.0
+size = 13
+
+[node name="Segment10" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 90)
+distance_constraint = 8.0
+size = 13
+
+[node name="Segment11" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 98)
+distance_constraint = 8.0
+size = 13
+
+[node name="Segment12" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 106)
+distance_constraint = 8.0
+size = 13
+
+[node name="Segment13" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 113)
+distance_constraint = 7.0
+
+[node name="Segment14" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 120)
+distance_constraint = 7.0
+
+[node name="Segment15" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 127)
+distance_constraint = 7.0
+
+[node name="Segment16" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 134)
+distance_constraint = 7.0
+
+[node name="Segment17" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 141)
+distance_constraint = 7.0
+
+[node name="Segment18" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 148)
+distance_constraint = 7.0
+
+[node name="Segment19" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 154)
+distance_constraint = 6.0
+size = 11
+
+[node name="Segment20" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 160)
+distance_constraint = 6.0
+size = 11
+
+[node name="Segment21" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 166)
+distance_constraint = 6.0
+size = 11
+
+[node name="Segment22" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 172)
+distance_constraint = 6.0
+size = 11
+
+[node name="Segment23" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 177)
+distance_constraint = 5.0
+size = 10
+
+[node name="Segment24" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 182)
+distance_constraint = 5.0
+size = 10
+
+[node name="Segment25" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 187)
+distance_constraint = 5.0
+size = 10
+
+[node name="Segment26" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 191)
+distance_constraint = 4.0
+size = 9
+
+[node name="Segment27" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 195)
+distance_constraint = 4.0
+size = 9
+
+[node name="Segment28" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 199)
+distance_constraint = 4.0
+size = 9
+
+[node name="Segment29" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 202)
+distance_constraint = 3.0
+size = 8
+
+[node name="Segment30" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 205)
+distance_constraint = 3.0
+size = 8
+
+[node name="Segment31" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 208)
+distance_constraint = 3.0
+size = 8
+
+[node name="Segment32" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 210)
+distance_constraint = 2.0
+size = 7
+
+[node name="Segment33" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 212)
+distance_constraint = 2.0
+size = 7
+
+[node name="Segment34" parent="Segments" instance=ExtResource("3_2ol0p")]
+position = Vector2(0, 214)
+distance_constraint = 2.0
+size = 7
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dl7s0")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
