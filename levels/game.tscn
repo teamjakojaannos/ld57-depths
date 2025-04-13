@@ -1,15 +1,12 @@
-[gd_scene load_steps=49 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=46 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/room.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
 [ext_resource type="Resource" uid="uid://61ukmhorbgv2" path="res://levels/spawnlists/special/tutorial/tutorial_02.tres" id="7_218np"]
 [ext_resource type="Resource" uid="uid://3txs88cmr0d8" path="res://levels/spawnlists/special/crab_fight_01.tres" id="9_fbo34"]
-[ext_resource type="Resource" uid="uid://cb53ctfrsyrep" path="res://levels/level_parts/special/crab_boss_stage_1.tres" id="9_tkgql"]
 [ext_resource type="Script" uid="uid://bp204dfquw307" path="res://levels/level_generator.gd" id="10_0u5wd"]
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="10_re6tf"]
-[ext_resource type="Resource" uid="uid://di0yswatohakc" path="res://levels/level_parts/special/crab_boss_stage_2.tres" id="10_si8kf"]
 [ext_resource type="Resource" uid="uid://cuii51a4el6ao" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
-[ext_resource type="Resource" uid="uid://titgidis0ctw" path="res://levels/level_parts/special/crab_boss_stage_3.tres" id="11_kw56w"]
 [ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="11_mgpep"]
 [ext_resource type="Resource" uid="uid://ckgxvua0i2552" path="res://levels/level_parts/special/shop/shop_01.tres" id="11_nmrji"]
 [ext_resource type="Resource" uid="uid://cxtoqp352umox" path="res://levels/level_parts/special/shop/shop_02.tres" id="12_6f4up"]
@@ -198,8 +195,6 @@ script = ExtResource("1_vhr6a")
 script = ExtResource("10_0u5wd")
 parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
 spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), SubResource("Resource_8c5ma"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), SubResource("Resource_hvtst"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), SubResource("Resource_ygxck"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), SubResource("Resource_6hew7"), SubResource("Resource_exhqh"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), SubResource("Resource_7g8xt"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), SubResource("Resource_qx8it"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), SubResource("Resource_g1efs"), ExtResource("26_y3vsb")])
-crab_rave_parts = Array[ExtResource("11_mgpep")]([ExtResource("9_tkgql"), ExtResource("10_si8kf"), ExtResource("11_kw56w")])
-crab_rave_spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
 [node name="FirstRoom" parent="EndlessLevel" instance=ExtResource("1_748nt")]
