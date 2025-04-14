@@ -8,10 +8,10 @@ func _ready() -> void:
 func _on_player_gained_upgrade(upgrade: Player.Upgrade) -> void:
 	match upgrade:
 		Player.Upgrade.UnlockHarpoonGun:
-			$Harpoon_tip.visible = true
+			$"HudRoot/PlayerStatus/Abilities/Harpoon_tip".visible = true
 		Player.Upgrade.UnlockNetThrower:
-			$Net_tip.visible = true
+			$"HudRoot/PlayerStatus/Abilities/Net_tip".visible = true
 		Player.Upgrade.UnlockAnchorDropper:
-			$Anchor_tip.visible = true
+			$"HudRoot/PlayerStatus/Abilities/Anchor_tip".visible = true
 		_:
 			pass
