@@ -1,15 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://c21kxdgros7ub"]
+[gd_scene load_steps=11 format=3 uid="uid://c21kxdgros7ub"]
 
 [ext_resource type="Script" uid="uid://da6nqk78r66uc" path="res://ui/hud/hud.gd" id="1_gfles"]
 [ext_resource type="PackedScene" uid="uid://c6bf1xwacf7yu" path="res://ui/hp_indicator.tscn" id="1_o2lis"]
 [ext_resource type="FontFile" uid="uid://bc6khdc35fsy" path="res://fonts/gothic_pixel/gothic_pixel.ttf" id="2_gfles"]
 [ext_resource type="Script" uid="uid://bgvunijaqmvb8" path="res://levels/level_indicator.gd" id="3_aixkq"]
+[ext_resource type="FontFile" uid="uid://obfec4wf4uic" path="res://fonts/gothic_pixel/gothic_pixel_edit.ttf" id="3_cxhb7"]
 [ext_resource type="PackedScene" uid="uid://db24kx5yn1fk7" path="res://ui/money_counter.tscn" id="4_cxhb7"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="5_5uuaq"]
 [ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="6_p3vm3"]
 [ext_resource type="Texture2D" uid="uid://bktyiq1wdb77w" path="res://graphics/environment/verkkh4.png" id="7_gv4gi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_bw7v0"]
+font = ExtResource("3_cxhb7")
 font_size = 32
 shadow_size = 3
 shadow_color = Color(4.73787e-08, 0.0360551, 0.0618759, 0.403922)
@@ -18,18 +20,32 @@ shadow_color = Color(4.73787e-08, 0.0360551, 0.0618759, 0.403922)
 layer = 3
 script = ExtResource("1_gfles")
 
-[node name="HpIndicator" parent="." instance=ExtResource("1_o2lis")]
+[node name="HudRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="LevelIndicator" type="Label" parent="."]
-offset_left = 11.0
-offset_top = 9.0
-offset_right = 124.0
-offset_bottom = 54.0
+[node name="LevelIndicator" type="Label" parent="HudRoot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -61.5
+offset_right = 61.5
+offset_bottom = 45.0
+grow_horizontal = 2
 theme_override_fonts/font = ExtResource("2_gfles")
 theme_override_font_sizes/font_size = 32
-text = "level: 666"
+text = "Level: 666"
 label_settings = SubResource("LabelSettings_bw7v0")
+horizontal_alignment = 1
+vertical_alignment = 2
 script = ExtResource("3_aixkq")
+
+[node name="HpIndicator" parent="." instance=ExtResource("1_o2lis")]
 
 [node name="MoneyCounter" parent="." instance=ExtResource("4_cxhb7")]
 anchors_preset = 3
