@@ -1,16 +1,16 @@
-[gd_scene load_steps=76 format=3 uid="uid://c7cixyoixeqxe"]
+[gd_scene load_steps=117 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
 [ext_resource type="Texture2D" uid="uid://djixa0ojt1h4q" path="res://characters/ukko_kuolee.png" id="2_h1q25"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_8sqrr"]
+[ext_resource type="Script" uid="uid://cbk38e1mik4eg" path="res://characters/player/player_sprite.gd" id="3_dx8gg"]
 [ext_resource type="Texture2D" uid="uid://dhip2doalgtvt" path="res://characters/ukko_fall2.png" id="3_j31ep"]
 [ext_resource type="Texture2D" uid="uid://7cv2cco0ks1s" path="res://characters/ukko_idle2.png" id="4_6t23p"]
 [ext_resource type="Texture2D" uid="uid://dpcvejmwj5fb" path="res://characters/ukko_crouch2.png" id="5_41yun"]
 [ext_resource type="Texture2D" uid="uid://bcocl277dytcr" path="res://characters/ukko_jump2.png" id="5_n8jd0"]
 [ext_resource type="Texture2D" uid="uid://nms5due712ew" path="res://characters/ukko_walk2.png" id="6_q605b"]
 [ext_resource type="Texture2D" uid="uid://b73f63ux5wice" path="res://characters/ukko_crouch3.png" id="6_svrv0"]
-[ext_resource type="Script" uid="uid://bysi8m2sai2lv" path="res://characters/player_animations.gd" id="7_j31ep"]
 [ext_resource type="Script" uid="uid://3vm0w8ex7f7t" path="res://characters/player/gun.gd" id="8_6t23p"]
 [ext_resource type="Script" uid="uid://oa3iroanwqwb" path="res://characters/player/harpoongun.gd" id="9_n8jd0"]
 [ext_resource type="Script" uid="uid://cqlms1btxml54" path="res://characters/player/net_thrower.gd" id="10_q605b"]
@@ -22,7 +22,191 @@
 [ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
 [ext_resource type="AudioStream" uid="uid://dqmuxegaqds0j" path="res://characters/player/anchor_hit.ogg" id="20_svrv0"]
 [ext_resource type="AudioStream" uid="uid://dxqqi4exsfn3" path="res://characters/player/player_hurt.ogg" id="22_4rspn"]
-[ext_resource type="Script" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
+[ext_resource type="Script" uid="uid://3setwup0vq41" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lit6r"]
+animation = &"die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ys5vl"]
+animation = &"jump_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3y70i"]
+animation = &"jump_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_akagt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cbb7d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvpab"]
+advance_mode = 2
+advance_expression = "facing == Facing.LEFT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6mya6"]
+advance_mode = 2
+advance_expression = "facing == Facing.RIGHT"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qp1es"]
+states/End/position = Vector2(614, 101.333)
+states/jump_left/node = SubResource("AnimationNodeAnimation_ys5vl")
+states/jump_left/position = Vector2(377.5, 52.3333)
+states/jump_right/node = SubResource("AnimationNodeAnimation_3y70i")
+states/jump_right/position = Vector2(377.833, 153.333)
+transitions = ["jump_left", "End", SubResource("AnimationNodeStateMachineTransition_akagt"), "jump_right", "End", SubResource("AnimationNodeStateMachineTransition_cbb7d"), "Start", "jump_left", SubResource("AnimationNodeStateMachineTransition_xvpab"), "Start", "jump_right", SubResource("AnimationNodeStateMachineTransition_6mya6")]
+graph_offset = Vector2(-211.5, -147)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mjkfq"]
+animation = &"crouch_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5f4cm"]
+animation = &"crouch_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_864dh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6pff7"]
+advance_mode = 2
+advance_expression = "facing == Facing.LEFT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpeu7"]
+advance_mode = 2
+advance_expression = "facing == Facing.RIGHT"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rpeu7"]
+states/crouch_left/node = SubResource("AnimationNodeAnimation_mjkfq")
+states/crouch_left/position = Vector2(432.377, -40.1667)
+states/crouch_right/node = SubResource("AnimationNodeAnimation_5f4cm")
+states/crouch_right/position = Vector2(432.805, 98.8333)
+transitions = ["Start", "crouch_right", SubResource("AnimationNodeStateMachineTransition_864dh"), "crouch_right", "crouch_left", SubResource("AnimationNodeStateMachineTransition_6pff7"), "crouch_left", "crouch_right", SubResource("AnimationNodeStateMachineTransition_rpeu7")]
+graph_offset = Vector2(-142.5, -198)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hsn1j"]
+animation = &"fall_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dx8gg"]
+animation = &"fall_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ys5vl"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbheu"]
+advance_mode = 2
+advance_expression = "facing == Facing.LEFT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mswt"]
+advance_mode = 2
+advance_expression = "facing == Facing.RIGHT"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dx8gg"]
+states/Start/position = Vector2(379, 100.333)
+states/fall_left/node = SubResource("AnimationNodeAnimation_hsn1j")
+states/fall_left/position = Vector2(551.333, -7.83334)
+states/fall_right/node = SubResource("AnimationNodeAnimation_dx8gg")
+states/fall_right/position = Vector2(550.333, 100.167)
+transitions = ["Start", "fall_right", SubResource("AnimationNodeStateMachineTransition_ys5vl"), "fall_right", "fall_left", SubResource("AnimationNodeStateMachineTransition_nbheu"), "fall_left", "fall_right", SubResource("AnimationNodeStateMachineTransition_5mswt")]
+graph_offset = Vector2(-226.5, -186)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qp1es"]
+animation = &"idle_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qk7w8"]
+animation = &"idle_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3t8uj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjhu2"]
+advance_mode = 2
+advance_expression = "facing == Facing.LEFT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3y70i"]
+advance_mode = 2
+advance_expression = "facing == Facing.RIGHT"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hsn1j"]
+states/idle_left/node = SubResource("AnimationNodeAnimation_qp1es")
+states/idle_left/position = Vector2(409.885, -8.66667)
+states/idle_right/node = SubResource("AnimationNodeAnimation_qk7w8")
+states/idle_right/position = Vector2(410.329, 103.333)
+transitions = ["Start", "idle_right", SubResource("AnimationNodeStateMachineTransition_3t8uj"), "idle_right", "idle_left", SubResource("AnimationNodeStateMachineTransition_rjhu2"), "idle_left", "idle_right", SubResource("AnimationNodeStateMachineTransition_3y70i")]
+graph_offset = Vector2(-285, -127.5)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3t8uj"]
+animation = &"walk_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rjhu2"]
+animation = &"walk_right"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjkfq"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5f4cm"]
+advance_mode = 2
+advance_expression = "facing == Facing.LEFT"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d3tvb"]
+advance_mode = 2
+advance_expression = "facing == Facing.RIGHT"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nbheu"]
+states/walk_left/node = SubResource("AnimationNodeAnimation_3t8uj")
+states/walk_left/position = Vector2(412.163, -2.16667)
+states/walk_right/node = SubResource("AnimationNodeAnimation_rjhu2")
+states/walk_right/position = Vector2(411.829, 98.8333)
+transitions = ["Start", "walk_right", SubResource("AnimationNodeStateMachineTransition_mjkfq"), "walk_right", "walk_left", SubResource("AnimationNodeStateMachineTransition_5f4cm"), "walk_left", "walk_right", SubResource("AnimationNodeStateMachineTransition_d3tvb")]
+graph_offset = Vector2(-232.5, -148.5)
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hsn1j"]
+advance_mode = 2
+advance_expression = "!is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx8gg"]
+advance_mode = 2
+advance_expression = "is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qp1es"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qk7w8"]
+advance_mode = 2
+advance_expression = "is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lit6r"]
+advance_mode = 2
+advance_expression = "!is_falling"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8c8i"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u23gh"]
+advance_mode = 2
+advance_expression = "is_crouching"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o21vo"]
+advance_mode = 2
+advance_expression = "!is_crouching"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cbb7d"]
+states/End/position = Vector2(917, 127)
+states/Start/position = Vector2(-6.742, 133.971)
+states/action_die/node = SubResource("AnimationNodeAnimation_lit6r")
+states/action_die/position = Vector2(-6.70222, 5.23172)
+states/action_jump/node = SubResource("AnimationNodeStateMachine_qp1es")
+states/action_jump/position = Vector2(375.544, 4.86841)
+states/crouch/node = SubResource("AnimationNodeStateMachine_rpeu7")
+states/crouch/position = Vector2(181.286, 250.458)
+states/falling/node = SubResource("AnimationNodeStateMachine_dx8gg")
+states/falling/position = Vector2(376.877, 129.661)
+states/idle/node = SubResource("AnimationNodeStateMachine_hsn1j")
+states/idle/position = Vector2(180.992, 131.458)
+states/walk/node = SubResource("AnimationNodeStateMachine_nbheu")
+states/walk/position = Vector2(182.373, 3.32344)
+transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_hsn1j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_dx8gg"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_qp1es"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_qk7w8"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_lit6r"), "action_jump", "falling", SubResource("AnimationNodeStateMachineTransition_o8c8i"), "idle", "crouch", SubResource("AnimationNodeStateMachineTransition_u23gh"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_o21vo")]
+graph_offset = Vector2(-547.456, -89.375)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akagt"]
 atlas = ExtResource("5_41yun")
@@ -253,16 +437,12 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sqrr"]
-radius = 9.0
-height = 42.0
-
 [sub_resource type="Animation" id="Animation_41yun"]
 length = 0.133333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -274,7 +454,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -288,7 +468,7 @@ tracks/1/keys = {
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -300,7 +480,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -316,7 +496,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -328,7 +508,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -344,7 +524,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -356,7 +536,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -371,7 +551,7 @@ length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -383,7 +563,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -399,7 +579,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("PlayerSprite/Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -411,7 +591,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:animation")
+tracks/1/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -431,9 +611,9 @@ _data = {
 &"walk": SubResource("Animation_q605b")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0jl3"]
-radius = 6.0
-height = 36.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sqrr"]
+radius = 9.0
+height = 42.0
 
 [sub_resource type="Animation" id="Animation_tory2"]
 length = 0.001
@@ -441,7 +621,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:self_modulate")
+tracks/0/path = NodePath("PlayerSprite/Sprite:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -453,7 +633,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -465,7 +645,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -476,8 +656,8 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite:animation")
+tracks/3/enabled = false
+tracks/3/path = NodePath("PlayerSprite/Sprite:animation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -529,10 +709,15 @@ radius = 9.0
 [sub_resource type="Animation" id="Animation_svrv0"]
 resource_name = "crouch_left"
 length = 0.133
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 0.1
+}]
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -542,7 +727,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -554,7 +739,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -603,10 +788,15 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_4rspn"]
 resource_name = "crouch_right"
 length = 0.1333
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"end",
+"time": 0.102101
+}]
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -616,7 +806,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -628,7 +818,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -679,7 +869,7 @@ resource_name = "die"
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -689,7 +879,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -706,7 +896,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -716,7 +906,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -728,7 +918,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -781,7 +971,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -791,7 +981,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -803,7 +993,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -856,7 +1046,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -866,7 +1056,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -878,7 +1068,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -931,7 +1121,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -941,7 +1131,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -953,7 +1143,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1006,7 +1196,7 @@ step = 0.025
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1016,7 +1206,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -1028,7 +1218,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1081,7 +1271,7 @@ step = 0.025
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1091,7 +1281,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 0
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -1103,7 +1293,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1156,7 +1346,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1166,7 +1356,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1178,7 +1368,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1231,7 +1421,7 @@ loop_mode = 1
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteAnimations")
+tracks/0/path = NodePath("PlayerSprite/SpriteAnimations")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1241,7 +1431,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite:offset")
+tracks/1/path = NodePath("PlayerSprite/Sprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1253,7 +1443,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite:flip_h")
+tracks/2/path = NodePath("PlayerSprite/Sprite:flip_h")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1315,6 +1505,10 @@ _data = {
 &"walk_right": SubResource("Animation_8sqrr")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x0jl3"]
+radius = 6.0
+height = 36.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
@@ -1328,12 +1522,35 @@ invincible_time = 0.5
 [node name="JumpTimer" type="Timer" parent="."]
 wait_time = 0.35
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="Node2D" parent="."]
+script = ExtResource("3_dx8gg")
+
+[node name="AnimationTree" type="AnimationTree" parent="PlayerSprite"]
+root_node = NodePath("../..")
+callback_mode_discrete = 0
+tree_root = SubResource("AnimationNodeStateMachine_cbb7d")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../Animations")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="PlayerSprite"]
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_tory2")
-animation = &"idle"
+animation = &"crouch"
+frame = 1
 offset = Vector2(8, -24)
 metadata/_edit_lock_ = true
+
+[node name="SpriteAnimations" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_eho78")
+}
+
+[node name="Animations" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_x0jl3")
+}
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 2
@@ -1347,20 +1564,9 @@ position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_8sqrr")
 debug_color = Color(0.963989, 0, 0.495441, 0.42)
 
-[node name="SpriteAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_eho78")
-}
-
 [node name="Collider" type="CollisionShape2D" parent="."]
 position = Vector2(0, -18)
 shape = SubResource("CapsuleShape2D_x0jl3")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_x0jl3")
-}
-script = ExtResource("7_j31ep")
 
 [node name="HarpoonGun" type="Node2D" parent="."]
 script = ExtResource("8_6t23p")
@@ -1422,16 +1628,15 @@ stream = ExtResource("22_4rspn")
 bus = &"Player SFX"
 script = ExtResource("23_hsn1j")
 
-[connection signal="Die" from="." to="AnimationPlayer" method="_on_player_die"]
+[connection signal="Die" from="." to="PlayerSprite/Animations" method="_on_player_die"]
 [connection signal="Die" from="." to="SfxDeath" method="play"]
-[connection signal="Hurt" from="." to="AnimationPlayer" method="_on_player_hurt"]
-[connection signal="Jumped" from="." to="AnimationPlayer" method="_on_player_jumped"]
+[connection signal="Hurt" from="." to="PlayerSprite" method="_on_player_hurt"]
+[connection signal="Jumped" from="." to="PlayerSprite" method="_on_player_jumped"]
 [connection signal="Die" from="Health" to="." method="_on_health_die"]
 [connection signal="Heal" from="Health" to="." method="_on_health_heal"]
 [connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="Hurt" from="Health" to="SfxHurt" method="play_hurt_sound"]
 [connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
-[connection signal="animation_finished" from="AnimationPlayer" to="AnimationPlayer" method="_on_animation_finished"]
 [connection signal="Fire" from="HarpoonGun" to="HarpoonGun/HarpoonSpawner" method="_on_harpoon_gun_fire"]
 [connection signal="Fire" from="HarpoonGun" to="SfxHarpoon" method="_on_harpoon_gun_fire"]
 [connection signal="Fire" from="NetThrower" to="NetThrower/NetSpawner" method="_on_net_thrower_fire"]
