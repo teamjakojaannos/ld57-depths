@@ -2,11 +2,10 @@
 extends Node2D
 
 @onready var player: Player = $".."
-@onready var animation_tree: AnimationTree = $AnimationTree
 
 var animation_root: AnimationNodeStateMachinePlayback:
 	get:
-		return animation_tree["parameters/playback"]
+		return $AnimationTree["parameters/playback"]
 
 enum Facing {
 	LEFT,
