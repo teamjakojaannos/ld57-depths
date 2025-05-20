@@ -124,7 +124,10 @@ stream = ExtResource("22_4rspn")
 bus = &"Player SFX"
 script = ExtResource("23_hsn1j")
 
+[connection signal="Die" from="." to="PlayerSprite" method="_on_player_die"]
 [connection signal="Die" from="." to="SfxDeath" method="play"]
+[connection signal="Hurt" from="." to="PlayerSprite" method="_on_player_hurt"]
+[connection signal="Jumped" from="." to="PlayerSprite" method="_on_player_jumped"]
 [connection signal="Die" from="Health" to="." method="_on_health_die"]
 [connection signal="Heal" from="Health" to="." method="_on_health_heal"]
 [connection signal="Hurt" from="Health" to="." method="_on_health_hurt"]
