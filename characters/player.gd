@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+@onready var hitbox: Hitbox = $Hitbox
+
 const AIR_ACCEL: float = 2500.0
 const AIR_DECEL_MULT: float = 2.0
 var SPEED: float = 150.0 # THIS USED TO BE CONST SO ITS UPPERCASE
@@ -20,7 +22,7 @@ enum Upgrade {
 	UnlockAnchorDropper,
 }
 
-## Applies a knockback force (single time "impulse") on the player. 
+## Applies a knockback force (single time "impulse") on the player.
 func push(force: Vector2) -> void:
 	_push_force += force
 
@@ -43,9 +45,17 @@ signal gained_upgrade(upgrade: Upgrade)
 var is_moving: bool:
 	get:
 		return abs(velocity.x) > 0.5
-		
+
 var _jumping: bool = false
-var is_crouching: bool = false
+
+var is_crouching: bool = false:
+	get:
+		return is_crouching
+	set(value):
+		is_crouching = value
+
+		hitbox.get_node("CrouchingShape").set_deferred("disabled", !value)
+		hitbox.get_node("StandingShape").set_deferred("disabled", value)
 
 var looking_at: LookingAt = LookingAt.RIGHT
 var looking_at_scalar: float:
@@ -78,7 +88,7 @@ static func look_at_str(direction: LookingAt) -> String:
 
 func _ready() -> void:
 	Globals.player = self
-	
+
 	if Globals.tutorial_cleared:
 		unlock_harpoon_gun()
 
@@ -99,7 +109,7 @@ func _physics_process(delta: float) -> void:
 		direction = 0.0
 	else:
 		is_crouching = false
-	
+
 	if direction and !is_dead:
 		if is_on_floor():
 			velocity.x = direction * SPEED * clamp(1.0 - _slowdown_amount, 0.0, 1.0)
@@ -112,7 +122,7 @@ func _physics_process(delta: float) -> void:
 		if not is_on_floor():
 			d = AIR_DECEL_MULT * SPEED * delta
 		velocity.x = move_toward(velocity.x, 0, d)
-		
+
 	# Dampen v velocities
 	if velocity.y < JUMP_VELOCITY * 2.5:
 		velocity.y = lerp(velocity.y, 0.0, 10.0 * delta)
@@ -124,13 +134,13 @@ func _physics_process(delta: float) -> void:
 	# Always apply gravity to support gravity zones
 	velocity += get_gravity() * delta
 	if is_on_floor():
-		velocity.y = min(velocity.y, 0.0) 
+		velocity.y = min(velocity.y, 0.0)
 
 	if Input.is_action_just_pressed("jump") and is_on_floor() and !is_dead:
 		velocity.y = JUMP_VELOCITY
 		_jumping = true
 		$JumpTimer.start()
-	
+
 		Jumped.emit()
 
 	if Input.is_action_pressed("jump") and _jumping and !is_on_floor():
@@ -151,7 +161,7 @@ func _on_jump_timer_timeout() -> void:
 func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:
 		return
-	
+
 	var look_direction = Vector2(looking_at_scalar, 0.0)
 	if event.is_action_pressed("attack_1"):
 		$HarpoonGun.fire(self, look_direction)
