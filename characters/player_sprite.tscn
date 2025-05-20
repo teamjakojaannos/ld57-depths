@@ -149,6 +149,7 @@ advance_mode = 2
 advance_expression = "!is_walking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dx8gg"]
+priority = 3
 advance_mode = 2
 advance_expression = "is_walking"
 
@@ -168,6 +169,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u23gh"]
+priority = 2
 advance_mode = 2
 advance_expression = "is_crouching"
 
@@ -191,7 +193,7 @@ states/idle/position = Vector2(180.992, 131.458)
 states/walk/node = SubResource("AnimationNodeStateMachine_nbheu")
 states/walk/position = Vector2(182.373, 3.32344)
 transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_hsn1j"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_dx8gg"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_qp1es"), "idle", "falling", SubResource("AnimationNodeStateMachineTransition_qk7w8"), "falling", "idle", SubResource("AnimationNodeStateMachineTransition_lit6r"), "action_jump", "falling", SubResource("AnimationNodeStateMachineTransition_o8c8i"), "idle", "crouch", SubResource("AnimationNodeStateMachineTransition_u23gh"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_o21vo")]
-graph_offset = Vector2(-547.456, -89.375)
+graph_offset = Vector2(-499.456, -87.875)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_akagt"]
 atlas = ExtResource("2_s4ob1")

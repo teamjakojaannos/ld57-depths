@@ -26,9 +26,6 @@ var debug_player_die: Callable = _on_player_die
 
 var is_walking: bool:
 	get:
-		if is_falling or is_crouching:
-			return false
-
 		if Engine.is_editor_hint():
 			return debug_is_walking
 
@@ -36,9 +33,6 @@ var is_walking: bool:
 
 var is_crouching: bool:
 	get:
-		if is_falling:
-			return false
-
 		if Engine.is_editor_hint():
 			return debug_is_crouching
 
