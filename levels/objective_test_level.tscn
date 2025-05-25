@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://xsg43ts8y0mo"]
+
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="1_kprft"]
+[ext_resource type="Script" uid="uid://c7ytj8jwilph5" path="res://levels/objectives/kill_every_fish_task.gd" id="2_slcqr"]
+[ext_resource type="Script" uid="uid://jqg5obv0d1" path="res://levels/objectives/objective.gd" id="3_a2vvo"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Room" type="Node2D" parent="."]
+
+[node name="SpikeFish" parent="Room" instance=ExtResource("1_kprft")]
+
+[node name="Objective" type="Node" parent="."]
+script = ExtResource("3_a2vvo")
+
+[node name="KillEveryFishTask" type="Node" parent="Objective"]
+script = ExtResource("2_slcqr")
