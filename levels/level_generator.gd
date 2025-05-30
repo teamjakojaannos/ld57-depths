@@ -91,9 +91,14 @@ func _generate_from_parts(
 	if right_utility:
 		_place_utility.call_deferred(room, false)
 
-	_spawn_enemies.call_deferred(room, spawnlist)
+	var objective = Objective.new()
+	room.add_child(objective)
+	_setup_objective.call_deferred(room, spawnlist, objective)
 
-	if !require_completion:
+	# FIXME: spawn blocker if completion required
+	if require_completion:
+		objective.complete.connect(room.unlock_exit)
+	else:
 		room.no_blocker = true
 		room.unlock_exit()
 
@@ -102,46 +107,12 @@ func _generate_from_parts(
 
 	return room
 
-
-func _spawn_enemies(room: Room, spawnlist: Spawnlist) -> void:
-	var spawned_enemies = 0
-	var spent_cost = 0
-	while spent_cost < spawnlist.total_cost:
-		var s: Spawnable = spawnlist.enemies.pick_random()
-		spent_cost += s.spawn_cost
-
-		var spawn_group: String
-		match s.spawnpoint_group:
-			Spawnable.SpawnGroup.NORMAL:
-				spawn_group = "enemy_spawn"
-			Spawnable.SpawnGroup.PATH_FOLLOWER:
-				spawn_group = "path_enemy_spawn"
-			_:
-				print("Unexpected spawnpoint group %s" % s.spawnpoint_group)
-				spawn_group = "enemy_spawn"
-
-		# FIXME: cache these
-		var enemy_spawns = get_tree().get_nodes_in_group(spawn_group)
-		var allowed_spawns: Array[Node2D] = []
-		for spawnpoint in enemy_spawns:
-			if !room.is_ancestor_of(spawnpoint):
-				continue
-			if spawnpoint is Node2D:
-				allowed_spawns.push_back(spawnpoint)
-		
-		var spawnpoint = allowed_spawns.pick_random()
-		var enemy: Node2D = s.prefab.instantiate()
-		match s.spawnpoint_group:
-			Spawnable.SpawnGroup.NORMAL:
-				room.add_child(enemy)
-			Spawnable.SpawnGroup.PATH_FOLLOWER:
-				spawnpoint.add_child(enemy)
-		enemy.global_position = spawnpoint.global_position
-		
-		spawned_enemies += 1
-
-	room.kills_required = spawned_enemies
-
+func _setup_objective(room: Room, spawnlist: Spawnlist, objective: Objective) -> void:
+	var task = KillEveryFishTask.new()
+	task.room = room
+	task.spawnlist = spawnlist
+	objective.add_child(task)
+	objective.track_task(task)
 
 func _place_part(room: Room, slot: RoomPart.Slot, part: RoomPart) -> void:
 	var part_prefab: PackedScene = part.scenes.pick_random()

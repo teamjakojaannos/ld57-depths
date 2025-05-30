@@ -34,11 +34,13 @@ func apply_slow(amount: float, duration: float) -> void:
 	_slowdown_amount = move_toward(_slowdown_amount, 0, amount)
 
 
+# FIXME: signal names should be lowercase
 signal Jumped
 signal Die
 signal Hurt
 signal Heal
 
+signal landed
 signal gained_upgrade(upgrade: Upgrade)
 
 
@@ -47,6 +49,7 @@ var is_moving: bool:
 		return abs(velocity.x) > 0.5
 
 var _jumping: bool = false
+var _just_landed: bool = false
 
 var is_crouching: bool = false:
 	get:
@@ -99,6 +102,11 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor():
 		_jumping = false
+		if _just_landed:
+			_just_landed = false
+			landed.emit()
+	else:
+		_just_landed = true
 
 	var direction = Input.get_axis("left", "right")
 	if direction:
