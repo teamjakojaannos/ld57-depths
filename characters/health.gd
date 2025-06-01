@@ -26,6 +26,17 @@ var current_health: float:
 var _is_killed: bool = false
 var _health: float = 10
 
+static func find(node: Node) -> Health:
+	var by_name = node.get_node_or_null("Health")
+	if by_name is Health:
+		return by_name
+
+	for child in node.get_children():
+		if child is Health:
+			return child
+
+	return null
+
 func heal(amount: float, _from: Node) -> void:
 	var old_health = _health
 	_health = clamp(_health + amount, 0, max_health)

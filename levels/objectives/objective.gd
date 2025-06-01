@@ -14,3 +14,9 @@ func _complete_task() -> void:
 
 	if _tasks_remaining <= 0:
 		complete.emit()
+
+func _allow_completion() -> void:
+	for task in get_children():
+		# FIXME: base class for tasks
+		if task is KillEveryFishTask:
+			task.can_complete = true

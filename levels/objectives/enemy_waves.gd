@@ -1,22 +1,25 @@
 extends Node
 class_name EnemyWaves
 
-signal execute
+signal enemy_spawned(enemy: Node)
 
 func _ready() -> void:
 	start.call_deferred()
-	
-	# Attempt to connect to the default execute fn
-	var exec_callable = Callable.create(self, "_execute")
-	if exec_callable.is_valid():
-		execute.connect(exec_callable)
+
+func _execute() -> void:
+	push_error("Enemy waves does not override _execute()!")
+	await wait(1.0)
 
 func start() -> void:
 	# Wait until the level rig signals the scene initialization is done.
 	if Globals.player is not Player:
 		await LevelRig.initial_scene_ready
 
-	execute.emit.call_deferred()
+	await _execute()
+
+	var objective = Globals.current_objective
+	if objective is Objective:
+		objective.allow_completion()
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout
@@ -28,7 +31,9 @@ func wait_player_landed() -> void:
 	await Globals.player.landed
 
 func spawn(wave: EnemyWave) -> void:
-	await wave.spawn()
+	var spawned = await wave.spawn()
+	for enemy in spawned:
+		enemy_spawned.emit(enemy)
 
 func spawn_simultaneously(waves: Array[EnemyWave]) -> void:
 	var tasks = []
