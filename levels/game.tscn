@@ -226,6 +226,7 @@ script = ExtResource("30_3cl1t")
 enemy = ExtResource("31_2e3v7")
 count_min = 2
 count_max = 3
+spawn_group = 1
 metadata/_custom_type_script = "uid://d1i2ipscai6wt"
 
 [node name="SpikefishWaveLarge" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
@@ -233,13 +234,14 @@ script = ExtResource("30_3cl1t")
 enemy = ExtResource("31_2e3v7")
 count_min = 4
 count_max = 6
+spawn_group = 1
 metadata/_custom_type_script = "uid://d1i2ipscai6wt"
 
 [node name="CrabWave" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
 script = ExtResource("30_3cl1t")
 enemy = ExtResource("32_re6tf")
 count_max = 5
-spawn_group = 1
+spawn_group = 2
 metadata/_custom_type_script = "uid://d1i2ipscai6wt"
 
 [node name="Lionfish" type="Node" parent="EndlessLevel/FirstRoom/Waves"]

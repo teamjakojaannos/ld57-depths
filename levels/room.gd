@@ -19,6 +19,9 @@ var entry_text: Array[String] = []
 
 @onready var nav_region: NavigationRegion2D = $NavRoom
 
+var bounds: Rect2:
+	get:
+		return $NavRoom.get_bounds()
 
 func finish() -> void:
 	Finished.emit()

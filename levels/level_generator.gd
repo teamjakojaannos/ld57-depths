@@ -110,7 +110,9 @@ func _generate_from_parts(
 func _setup_objective(room: Room, spawnlist: Spawnlist, objective: Objective) -> void:
 	var task = KillEveryFishTask.new()
 	task.room = room
-	task.spawnlist = spawnlist
+	# FIXME: tasks used to be built on spawnlists; create adapter to use spawnlists as waves
+	# task.spawnlist = spawnlist
+	# task.waves = ??
 	objective.add_child(task)
 	objective.track_task(task)
 
