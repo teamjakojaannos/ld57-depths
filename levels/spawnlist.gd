@@ -12,8 +12,12 @@ class_name Spawnlist
 ## Total (minimum) cost of the spawnables to attempt to spawn. May overflow. 
 @export var total_cost: int = 5
 
-## Enemy spawnables to use for this spawnlist
+## LEGACY: Enemy spawnables to use for this spawnlist
 @export var enemies: Array[Spawnable]
+
+## Enemy waves scene. Scene root must inherit EnemyWaves. Overrides cost-
+## based spawning.
+@export var enemy_waves: PackedScene
 
 ## Level parts override to use for this spawnlist
 @export var level_override: Array[RoomPart]

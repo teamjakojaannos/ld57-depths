@@ -98,6 +98,10 @@ func _generate_from_parts(
 	# FIXME: spawn blocker if completion required
 	if require_completion:
 		objective.complete.connect(room.unlock_exit)
+		objective.complete.connect(
+			func():
+				UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
+		)
 	else:
 		room.no_blocker = true
 		room.unlock_exit()
@@ -110,11 +114,19 @@ func _generate_from_parts(
 func _setup_objective(room: Room, spawnlist: Spawnlist, objective: Objective) -> void:
 	var task = KillEveryFishTask.new()
 	task.room = room
-	# FIXME: tasks used to be built on spawnlists; create adapter to use spawnlists as waves
-	# task.spawnlist = spawnlist
-	# task.waves = ??
+
+	var waves = LegacySpawnlistEnemyWaves.new()
+	waves.name = "LegacySpawnlistToEnemyWavesAdapter"
+	waves.spawnlist = spawnlist
+	waves.min_waves = 1
+	waves.max_waves = 3
+	task.waves = waves
+	task.add_child(waves, true)
 	objective.add_child(task)
+
 	objective.track_task(task)
+	task.start.call_deferred()
+	Globals.current_objective = objective
 
 func _place_part(room: Room, slot: RoomPart.Slot, part: RoomPart) -> void:
 	var part_prefab: PackedScene = part.scenes.pick_random()

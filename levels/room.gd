@@ -55,6 +55,7 @@ func record_kill(money_gained:int = 1) -> void:
 	Globals.money += money_gained
 	_kills += 1
 
+	# FIXME: unused as of objective rework
 	if _kills >= kills_required and !no_blocker:
 		UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
 		unlock_exit()

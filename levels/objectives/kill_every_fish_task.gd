@@ -16,7 +16,12 @@ var can_complete: bool = false:
 		_check_completed.call_deferred()
 
 func _ready() -> void:
-	waves.enemy_spawned.connect(_track_target)
+	start.call_deferred()
+
+func start() -> void:
+	if waves is EnemyWaves && !waves.enemy_spawned.is_connected(_track_target):
+		waves.enemy_spawned.connect(_track_target)
+
 	waves.start.call_deferred()
 
 func _track_target(enemy: Node) -> void:

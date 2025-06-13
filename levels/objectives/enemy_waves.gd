@@ -17,6 +17,7 @@ func start() -> void:
 
 	await _execute()
 
+	# FIXME: this is backwards; objective should only be completable once all tasks are completable -> this logic should be in the task, not objective
 	var objective = Globals.current_objective
 	if objective is Objective:
 		objective.allow_completion()
@@ -36,6 +37,9 @@ func spawn(wave: EnemyWave) -> void:
 		enemy_spawned.emit(enemy)
 
 func spawn_simultaneously(waves: Array[EnemyWave]) -> void:
+	if waves.size() == 0:
+		return
+
 	var tasks = []
 	for wave in waves:
 		var promise = Promise.new()

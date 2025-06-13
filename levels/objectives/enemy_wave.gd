@@ -33,7 +33,6 @@ func spawn() -> Array[Node]:
 	# this might be dangerous in case some special spawning script continues as
 	# player progresses to the next level.
 	var room = Globals.current_room
-	var objective = Globals.current_objective
 
 	# HACK: simulate spawn anim with a delay
 	# FIXME: add spawn anims/sequences to enemies
@@ -53,7 +52,7 @@ func _spawn_enemy(room: Room) -> Node2D:
 	
 	return instance
 
-static func _place_at_spawnpoint(enemy: Node2D, room: Room, group: SpawnGroup) -> void:
+static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup) -> void:
 	match group:
 		SpawnGroup.OFF_SCREEN_SIDE:
 			var bounds = room.bounds
@@ -70,8 +69,8 @@ static func _place_at_spawnpoint(enemy: Node2D, room: Room, group: SpawnGroup) -
 				"right":
 					spawn_x = right
 
-			room.add_child(enemy)
-			enemy.global_position = Vector2(spawn_x, spawn_y)
+			room.add_child(instance)
+			instance.global_position = Vector2(spawn_x, spawn_y)
 
 		# Legacy behaviour
 		_:
@@ -80,11 +79,11 @@ static func _place_at_spawnpoint(enemy: Node2D, room: Room, group: SpawnGroup) -
 			var parent = room
 			if group == SpawnGroup.ON_PLATFORM_PATH:
 				parent = spawnpoint
-			parent.add_child(enemy)
-			enemy.global_position = spawnpoint.global_position
+			parent.add_child(instance)
+			instance.global_position = spawnpoint.global_position
 
-static func _find_spawnpoints_in_group(room: Room, spawn_group: SpawnGroup) -> Array[Node2D]:
-	var spawn_group_name = _spawngroup_to_name(spawn_group)
+static func _find_spawnpoints_in_group(room: Room, group: SpawnGroup) -> Array[Node2D]:
+	var spawn_group_name = _spawngroup_to_name(group)
 
 	var enemy_spawns = room.get_tree().get_nodes_in_group(spawn_group_name)
 	var allowed_spawns: Array[Node2D] = []
