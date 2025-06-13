@@ -9,7 +9,7 @@ env:
   EXPORT_NAME: depths
   PROJECT_PATH: .
   ITCHIO_USERNAME: toilari
-  ITCHIO_GAME: depths
+  ITCHIO_GAME: trench-dev
   BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
 
 jobs:
