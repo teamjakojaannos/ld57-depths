@@ -15,7 +15,7 @@ static func try_connect(node: Node, component_name: String, signal_name: String,
 	var component = find(node, component_name)
 	if component is Node:
 		if not component.is_connected(signal_name, fn):
-			component.connect(signal_name, fn)
+			component.connect(signal_name, fn, ConnectFlags.CONNECT_PERSIST)
 
 
 ## Attempts to connect a callable [param fn] to a signal of given
@@ -29,7 +29,7 @@ static func try_connect(node: Node, component_name: String, signal_name: String,
 static func try_connect_to(component: Node, signal_name: String, fn: Callable) -> void:
 	if component is Node:
 		if not component.is_connected(signal_name, fn):
-			component.connect(signal_name, fn)
+			component.connect(signal_name, fn, ConnectFlags.CONNECT_PERSIST)
 
 
 ## Sets the value of the given [param property] to a sibling component
