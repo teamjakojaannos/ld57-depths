@@ -4,16 +4,12 @@ class_name DamageParticles
 
 @export var particle_emitter: PackedScene
 
+@export_group("Advanced")
 @export var health: Health
 
-
 func _ready() -> void:
-	if health == null:
-		health = get_parent().get_node_or_null("Health")
-
-	if health is Health:
-		if not health.hurt_at.is_connected(_on_health_hurt_at):
-			health.hurt_at.connect(_on_health_hurt_at)
+	Components.set_default_sibling(self, "health", "Health")
+	Components.try_connect_to(health, "hurt_at", _on_health_hurt_at)
 
 func _on_health_hurt_at(pos: Vector2):
 	var emitter: Node2D = particle_emitter.instantiate()
