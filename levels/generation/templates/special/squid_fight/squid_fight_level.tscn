@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_i0yvx"]
 [ext_resource type="PackedScene" uid="uid://cp6d8v6a3w12h" path="res://fish/squid/squid_boss.tscn" id="4_iioni"]
 [ext_resource type="Script" uid="uid://drwl4kjkix38c" path="res://boss/squid/squid_boss.gd" id="4_mb7w1"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="4_oldw0"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="4_oldw0"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_lh1f8"]
 [ext_resource type="Script" uid="uid://oehys4qgdurh" path="res://boss/squid/tentacles.gd" id="6_lh1f8"]
 [ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="7_ni1r6"]

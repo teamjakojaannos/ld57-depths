@@ -16,8 +16,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_die() -> void:
-	Globals.money += 1
-	
 	var tween = create_tween()
 	tween.set_parallel(true)
 	tween.tween_property($CrabRoot, "global_position", $CrabRoot.global_position + Vector2.DOWN * 100.0, 1.5)

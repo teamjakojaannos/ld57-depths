@@ -7,8 +7,6 @@ const spike_scene = preload("res://fish/spiky_puffer_fish/spike.tscn")
 @export var min_spike_speed = 100.0
 @export var max_spike_speed = 200.0
 
-@export var money_per_kill = 2
-
 var ready_to_attack: bool = false
 @export var min_attack_cooldown = 5.0
 @export var max_attack_cooldown = 10.0
@@ -148,8 +146,6 @@ func _on_health_hurt() -> void:
 
 
 func _on_health_die() -> void:
-	Globals.money += money_per_kill
-
 	$AnimationPlayer.play("die")
 	await $AnimationPlayer.animation_finished
 	queue_free()

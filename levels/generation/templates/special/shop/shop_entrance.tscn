@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c3vmkr71tmgt2" path="res://shop/open.png" id="4_rwyhk"]
 [ext_resource type="Script" uid="uid://cf23cwea8piij" path="res://shop/shop_open_trigger.gd" id="5_2cs60"]
 [ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="5_u0r6g"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="6_dxs3c"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="6_dxs3c"]
 [ext_resource type="Texture2D" uid="uid://da7keoysrnmko" path="res://graphics/environment/vittukoralli.png" id="6_wtj3a"]
 [ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="7_q4myr"]
 [ext_resource type="Script" uid="uid://btkldmbsdghis" path="res://shop/shop_door.gd" id="8_b7r0d"]

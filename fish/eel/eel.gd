@@ -46,8 +46,6 @@ func _on_health_hurt() -> void:
 	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	Globals.money += 3
-
 	$HurtAnimations.play("die")
 	var tween = create_tween()
 	tween.tween_property(self, "speed", 0.0, 1.0)

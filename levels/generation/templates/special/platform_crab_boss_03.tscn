@@ -1,13 +1,14 @@
-[gd_scene load_steps=26 format=4 uid="uid://dbd15nsvh32v8"]
+[gd_scene load_steps=27 format=4 uid="uid://dbd15nsvh32v8"]
 
 [ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="1_45iwu"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="1_lv1vk"]
 [ext_resource type="Script" uid="uid://btsoo67jwmhcf" path="res://boss/crab/crabby.gd" id="2_ncljd"]
 [ext_resource type="Texture2D" uid="uid://dyyewpvcbqr5x" path="res://boss/crab/rapuwalk.png" id="2_pg21e"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="3_grlid"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="3_grlid"]
 [ext_resource type="PackedScene" uid="uid://ca4p0t703gbx" path="res://boss/crab/bossy_snappy.tscn" id="3_ncljd"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_uqmkm"]
 [ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="5_km4n6"]
+[ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="5_wedas"]
 [ext_resource type="Texture2D" uid="uid://pw7s3hg04pje" path="res://boss/crab/rapu_delaa.png" id="8_x8oc7"]
 [ext_resource type="Script" uid="uid://djfpp2d3fbril" path="res://boss/boss_healthbar.gd" id="10_1egj7"]
 [ext_resource type="Texture2D" uid="uid://bsou74tb8aokn" path="res://ui/UI_slideri.png" id="11_wedas"]
@@ -179,6 +180,11 @@ script = ExtResource("2_ncljd")
 script = ExtResource("3_grlid")
 max_health = 30.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="Bounty" type="Node" parent="Crabby"]
+script = ExtResource("5_wedas")
+bounty = 15
+metadata/_custom_type_script = "uid://ds8qvr68yl5bj"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Crabby"]
 libraries = {

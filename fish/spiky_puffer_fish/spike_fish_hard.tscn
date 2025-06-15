@@ -68,7 +68,6 @@ spike_color = Color(1, 0, 1, 1)
 spike_damage = 2
 min_spike_speed = 125.0
 max_spike_speed = 225.0
-money_per_kill = 6
 min_attack_cooldown = 1.0
 max_attack_cooldown = 2.5
 min_spike_count = 7
@@ -79,11 +78,14 @@ attack_move_speed = 25.0
 [node name="Health" parent="." index="0"]
 max_health = 8.0
 
+[node name="Bounty" parent="." index="1"]
+bounty = 6
+
 [node name="Shape" parent="Hitbox" index="0"]
 visible = false
 
-[node name="AnimatedSprite2D" parent="." index="3"]
+[node name="AnimatedSprite2D" parent="." index="4"]
 sprite_frames = SubResource("SpriteFrames_dr5fe")
 
-[node name="CollisionShape2D" parent="." index="4"]
+[node name="CollisionShape2D" parent="." index="5"]
 visible = false

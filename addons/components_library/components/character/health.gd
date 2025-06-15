@@ -7,6 +7,7 @@ signal Die
 signal Heal
 signal Hurt
 
+signal die
 signal hurt_invincible
 signal hurt_at(position: Vector2)
 
@@ -81,3 +82,4 @@ func _check_signals(old_health: float, point: Vector2) -> void:
 	if is_dead:
 		_is_killed = true
 		Die.emit()
+		die.emit()

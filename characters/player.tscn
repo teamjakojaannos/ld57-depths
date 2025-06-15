@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="2_eho78"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="2_eho78"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_8sqrr"]
 [ext_resource type="PackedScene" uid="uid://7a7n865246ba" path="res://characters/player_sprite.tscn" id="3_h076o"]
 [ext_resource type="Script" uid="uid://3vm0w8ex7f7t" path="res://characters/player/gun.gd" id="8_6t23p"]
@@ -15,7 +15,7 @@
 [ext_resource type="Script" uid="uid://1fbbpu2xs6qr" path="res://characters/sfx_anchor.gd" id="18_b0vde"]
 [ext_resource type="AudioStream" uid="uid://dqmuxegaqds0j" path="res://characters/player/anchor_hit.ogg" id="20_svrv0"]
 [ext_resource type="AudioStream" uid="uid://dxqqi4exsfn3" path="res://characters/player/player_hurt.ogg" id="22_4rspn"]
-[ext_resource type="Script" uid="uid://3setwup0vq41" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
+[ext_resource type="Script" path="res://characters/player/sfx_hurt.gd" id="23_hsn1j"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hsn1j"]
 radius = 9.0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bbiktumwnn3j6"]
+[gd_scene load_steps=22 format=3 uid="uid://bbiktumwnn3j6"]
 
 [ext_resource type="Script" uid="uid://cth2kkubphd5u" path="res://fish/leijjjonakala/lion_fish.gd" id="1_176lm"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://characters/health.gd" id="1_dba35"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="1_dba35"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="2_176lm"]
 [ext_resource type="Texture2D" uid="uid://b6stc6id777uv" path="res://fish/leijjjonakala/leijonakala.png" id="3_xqylc"]
+[ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_xwl7j"]
 [ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="5_p3k75"]
 [ext_resource type="PackedScene" uid="uid://dkgpgoo61sytr" path="res://particles/hurtsplosion.tscn" id="6_xwl7j"]
 
@@ -263,6 +264,11 @@ script = ExtResource("1_176lm")
 script = ExtResource("1_dba35")
 max_health = 6.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="Bounty" type="Node" parent="."]
+script = ExtResource("3_xwl7j")
+bounty = 7
+metadata/_custom_type_script = "uid://ds8qvr68yl5bj"
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
