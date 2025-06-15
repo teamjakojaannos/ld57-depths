@@ -39,9 +39,9 @@ func spawn() -> Array[Node]:
 	await get_tree().create_timer(0.5).timeout
 
 	var spawned_enemies: Array[Node] = []
-	for _i in randi_range(count_min, count_max):
-		var enemy = _spawn_enemy(room)
-		spawned_enemies.push_back(enemy)
+	for i in randi_range(count_min, count_max):
+		var instance = _spawn_enemy(room)
+		spawned_enemies.push_back(instance)
 
 	return spawned_enemies
 
