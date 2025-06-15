@@ -148,7 +148,7 @@ func _on_health_hurt() -> void:
 
 
 func _on_health_die() -> void:
-	Globals.current_room.record_kill(money_per_kill)
+	Globals.money += money_per_kill
 
 	$AnimationPlayer.play("die")
 	await $AnimationPlayer.animation_finished

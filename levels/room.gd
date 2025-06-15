@@ -5,9 +5,6 @@ signal Finished
 
 const spike_fish_prefab = preload("res://fish/spiky_puffer_fish/spike_fish.tscn")
 
-var _kills: int = 0
-var kills_required: int = 999
-
 var entry_text: Array[String] = []
 
 @export var no_blocker: bool = false
@@ -50,16 +47,6 @@ func _ready() -> void:
 func _prepare_nav() -> void:
 	await get_tree().physics_frame
 	$NavRoom.bake_navigation_polygon()
-
-func record_kill(money_gained:int = 1) -> void:
-	Globals.money += money_gained
-	_kills += 1
-
-	# FIXME: unused as of objective rework
-	if _kills >= kills_required and !no_blocker:
-		UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
-		unlock_exit()
-
 
 func is_in_navigable_region(pos: Vector2, threshold: float = 1.0) -> bool:
 	var nav_map = nav_region.get_navigation_map()

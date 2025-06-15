@@ -26,7 +26,7 @@ func _on_timer_right_timeout() -> void:
 
 
 func _on_health_die() -> void:
-	Globals.current_room.record_kill(15)
+	Globals.money += 15
 	var ded = $DeadCrabby
 	ded.visible = true
 	ded.play("default")

@@ -46,7 +46,7 @@ func _on_health_hurt() -> void:
 	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	Globals.current_room.record_kill(3)
+	Globals.money += 3
 
 	$HurtAnimations.play("die")
 	var tween = create_tween()

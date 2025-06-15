@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_die() -> void:
-	Globals.current_room.record_kill(1)
+	Globals.money += 1
 	
 	var tween = create_tween()
 	tween.set_parallel(true)
