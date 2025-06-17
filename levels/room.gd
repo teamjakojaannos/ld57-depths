@@ -18,7 +18,9 @@ var entry_text: Array[String] = []
 
 var bounds: Rect2:
 	get:
-		return $NavRoom.get_bounds()
+		var width = 480.0
+		var height = 300.0
+		return Rect2(-width / 2.0, -height, width, height)
 
 func finish() -> void:
 	Finished.emit()

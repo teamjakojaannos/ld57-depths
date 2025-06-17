@@ -55,22 +55,17 @@ func _spawn_enemy(room: Room) -> Node2D:
 static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup) -> void:
 	match group:
 		SpawnGroup.OFF_SCREEN_SIDE:
-			var bounds = room.bounds
-			var left = bounds.position.x
-			var right = left + bounds.size.x
-
-			var side = ["left", "right"].pick_random()
-
-			var spawn_y = bounds.position.y + randf() * bounds.size.y
+			var spawn_y = randf_range(room.bounds.position.y, room.bounds.end.y)
 			var spawn_x: float = 0.0
-			match side:
+			match ["left", "right"].pick_random():
 				"left":
-					spawn_x = left
+					spawn_x = room.bounds.position.x
 				"right":
-					spawn_x = right
+					spawn_x = room.bounds.end.x
 
 			room.add_child(instance)
-			instance.global_position = Vector2(spawn_x, spawn_y)
+			instance.global_position = room.global_position
+			instance.global_position += Vector2(spawn_x, spawn_y)
 
 		# Legacy behaviour
 		_:
