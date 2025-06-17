@@ -57,11 +57,15 @@ static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup
 		SpawnGroup.OFF_SCREEN_SIDE:
 			var spawn_y = randf_range(room.bounds.position.y, room.bounds.end.y)
 			var spawn_x: float = 0.0
+
+			# How far outside the level boundary the spawned enemy
+			# should be placed.
+			var spawn_offset: float = 70.0 + randf_range(0, 35.0)
 			match ["left", "right"].pick_random():
 				"left":
-					spawn_x = room.bounds.position.x
+					spawn_x = room.bounds.position.x - spawn_offset
 				"right":
-					spawn_x = room.bounds.end.x
+					spawn_x = room.bounds.end.x + spawn_offset
 
 			room.add_child(instance)
 			instance.global_position = room.global_position
