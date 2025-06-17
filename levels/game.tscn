@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=47 format=4 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/room.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
@@ -29,13 +29,8 @@
 [ext_resource type="Resource" uid="uid://da28rbnibig8b" path="res://levels/spawnlists/hard_03.tres" id="24_frytq"]
 [ext_resource type="Resource" uid="uid://dvurxd3hxe1du" path="res://levels/spawnlists/hard_04.tres" id="25_hvtst"]
 [ext_resource type="Resource" uid="uid://dnwnby8ncrk1i" path="res://levels/spawnlists/special/squid_boss.tres" id="26_y3vsb"]
-[ext_resource type="Script" uid="uid://d06bd5jnvh3cn" path="res://levels/objectives/enemy_waves_test.gd" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
-[ext_resource type="Script" uid="uid://d1i2ipscai6wt" path="res://levels/objectives/enemy_wave.gd" id="30_3cl1t"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
-[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="31_2e3v7"]
-[ext_resource type="PackedScene" uid="uid://betjhqmoocxtc" path="res://fish/little_crab/little_crab.tscn" id="32_re6tf"]
-[ext_resource type="PackedScene" uid="uid://bbiktumwnn3j6" path="res://fish/leijjjonakala/lion_fish.tscn" id="33_nmrji"]
 
 [sub_resource type="Resource" id="Resource_07adx"]
 script = ExtResource("13_kw56w")
@@ -217,38 +212,6 @@ no_blocker = true
 position = Vector2(0, -32)
 tile_map_data = PackedByteArray("AAD1/wAAAAAEAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAHAAQAAAD//wAAAAAEAAQAAAAAAAAAAAAHAAQAAAADAAAAAAAEAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAHAAQAAAAKAP//AAAHAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAEAAMAAAAAAP//AAAHAAMAAAD/////AAAEAAMAAAD8////AAAHAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAEAAMAAAA=")
 tile_set = ExtResource("18_6w6r6")
-
-[node name="Waves" type="Node" parent="EndlessLevel/FirstRoom"]
-script = ExtResource("29_50ih0")
-
-[node name="SpikefishWaveSmall" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
-script = ExtResource("30_3cl1t")
-enemy = ExtResource("31_2e3v7")
-count_min = 2
-count_max = 3
-spawn_group = 1
-metadata/_custom_type_script = "uid://d1i2ipscai6wt"
-
-[node name="SpikefishWaveLarge" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
-script = ExtResource("30_3cl1t")
-enemy = ExtResource("31_2e3v7")
-count_min = 4
-count_max = 6
-spawn_group = 1
-metadata/_custom_type_script = "uid://d1i2ipscai6wt"
-
-[node name="CrabWave" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
-script = ExtResource("30_3cl1t")
-enemy = ExtResource("32_re6tf")
-count_max = 5
-spawn_group = 2
-metadata/_custom_type_script = "uid://d1i2ipscai6wt"
-
-[node name="Lionfish" type="Node" parent="EndlessLevel/FirstRoom/Waves"]
-script = ExtResource("30_3cl1t")
-enemy = ExtResource("33_nmrji")
-count_max = 1
-metadata/_custom_type_script = "uid://d1i2ipscai6wt"
 
 [node name="EnemySpawns" type="Node2D" parent="EndlessLevel/FirstRoom"]
 position = Vector2(0, -32)

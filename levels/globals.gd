@@ -80,11 +80,10 @@ func reset() -> void:
 		_replay_upgrades.call_deferred()
 	else:
 		depth = 0.0
-		current_room_index = 2
+		current_room_index = 0
 		money = money_at_start
 		bought_upgrades.clear()
-		
-		unlock_all_upgrades.call_deferred()
+
 
 func _replay_upgrades() -> void:
 	money = money_at_checkpoint
