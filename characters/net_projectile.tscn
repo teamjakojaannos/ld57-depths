@@ -124,7 +124,7 @@ collision_mask = 0
 script = ExtResource("1_hqja7")
 point_at_velocity = false
 fall_speed = 400.0
-damage = 3.0
+damage = 2.0
 
 [node name="Lifetime" type="Node" parent="."]
 script = ExtResource("2_ee6op")
@@ -149,7 +149,7 @@ autoplay = "default"
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_hxwdh")
-damage = 3.0
+damage = 2.0
 metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 
 [node name="Shape" type="CollisionShape2D" parent="Hurtbox"]

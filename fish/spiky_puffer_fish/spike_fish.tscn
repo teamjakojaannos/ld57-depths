@@ -286,7 +286,7 @@ max_spike_count = 5
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_0rbh6")
-max_health = 5.0
+max_health = 2.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="Bounty" type="Node" parent="." node_paths=PackedStringArray("health")]

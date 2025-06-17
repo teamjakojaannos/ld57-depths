@@ -96,6 +96,7 @@ slowdown = 0.0
 [node name="AnchorSpawner" type="Marker2D" parent="AnchorDropper"]
 position = Vector2(0, -2)
 script = ExtResource("13_lcfw7")
+anchor_damage = 3
 
 [node name="SfxDeath" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_6rrl0")
