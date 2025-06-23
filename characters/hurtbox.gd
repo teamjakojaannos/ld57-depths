@@ -54,6 +54,11 @@ func _validate_property(property: Dictionary) -> void:
 		"damage_interval":
 			Exports.visible_if(property, mode == Mode.CONTINUOUS, PROPERTY_USAGE_EDITOR)
 		_: pass
+var enabled: bool:
+	get:
+		return monitoring
+	set(value):
+		monitoring = value
 
 func _ready() -> void:
 	Signals.try_connect(area_entered, _on_area_entered)
