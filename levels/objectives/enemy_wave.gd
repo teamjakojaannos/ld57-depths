@@ -34,10 +34,6 @@ func spawn() -> Array[Node]:
 	# player progresses to the next level.
 	var room = Globals.current_room
 
-	# HACK: simulate spawn anim with a delay
-	# FIXME: add spawn anims/sequences to enemies
-	await get_tree().create_timer(0.5, false).timeout
-
 	var spawned_enemies: Array[Node] = []
 	for i in randi_range(count_min, count_max):
 		var instance = _spawn_enemy(room)
@@ -55,31 +51,38 @@ func _spawn_enemy(room: Room) -> Node2D:
 static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup) -> void:
 	match group:
 		SpawnGroup.OFF_SCREEN_SIDE:
-			var spawn_y = randf_range(room.bounds.position.y, room.bounds.end.y)
-			var spawn_x: float = 0.0
-
-			# How far outside the level boundary the spawned enemy
-			# should be placed.
-			var spawn_offset: float = 70.0 + randf_range(0, 35.0)
-			match ["left", "right"].pick_random():
-				"left":
-					spawn_x = room.bounds.position.x - spawn_offset
-				"right":
-					spawn_x = room.bounds.end.x + spawn_offset
-
-			room.add_child(instance)
-			instance.global_position = room.global_position
-			instance.global_position += Vector2(spawn_x, spawn_y)
-
-		# Legacy behaviour
+			_spawn_off_screen(instance, room)
 		_:
-			var allowed_spawns = _find_spawnpoints_in_group(room, group)
-			var spawnpoint: Node2D = allowed_spawns.pick_random()
-			var parent = room
-			if group == SpawnGroup.ON_PLATFORM_PATH:
-				parent = spawnpoint
-			parent.add_child(instance)
-			instance.global_position = spawnpoint.global_position
+			_spawn_with_legacy_behaviour(instance, room, group)
+
+
+static func _spawn_off_screen(instance: Node2D, room: Room) -> void:
+	var spawn_y = randf_range(room.bounds.position.y, room.bounds.end.y)
+	var spawn_x: float = 0.0
+
+	# How far outside the level boundary the spawned enemy
+	# should be placed.
+	var spawn_offset: float = 70.0 + randf_range(0, 35.0)
+	match ["left", "right"].pick_random():
+		"left":
+			spawn_x = room.bounds.position.x - spawn_offset
+		"right":
+			spawn_x = room.bounds.end.x + spawn_offset
+
+	room.add_child(instance)
+	instance.global_position = room.global_position
+	instance.global_position += Vector2(spawn_x, spawn_y)
+
+
+static func _spawn_with_legacy_behaviour(instance: Node2D, room: Room, group: SpawnGroup) -> void:
+	var allowed_spawns = _find_spawnpoints_in_group(room, group)
+	var spawnpoint: Node2D = allowed_spawns.pick_random()
+	var parent = room
+	if group == SpawnGroup.ON_PLATFORM_PATH:
+		parent = spawnpoint
+	parent.add_child(instance)
+	instance.global_position = spawnpoint.global_position
+
 
 static func _find_spawnpoints_in_group(room: Room, group: SpawnGroup) -> Array[Node2D]:
 	var spawn_group_name = _spawngroup_to_name(group)

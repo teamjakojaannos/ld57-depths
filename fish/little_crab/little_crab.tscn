@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://betjhqmoocxtc"]
+[gd_scene load_steps=20 format=3 uid="uid://betjhqmoocxtc"]
 
 [ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
 [ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
@@ -8,6 +8,70 @@
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
 [ext_resource type="PackedScene" uid="uid://b2klgm83ir3fd" path="res://particles/hurtsplosion_tiny.tscn" id="5_8aic4"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_x42bk"]
+
+[sub_resource type="Animation" id="Animation_fjv7j"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8aic4"]
+resource_name = "spawn"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -39), Vector2(0, -12)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Mask:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 26), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8aic4"]
+_data = {
+&"RESET": SubResource("Animation_fjv7j"),
+&"spawn": SubResource("Animation_8aic4")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_fjv7j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fjv7j"]
 atlas = ExtResource("2_x42bk")
@@ -75,7 +139,20 @@ flash_duration = 0.2
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://dfv0kbqj2ou5n"
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="SpawnAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_8aic4")
+}
+autoplay = "spawn"
+
+[node name="Mask" type="Sprite2D" parent="."]
+clip_children = 1
+texture = SubResource("CanvasTexture_fjv7j")
+offset = Vector2(0, -4)
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Mask"]
 sprite_frames = SubResource("SpriteFrames_gdxh0")
 autoplay = "default"
 offset = Vector2(0, -12)
