@@ -1,6 +1,5 @@
-[gd_scene load_steps=47 format=4 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=47 format=3 uid="uid://bdtgjq516islk"]
 
-[ext_resource type="PackedScene" uid="uid://dmcjpau04bcb0" path="res://levels/generation/room.tscn" id="1_748nt"]
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
 [ext_resource type="Resource" uid="uid://61ukmhorbgv2" path="res://levels/spawnlists/special/tutorial/tutorial_02.tres" id="7_218np"]
 [ext_resource type="Resource" uid="uid://3txs88cmr0d8" path="res://levels/spawnlists/special/crab_fight_01.tres" id="9_fbo34"]
@@ -21,7 +20,6 @@
 [ext_resource type="Resource" uid="uid://p30hred7cgtr" path="res://levels/spawnlists/easy_01.tres" id="14_xr5dp"]
 [ext_resource type="Resource" uid="uid://8wamtrt6ry6d" path="res://levels/spawnlists/medium_02.tres" id="16_0ga61"]
 [ext_resource type="AudioStream" uid="uid://dtmkcxmwlfv0p" path="res://levels/bubbles.ogg" id="17_si8kf"]
-[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="18_6w6r6"]
 [ext_resource type="Resource" uid="uid://bh4t6rcu1w05v" path="res://levels/spawnlists/medium_03.tres" id="20_k1iig"]
 [ext_resource type="Resource" uid="uid://b26llnculeomv" path="res://levels/spawnlists/medium_04.tres" id="21_ddyuc"]
 [ext_resource type="Resource" uid="uid://b4d0rk17yhgtq" path="res://levels/spawnlists/hard_01.tres" id="22_0ga61"]
@@ -29,6 +27,8 @@
 [ext_resource type="Resource" uid="uid://da28rbnibig8b" path="res://levels/spawnlists/hard_03.tres" id="24_frytq"]
 [ext_resource type="Resource" uid="uid://dvurxd3hxe1du" path="res://levels/spawnlists/hard_04.tres" id="25_hvtst"]
 [ext_resource type="Resource" uid="uid://dnwnby8ncrk1i" path="res://levels/spawnlists/special/squid_boss.tres" id="26_y3vsb"]
+[ext_resource type="FontFile" uid="uid://obfec4wf4uic" path="res://fonts/gothic_pixel/gothic_pixel_edit.ttf" id="28_3wro5"]
+[ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
 
@@ -186,13 +186,15 @@ special_sequence = 2
 entry_text_override = Array[String](["BUY", "MORE", "UPGRADES"])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
-[sub_resource type="Curve2D" id="Curve2D_2e3v7"]
-resource_local_to_scene = true
-bake_interval = 0.01
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -154.2, -14, 0, 0, 0, 0, -150.2, -10, 0, 0, 0, 0, -150.2, 12, 0, 0, 0, 0, -153.2, 16, 0, 0, 0, 0, -525.2, 16, 0, 0, 0, 0, -530.2, 10, 0, 0, 0, 0, -530.2, -9, 0, 0, 0, 0, -525.2, -14, 0, 0, 0, 0, -154.2, -14)
-}
-point_count = 9
+[sub_resource type="LabelSettings" id="LabelSettings_50ih0"]
+font = ExtResource("28_3wro5")
+font_size = 48
+font_color = Color(0.57, 0.1425, 0.1425, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 8
+shadow_color = Color(0.24, 0, 0, 0.443137)
+shadow_offset = Vector2(2, 2)
 
 [node name="Main" type="Node2D"]
 
@@ -205,44 +207,25 @@ parts = Array[ExtResource("11_mgpep")]([ExtResource("12_pb6kn")])
 spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), SubResource("Resource_8c5ma"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), SubResource("Resource_hvtst"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), SubResource("Resource_ygxck"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), SubResource("Resource_6hew7"), SubResource("Resource_exhqh"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), SubResource("Resource_7g8xt"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), SubResource("Resource_qx8it"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), SubResource("Resource_g1efs"), ExtResource("26_y3vsb")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
-[node name="FirstRoom" parent="EndlessLevel" instance=ExtResource("1_748nt")]
-no_blocker = true
+[node name="Overlay" type="CanvasLayer" parent="EndlessLevel"]
+layer = 2
 
-[node name="TileMapLayer" type="TileMapLayer" parent="EndlessLevel/FirstRoom"]
-position = Vector2(0, -32)
-tile_map_data = PackedByteArray("AAD1/wAAAAAEAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAHAAQAAAD//wAAAAAEAAQAAAAAAAAAAAAHAAQAAAADAAAAAAAEAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAHAAQAAAAKAP//AAAHAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAEAAMAAAAAAP//AAAHAAMAAAD/////AAAEAAMAAAD8////AAAHAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAEAAMAAAA=")
-tile_set = ExtResource("18_6w6r6")
-
-[node name="EnemySpawns" type="Node2D" parent="EndlessLevel/FirstRoom"]
-position = Vector2(0, -32)
-
-[node name="Spawn1" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(-176, -32)
-
-[node name="Spawn2" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(176, -32)
-
-[node name="Spawn3" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(176, -64)
-
-[node name="Spawn4" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(-176, -64)
-
-[node name="Spawn5" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(-136, -64)
-
-[node name="Spawn6" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(-136, -32)
-
-[node name="Spawn7" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(144, -32)
-
-[node name="Spawn8" type="Marker2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["enemy_spawn"]]
-position = Vector2(144, -64)
-
-[node name="CrabPath" type="Path2D" parent="EndlessLevel/FirstRoom/EnemySpawns" groups=["path_enemy_spawn"]]
-position = Vector2(340.2, 0)
-curve = SubResource("Curve2D_2e3v7")
+[node name="Label" type="Label" parent="EndlessLevel/Overlay"]
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_right = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(180, 0)
+text = "Press SPACE to start"
+label_settings = SubResource("LabelSettings_50ih0")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("29_50ih0")
+slide_up = true
 
 [node name="Bubbles" type="AudioStreamPlayer" parent="EndlessLevel"]
 stream = ExtResource("17_si8kf")

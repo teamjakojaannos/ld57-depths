@@ -2,6 +2,7 @@ extends Node
 class_name GameGlobals
 
 @export var depth: float = 0.0
+@export var idle_depth: float = 0.0
 @export var current_room_index: int = 0:
 	get:
 		return current_room_index
@@ -29,7 +30,7 @@ var money_at_checkpoint = 0
 var _restoring_dying_state: bool = false
 
 var _money: int = money_at_start
-var money: int :
+var money: int:
 	get:
 		return _money
 	set(value):
@@ -144,8 +145,8 @@ func handle_buy_item(item_name: String) -> void:
 			pass
 		_:
 			push_error("UNHANDLED ITEM %s" % item_name)
-	
-	
+
+
 	if item_name != "Sold out" && item_name != "Health Potion":
 		upgrade_bought.emit(item_name)
 		bought_upgrades.append(item_name)

@@ -16,7 +16,12 @@ func ensure_player_exists() -> void:
 
 
 func _find_player() -> Player:
-	return get_tree().get_first_node_in_group("player")
+	var players = get_tree().get_nodes_in_group("player")
+	for player in players:
+		if player != null && !player.is_queued_for_deletion():
+			return player
+
+	return null
 
 
 func _spawn_player() -> Player:
