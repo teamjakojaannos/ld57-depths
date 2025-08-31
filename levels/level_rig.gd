@@ -29,6 +29,7 @@ func restart_game(restore_checkpoint: bool) -> void:
 	UI.remove_hud()
 	Globals.player.queue_free()
 	Globals.player = null
+	player_rig.ensure_player_exists()
 
 	start_game()
 
