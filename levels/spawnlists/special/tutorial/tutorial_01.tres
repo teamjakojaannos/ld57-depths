@@ -12,6 +12,6 @@ max_depth = 1
 total_cost = 0
 enemies = Array[ExtResource("1_gh5l7")]([])
 level_override = Array[ExtResource("2_bgry5")]([ExtResource("3_bgry5")])
-special_sequence = 3
+special_sequence = 4
 entry_text_override = Array[String](["SPACE", "TO", "JUMP"])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
