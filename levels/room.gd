@@ -5,8 +5,6 @@ signal finished
 
 var entry_text: Array[String] = []
 
-@export var no_blocker: bool = false
-
 var nav_region: NavigationRegion2D:
 	get:
 		return LevelRig.nav_region
@@ -27,9 +25,6 @@ func unlock_exit() -> void:
 	$Blocker.queue_free()
 	Globals.trigger_room_clear()
 
-func _ready() -> void:
-	if no_blocker:
-		unlock_exit()
 
 func is_in_navigable_region(pos: Vector2, threshold: float = 1.0) -> bool:
 	var nav_map = nav_region.get_navigation_map()

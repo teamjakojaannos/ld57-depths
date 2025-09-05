@@ -19,13 +19,22 @@ func setup_room(spawnlist: Spawnlist) -> void:
 
 	level_generator.generate()
 
-	var requires_completion = !no_blocker
+	var requires_completion = \
+		spawnlist.special_sequence == RoomPart.SpecialSequence.NONE
 	if requires_completion:
 		objective.complete.connect(unlock_exit)
 		objective.complete.connect(
 			func():
 				UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
+				for util in $LeftUtility.get_children():
+					if util is BubbleElevator:
+						util.enabled = false
+				for util in $RightUtility.get_children():
+					if util is BubbleElevator:
+						util.enabled = false
 		)
+	else:
+		unlock_exit()
 
 	if spawnlist.entry_text_override != null && !spawnlist.entry_text_override.is_empty():
 		entry_text = spawnlist.entry_text_override

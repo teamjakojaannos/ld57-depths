@@ -89,23 +89,16 @@ func _generate_from_parts(
 	right_utility: bool,
 	left_utility: bool
 ) -> void:
-	var require_completion = false
 	if top_part is RoomPart:
-		require_completion = require_completion || top_part.require_completion
 		_place_part(RoomPart.Slot.TOP, top_part)
 	if bottom_part is RoomPart:
-		require_completion = require_completion || bottom_part.require_completion
 		_place_part(RoomPart.Slot.BOTTOM, bottom_part)
 
 	if left_utility:
-		_place_utility(true, require_completion)
+		_place_utility(true)
 	if right_utility:
-		_place_utility(false, require_completion)
+		_place_utility(false)
 
-	# FIXME: get rid of this by creating special room scenes without blockers
-	if !require_completion:
-		room.no_blocker = true
-		room.unlock_exit()
 
 func _place_part(slot: RoomPart.Slot, part: RoomPart) -> void:
 	var part_prefab: PackedScene = part.scenes.pick_random()
@@ -118,12 +111,10 @@ func _place_part(slot: RoomPart.Slot, part: RoomPart) -> void:
 	instance.global_position = at.global_position
 
 
-func _place_utility(left: bool, require_completion: bool) -> void:
+func _place_utility(left: bool) -> void:
 	var instance: Node2D = utility_prefab.instantiate()
 	var at = left_utility_slot if left else right_utility_slot
 	_generated_room_nodes.push_back(instance)
 
 	at.add_child(instance)
 	instance.global_position = at.global_position
-	if instance is BubbleElevator:
-		instance.enabled = require_completion
