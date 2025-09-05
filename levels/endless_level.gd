@@ -55,10 +55,8 @@ func _input(event: InputEvent) -> void:
 
 		_release_player()
 		await get_tree().create_timer(0.75).timeout
-		_next_room()
 
-func _next_room() -> void:
-	_transition_to_next_room.call_deferred()
+		_transition_to_next_room.call_deferred()
 
 func _transition_to_next_room() -> void:
 	if _is_transition_in_progress:
@@ -68,7 +66,8 @@ func _transition_to_next_room() -> void:
 
 	Globals.current_room_index += 1
 
-	var new_room: Room = level_generator.generate(self)
+	var new_room: Room = level_generator.generate()
+	add_child(new_room)
 
 	_play_transition_animation.call_deferred(new_room)
 
@@ -128,10 +127,15 @@ func _play_transition_animation(new_room: Room) -> void:
 	var old_room = current_room
 	current_room = new_room
 	Globals.current_room = new_room
-	current_room.Finished.connect(_next_room)
+	current_room.finished.connect(
+		func():
+			_transition_to_next_room.call_deferred()
+	)
 
 	if old_room != null:
 		old_room.queue_free()
+
+	LevelRig.regenerate_navmesh()
 
 	_is_transition_in_progress = false
 

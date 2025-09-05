@@ -23,7 +23,6 @@ signal upgrade_bought(name: String)
 @export var player: Player
 @export var level: EndlessLevel
 @export var current_room: Room
-@export var current_objective: Objective
 
 var money_at_start = 0
 var money_at_checkpoint = 0

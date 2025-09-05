@@ -3,7 +3,6 @@ class_name KillEveryFishTask
 
 signal complete
 
-@export var room: Room
 @export var waves: EnemyWaves
 
 var kills_required: int = 0
@@ -22,7 +21,8 @@ func start() -> void:
 	if waves is EnemyWaves && !waves.enemy_spawned.is_connected(_track_target):
 		waves.enemy_spawned.connect(_track_target)
 
-	waves.start.call_deferred()
+	await waves.run()
+	can_complete = true
 
 func _track_target(enemy: Node) -> void:
 	var health = Health.find(enemy)

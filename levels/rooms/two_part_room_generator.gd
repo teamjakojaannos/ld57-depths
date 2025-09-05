@@ -1,15 +1,57 @@
+@tool
 extends Node
 class_name TwoPartRoomGenerator
 
-const room_prefab: PackedScene = preload("uid://dmcjpau04bcb0")
+@export
+var room_parts: Array[RoomPart] = []
+
+@export
+var room: Node2D
+
+## Marker node for the position where the top part of the level will be
+## generated at.
+@export var top_part_slot: Node2D
+
+## Marker node for the position where the bottom part of the level will be
+## generated at.
+@export var bottom_part_slot: Node2D
+
+@export var left_utility_slot: Node2D
+@export var right_utility_slot: Node2D
+
+var _generated_room_nodes: Array[Node2D] = []
+
+@export_tool_button("Generate", "Callable")
+var debug_generate_action = debug_generate
+
+@export_tool_button("Clear", "Callable")
+var debug_clear_action = clear
+
+
 const utility_prefab: PackedScene = preload("uid://me27a85v8vp3")
 
-static func generate(container: Node, parts_list: Array[RoomPart]) -> Room:
+func _ready() -> void:
+	if room == null && get_parent() is Node2D:
+		room = get_parent()
+
+func clear() -> void:
+	for node in _generated_room_nodes:
+		node.queue_free()
+	_generated_room_nodes.clear()
+
+func debug_generate() -> void:
+	clear()
+	generate()
+
+func generate() -> void:
+	if room_parts.size() == 0:
+		return
+
 	var is_left_utility_allowed: bool = true
 	var is_right_utility_allowed: bool = true
 
 	var first_slot = RoomPart.Slot.BOTTOM
-	var first_part: RoomPart = _find_room_parts(first_slot, parts_list).pick_random()
+	var first_part: RoomPart = _find_room_parts(first_slot, room_parts).pick_random()
 
 	is_left_utility_allowed = is_left_utility_allowed && !first_part.blocks_left_utility
 	is_right_utility_allowed = is_right_utility_allowed && !first_part.blocks_right_utility
@@ -18,15 +60,14 @@ static func generate(container: Node, parts_list: Array[RoomPart]) -> Room:
 	var second_slot: RoomPart.Slot
 	if first_part.allowed_placement != RoomPart.AllowedPlacement.DOUBLE_SIZE:
 		second_slot = RoomPart.other_slot(first_slot)
-		var second_part_candidates = _find_room_parts(second_slot, parts_list)
+		var second_part_candidates = _find_room_parts(second_slot, room_parts)
 
 		if not second_part_candidates.is_empty():
 			second_part = second_part_candidates.pick_random()
 			is_left_utility_allowed = is_left_utility_allowed && !second_part.blocks_left_utility
 			is_right_utility_allowed = is_right_utility_allowed && !second_part.blocks_right_utility
 
-	return _generate_from_parts(
-		container,
+	_generate_from_parts(
 		first_part if first_slot == RoomPart.Slot.TOP else second_part,
 		second_part if first_slot == RoomPart.Slot.TOP else first_part,
 		is_left_utility_allowed,
@@ -42,52 +83,47 @@ static func _find_room_parts(slot: RoomPart.Slot, parts_list: Array[RoomPart]) -
 	return allowed
 
 
-static func _generate_from_parts(
-	container: Node,
+func _generate_from_parts(
 	top_part: RoomPart,
 	bottom_part: RoomPart,
 	right_utility: bool,
 	left_utility: bool
-) -> Room:
-	var room: Room = room_prefab.instantiate()
-	container.add_child(room)
-
+) -> void:
 	var require_completion = false
 	if top_part is RoomPart:
 		require_completion = require_completion || top_part.require_completion
-		_place_part.call_deferred(room, RoomPart.Slot.TOP, top_part)
+		_place_part(RoomPart.Slot.TOP, top_part)
 	if bottom_part is RoomPart:
 		require_completion = require_completion || bottom_part.require_completion
-		_place_part.call_deferred(room, RoomPart.Slot.BOTTOM, bottom_part)
+		_place_part(RoomPart.Slot.BOTTOM, bottom_part)
 
 	if left_utility:
-		_place_utility.call_deferred(room, true)
+		_place_utility(true, require_completion)
 	if right_utility:
-		_place_utility.call_deferred(room, false)
+		_place_utility(false, require_completion)
 
-	# FIXME: spawn blocker if completion required
+	# FIXME: get rid of this by creating special room scenes without blockers
 	if !require_completion:
 		room.no_blocker = true
 		room.unlock_exit()
 
-	return room
-
-static func _place_part(room: Room, slot: RoomPart.Slot, part: RoomPart) -> void:
+func _place_part(slot: RoomPart.Slot, part: RoomPart) -> void:
 	var part_prefab: PackedScene = part.scenes.pick_random()
-	var part_instance: Node2D = part_prefab.instantiate()
+	var instance: Node2D = part_prefab.instantiate()
+	_generated_room_nodes.push_back(instance)
 
-	if slot == RoomPart.Slot.BOTTOM:
-		room.bottom_slot.add_child(part_instance)
-		part_instance.global_position = room.bottom_slot.global_position
-	else:
-		room.top_slot.add_child(part_instance)
-		part_instance.global_position = room.top_slot.global_position
+	var is_top = slot == RoomPart.Slot.TOP
+	var at = top_part_slot if is_top else bottom_part_slot
+	at.add_child(instance)
+	instance.global_position = at.global_position
 
-static func _place_utility(room: Room, left: bool) -> void:
+
+func _place_utility(left: bool, require_completion: bool) -> void:
 	var instance: Node2D = utility_prefab.instantiate()
-	var at = room.left_slot if left else room.right_slot
+	var at = left_utility_slot if left else right_utility_slot
+	_generated_room_nodes.push_back(instance)
 
 	at.add_child(instance)
 	instance.global_position = at.global_position
 	if instance is BubbleElevator:
-		instance.enabled = true
+		instance.enabled = require_completion

@@ -1,0 +1,83 @@
+[gd_scene load_steps=11 format=3 uid="uid://df2mycb6s5ao4"]
+
+[ext_resource type="Script" uid="uid://cnm8ccac0l3yw" path="res://levels/rooms/two_part_room_generator.gd" id="1_7yhxu"]
+[ext_resource type="Script" uid="uid://dkv1ktumkaoov" path="res://levels/rooms/kill_every_fish_room.gd" id="1_57gfn"]
+[ext_resource type="Script" uid="uid://jqg5obv0d1" path="res://levels/objectives/objective.gd" id="2_67mdr"]
+[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="2_lquwa"]
+[ext_resource type="Resource" uid="uid://bmxxixyyjvvnh" path="res://levels/level_parts/common_any_slot.tres" id="3_57gfn"]
+[ext_resource type="Script" uid="uid://c7ytj8jwilph5" path="res://levels/objectives/kill_every_fish_task.gd" id="3_lquwa"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="7_felg2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_felg2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnoay"]
+size = Vector2(480, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vokht"]
+size = Vector2(480, 118)
+
+[node name="KillEveryFishRoom" type="Node2D"]
+script = ExtResource("1_57gfn")
+
+[node name="TwoPartRoomGenerator" type="Node" parent="." node_paths=PackedStringArray("room", "top_part_slot", "bottom_part_slot", "left_utility_slot", "right_utility_slot")]
+script = ExtResource("1_7yhxu")
+room_parts = Array[ExtResource("2_lquwa")]([ExtResource("3_57gfn")])
+room = NodePath("..")
+top_part_slot = NodePath("../TopRoomPart")
+bottom_part_slot = NodePath("../BottomRoomPart")
+left_utility_slot = NodePath("../LeftUtility")
+right_utility_slot = NodePath("../RightUtility")
+metadata/_custom_type_script = "uid://cnm8ccac0l3yw"
+
+[node name="Objective" type="Node" parent="."]
+script = ExtResource("2_67mdr")
+metadata/_custom_type_script = "uid://jqg5obv0d1"
+
+[node name="KillEveryFish" type="Node" parent="Objective"]
+script = ExtResource("3_lquwa")
+metadata/_custom_type_script = "uid://c7ytj8jwilph5"
+
+[node name="LeftUtility" type="Marker2D" parent="."]
+position = Vector2(-208, 0)
+
+[node name="RightUtility" type="Marker2D" parent="."]
+position = Vector2(208, 0)
+
+[node name="TopRoomPart" type="Marker2D" parent="."]
+position = Vector2(0, -176)
+
+[node name="BottomRoomPart" type="Marker2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Boundary" type="CollisionShape2D" parent="Blocker"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_felg2")
+
+[node name="BubbleElevator" type="Area2D" parent="Blocker"]
+position = Vector2(0, 32)
+collision_mask = 6
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1470.0
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_wnoay")
+debug_color = Color(0.393465, 0.61037, 0, 0.42)
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("7_felg2")
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_vokht")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]

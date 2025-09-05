@@ -4,23 +4,18 @@ class_name EnemyWaves
 signal enemy_spawned(enemy: Node)
 
 func _ready() -> void:
-	start.call_deferred()
+	run.call_deferred()
 
 func _execute() -> void:
 	push_error("Enemy waves does not override _execute()!")
 	await wait(1.0)
 
-func start() -> void:
+func run() -> void:
 	# Wait until the level rig signals the scene initialization is done.
 	if Globals.player is not Player:
 		await LevelRig.initial_scene_ready
 
 	await _execute()
-
-	# FIXME: this is backwards; objective should only be completable once all tasks are completable -> this logic should be in the task, not objective
-	var objective = Globals.current_objective
-	if objective is Objective:
-		objective.allow_completion()
 
 func wait(seconds: float) -> void:
 	await get_tree().create_timer(seconds).timeout

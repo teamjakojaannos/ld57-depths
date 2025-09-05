@@ -4,6 +4,8 @@ extends Node2D
 const GAME_SCENE: PackedScene = preload("uid://bdtgjq516islk")
 
 @onready var player_rig = $PlayerRig
+@onready var level_root: Node2D = $NavRoom
+@onready var nav_region: NavigationRegion2D = $NavRoom
 
 var _current_scene: Node
 
@@ -33,6 +35,10 @@ func restart_game(restore_checkpoint: bool) -> void:
 
 	start_game()
 
+func regenerate_navmesh() -> void:
+	await get_tree().physics_frame
+	nav_region.bake_navigation_polygon()
+
 func _ready() -> void:
 	var scene = get_tree().current_scene
 	if scene != null:
@@ -48,7 +54,7 @@ func _setup_for_intro() -> void:
 
 
 func _setup_initial_scene(scene: Node) -> void:
-	scene.reparent(self)
+	scene.reparent(level_root)
 	player_rig.ensure_player_exists()
 	$PlayerRig/MainCamera.make_current()
 

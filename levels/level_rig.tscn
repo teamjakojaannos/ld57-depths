@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://beo3a3lqhdt8j"]
+[gd_scene load_steps=7 format=3 uid="uid://beo3a3lqhdt8j"]
 
 [ext_resource type="Script" uid="uid://3jag1fhix25b" path="res://levels/level_rig.gd" id="1_nupro"]
 [ext_resource type="Script" uid="uid://c1cpmhd4gbpu8" path="res://levels/player_rig.gd" id="2_n11uj"]
 [ext_resource type="PackedScene" uid="uid://bj0y1grmkuw1b" path="res://levels/background.tscn" id="3_semn8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_semn8"]
+normal = Vector2(1, 0)
+distance = -240.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_csrpv"]
+normal = Vector2(-1, 0)
+distance = -240.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_semn8"]
+resource_local_to_scene = true
+vertices = PackedVector2Array(230, -10, -230, -10, -230, -310, 230, -310)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-240, -320, 240, -320, 240, 0, -240, 0)])
 
 [node name="Level" type="Node2D"]
 editor_description = "Contains everything needed for level transitions and other core level features. Has logic for hijacking the current scene (when starting the game through \"Play current scene\"), allowing starting the game from any scene."
@@ -16,3 +30,22 @@ position = Vector2(0, -162)
 zoom = Vector2(2, 2)
 
 [node name="Background" parent="." instance=ExtResource("3_semn8")]
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="LeftBoundary" type="StaticBody2D" parent="Bounds"]
+collision_layer = 9
+collision_mask = 9
+
+[node name="Shape" type="CollisionShape2D" parent="Bounds/LeftBoundary"]
+shape = SubResource("WorldBoundaryShape2D_semn8")
+
+[node name="RightBoundary" type="StaticBody2D" parent="Bounds"]
+collision_layer = 9
+collision_mask = 9
+
+[node name="Shape" type="CollisionShape2D" parent="Bounds/RightBoundary"]
+shape = SubResource("WorldBoundaryShape2D_csrpv")
+
+[node name="NavRoom" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_semn8")
