@@ -107,7 +107,7 @@ func _place_part(slot: RoomPart.Slot, part: RoomPart) -> void:
 
 	var is_top = slot == RoomPart.Slot.TOP
 	var at = top_part_slot if is_top else bottom_part_slot
-	at.add_child(instance)
+	room.add_child(instance)
 	instance.global_position = at.global_position
 
 
@@ -116,5 +116,5 @@ func _place_utility(left: bool) -> void:
 	var at = left_utility_slot if left else right_utility_slot
 	_generated_room_nodes.push_back(instance)
 
-	at.add_child(instance)
+	room.add_child(instance)
 	instance.global_position = at.global_position

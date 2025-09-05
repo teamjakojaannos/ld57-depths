@@ -195,20 +195,18 @@ shadow_size = 8
 shadow_color = Color(0.24, 0, 0, 0.443137)
 shadow_offset = Vector2(2, 2)
 
-[node name="Main" type="Node2D"]
-
-[node name="EndlessLevel" type="Node2D" parent="."]
+[node name="Game" type="Node2D"]
 script = ExtResource("1_vhr6a")
 
-[node name="LevelGenerator" type="Node" parent="EndlessLevel"]
+[node name="LevelGenerator" type="Node" parent="."]
 script = ExtResource("10_0u5wd")
 spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), SubResource("Resource_8c5ma"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), SubResource("Resource_hvtst"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), SubResource("Resource_ygxck"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), SubResource("Resource_6hew7"), SubResource("Resource_exhqh"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), SubResource("Resource_7g8xt"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), SubResource("Resource_qx8it"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), SubResource("Resource_g1efs"), ExtResource("26_y3vsb")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
-[node name="Overlay" type="CanvasLayer" parent="EndlessLevel"]
+[node name="Overlay" type="CanvasLayer" parent="."]
 layer = 2
 
-[node name="Label" type="Label" parent="EndlessLevel/Overlay"]
+[node name="Label" type="Label" parent="Overlay"]
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
@@ -225,7 +223,7 @@ vertical_alignment = 1
 script = ExtResource("29_50ih0")
 slide_up = true
 
-[node name="Bubbles" type="AudioStreamPlayer" parent="EndlessLevel"]
+[node name="Bubbles" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_si8kf")
 bus = &"SFX"
 
