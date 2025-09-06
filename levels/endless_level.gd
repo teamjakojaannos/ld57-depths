@@ -66,7 +66,19 @@ func _transition_to_next_room() -> void:
 
 	Globals.current_room_index += 1
 
-	var new_room: Room = level_generator.generate()
+	var room_override_scene: PackedScene = \
+		null if current_room == null else current_room.next_room
+	var new_room: Room
+	if room_override_scene is PackedScene:
+		var room_override = room_override_scene.instantiate()
+		if room_override is not Room:
+			var scene_name = room_override_scene.resource_path
+			push_error("Next room override \"%s\" is not a Room!" % scene_name)
+
+		new_room = room_override
+	else:
+		new_room = level_generator.generate()
+
 	add_child(new_room)
 
 	_play_transition_animation.call_deferred(new_room)

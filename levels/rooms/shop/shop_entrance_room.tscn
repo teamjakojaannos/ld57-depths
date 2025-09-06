@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://njx5575ng8a"]
+
+[ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/room.gd" id="1_mbjd1"]
+[ext_resource type="PackedScene" uid="uid://dgc2pwkdah5db" path="res://levels/rooms/shop/shop_room.tscn" id="2_0vs53"]
+[ext_resource type="PackedScene" uid="uid://57civxrguiuv" path="res://levels/generation/templates/special/shop/shop_entrance.tscn" id="3_olrwg"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="4_tnb0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pedr8"]
+size = Vector2(480, 118)
+
+[node name="ShopEntranceRoom" type="Node2D"]
+script = ExtResource("1_mbjd1")
+next_room = ExtResource("2_0vs53")
+entry_text = Array[String](["OPEN", "THE", "SHOP"])
+metadata/_custom_type_script = "uid://cnocojalw35tb"
+
+[node name="LevelPart" parent="." instance=ExtResource("3_olrwg")]
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("4_tnb0m")
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_pedr8")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]

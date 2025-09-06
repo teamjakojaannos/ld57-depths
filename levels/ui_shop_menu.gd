@@ -7,6 +7,9 @@ signal item_bought(item: String, price: int)
 @onready var _left_item_ui: ShopItemUI = $Control/Item_template
 @onready var _right_item_ui: ShopItemUI = $Control/Item_template2
 
+@onready var _buy_success_sound: AudioStreamPlayer = $BuySuccess
+@onready var _buy_failed_sound: AudioStreamPlayer = $BuyFailed
+
 const sold_out: ShopItem = preload("uid://5aw8bapnh2tm")
 const health_potion: ShopItem = preload("res://shop/items/Health_potion.tres")
 
@@ -45,10 +48,9 @@ func open_shop() -> void:
 	$Shopmenu_anim.clear_queue()
 	if !$Shopmenu_anim.current_animation == "Trans_in":
 		$Shopmenu_anim.queue("Trans_in")
-	$"../ShopOpen_sound".play()
-	
+
 	_setup_items()
-	
+
 	_is_open = true
 	shop_open.emit()
 
@@ -56,9 +58,9 @@ func _setup_items() -> void:
 	var already_generated = _generated_queues_room_index == Globals.current_room_index
 	if already_generated:
 		return
-	
+
 	_generated_queues_room_index = Globals.current_room_index
-	
+
 	var p = Globals.player
 	var hp_percent = p.get_health() / p.get_max_health()
 	var is_almost_full_hp = hp_percent > 0.80
@@ -75,7 +77,7 @@ func _setup_items() -> void:
 	else:
 		right_queue = [health_potion]
 		left_queue = _get_upgrade_queue()
-	
+
 	_left_item_ui.display_item(_get_first_item_in_queue(left_queue))
 	_right_item_ui.display_item(_get_first_item_in_queue(right_queue))
 
@@ -100,19 +102,18 @@ func handle_buy_item(item_name: String, price: int, is_left: bool) -> void:
 			_right_item_ui.display_item(item)
 
 
-
 func _get_first_item_in_queue(queue: Array[ShopItem]) -> ShopItem:
 	return sold_out if queue.is_empty() else queue[0]
 
 func _remove_first_item_and_get_next_item_in_queue(queue: Array[ShopItem]) -> ShopItem:
 	if queue.size() > 0:
 		queue.remove_at(0)
-	
+
 	return sold_out if queue.is_empty() else queue[0]
 
-func _get_upgrade_queue(stat_upgrade_in_right_queue:ShopItem = null) -> Array[ShopItem]:
+func _get_upgrade_queue(stat_upgrade_in_right_queue: ShopItem = null) -> Array[ShopItem]:
 	var shop_queue: Array[ShopItem] = []
-	
+
 	var current_level = Globals.current_room_index
 	if current_level >= 9:
 		shop_queue.append(net_thrower)
@@ -135,16 +136,17 @@ func _get_upgrade_queue(stat_upgrade_in_right_queue:ShopItem = null) -> Array[Sh
 		shop_queue.append(health_upgrade_3)
 		shop_queue.append(speed_upgrade_2)
 		shop_queue.append(speed_upgrade_3)
-	
+
 	if stat_upgrade_in_right_queue != null:
 		# avoid duplicate upgrades
 		shop_queue = shop_queue.filter(func(item: ShopItem): return item.name != stat_upgrade_in_right_queue.name)
-	
+
 	return _remove_already_obtained(shop_queue)
 
 func _fail_buy(item_name: String, price: int, is_left: bool) -> void:
 	print("Could not afford '%s' (cost %s, player has %s)" % [item_name, price, Globals.money])
-	$"../NotEnoughMoney".play()
+	_buy_failed_sound.play()
+
 	var button = $Control/Item_template/Buy_button if is_left else $Control/Item_template2/Buy_button
 	var tween = create_tween()
 	tween.tween_property(button, "modulate", Color.RED, 0.1)
@@ -154,10 +156,11 @@ func _fail_buy(item_name: String, price: int, is_left: bool) -> void:
 func _success_buy(item_name: String, price: int) -> void:
 	var new_balance = Globals.money - price
 	print("Item bought '%s' (cost %s, player has %s, new balance %s)" % [item_name, price, Globals.money, new_balance])
-	$"../Buy_sound".play()
+	_buy_success_sound.play()
+
 	Globals.money = new_balance
 	item_bought.emit(item_name, price)
-	
+
 	Globals.handle_buy_item(item_name)
 
 func _remove_already_obtained(items: Array[ShopItem]) -> Array[ShopItem]:

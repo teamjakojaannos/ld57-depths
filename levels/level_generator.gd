@@ -6,6 +6,9 @@ class_name LevelGenerator
 # kill_every_fish_room.tscn
 const room_prefab: PackedScene = preload("uid://df2mycb6s5ao4")
 
+# shop_entrance_room.tscn
+const shop_prefab: PackedScene = preload("uid://njx5575ng8a")
+
 func _select_spawnlist() -> Spawnlist:
 	var current_depth = Globals.current_room_index
 
@@ -21,10 +24,18 @@ func _select_spawnlist() -> Spawnlist:
 func generate():
 	var spawnlist = _select_spawnlist()
 
+	var room: Room
 	if spawnlist.is_special and spawnlist.special_sequence == RoomPart.SpecialSequence.SHOP:
 		Globals.money_at_checkpoint = Globals.money
 
-	var room: KillEveryFishRoom = room_prefab.instantiate()
-	room.setup_room.call_deferred(spawnlist)
+		room = shop_prefab.instantiate()
+	else:
+		var kill_room: KillEveryFishRoom = room_prefab.instantiate()
+		kill_room.setup_room.call_deferred(spawnlist)
+
+		room = kill_room
+
+	if spawnlist.entry_text_override != null && !spawnlist.entry_text_override.is_empty():
+		room.entry_text = spawnlist.entry_text_override
 
 	return room

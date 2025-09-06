@@ -1,7 +1,10 @@
 extends Area2D
 
+@onready var open_sound: AudioStreamPlayer = $ShopOpen
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
+		open_sound.play()
 		$"../UI_ShopMenu".open_shop()
 
 

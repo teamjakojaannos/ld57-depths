@@ -1,3 +1,4 @@
+@tool
 extends Room
 class_name KillEveryFishRoom
 
@@ -26,15 +27,9 @@ func setup_room(spawnlist: Spawnlist) -> void:
 		objective.complete.connect(
 			func():
 				UI.objective_overlay.show_objective("Proceed", "to", "depths", 1.5)
-				for util in $LeftUtility.get_children():
-					if util is BubbleElevator:
-						util.enabled = false
-				for util in $RightUtility.get_children():
-					if util is BubbleElevator:
-						util.enabled = false
+				for node in level_generator._generated_room_nodes:
+					if node is BubbleElevator:
+						node.enabled = false
 		)
 	else:
 		unlock_exit()
-
-	if spawnlist.entry_text_override != null && !spawnlist.entry_text_override.is_empty():
-		entry_text = spawnlist.entry_text_override
