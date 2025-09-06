@@ -9,7 +9,6 @@ signal spin_speed_change(speed_scale: float)
 var _lock_spinning: bool = true
 
 func _open_shop() -> void:
-	print("SHOP IS OPEN")
 	$"../Door".open()
 	opened.emit()
 
@@ -18,7 +17,6 @@ func _ready() -> void:
 	$Closed.visible = true
 
 func _on_health_hurt() -> void:
-	print("CLING! TODO: sfx")
 	$FidgetSpinner.play("default")
 	$Closed.visible = false
 	$Open.visible = false
@@ -28,15 +26,14 @@ func _on_health_hurt() -> void:
 
 
 func _on_health_hurt_invincible() -> void:
-	print("CLING (again!) TODO: sfx")
 	$HitSfx.play()
-	
+
 	if $FidgetSpinner.speed_scale >= 10:
 		return
 
 	$FidgetSpinner.speed_scale += min($FidgetSpinner.speed_scale + 1, 10)
 	$Tuplausmusa.pitch_scale = 1.0 + (($FidgetSpinner.speed_scale - 1) / 25.0)
-	
+
 	if $FidgetSpinner.speed_scale == 1:
 		$FidgetSpinner.play("default")
 		$Tuplausmusa.play()
@@ -51,7 +48,7 @@ func _on_fidget_spinner_animation_finished() -> void:
 	$FidgetSpinner.speed_scale -= 1
 	$Tuplausmusa.pitch_scale = 1.0 + (($FidgetSpinner.speed_scale + 1) / 15.0)
 	spin_speed_change.emit($FidgetSpinner.speed_scale)
-	
+
 	if $FidgetSpinner.speed_scale == 0:
 		_lock_spinning = true
 		$FidgetSpinner.frame = 0
