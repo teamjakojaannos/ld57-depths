@@ -36,7 +36,7 @@ func spawn() -> Array[Node]:
 
 	# HACK: simulate spawn anim with a delay
 	# FIXME: add spawn anims/sequences to enemies
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5, false).timeout
 
 	var spawned_enemies: Array[Node] = []
 	for i in randi_range(count_min, count_max):
@@ -49,7 +49,7 @@ func spawn() -> Array[Node]:
 func _spawn_enemy(room: Room) -> Node2D:
 	var instance: Node2D = enemy.instantiate()
 	_place_at_spawnpoint(instance, room, spawn_group)
-	
+
 	return instance
 
 static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup) -> void:
@@ -91,7 +91,7 @@ static func _find_spawnpoints_in_group(room: Room, group: SpawnGroup) -> Array[N
 			continue
 		if spawnpoint is Node2D:
 			allowed_spawns.push_back(spawnpoint)
-	
+
 	return allowed_spawns
 
 

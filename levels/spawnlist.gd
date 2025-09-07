@@ -9,7 +9,7 @@ class_name Spawnlist
 ## Use -1 for no maximum.
 @export var max_depth: int = -1
 
-## Total (minimum) cost of the spawnables to attempt to spawn. May overflow. 
+## Total (minimum) cost of the spawnables to attempt to spawn. May overflow.
 @export var total_cost: int = 5
 
 ## LEGACY: Enemy spawnables to use for this spawnlist
@@ -18,9 +18,6 @@ class_name Spawnlist
 ## Enemy waves scene. Scene root must inherit EnemyWaves. Overrides cost-
 ## based spawning.
 @export var enemy_waves: PackedScene
-
-## Level parts override to use for this spawnlist
-@export var level_override: Array[RoomPart]
 
 @export var special_sequence: RoomPart.SpecialSequence = RoomPart.SpecialSequence.NONE
 

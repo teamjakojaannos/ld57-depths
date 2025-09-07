@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6bf1xwacf7yu"]
+[gd_scene load_steps=5 format=3 uid="uid://c6bf1xwacf7yu"]
 
 [ext_resource type="Texture2D" uid="uid://c0mjr6msdnb7x" path="res://ui/HP_meter.png" id="1_ev7hb"]
 [ext_resource type="Script" uid="uid://3gp0vv3pydha" path="res://ui/hp_indicator.gd" id="1_suvni"]
+[ext_resource type="Script" uid="uid://br0ilj0w6y2b5" path="res://ui/util/control_shaker.gd" id="2_1wlxh"]
 [ext_resource type="Texture2D" uid="uid://birk020p051en" path="res://ui/HP_handle.png" id="2_suvni"]
 
 [node name="HpIndicator" type="Control"]
@@ -10,7 +11,19 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_suvni")
 
-[node name="Meter" type="TextureRect" parent="."]
+[node name="Shaker" type="Control" parent="."]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1wlxh")
+debug_shake_intensity = 15.0
+metadata/_custom_type_script = "uid://br0ilj0w6y2b5"
+
+[node name="Meter" type="TextureRect" parent="Shaker"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,7 +39,7 @@ grow_vertical = 2
 pivot_offset = Vector2(48, 48)
 texture = ExtResource("1_ev7hb")
 
-[node name="Hand" type="TextureRect" parent="."]
+[node name="Hand" type="TextureRect" parent="Shaker"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

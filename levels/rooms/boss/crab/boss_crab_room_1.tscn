@@ -1,0 +1,171 @@
+[gd_scene load_steps=21 format=4 uid="uid://ktgvv5vwps2c"]
+
+[ext_resource type="Script" uid="uid://call4531ikc12" path="res://levels/rooms/objective_room.gd" id="1_ben2w"]
+[ext_resource type="PackedScene" uid="uid://be042jbqyalhf" path="res://levels/rooms/boss/crab/boss_crab_room_2.tscn" id="2_5ttuo"]
+[ext_resource type="Script" uid="uid://jqg5obv0d1" path="res://levels/objectives/objective.gd" id="3_ben2w"]
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="3_fllwc"]
+[ext_resource type="Texture2D" uid="uid://bixq6xvvkrd81" path="res://graphics/environment/koralli_medium.png" id="4_bfcm2"]
+[ext_resource type="Script" uid="uid://c7ytj8jwilph5" path="res://levels/objectives/kill_every_fish_task.gd" id="4_cbr1k"]
+[ext_resource type="Texture2D" uid="uid://b1fuj47ujwvkj" path="res://graphics/environment/koralli_small.png" id="5_i5ugv"]
+[ext_resource type="Script" uid="uid://cijbhsrijo02n" path="res://levels/rooms/boss/crab/boss_crab_room_1_enemy_waves.gd" id="5_lh6d5"]
+[ext_resource type="Script" uid="uid://d1i2ipscai6wt" path="res://levels/objectives/enemy_wave.gd" id="6_2kw0m"]
+[ext_resource type="Texture2D" uid="uid://ekf074r753ji" path="res://graphics/environment/Simp-ukka.png" id="6_hq8ra"]
+[ext_resource type="PackedScene" uid="uid://bf1fy0bxb0uml" path="res://fish/spiky_puffer_fish/spike_fish.tscn" id="7_cq2gm"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="7_ifmy6"]
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="8_cbr1k"]
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="8_e6ufw"]
+[ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="9_ben2w"]
+[ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="10_cbr1k"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="11_bfcm2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_i5ugv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq8ra"]
+size = Vector2(480, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifmy6"]
+size = Vector2(480, 118)
+
+[node name="BossCrabRoom1" type="Node2D" node_paths=PackedStringArray("objective", "blocker")]
+script = ExtResource("1_ben2w")
+objective = NodePath("Objective")
+blocker = NodePath("Blocker")
+next_room = ExtResource("2_5ttuo")
+entry_text = Array[String](["BEWARE", "OF", "THE CRAB"])
+music = 4
+entry_text_anim_speed_scale = 0.75
+entry_text_linger_duration = 0.5
+metadata/_custom_type_script = "uid://call4531ikc12"
+
+[node name="Objective" type="Node" parent="."]
+script = ExtResource("3_ben2w")
+metadata/_custom_type_script = "uid://jqg5obv0d1"
+
+[node name="KillEveryFishTask" type="Node" parent="Objective" node_paths=PackedStringArray("waves")]
+script = ExtResource("4_cbr1k")
+waves = NodePath("EnemyWaves")
+metadata/_custom_type_script = "uid://c7ytj8jwilph5"
+
+[node name="EnemyWaves" type="Node" parent="Objective/KillEveryFishTask"]
+script = ExtResource("5_lh6d5")
+wave_delay_max = 5.0
+metadata/_custom_type_script = "uid://bkkga1wxjoiyu"
+
+[node name="BunchOfSpikeFish" type="Node" parent="Objective/KillEveryFishTask/EnemyWaves"]
+script = ExtResource("6_2kw0m")
+enemy = ExtResource("7_cq2gm")
+count_min = 2
+count_max = 3
+spawn_group = 1
+metadata/_custom_type_script = "uid://d1i2ipscai6wt"
+
+[node name="SingleEel" type="Node" parent="Objective/KillEveryFishTask/EnemyWaves"]
+script = ExtResource("6_2kw0m")
+enemy = ExtResource("8_cbr1k")
+count_max = 1
+spawn_group = 1
+metadata/_custom_type_script = "uid://d1i2ipscai6wt"
+
+[node name="visualflair" type="Node2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="KoralliLarge" type="Sprite2D" parent="visualflair"]
+position = Vector2(-80, -82)
+texture = ExtResource("3_fllwc")
+
+[node name="KoralliMedium" type="Sprite2D" parent="visualflair"]
+position = Vector2(219, -43)
+texture = ExtResource("4_bfcm2")
+
+[node name="KoralliSmall" type="Sprite2D" parent="visualflair"]
+position = Vector2(255, -44)
+texture = ExtResource("5_i5ugv")
+
+[node name="Simp-ukka" type="Sprite2D" parent="visualflair"]
+position = Vector2(-150, -17)
+rotation = 1.10828
+texture = ExtResource("6_hq8ra")
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="visualflair"]
+z_index = 1
+position = Vector2(144, -98)
+texture = ExtResource("7_ifmy6")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, -8)
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAFAAMAAAD6//7/AAAFAAMAAAD7//7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAGAAMAAAAKAP7/AAAEAAMAAAD1////AAAEAAQAAAD2////AAAFAAQAAAD6////AAAGAAQAAAD7////AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAGAAQAAAAKAP//AAAEAAQAAADz//j/AAAEAAQAAAD0//j/AAAGAAQAAAD1//j/AAAFAAQAAAD2//j/AAAGAAQAAAD3//j/AAAHAAQAAAD3//f/AAAHAAMAAAD2//f/AAAGAAMAAAD1//f/AAAGAAMAAAD0//f/AAAFAAMAAADz//f/AAAEAAMAAAAHAPj/AAAEAAMAAAAHAPn/AAAEAAQAAAAIAPn/AAAGAAQAAAAJAPn/AAAHAAQAAAAJAPj/AAAHAAMAAAAIAPj/AAAGAAMAAAD3//r/AAADAAYAAAD4//r/AAAEAAYAAAD5//r/AAAFAAYAAAD6//r/AAAGAAYAAAD7//r/AAAHAAYAAAD8//r/AAAIAAYAAAD3//7/AAAGAAMAAAD3////AAAFAAQAAAD4////AAAGAAQAAAD5////AAAFAAQAAAD5//7/AAAFAAMAAAD4//7/AAAGAAMAAAD///7/AAAEAAQAAAD/////AAAEAAQAAAAAAP//AAAHAAQAAAAAAP7/AAAHAAQAAAAGAP7/AAAHAAMAAAAGAP//AAAHAAQAAAALAP7/AAAFAAMAAAALAP//AAAGAAQAAAAMAP//AAAGAAQAAAANAP//AAAHAAQAAAAMAP7/AAAFAAMAAAANAP7/AAAHAAMAAAANAPz/AAADAAYAAAAOAPz/AAAEAAYAAAAPAPz/AAAHAAYAAAAQAPz/AAAIAAYAAAD///3/AAAEAAMAAAAAAP3/AAAHAAMAAAA=")
+tile_set = ExtResource("8_e6ufw")
+
+[node name="SnappyPoints" type="Node2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Left" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-30, 10)
+
+[node name="Left3" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-190, 10)
+
+[node name="Right" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(50, 10)
+
+[node name="Right2" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(146, 10)
+
+[node name="CrabClaws" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("9_ben2w")
+both_chance = 0.25
+
+[node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("10_cbr1k")]
+position = Vector2(-40, 32)
+scale = Vector2(1.25, 1.25)
+points = [NodePath("../../SnappyPoints/Left"), NodePath("../../SnappyPoints/Left3")]
+
+[node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("10_cbr1k")]
+position = Vector2(40, 32)
+scale = Vector2(-1.25, 1.25)
+points = [NodePath("../../SnappyPoints/Right"), NodePath("../../SnappyPoints/Right2")]
+
+[node name="Timer" type="Timer" parent="CrabClaws"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Boundary" type="CollisionShape2D" parent="Blocker"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_i5ugv")
+
+[node name="BubbleElevator" type="Area2D" parent="Blocker"]
+position = Vector2(0, 32)
+collision_mask = 6
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1470.0
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_hq8ra")
+debug_color = Color(0.393465, 0.61037, 0, 0.42)
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("11_bfcm2")
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_ifmy6")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[connection signal="complete" from="Objective" to="CrabClaws" method="_on_objective_complete"]
+[connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
+[connection signal="attack_finished" from="CrabClaws/SnappyRight" to="CrabClaws" method="_on_snappy_right_attack_finished"]
+[connection signal="timeout" from="CrabClaws/Timer" to="CrabClaws" method="_on_timer_timeout"]
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]
+
+[editable path="CrabClaws/SnappyRight"]
+[editable path="CrabClaws/SnappyRight/Pivot"]

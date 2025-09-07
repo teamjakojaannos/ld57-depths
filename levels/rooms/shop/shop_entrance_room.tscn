@@ -167,6 +167,7 @@ size = Vector2(480, 118)
 script = ExtResource("1_mbjd1")
 next_room = ExtResource("2_0vs53")
 entry_text = Array[String](["OPEN", "THE", "SHOP"])
+music = 5
 metadata/_custom_type_script = "uid://cnocojalw35tb"
 
 [node name="Tiles" type="TileMapLayer" parent="."]
@@ -244,7 +245,7 @@ centered = false
 [node name="Health" type="Node" parent="Kyltti"]
 script = ExtResource("15_qjyra")
 max_health = 1e+08
-invincible_time = 1e+08
+invulnerable_time_after_damage = 1e+08
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="Hitbox" type="Area2D" parent="Kyltti" node_paths=PackedStringArray("health")]
@@ -412,7 +413,7 @@ shape = SubResource("RectangleShape2D_pedr8")
 debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
 
 [connection signal="animation_finished" from="Kyltti/FidgetSpinner" to="Kyltti" method="_on_fidget_spinner_animation_finished"]
-[connection signal="Hurt" from="Kyltti/Health" to="Kyltti" method="_on_health_hurt"]
-[connection signal="hurt_invincible" from="Kyltti/Health" to="Kyltti" method="_on_health_hurt_invincible"]
+[connection signal="hurt" from="Kyltti/Health" to="Kyltti" method="_on_health_hurt"]
+[connection signal="hurt_too_soon" from="Kyltti/Health" to="Kyltti" method="_on_health_hurt_too_soon"]
 [connection signal="finished" from="Kyltti/Tuplausmusa" to="Kyltti" method="_on_tuplausmusa_finished"]
 [connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]

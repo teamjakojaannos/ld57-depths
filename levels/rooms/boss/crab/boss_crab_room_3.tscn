@@ -1,0 +1,337 @@
+[gd_scene load_steps=34 format=4 uid="uid://crwj03iu2symr"]
+
+[ext_resource type="Script" uid="uid://call4531ikc12" path="res://levels/rooms/objective_room.gd" id="1_hp56v"]
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="2_mqrs1"]
+[ext_resource type="Script" uid="uid://jqg5obv0d1" path="res://levels/objectives/objective.gd" id="2_mwgwi"]
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="3_hp56v"]
+[ext_resource type="Script" uid="uid://c7ii4bayyxpmm" path="res://levels/objectives/tasks/kill_target.gd" id="3_rla3u"]
+[ext_resource type="Script" uid="uid://btsoo67jwmhcf" path="res://boss/crab/crabby.gd" id="4_mwgwi"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="5_rla3u"]
+[ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="6_yl3b1"]
+[ext_resource type="Texture2D" uid="uid://dyyewpvcbqr5x" path="res://boss/crab/rapuwalk.png" id="7_djm20"]
+[ext_resource type="PackedScene" uid="uid://ca4p0t703gbx" path="res://boss/crab/bossy_snappy.tscn" id="8_66tns"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="9_fw4ry"]
+[ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="10_qx2x6"]
+[ext_resource type="Texture2D" uid="uid://pw7s3hg04pje" path="res://boss/crab/rapu_delaa.png" id="11_bfwlk"]
+[ext_resource type="Script" uid="uid://djfpp2d3fbril" path="res://boss/boss_healthbar.gd" id="12_ihd1f"]
+[ext_resource type="Texture2D" uid="uid://bsou74tb8aokn" path="res://ui/UI_slideri.png" id="13_ipjcu"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="14_hp56v"]
+[ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="17_yl3b1"]
+
+[sub_resource type="Animation" id="Animation_km4n6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -46)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ncljd"]
+resource_name = "move"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(120, -46), Vector2(-120, -46)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grlid"]
+_data = {
+&"RESET": SubResource("Animation_km4n6"),
+&"move": SubResource("Animation_ncljd")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msd18"]
+atlas = ExtResource("7_djm20")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncljd"]
+atlas = ExtResource("7_djm20")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_km4n6"]
+atlas = ExtResource("7_djm20")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grlid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msd18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncljd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_km4n6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqmkm"]
+radius = 30.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grlid"]
+size = Vector2(64, 36.6667)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45iwu"]
+atlas = ExtResource("11_bfwlk")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o133k"]
+atlas = ExtResource("11_bfwlk")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1egj7"]
+atlas = ExtResource("11_bfwlk")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wedas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45iwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o133k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1egj7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mwgwi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rla3u"]
+size = Vector2(480, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yl3b1"]
+size = Vector2(480, 118)
+
+[node name="BossCrabRoom3" type="Node2D" node_paths=PackedStringArray("objective", "blocker")]
+script = ExtResource("1_hp56v")
+objective = NodePath("Objective")
+blocker = NodePath("Blocker")
+entry_text = Array[String](["SLAUGHTER", "THE", "CRUSTACEAN"])
+music = 4
+entry_text_anim_speed_scale = 0.5
+entry_text_linger_duration = 0.5
+metadata/_custom_type_script = "uid://call4531ikc12"
+
+[node name="Objective" type="Node" parent="."]
+script = ExtResource("2_mwgwi")
+metadata/_custom_type_script = "uid://jqg5obv0d1"
+
+[node name="KillTargetTask" type="Node" parent="Objective" node_paths=PackedStringArray("target")]
+script = ExtResource("3_rla3u")
+target = NodePath("../../Crabby")
+metadata/_custom_type_script = "uid://c7ii4bayyxpmm"
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="."]
+position = Vector2(44, -103)
+texture = ExtResource("2_mqrs1")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, -32)
+tile_map_data = PackedByteArray("AAD1/wAAAAAGAAQAAAD2/wAAAAAGAAQAAAD3/wAAAAAGAAQAAAD4/wAAAAAFAAQAAAD5/wAAAAAFAAQAAAD0/wAAAAAEAAQAAAD6/wAAAAAFAAQAAAD7/wAAAAAFAAQAAAD8/wAAAAAFAAQAAAD9/wAAAAAGAAQAAAD+/wAAAAAGAAQAAAD//wAAAAAFAAQAAAAAAAAAAAAFAAQAAAABAAAAAAAFAAQAAAACAAAAAAAFAAQAAAADAAAAAAAGAAQAAAAEAAAAAAAGAAQAAAAFAAAAAAAGAAQAAAAGAAAAAAAGAAQAAAAHAAAAAAAFAAQAAAAIAAAAAAAFAAQAAAAJAAAAAAAFAAQAAAAKAAAAAAAGAAQAAAALAAAAAAAHAAQAAAALAP//AAAHAAMAAAAKAP//AAAGAAMAAAAJAP//AAAFAAMAAAAIAP//AAAFAAMAAAAHAP//AAAGAAMAAAAGAP//AAAFAAMAAAAFAP//AAAGAAMAAAAEAP//AAAFAAMAAAADAP//AAAFAAMAAAACAP//AAAFAAMAAAABAP//AAAFAAMAAAAAAP//AAAFAAMAAAD/////AAAFAAMAAAD+////AAAFAAMAAAD9////AAAGAAMAAAD8////AAAFAAMAAAD7////AAAFAAMAAAD6////AAAGAAMAAAD5////AAAFAAMAAAD4////AAAGAAMAAAD3////AAAGAAMAAAD2////AAAGAAMAAAD1////AAAFAAMAAAD0////AAAEAAMAAAD+//f/AAADAAYAAAD///f/AAAEAAYAAAAAAPf/AAAHAAYAAAABAPf/AAAIAAYAAAAJAPf/AAAGAAYAAAAKAPf/AAAHAAYAAAALAPf/AAAIAAYAAAAGAPf/AAADAAYAAAAHAPf/AAAEAAYAAAAIAPf/AAAFAAYAAAD0//f/AAADAAYAAAD1//f/AAAEAAYAAAD2//f/AAAFAAYAAAD3//f/AAAGAAYAAAD4//f/AAAHAAYAAAD5//f/AAAIAAYAAAA=")
+tile_set = ExtResource("3_hp56v")
+
+[node name="Crabby" type="Node2D" parent="."]
+position = Vector2(0, -46)
+scale = Vector2(1.5, 1.5)
+script = ExtResource("4_mwgwi")
+
+[node name="Health" type="Node" parent="Crabby"]
+script = ExtResource("5_rla3u")
+max_health = 30.0
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="Bounty" type="Node" parent="Crabby" node_paths=PackedStringArray("health")]
+script = ExtResource("6_yl3b1")
+bounty = 15
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://ds8qvr68yl5bj"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Crabby"]
+libraries = {
+&"": SubResource("AnimationLibrary_grlid")
+}
+speed_scale = 0.25
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Crabby"]
+sprite_frames = SubResource("SpriteFrames_grlid")
+frame_progress = 0.899504
+offset = Vector2(0, -34)
+
+[node name="SnappyLeft" parent="Crabby" instance=ExtResource("8_66tns")]
+position = Vector2(0, 14)
+
+[node name="SnappyRight" parent="Crabby" instance=ExtResource("8_66tns")]
+position = Vector2(0, 14)
+scale = Vector2(-1, 1)
+
+[node name="TimerLeft" type="Timer" parent="Crabby"]
+wait_time = 5.0
+autostart = true
+
+[node name="TimerRight" type="Timer" parent="Crabby"]
+wait_time = 5.0
+autostart = true
+
+[node name="Hitbox" type="Area2D" parent="Crabby" node_paths=PackedStringArray("health")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("9_fw4ry")
+health = NodePath("../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="Shape" type="CollisionShape2D" parent="Crabby/Hitbox"]
+position = Vector2(0, -17.3333)
+shape = SubResource("CircleShape2D_uqmkm")
+
+[node name="Area2D" type="Area2D" parent="Crabby"]
+position = Vector2(0, -17.3333)
+collision_layer = 0
+collision_mask = 2
+gravity_space_override = 1
+gravity_point = true
+gravity_point_unit_distance = 24.0
+gravity_point_center = Vector2(0, 16)
+gravity_direction = Vector2(0, 16)
+gravity = -15000.0
+script = ExtResource("10_qx2x6")
+
+[node name="Shape" type="CollisionShape2D" parent="Crabby/Area2D"]
+position = Vector2(9.53674e-07, -8.33333)
+shape = SubResource("RectangleShape2D_grlid")
+debug_color = Color(0.971292, 0.170316, 1.92523e-07, 0.42)
+
+[node name="DeadCrabby" type="AnimatedSprite2D" parent="Crabby"]
+visible = false
+sprite_frames = SubResource("SpriteFrames_wedas")
+offset = Vector2(0, -34)
+
+[node name="BossHealthbar" type="CanvasLayer" parent="Crabby" node_paths=PackedStringArray("boss")]
+layer = 8
+script = ExtResource("12_ihd1f")
+health_percentage = 1.0
+boss = NodePath("../Health")
+
+[node name="Control" type="Control" parent="Crabby/BossHealthbar"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="Healthbar" type="TextureRect" parent="Crabby/BossHealthbar/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 12.0
+offset_right = 128.0
+offset_bottom = 52.0
+grow_horizontal = 2
+texture = ExtResource("13_ipjcu")
+
+[node name="Progress" type="ColorRect" parent="Crabby/BossHealthbar/Control"]
+layout_mode = 0
+offset_left = -100.0
+offset_top = 26.0
+offset_right = 138.0
+offset_bottom = 40.0
+color = Color(0.62, 0.124, 0.124, 1)
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Boundary" type="CollisionShape2D" parent="Blocker"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_mwgwi")
+
+[node name="BubbleElevator" type="Area2D" parent="Blocker"]
+position = Vector2(0, 32)
+collision_mask = 6
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1470.0
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_rla3u")
+debug_color = Color(0.393465, 0.61037, 0, 0.42)
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("14_hp56v")
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_yl3b1")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[node name="BubbleElevatorLeft" parent="." instance=ExtResource("17_yl3b1")]
+position = Vector2(-208, 0)
+
+[node name="BubbleElevatorRight" parent="." instance=ExtResource("17_yl3b1")]
+position = Vector2(208, 0)
+
+[connection signal="objective_completed" from="." to="BubbleElevatorRight" method="disable"]
+[connection signal="objective_completed" from="." to="BubbleElevatorLeft" method="disable"]
+[connection signal="die" from="Crabby/Health" to="Crabby" method="_on_health_die"]
+[connection signal="die" from="Crabby/Health" to="Crabby/Bounty" method="_on_health_die"]
+[connection signal="timeout" from="Crabby/TimerLeft" to="Crabby" method="_on_timer_left_timeout"]
+[connection signal="timeout" from="Crabby/TimerRight" to="Crabby" method="_on_timer_right_timeout"]
+[connection signal="area_entered" from="Crabby/Area2D" to="Crabby/Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]

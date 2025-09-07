@@ -2,6 +2,15 @@ extends AudioStreamPlayer
 class_name Jukebox
 
 enum Song {
+	## A NULL song. Ugly hack to allow null default values for exported
+	## variables of type Song. Should never be passed to play_song.
+	Null,
+
+	## Special song used to remove background music.
+	Silence,
+
+	# Actual music tracks:
+
 	Music_1,
 	Music_2,
 	Boss_1,
@@ -21,7 +30,7 @@ var current_song: Song
 func _ready() -> void:
 	Globals.music = self
 	Globals.volume_changed.connect(update_volume)
-	
+
 	current_song = Song.Music_1
 	stream = music_track_1
 	update_volume()
@@ -34,6 +43,9 @@ func play_song(song: Song):
 	current_song = song
 	var song_to_play
 	match song:
+		Song.Silence:
+			await fade_out(1.0)
+			return
 		Song.Music_1:
 			song_to_play = music_track_1
 		Song.Music_2:
@@ -42,28 +54,28 @@ func play_song(song: Song):
 			song_to_play = boss_music_1
 		Song.Shop:
 			song_to_play = shop_music
-		_ :
+		_:
 			print("Trying to play song that doesn't exist: ", song)
 			return
-	
-	
+
+
 	if music_fade_tween != null:
 		music_fade_tween.kill()
-	
+
 	counter += 1
 	var current_id = counter
-	
+
 	music_fade_tween = create_tween()
 	var fade_time = 1.0
 	await fade_out(fade_time)
-	
+
 	# if we switched to another song while fading out, cancel the song-switch
 	if current_id != counter:
 		return
-	
+
 	stream = song_to_play
 	play()
-	
+
 	await fade_in(1.0)
 
 func do_music_fade(fade_mult: float):

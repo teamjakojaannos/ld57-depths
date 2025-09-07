@@ -16,8 +16,10 @@ size = Vector2(480, 24)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vokht"]
 size = Vector2(480, 118)
 
-[node name="KillEveryFishRoom" type="Node2D"]
+[node name="KillEveryFishRoom" type="Node2D" node_paths=PackedStringArray("objective", "blocker")]
 script = ExtResource("1_57gfn")
+objective = NodePath("Objective")
+blocker = NodePath("Blocker")
 
 [node name="TwoPartRoomGenerator" type="Node" parent="." node_paths=PackedStringArray("room", "top_part_slot", "bottom_part_slot", "left_utility_slot", "right_utility_slot")]
 script = ExtResource("1_7yhxu")

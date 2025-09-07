@@ -1,3 +1,4 @@
+## A region of 2D space that deals damage when it hits a Hitbox.
 @tool
 extends Area2D
 class_name Hurtbox

@@ -1,18 +1,12 @@
-[gd_scene load_steps=37 format=3 uid="uid://bdtgjq516islk"]
+[gd_scene load_steps=33 format=3 uid="uid://bdtgjq516islk"]
 
 [ext_resource type="Script" uid="uid://8nyouh1lub6p" path="res://levels/endless_level.gd" id="1_vhr6a"]
-[ext_resource type="Resource" uid="uid://61ukmhorbgv2" path="res://levels/spawnlists/special/tutorial/tutorial_02.tres" id="7_218np"]
-[ext_resource type="Resource" uid="uid://3txs88cmr0d8" path="res://levels/spawnlists/special/crab_fight_01.tres" id="9_fbo34"]
 [ext_resource type="Script" uid="uid://bp204dfquw307" path="res://levels/level_generator.gd" id="10_0u5wd"]
 [ext_resource type="Script" uid="uid://b5ri76voq74fo" path="res://levels/spawnable.gd" id="10_re6tf"]
 [ext_resource type="Resource" uid="uid://cuii51a4el6ao" path="res://levels/spawnlists/easy_02.tres" id="11_fbo34"]
-[ext_resource type="Script" uid="uid://btbyp1ynjhn0d" path="res://levels/generation/room_part.gd" id="11_mgpep"]
-[ext_resource type="Resource" uid="uid://b02yhagcdocv" path="res://levels/spawnlists/special/crab_fight_02.tres" id="12_mgpep"]
 [ext_resource type="Resource" uid="uid://bb4icjxasx3co" path="res://levels/spawnlists/medium_01.tres" id="12_si8kf"]
 [ext_resource type="Resource" uid="uid://cvi32wfklm4tx" path="res://levels/spawnlists/easy_03.tres" id="13_07adx"]
 [ext_resource type="Script" uid="uid://bvjmnsbmjevah" path="res://levels/spawnlist.gd" id="13_kw56w"]
-[ext_resource type="Resource" uid="uid://b56fx2xsus5v3" path="res://levels/spawnlists/special/crab_fight_03.tres" id="13_pb6kn"]
-[ext_resource type="Resource" uid="uid://mnknu4kae5i5" path="res://levels/spawnlists/special/tutorial/tutorial_01.tres" id="14_3cl1t"]
 [ext_resource type="Resource" uid="uid://bvno3ufa574sr" path="res://levels/spawnlists/easy_04.tres" id="14_8c5ma"]
 [ext_resource type="Resource" uid="uid://p30hred7cgtr" path="res://levels/spawnlists/easy_01.tres" id="14_xr5dp"]
 [ext_resource type="Resource" uid="uid://8wamtrt6ry6d" path="res://levels/spawnlists/medium_02.tres" id="16_0ga61"]
@@ -23,11 +17,20 @@
 [ext_resource type="Resource" uid="uid://smyiaw6rh2co" path="res://levels/spawnlists/hard_02.tres" id="23_k1iig"]
 [ext_resource type="Resource" uid="uid://da28rbnibig8b" path="res://levels/spawnlists/hard_03.tres" id="24_frytq"]
 [ext_resource type="Resource" uid="uid://dvurxd3hxe1du" path="res://levels/spawnlists/hard_04.tres" id="25_hvtst"]
-[ext_resource type="Resource" uid="uid://dnwnby8ncrk1i" path="res://levels/spawnlists/special/squid_boss.tres" id="26_y3vsb"]
 [ext_resource type="FontFile" uid="uid://obfec4wf4uic" path="res://fonts/gothic_pixel/gothic_pixel_edit.ttf" id="28_3wro5"]
 [ext_resource type="Script" uid="uid://cb1rx1hhctwpd" path="res://ui/objective_label.gd" id="29_50ih0"]
 [ext_resource type="AudioStream" uid="uid://s5j8j3qlh4" path="res://levels/bgm1.ogg" id="29_raxgq"]
 [ext_resource type="Script" uid="uid://ctcrfgfsh1acj" path="res://levels/music.gd" id="30_a17x3"]
+
+[sub_resource type="Resource" id="Resource_kck2e"]
+script = ExtResource("13_kw56w")
+min_depth = 1
+max_depth = 2
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+special_sequence = 4
+entry_text_override = Array[String]([])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
 [sub_resource type="Resource" id="Resource_07adx"]
 script = ExtResource("13_kw56w")
@@ -35,7 +38,6 @@ min_depth = 8
 max_depth = 8
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
@@ -46,7 +48,6 @@ min_depth = 15
 max_depth = 15
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
@@ -57,8 +58,17 @@ min_depth = 22
 max_depth = 22
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
+entry_text_override = Array[String]([])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_mgpep"]
+script = ExtResource("13_kw56w")
+min_depth = 24
+max_depth = 24
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+special_sequence = 1
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
@@ -68,7 +78,6 @@ min_depth = 27
 max_depth = 27
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
@@ -79,7 +88,6 @@ min_depth = 34
 max_depth = 34
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
@@ -90,7 +98,6 @@ min_depth = 41
 max_depth = 41
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
@@ -101,8 +108,17 @@ min_depth = 48
 max_depth = 48
 total_cost = 0
 enemies = Array[ExtResource("10_re6tf")]([])
-level_override = Array[ExtResource("11_mgpep")]([])
 special_sequence = 2
+entry_text_override = Array[String]([])
+metadata/_custom_type_script = "uid://bvjmnsbmjevah"
+
+[sub_resource type="Resource" id="Resource_si8kf"]
+script = ExtResource("13_kw56w")
+min_depth = 50
+max_depth = 50
+total_cost = 0
+enemies = Array[ExtResource("10_re6tf")]([])
+special_sequence = 3
 entry_text_override = Array[String]([])
 metadata/_custom_type_script = "uid://bvjmnsbmjevah"
 
@@ -121,7 +137,7 @@ script = ExtResource("1_vhr6a")
 
 [node name="LevelGenerator" type="Node" parent="."]
 script = ExtResource("10_0u5wd")
-spawnlists = Array[ExtResource("13_kw56w")]([ExtResource("14_3cl1t"), ExtResource("7_218np"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), ExtResource("9_fbo34"), ExtResource("12_mgpep"), ExtResource("13_pb6kn"), SubResource("Resource_6hew7"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), ExtResource("26_y3vsb")])
+spawnlists = Array[ExtResource("13_kw56w")]([SubResource("Resource_kck2e"), ExtResource("14_xr5dp"), ExtResource("11_fbo34"), SubResource("Resource_07adx"), ExtResource("13_07adx"), ExtResource("14_8c5ma"), SubResource("Resource_frytq"), ExtResource("12_si8kf"), ExtResource("16_0ga61"), SubResource("Resource_y3vsb"), SubResource("Resource_mgpep"), SubResource("Resource_6hew7"), ExtResource("20_k1iig"), ExtResource("21_ddyuc"), SubResource("Resource_ddyuc"), ExtResource("22_0ga61"), ExtResource("23_k1iig"), SubResource("Resource_5lu4e"), ExtResource("24_frytq"), ExtResource("25_hvtst"), SubResource("Resource_aolvq"), SubResource("Resource_si8kf")])
 metadata/_custom_type_script = "uid://bp204dfquw307"
 
 [node name="Overlay" type="CanvasLayer" parent="."]

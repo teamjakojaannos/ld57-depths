@@ -25,7 +25,7 @@ func _on_health_hurt() -> void:
 	spin_start.emit()
 
 
-func _on_health_hurt_invincible() -> void:
+func _on_health_too_soon() -> void:
 	$HitSfx.play()
 
 	if $FidgetSpinner.speed_scale >= 10:

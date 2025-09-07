@@ -3,9 +3,6 @@ class_name EnemyWaves
 
 signal enemy_spawned(enemy: Node)
 
-func _ready() -> void:
-	run.call_deferred()
-
 func _execute() -> void:
 	push_error("Enemy waves does not override _execute()!")
 	await wait(1.0)
@@ -18,7 +15,10 @@ func run() -> void:
 	await _execute()
 
 func wait(seconds: float) -> void:
-	await get_tree().create_timer(seconds).timeout
+	if seconds <= 0.0:
+		return
+
+	await get_tree().create_timer(seconds, false).timeout
 
 func wait_all(funcs: Array) -> void:
 	await Promise.async_all(funcs)

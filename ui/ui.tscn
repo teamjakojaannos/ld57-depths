@@ -132,6 +132,11 @@ tracks/8/keys = {
 resource_name = "enter"
 length = 3.0
 step = 0.1
+markers = [{
+"color": Color(0, 0.707488, 0, 1),
+"name": &"fully_visible",
+"time": 1.9
+}]
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -317,5 +322,6 @@ bus = &"SFX"
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="."]
 layer = 4
+visible = false
 
 [node name="PauseMenu" parent="PauseMenuLayer" instance=ExtResource("11_3lbto")]

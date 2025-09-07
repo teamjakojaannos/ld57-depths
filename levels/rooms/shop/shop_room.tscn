@@ -174,6 +174,7 @@ size = Vector2(480, 118)
 [node name="ShopRoom" type="Node2D"]
 script = ExtResource("1_q0isb")
 entry_text = Array[String](["TIME", "TO", "SHOP"])
+music = 5
 metadata/_custom_type_script = "uid://cnocojalw35tb"
 
 [node name="UI_ShopMenu" type="CanvasLayer" parent="."]

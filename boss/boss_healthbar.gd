@@ -16,9 +16,9 @@ class_name BossHealthbar
 func _ready() -> void:
 	if boss == null:
 		return
-	
-	if not boss.Hurt.is_connected(_update):
-		boss.Hurt.connect(_update)
+
+	if not boss.hurt.is_connected(_update):
+		boss.hurt.connect(_update)
 
 	_update()
 

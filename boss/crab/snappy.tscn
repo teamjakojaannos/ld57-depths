@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://1bvqgpst3ypf"]
+[gd_scene load_steps=13 format=3 uid="uid://1bvqgpst3ypf"]
 
 [ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_aud8y"]
 [ext_resource type="PackedScene" uid="uid://dqngjdi7feqd4" path="res://boss/crab/snappy_arm.tscn" id="2_8y5u7"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="2_tr78k"]
 [ext_resource type="AudioStream" uid="uid://clghm8gts3qpq" path="res://boss/crab/crabclaw_long.ogg" id="3_aud8y"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_171te"]
 
 [sub_resource type="Animation" id="Animation_m6qkv"]
 length = 0.001
@@ -175,8 +177,15 @@ _data = {
 &"peek": SubResource("Animation_00haj")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbbtm"]
+size = Vector2(28.1931, 28.1931)
+
 [node name="Snappy" type="Node2D"]
 script = ExtResource("1_aud8y")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_tr78k")
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -186,7 +195,23 @@ libraries = {
 [node name="Pivot" parent="." instance=ExtResource("2_8y5u7")]
 position = Vector2(0, 56)
 
+[node name="Hitbox" type="Area2D" parent="Pivot" node_paths=PackedStringArray("health")]
+position = Vector2(0, -56)
+scale = Vector2(1, 1)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_171te")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="Shape" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(-10.4, 14.4)
+rotation = -0.785397
+shape = SubResource("RectangleShape2D_fbbtm")
+
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_aud8y")
 max_polyphony = 4
 bus = &"Enemy SFX"
+
+[editable path="Pivot"]

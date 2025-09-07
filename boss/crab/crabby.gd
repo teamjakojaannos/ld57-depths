@@ -6,10 +6,9 @@ class_name Crabby
 
 func _ready() -> void:
 	get_tree().create_timer(2.5).timeout.connect(_start)
-	Globals.current_room.kills_required = 1
-	
+
 	$DeadCrabby.visible = false
-	
+
 func _start() -> void:
 	$AnimationPlayer.play("move")
 	$AnimationPlayer.seek(0.5)

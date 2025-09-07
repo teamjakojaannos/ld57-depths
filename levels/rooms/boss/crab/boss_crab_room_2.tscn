@@ -1,0 +1,155 @@
+[gd_scene load_steps=16 format=4 uid="uid://be042jbqyalhf"]
+
+[ext_resource type="Script" uid="uid://call4531ikc12" path="res://levels/rooms/objective_room.gd" id="1_vpg7h"]
+[ext_resource type="PackedScene" uid="uid://crwj03iu2symr" path="res://levels/rooms/boss/crab/boss_crab_room_3.tscn" id="2_dq627"]
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="3_adxqp"]
+[ext_resource type="Script" uid="uid://jqg5obv0d1" path="res://levels/objectives/objective.gd" id="3_rx1fe"]
+[ext_resource type="Script" uid="uid://c7ii4bayyxpmm" path="res://levels/objectives/tasks/kill_target.gd" id="4_ec7sp"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="4_vpg7h"]
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="5_rx1fe"]
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="6_ec7sp"]
+[ext_resource type="Script" uid="uid://dpi1wjuwaavit" path="res://boss/crab/crab_claws_stage.gd" id="7_agt58"]
+[ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="8_3dpfq"]
+[ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="9_fq3nh"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="10_vpg7h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rx1fe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec7sp"]
+size = Vector2(480, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agt58"]
+size = Vector2(480, 118)
+
+[node name="BossCrabRoom2" type="Node2D" node_paths=PackedStringArray("objective", "blocker")]
+script = ExtResource("1_vpg7h")
+objective = NodePath("Objective")
+blocker = NodePath("Blocker")
+next_room = ExtResource("2_dq627")
+entry_text = Array[String](["SHOOT", "THE", "CLAWS"])
+music = 4
+entry_text_anim_speed_scale = 0.75
+entry_text_linger_duration = 0.5
+metadata/_custom_type_script = "uid://call4531ikc12"
+
+[node name="Objective" type="Node" parent="."]
+script = ExtResource("3_rx1fe")
+metadata/_custom_type_script = "uid://jqg5obv0d1"
+
+[node name="KillLeftSnappy" type="Node" parent="Objective" node_paths=PackedStringArray("target")]
+script = ExtResource("4_ec7sp")
+target = NodePath("../../CrabClaws/SnappyLeft")
+metadata/_custom_type_script = "uid://c7ii4bayyxpmm"
+
+[node name="KillRightSnappy" type="Node" parent="Objective" node_paths=PackedStringArray("target")]
+script = ExtResource("4_ec7sp")
+target = NodePath("../../CrabClaws/SnappyRight")
+metadata/_custom_type_script = "uid://c7ii4bayyxpmm"
+
+[node name="visualflair" type="Node2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="Seaplant" type="Sprite2D" parent="visualflair"]
+position = Vector2(-156, -47)
+scale = Vector2(-1, 1)
+texture = ExtResource("3_adxqp")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="visualflair"]
+position = Vector2(80, -23)
+scale = Vector2(-1, 1)
+texture = ExtResource("4_vpg7h")
+
+[node name="Tottero" type="Sprite2D" parent="visualflair"]
+position = Vector2(149, -128)
+scale = Vector2(-1, 1)
+texture = ExtResource("5_rx1fe")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(-1, -5)
+tile_map_data = PackedByteArray("AAD1//7/AAAEAAMAAAD2//7/AAAHAAMAAAD6//7/AAAEAAMAAAD7//7/AAAHAAMAAAAEAP7/AAAEAAMAAAAFAP7/AAAHAAMAAAAJAP7/AAAEAAMAAAAKAP7/AAAHAAMAAAD1////AAAEAAQAAAD2////AAAHAAQAAAD6////AAAEAAQAAAD7////AAAHAAQAAAAEAP//AAAEAAQAAAAFAP//AAAHAAQAAAAJAP//AAAEAAQAAAAKAP//AAAHAAQAAAD+//7/AAADAAYAAAD///7/AAAEAAYAAAAAAP7/AAAHAAYAAAABAP7/AAAIAAYAAAAOAP3/AAAEAAYAAAAPAP3/AAAFAAYAAAAQAP3/AAAGAAYAAAARAP3/AAAHAAYAAAASAP3/AAAIAAYAAAANAP3/AAADAAYAAADt//3/AAADAAYAAADu//3/AAAEAAYAAADv//3/AAAFAAYAAADw//3/AAAGAAYAAADx//3/AAAHAAYAAADy//3/AAAIAAYAAAAGAPf/AAAEAAMAAAAGAPj/AAAEAAQAAAAHAPf/AAAFAAMAAAAHAPj/AAAFAAQAAAAIAPf/AAAGAAMAAAAIAPj/AAAGAAQAAAAJAPf/AAAHAAMAAAAJAPj/AAAHAAQAAAA=")
+tile_set = ExtResource("6_ec7sp")
+
+[node name="SnappyPoints" type="Node2D" parent="."]
+position = Vector2(0, -2)
+
+[node name="Left" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-30, 10)
+
+[node name="Left2" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-110, 10)
+
+[node name="Left3" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(-190, 10)
+
+[node name="Right" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(50, 10)
+
+[node name="Right2" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(130, 10)
+
+[node name="Right3" type="Marker2D" parent="SnappyPoints"]
+position = Vector2(210, 10)
+
+[node name="CrabClaws" type="Node2D" parent="."]
+position = Vector2(0, -16)
+script = ExtResource("7_agt58")
+both_chance = 0.35
+
+[node name="SnappyLeft" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("8_3dpfq")]
+position = Vector2(-40, 32)
+scale = Vector2(1.25, 1.25)
+points = [NodePath("../../SnappyPoints/Left"), NodePath("../../SnappyPoints/Left2"), NodePath("../../SnappyPoints/Left3")]
+attack_idle_min = 1.6
+attack_idle_max = 2.5
+
+[node name="SnappyRight" parent="CrabClaws" node_paths=PackedStringArray("points") instance=ExtResource("8_3dpfq")]
+position = Vector2(40, 32)
+scale = Vector2(-1.25, 1.25)
+points = [NodePath("../../SnappyPoints/Right"), NodePath("../../SnappyPoints/Right2"), NodePath("../../SnappyPoints/Right3")]
+attack_idle_min = 1.6
+attack_idle_max = 2.5
+
+[node name="Timer" type="Timer" parent="CrabClaws"]
+wait_time = 0.5
+one_shot = true
+
+[node name="BubbleElevator" parent="." instance=ExtResource("9_fq3nh")]
+
+[node name="Blocker" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="Boundary" type="CollisionShape2D" parent="Blocker"]
+position = Vector2(0, 16)
+shape = SubResource("WorldBoundaryShape2D_rx1fe")
+
+[node name="BubbleElevator" type="Area2D" parent="Blocker"]
+position = Vector2(0, 32)
+collision_mask = 6
+gravity_space_override = 3
+gravity_point_center = Vector2(0, -1)
+gravity_direction = Vector2(0, -1)
+gravity = 1470.0
+
+[node name="Shape" type="CollisionShape2D" parent="Blocker/BubbleElevator"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_ec7sp")
+debug_color = Color(0.393465, 0.61037, 0, 0.42)
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("10_vpg7h")
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_agt58")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[connection signal="objective_completed" from="." to="BubbleElevator" method="disable"]
+[connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
+[connection signal="attack_finished" from="CrabClaws/SnappyRight" to="CrabClaws" method="_on_snappy_right_attack_finished"]
+[connection signal="timeout" from="CrabClaws/Timer" to="CrabClaws" method="_on_timer_timeout"]
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]

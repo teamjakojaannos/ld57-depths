@@ -1,3 +1,4 @@
+## A region of 2D space that can accept incoming damage.
 @tool
 extends Area2D
 class_name Hitbox

@@ -12,12 +12,9 @@ var auto_track_child_tasks: bool = true
 
 func _ready() -> void:
 	if auto_track_child_tasks:
-		for child in self.get_children():
-			# FIXME: base class for tasks
-			if child is not KillEveryFishTask:
-				continue
-
-			track_task(child)
+		for child in get_children():
+			if child is Task:
+				track_task(child)
 
 
 func track_task(task: Node) -> void:
@@ -29,9 +26,3 @@ func _complete_task() -> void:
 
 	if _tasks_remaining <= 0:
 		complete.emit()
-
-func allow_completion() -> void:
-	for task in get_children():
-		# FIXME: base class for tasks
-		if task is KillEveryFishTask:
-			task.can_complete = true

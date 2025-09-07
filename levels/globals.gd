@@ -48,7 +48,6 @@ var music_volume_percent: float:
 
 var bought_upgrades: Array[String] = []
 
-signal room_cleared
 signal volume_changed
 signal money_changed
 
@@ -91,9 +90,6 @@ func _replay_upgrades() -> void:
 	bought_upgrades.clear()
 	for item in uppies:
 		handle_buy_item(item)
-
-func trigger_room_clear() -> void:
-	room_cleared.emit()
 
 func unlock_all_upgrades() -> void:
 	if player is not Player:

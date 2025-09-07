@@ -16,3 +16,7 @@ func _refresh() -> void:
 	else:
 		process_mode = Node.PROCESS_MODE_INHERIT
 		$Bubbles.emitting = true
+
+# For easily disabling via signals hooked in-editor.
+func disable() -> void:
+	enabled = false

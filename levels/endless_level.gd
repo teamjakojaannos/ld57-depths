@@ -1,12 +1,18 @@
 extends Node2D
 class_name EndlessLevel
 
-@onready var current_room: Room
 @onready var level_generator: LevelGenerator = $LevelGenerator
 
 @export var transition_duration: float = 1.5
 @export var room_height_in_tiles: int = 36
 @export var tile_size: int = 16
+
+## Set this to a room node to force game to start with that as the first room.
+## Used for cleanly setting up the level when using play-current-scene (F6) in
+## the editor.
+@export var debug_room_override: Room
+
+var _current_room: Room
 
 var _is_player_ready: bool = false
 
@@ -66,30 +72,40 @@ func _transition_to_next_room() -> void:
 
 	Globals.current_room_index += 1
 
-	var room_override_scene: PackedScene = \
-		null if current_room == null else current_room.next_room
-	var new_room: Room
-	if room_override_scene is PackedScene:
-		var room_override = room_override_scene.instantiate()
-		if room_override is not Room:
-			var scene_name = room_override_scene.resource_path
-			push_error("Next room override \"%s\" is not a Room!" % scene_name)
-
-		new_room = room_override
-	else:
-		new_room = level_generator.generate()
+	var new_room = _generate_next_room()
+	debug_room_override = null
 
 	add_child(new_room)
 
+	if new_room is ObjectiveRoom:
+		new_room.setup_room.call_deferred()
+
+	new_room.finished.connect(
+		func():
+			_transition_to_next_room.call_deferred()
+	)
+
 	_play_transition_animation.call_deferred(new_room)
 
-	var music_to_play = _get_music_to_play()
+	var music_to_play = _get_music_to_play(new_room)
 	var current_song = Globals.music.current_song
 
 	if music_to_play != current_song:
 		Globals.music.play_song(music_to_play)
 
-func _get_music_to_play() -> Jukebox.Song:
+func _generate_next_room() -> Room:
+	if debug_room_override != null:
+		return debug_room_override
+
+	if _current_room != null && _current_room.next_room is PackedScene:
+		return _current_room.next_room.instantiate()
+
+	return level_generator.generate()
+
+func _get_music_to_play(room: Room) -> Jukebox.Song:
+	if room.music != Jukebox.Song.Null:
+		return room.music
+
 	var room_index = Globals.current_room_index
 	var boss_rooms = [24, 25, 26, 50]
 	var shop_rooms = [8, 9, 15, 16, 22, 23, 27, 28, 34, 35, 41, 42, 48, 49]
@@ -115,9 +131,9 @@ func _play_transition_animation(new_room: Room) -> void:
 	transition.set_trans(Tween.TRANS_CUBIC)
 	transition.set_ease(Tween.EASE_OUT)
 
-	if current_room != null:
-		current_room.position = Vector2.ZERO
-		transition.tween_property(current_room, "position", old_room_goal_position, transition_duration)
+	if _current_room != null:
+		_current_room.position = Vector2.ZERO
+		transition.tween_property(_current_room, "position", old_room_goal_position, transition_duration)
 
 	new_room.position = Vector2.DOWN * _room_height_total
 	transition.tween_property(new_room, "position", new_room_goal_position, transition_duration)
@@ -128,7 +144,13 @@ func _play_transition_animation(new_room: Room) -> void:
 	var entry_text = ["KILL", "EVERY", "FISH"]
 	if new_room.entry_text != null && !new_room.entry_text.is_empty():
 		entry_text = new_room.entry_text
-	UI.objective_overlay.show_objective(entry_text[0], entry_text[1], entry_text[2], 1.0)
+	UI.objective_overlay.show_objective(
+		entry_text[0],
+		entry_text[1],
+		entry_text[2],
+		new_room.entry_text_anim_speed_scale,
+		new_room.entry_text_linger_duration
+	)
 
 	var d = Globals.current_room_index / 100.0
 	$Bubbles.pitch_scale = lerp(1.05, 0.35, d)
@@ -136,13 +158,9 @@ func _play_transition_animation(new_room: Room) -> void:
 
 	await transition.finished
 
-	var old_room = current_room
-	current_room = new_room
+	var old_room = _current_room
+	_current_room = new_room
 	Globals.current_room = new_room
-	current_room.finished.connect(
-		func():
-			_transition_to_next_room.call_deferred()
-	)
 
 	if old_room != null:
 		old_room.queue_free()

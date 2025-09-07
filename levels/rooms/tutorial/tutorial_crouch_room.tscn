@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=4 uid="uid://c2s1pay8wit2q"]
+
+[ext_resource type="Script" uid="uid://cnocojalw35tb" path="res://levels/room.gd" id="1_2ffcn"]
+[ext_resource type="Texture2D" uid="uid://q2a4erpcxxt4" path="res://graphics/environment/tottero.png" id="2_508fu"]
+[ext_resource type="Texture2D" uid="uid://bvv3r3btllj46" path="res://graphics/environment/jokukivijuttu3.png" id="3_qibsy"]
+[ext_resource type="Texture2D" uid="uid://ci4c6md6c2o8p" path="res://graphics/environment/spagetti.png" id="4_bvqn2"]
+[ext_resource type="Texture2D" uid="uid://dakqmss3aovat" path="res://graphics/environment/seaplant.png" id="5_s5t84"]
+[ext_resource type="Texture2D" uid="uid://6i1had7ijot8" path="res://graphics/environment/seaplant_smol.png" id="6_fpplb"]
+[ext_resource type="Texture2D" uid="uid://b1fuj47ujwvkj" path="res://graphics/environment/koralli_small.png" id="7_gr3ei"]
+[ext_resource type="Texture2D" uid="uid://bixq6xvvkrd81" path="res://graphics/environment/koralli_medium.png" id="8_mrp4g"]
+[ext_resource type="Texture2D" uid="uid://xxpy3rhcatxa" path="res://graphics/environment/koralli_large.png" id="9_o34q5"]
+[ext_resource type="Texture2D" uid="uid://da7keoysrnmko" path="res://graphics/environment/vittukoralli.png" id="10_dl8n5"]
+[ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="11_vg8ge"]
+[ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="12_ew3gl"]
+[ext_resource type="PackedScene" uid="uid://betjhqmoocxtc" path="res://fish/little_crab/little_crab.tscn" id="13_d2nx3"]
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="14_fvijw"]
+[ext_resource type="Script" uid="uid://c80dawef5gw2f" path="res://levels/rooms/tutorial/unlock_harpoon_gun.gd" id="15_1g077"]
+[ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="16_pa4xi"]
+[ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="17_qibsy"]
+
+[sub_resource type="Curve2D" id="Curve2D_vx8vc"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -95, -14, 0, 0, 0, 0, -170, -14, 0, 0, 0, 0, -95, -14)
+}
+point_count = 3
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6ttci"]
+radius = 41.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bvqn2"]
+size = Vector2(480, 118)
+
+[node name="TutorialCrouchRoom" type="Node2D"]
+script = ExtResource("1_2ffcn")
+entry_text = Array[String](["CROUCH", "TO", "DODGE"])
+entry_text_anim_speed_scale = 0.75
+entry_text_linger_duration = 1.5
+metadata/_custom_type_script = "uid://cnocojalw35tb"
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Tottero" type="Sprite2D" parent="Decorations"]
+position = Vector2(-132, -236)
+texture = ExtResource("2_508fu")
+
+[node name="Jokukivijuttu3" type="Sprite2D" parent="Decorations"]
+position = Vector2(111, -231)
+texture = ExtResource("3_qibsy")
+region_enabled = true
+region_rect = Rect2(99, 0, 157, 128)
+
+[node name="Spagetti" type="Sprite2D" parent="Decorations"]
+position = Vector2(76, -187)
+texture = ExtResource("4_bvqn2")
+
+[node name="Seaplant" type="Sprite2D" parent="Decorations"]
+position = Vector2(56, -222)
+texture = ExtResource("5_s5t84")
+
+[node name="SeaplantSmol" type="Sprite2D" parent="Decorations"]
+position = Vector2(175, -192)
+texture = ExtResource("6_fpplb")
+
+[node name="KoralliSmall" type="Sprite2D" parent="Decorations"]
+position = Vector2(162, -180)
+texture = ExtResource("7_gr3ei")
+
+[node name="KoralliMedium" type="Sprite2D" parent="Decorations"]
+position = Vector2(92, -177)
+texture = ExtResource("8_mrp4g")
+
+[node name="KoralliLarge" type="Sprite2D" parent="Decorations"]
+position = Vector2(-46, -233)
+texture = ExtResource("9_o34q5")
+
+[node name="SeaplantSmol2" type="Sprite2D" parent="Decorations"]
+position = Vector2(-70, -240)
+texture = ExtResource("6_fpplb")
+
+[node name="Vittukoralli" type="Sprite2D" parent="Decorations"]
+position = Vector2(-6, -63)
+texture = ExtResource("10_dl8n5")
+
+[node name="Merisuolakurkku" type="Sprite2D" parent="Decorations"]
+z_index = 1
+position = Vector2(182, -170)
+texture = ExtResource("11_vg8ge")
+
+[node name="Merisuolakurkku2" type="Sprite2D" parent="Decorations"]
+z_index = 1
+position = Vector2(-69, -148)
+rotation = 2.2253
+texture = ExtResource("11_vg8ge")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD1/wAAAAAGAAMAAQD2/wAAAAAHAAIAAAD3/wAAAAAHAAIAAAD4/wAAAAAHAAIAAAD5/wAAAAAHAAIAAAD6/wAAAAAHAAIAAAD7/wAAAAAHAAIAAAD8/wAAAAAHAAIAAAD//wAAAAAHAAIAAAAAAAAAAAAHAAIAAAADAAAAAAAHAAIAAAAEAAAAAAAHAAIAAAAFAAAAAAAHAAIAAAAGAAAAAAAHAAIAAAAHAAAAAAAHAAIAAAAIAAAAAAAHAAIAAAAJAAAAAAAHAAIAAAAKAAAAAAAHAAIAAAAKAP//AAAHAAIAAAAJAP//AAAHAAIAAAAIAP//AAAHAAIAAAAHAP//AAAHAAIAAAAGAP//AAAHAAIAAAAFAP//AAAHAAIAAAAAAP//AAAHAAIAAAD/////AAAHAAIAAAD8////AAAHAAIAAAD7////AAAHAAIAAAD6////AAAHAAIAAAD5////AAAHAAIAAAD4////AAAHAAIAAAD3////AAAHAAIAAAD2////AAAHAAIAAAD1////AAAFAAMAAQD9////AAAHAAIAAAD9/wAAAAAHAAIAAAD+/wAAAAAHAAIAAAD+////AAAHAAIAAAABAP//AAAHAAIAAAABAAAAAAAHAAIAAAACAAAAAAAHAAIAAAACAP//AAAHAAIAAAD1/wEAAAAFAAMAAQD2/wEAAAAHAAIAAAD4/wEAAAAHAAIAAAD3/wEAAAAHAAIAAAD5/wEAAAAHAAIAAAD6/wEAAAAHAAIAAAD7/wEAAAAHAAIAAAD8/wEAAAAHAAIAAAD+/wEAAAAHAAIAAAD9/wEAAAAHAAIAAAD//wEAAAAHAAIAAAAAAAEAAAAHAAIAAAABAAEAAAAHAAIAAAACAAEAAAAHAAIAAAADAAEAAAAHAAIAAAAEAAEAAAAHAAIAAAAFAAEAAAAHAAIAAAAGAAEAAAAHAAIAAAAHAAEAAAAHAAIAAAAIAAEAAAAHAAIAAAAJAAEAAAAHAAIAAAAKAAEAAAAHAAIAAAD1/wIAAAAFAAMAAQD2/wIAAAAHAAIAAAD3/wIAAAAHAAIAAAD4/wIAAAAHAAIAAAD5/wIAAAAHAAIAAAD6/wIAAAAHAAIAAAD7/wIAAAAHAAIAAAD8/wIAAAAHAAIAAAD9/wIAAAAHAAIAAAD+/wIAAAAHAAIAAAD//wIAAAAHAAIAAAAAAAIAAAAHAAIAAAABAAIAAAAHAAIAAAACAAIAAAAHAAIAAAADAAIAAAAHAAIAAAAEAAIAAAAHAAIAAAAFAAIAAAAHAAIAAAAGAAIAAAAHAAIAAAAHAAIAAAAHAAIAAAAIAAIAAAAHAAIAAAAJAAIAAAAHAAIAAAAKAAIAAAAHAAIAAAD2//b/AAAHAAIAAAD2//f/AAAFAAQAAAD3//b/AAAHAAIAAAD3//f/AAAFAAQAAAD4//b/AAAHAAIAAAD4//f/AAAFAAQAAAD5//b/AAAHAAIAAAD5//f/AAAFAAQAAAD6//b/AAAHAAIAAwD6//f/AAAHAAQAAAD7//b/AAAHAAQAAAAEAPb/AAAHAAIABAAEAPf/AAAEAAQAAAAFAPb/AAAHAAIAAAAFAPf/AAAFAAQAAAAGAPb/AAAHAAIAAAAGAPf/AAAFAAQAAAAHAPb/AAAHAAIAAAAHAPf/AAAFAAQAAAAIAPb/AAAHAAIAAAAIAPf/AAAFAAQAAAAJAPb/AAAHAAIAAAAJAPf/AAAFAAQAAAAKAPb/AAAHAAIAAAAKAPf/AAAFAAQAAAD2//X/AAAHAAIAAAD3//X/AAAHAAIAAAD4//X/AAAHAAIAAAD5//X/AAAHAAIAAAD6//X/AAAHAAIAAAD7//X/AAAHAAIAAwD8//X/AAAHAAQAAAAEAPX/AAAHAAIAAAAFAPX/AAAGAAMAAAAGAPX/AAAGAAMAAAAHAPX/AAAFAAMAAAAIAPX/AAAGAAMAAAAJAPX/AAAFAAMAAAAKAPX/AAAGAAMAAAAEAP//AAAHAAIAAAADAP//AAAHAAIAAAD1//X/AAAHAAIAAAD0//X/AAAHAAIAAADz//X/AAAHAAIAAADy//X/AAAHAAIAAADx//X/AAAHAAIAAAD1//b/AAAHAAIAAAD0//b/AAAHAAIAAADz//b/AAAHAAIAAADy//b/AAAHAAIAAADx//b/AAAHAAIAAADx//f/AAAGAAQAAADy//f/AAAGAAQAAADz//f/AAAFAAQAAAD0//f/AAAFAAQAAAD1//f/AAAGAAQAAAANAPv/AAAFAAMAAAAMAPv/AAAFAAMAAAALAPv/AAAGAAMAAAAKAPv/AAAFAAMAAAAJAPv/AAAFAAMAAAAIAPv/AAAGAAMAAAAHAPv/AAAGAAMAAAAGAPv/AAAFAAMAAAANAPz/AAAHAAIAAAANAP3/AAAHAAIAAAANAP7/AAAHAAIAAAANAP//AAAHAAIAAAANAAAAAAAHAAIAAAANAAEAAAAHAAIAAAANAAIAAAAHAAIAAAAMAAIAAAAHAAIAAAALAAIAAAAHAAIAAAALAAEAAAAHAAIAAAAMAAEAAAAHAAIAAAALAAAAAAAHAAIAAAALAP//AAAHAAIAAAAMAP//AAAHAAIAAAAMAP7/AAAHAAIAAAALAP7/AAAHAAIAAAALAP3/AAAHAAIAAAALAPz/AAAHAAIAAAAMAPz/AAAHAAIAAAAMAP3/AAAHAAIAAAAMAAAAAAAHAAIAAAAHAPz/AAAHAAIAAAAHAP3/AAAHAAIAAAAGAP3/AAAHAAIAAAAGAP7/AAAHAAIAAAAGAPz/AAAHAAIAAAAIAPz/AAAHAAIAAAAJAPz/AAAHAAIAAAAKAPz/AAAHAAIAAAAKAP3/AAAHAAIAAAAJAP3/AAAHAAIAAAAIAP3/AAAHAAIAAAAHAP7/AAAHAAIAAAAJAP7/AAAHAAIAAAAKAP7/AAAHAAIAAAAIAP7/AAAHAAIAAAD1/wMAAAAEAAQAAAD2/wMAAAAGAAQAAAD3/wMAAAAGAAQAAAD4/wMAAAAGAAQAAAD5/wMAAAAGAAQAAAAEAAMAAAAGAAQAAAAFAAMAAAAGAAQAAAADAAMAAAAGAAQAAAACAAMAAAAGAAQAAAABAAMAAAAFAAQAAAAAAAMAAAAFAAQAAAD//wMAAAAFAAQAAAD+/wMAAAAFAAQAAAD9/wMAAAAGAAQAAAD8/wMAAAAGAAQAAAD7/wMAAAAFAAQAAAD6/wMAAAAFAAQAAAAGAAMAAAAGAAQAAAAHAAMAAAAGAAQAAAAIAAMAAAAGAAQAAAAJAAMAAAAFAAQAAAAKAAMAAAAGAAQAAAALAAMAAAAFAAQAAAAMAAMAAAAGAAQAAAANAAMAAAAFAAQAAAAFAPv/AAAGAAMAAAAEAPv/AAAGAAMAAAADAPv/AAAGAAMAAAACAPv/AAAGAAMAAAABAPv/AAAFAAMAAAAAAPv/AAAGAAMAAAD///v/AAAHAAIAAgD+//v/AAAHAAIAAQD9//v/AAAFAAMAAAD8//v/AAAFAAMAAAD7//v/AAAGAAMAAAD5//v/AAAFAAMAAAD4//v/AAAFAAMAAAD3//v/AAAFAAMAAAD2//v/AAAFAAMAAAD1//v/AAAEAAMAAAD1//z/AAAFAAMAAQD1//3/AAAGAAMAAQD1//7/AAAFAAMAAQD3//7/AAAHAAIAAAD4//7/AAAHAAIAAAD5//7/AAAHAAIAAAD6//7/AAAHAAIAAAD7//7/AAAHAAIAAAD8//7/AAAHAAIAAAD9//7/AAAHAAIAAAD+//7/AAAHAAIAAAD///7/AAAHAAIAAAAAAP7/AAAHAAIAAAABAP7/AAAHAAIAAAACAP7/AAAHAAIAAAADAP7/AAAHAAIAAAAEAP7/AAAHAAIAAAAFAP7/AAAHAAIAAAD2//z/AAAHAAIAAAD2//3/AAAHAAIAAAD2//7/AAAHAAIAAAD3//z/AAAHAAIAAAD4//z/AAAHAAIAAAD5//z/AAAHAAIAAAD6//z/AAAHAAIAAAD7//z/AAAHAAIAAAD8//z/AAAHAAIAAAD4//3/AAAHAAIAAAD3//3/AAAHAAIAAAD5//3/AAAHAAIAAAD6//3/AAAHAAIAAAD7//3/AAAHAAIAAAD8//3/AAAHAAIAAAD9//3/AAAHAAIAAAD+//3/AAAHAAIAAAD///3/AAAHAAIAAAAAAP3/AAAHAAIAAAABAP3/AAAHAAIAAAACAP3/AAAHAAIAAAADAP3/AAAHAAIAAAAEAP3/AAAHAAIAAAAFAP3/AAAHAAIAAAAFAPz/AAAHAAIAAAAEAPz/AAAHAAIAAAADAPz/AAAHAAIAAAACAPz/AAAHAAIAAAABAPz/AAAHAAIAAAAAAPz/AAAHAAIAAAD///z/AAAHAAIAAAD+//z/AAAHAAIAAAD9//z/AAAHAAIAAAAOAPv/AAAFAAMAAAAOAPz/AAAHAAIAAAAOAP3/AAAHAAIAAAAOAP7/AAAHAAIAAAAOAP//AAAHAAIAAAAOAAAAAAAHAAIAAAAOAAEAAAAHAAIAAAAOAAIAAAAHAAIAAAAOAAMAAAAGAAQAAAAEAPT/AAAHAAMAAAADAPT/AAAFAAMAAAACAPT/AAAHAAIAAgABAPT/AAAHAAIAAAD9//T/AAAFAAQAAAD8//T/AAAHAAIAAwD7//T/AAAHAAIAAAD6//T/AAAHAAIAAAD5//T/AAAHAAIAAAD4//T/AAAHAAIAAAD3//T/AAAHAAIAAAD2//T/AAAHAAIAAAD1//T/AAAHAAIAAAD0//T/AAAHAAIAAADz//T/AAAHAAIAAADy//T/AAAHAAIAAADx//T/AAAHAAIAAADx//P/AAAHAAIAAADy//P/AAAHAAIAAADz//P/AAAHAAIAAAD0//P/AAAHAAIAAAD1//P/AAAHAAIAAAD2//P/AAAHAAIAAAD3//P/AAAHAAIAAAD4//P/AAAHAAIAAAD5//P/AAAHAAIAAAD6//P/AAAHAAIAAAD7//P/AAAHAAIAAAD8//P/AAAHAAIAAAD9//P/AAAHAAIAAAD+//P/AAAHAAIAAAD///P/AAAHAAIAAAAAAPP/AAAHAAIAAAABAPP/AAAHAAIAAgACAPP/AAAHAAMAAAABAPL/AAAHAAMAAAAAAPL/AAAFAAMAAAD///L/AAAGAAMAAAD+//L/AAAGAAMAAAD9//L/AAAGAAMAAAD8//L/AAAGAAMAAAD7//L/AAAFAAMAAAD6//L/AAAGAAMAAAD5//L/AAAGAAMAAAD4//L/AAAFAAMAAAD3//L/AAAHAAIAAgD2//L/AAAHAAIAAAD1//L/AAAHAAIAAAD1//H/AAAHAAIAAAD0//H/AAAHAAIAAADz//H/AAAHAAIAAADy//H/AAAHAAIAAADy//L/AAAHAAIAAADz//L/AAAHAAIAAAD0//L/AAAHAAIAAADx//L/AAAHAAIAAADx//H/AAAHAAIAAAD2//H/AAAHAAIAAgD2//D/AAAHAAMAAAD1//D/AAAGAAMAAAD0//D/AAAFAAMAAADz//D/AAAGAAMAAADy//D/AAAGAAMAAADx//D/AAAGAAMAAAD3//H/AAAHAAMAAAD+//r/AAAEAAMAAAD///r/AAAHAAMAAAALAPX/AAAHAAMAAAALAPb/AAAHAAQAAQALAPf/AAAHAAQAAADw//D/AAAGAAMAAADw//H/AAAHAAIAAADw//L/AAAHAAIAAADw//P/AAAHAAIAAADw//T/AAAHAAIAAADw//X/AAAHAAIAAADw//b/AAAHAAIAAADw//f/AAAHAAIAAADw//j/AAAHAAQAAAABAPX/AAAEAAQAAAACAPX/AAAFAAQAAAADAPX/AAAHAAIABAADAPb/AAAEAAQAAAD///T/AAAGAAQAAAAAAPT/AAAGAAQAAAD+//T/AAAGAAQAAAD6//v/AAAFAAMAAAA=")
+tile_set = ExtResource("12_ew3gl")
+
+[node name="CrabPath" type="Path2D" parent="." groups=["path_enemy_spawn"]]
+position = Vector2(-5, -65)
+curve = SubResource("Curve2D_vx8vc")
+
+[node name="LittleCrab" parent="CrabPath" instance=ExtResource("13_d2nx3")]
+position = Vector2(-95, -14)
+rotates = false
+
+[node name="LittleCrab2" parent="CrabPath" instance=ExtResource("13_d2nx3")]
+position = Vector2(-147.514, -14)
+progress = 52.5
+rotates = false
+
+[node name="Eel" parent="." instance=ExtResource("14_fvijw")]
+modulate = Color(0.67978, 0.82, 0.6724, 1)
+position = Vector2(35, -121)
+speed = 75.0
+level_bound_left = 50
+level_bound_right = 215
+
+[node name="Health" parent="Eel" index="0"]
+max_health = 5.0
+
+[node name="ItemTrigger" type="Area2D" parent="."]
+position = Vector2(-9, -94)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("15_1g077")
+
+[node name="Shape" type="CollisionShape2D" parent="ItemTrigger"]
+position = Vector2(-5, -24)
+shape = SubResource("CircleShape2D_6ttci")
+
+[node name="Triplaharppuuna" type="Sprite2D" parent="ItemTrigger"]
+position = Vector2(-9, -6)
+rotation = -1.5708
+texture = ExtResource("16_pa4xi")
+
+[node name="NextLevelTrigger" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("17_qibsy")
+
+[node name="Shape" type="CollisionShape2D" parent="NextLevelTrigger"]
+position = Vector2(0, 52)
+shape = SubResource("RectangleShape2D_bvqn2")
+debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[connection signal="area_entered" from="ItemTrigger" to="ItemTrigger" method="_on_area_entered"]
+[connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]
+
+[editable path="Eel"]

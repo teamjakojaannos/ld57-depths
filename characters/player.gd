@@ -34,12 +34,10 @@ func apply_slow(amount: float, duration: float) -> void:
 	_slowdown_amount = move_toward(_slowdown_amount, 0, amount)
 
 
-# FIXME: signal names should be lowercase
-signal Jumped
-signal Die
-signal Hurt
-signal Heal
-
+signal jumped
+signal hurt
+signal healed
+signal die
 signal landed
 signal gained_upgrade(upgrade: Upgrade)
 
@@ -149,7 +147,7 @@ func _physics_process(delta: float) -> void:
 		_jumping = true
 		$JumpTimer.start()
 
-		Jumped.emit()
+		jumped.emit()
 
 	if Input.is_action_pressed("jump") and _jumping and !is_on_floor():
 		velocity.y = min(velocity.y, JUMP_VELOCITY)
@@ -225,13 +223,13 @@ func get_max_health():
 	return $Health.max_health
 
 func _on_health_die() -> void:
-	Die.emit()
+	die.emit()
 
 	await UI.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
 	LevelRig.restart_game(true)
 
 func _on_health_hurt() -> void:
-	Hurt.emit()
+	hurt.emit()
 
 func _on_health_heal() -> void:
-	Heal.emit()
+	healed.emit()

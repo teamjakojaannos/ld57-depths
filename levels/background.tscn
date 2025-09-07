@@ -66,6 +66,7 @@ height = 256
 fill_from = Vector2(1, 1)
 
 [node name="Background" type="Node2D"]
+z_index = -1
 
 [node name="Walls" type="Node2D" parent="."]
 

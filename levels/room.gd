@@ -13,8 +13,15 @@ var _debug_background_instance: Node = null
 ## sequences.
 ##
 ## Root node of the selected scene should be a Room.
-@export
-var next_room: PackedScene
+@export var next_room: PackedScene
+
+@export var entry_text: Array[String] = []
+
+## If set, overrides the background music in this room.
+@export var music: Jukebox.Song = Jukebox.Song.Null
+
+@export var entry_text_anim_speed_scale: float = 1.0
+@export var entry_text_linger_duration: float = 0.0
 
 @export_group("Debug")
 @export_custom(PROPERTY_HINT_NONE, "", PROPERTY_USAGE_EDITOR | PROPERTY_USAGE_NO_INSTANCE_STATE)
@@ -23,9 +30,6 @@ var preview_game_background: bool = false:
 		return _debug_background_instance != null
 	set(value):
 		_show_game_background.call_deferred(value)
-
-@export
-var entry_text: Array[String] = []
 
 var nav_region: NavigationRegion2D:
 	get:
@@ -39,13 +43,6 @@ var bounds: Rect2:
 
 func finish() -> void:
 	finished.emit()
-
-func unlock_exit() -> void:
-	if get_node_or_null("Blocker") == null:
-		return
-
-	$Blocker.queue_free()
-	Globals.trigger_room_clear()
 
 
 func is_in_navigable_region(pos: Vector2, threshold: float = 1.0) -> bool:
