@@ -120,7 +120,7 @@ _data = {
 
 [node name="Net" type="Area2D"]
 collision_layer = 0
-collision_mask = 0
+collision_mask = 8
 script = ExtResource("1_hqja7")
 point_at_velocity = false
 fall_speed = 400.0
