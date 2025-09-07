@@ -276,6 +276,7 @@ _data = {
 }
 
 [node name="SpikeFish" type="Area2D"]
+position = Vector2(0, -1)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_onis2")
@@ -334,6 +335,6 @@ libraries = {
 }
 
 [connection signal="die" from="Health" to="." method="_on_health_die"]
-[connection signal="hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="die" from="Health" to="Bounty" method="_on_health_die"]
+[connection signal="hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="hurt_at" from="Health" to="DamageParticles" method="_on_health_hurt_at"]
