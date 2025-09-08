@@ -2,7 +2,7 @@
 extends Node2D
 class_name DamageParticles
 
-@export var particle_emitter: PackedScene
+@export var particle_emitter: PackedScene = preload("uid://dkgpgoo61sytr")
 
 @export_group("Advanced")
 @export var health: Health
