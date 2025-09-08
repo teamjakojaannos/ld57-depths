@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://c7cixyoixeqxe"]
 
 [ext_resource type="Script" uid="uid://7esihjad55hl" path="res://characters/player.gd" id="1_3eadt"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="2_eho78"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_eho78"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_8sqrr"]
 [ext_resource type="PackedScene" uid="uid://7a7n865246ba" path="res://characters/player_sprite.tscn" id="3_h076o"]
 [ext_resource type="Script" uid="uid://3vm0w8ex7f7t" path="res://characters/player/gun.gd" id="8_6t23p"]

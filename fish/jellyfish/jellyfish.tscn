@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://dfrg8crfsmvo"]
 
 [ext_resource type="Script" uid="uid://fttqk527cwp6" path="res://fish/jellyfish/jellyfish.gd" id="1_17lwr"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="1_vcqoj"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="1_vcqoj"]
 [ext_resource type="Texture2D" uid="uid://dthctbomti45x" path="res://fish/jellyfish/jelly.png" id="2_snfv6"]
 [ext_resource type="Texture2D" uid="uid://ch5e2g45hf3f4" path="res://graphics/environment/light_cyan.png" id="3_mcq4l"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_qwf45"]

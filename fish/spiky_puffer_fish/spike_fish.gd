@@ -138,7 +138,7 @@ func pick_random_target_position() -> Vector2:
 		return position
 
 	var player = Globals.player
-	if player == null:
+	if player == null or randf() < 0.15:
 		return current_room.get_random_fish_nav_point()
 
 	var tries = 0
@@ -148,19 +148,13 @@ func pick_random_target_position() -> Vector2:
 		var dx = 4 * 32
 		var dy = 3 * 32
 		var x = randf_range(-dx, dx)
-		var y = randf_range(-8, dy - 8)
+		var y = randf_range(-16, dy - 16)
 
 		var point = player.global_position + Vector2(y, x)
 		if current_room.is_in_navigable_region(point):
 			return point
 
 	return position
-
-func point_on_unit_circle() -> Vector2:
-	var angle = randf() * 2.0 * PI
-	var x = cos(angle)
-	var y = sin(angle)
-	return Vector2(x, y)
 
 
 func _on_health_hurt() -> void:

@@ -1,14 +1,18 @@
-[gd_scene load_steps=19 format=3 uid="uid://lpjtb8lmu68i"]
+[gd_scene load_steps=20 format=3 uid="uid://lpjtb8lmu68i"]
 
 [ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="1_43kmr"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="1_hl0h3"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="1_hl0h3"]
 [ext_resource type="Script" uid="uid://dm26ku20d8btu" path="res://fish/eel/eel.gd" id="1_ucu2c"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_1wa5i"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_a4hyh"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="5_teljg"]
 [ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="5_wg4o3"]
 [ext_resource type="PackedScene" uid="uid://dkgpgoo61sytr" path="res://particles/hurtsplosion.tscn" id="6_1wa5i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4hyh"]
+size = Vector2(64, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43kmr"]
 size = Vector2(64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl0h3"]
@@ -46,9 +50,6 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_43kmr"]
-size = Vector2(64, 20)
 
 [sub_resource type="Animation" id="Animation_ucu2c"]
 length = 0.001
@@ -187,9 +188,7 @@ _data = {
 &"hurt": SubResource("Animation_a4hyh")
 }
 
-[node name="Eel" type="Area2D"]
-collision_layer = 0
-collision_mask = 2
+[node name="Eel" type="Node2D"]
 script = ExtResource("1_ucu2c")
 
 [node name="Health" type="Node" parent="."]
@@ -214,21 +213,25 @@ metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 shape = SubResource("RectangleShape2D_a4hyh")
 debug_color = Color(0.964706, 0, 0.494118, 0.419608)
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("5_teljg")
+damage = 1.0
+mode = 1
+metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_43kmr")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wg4o3")
 autoplay = "default"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_43kmr")
 
 [node name="HurtAnimations" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_a4hyh")
 }
-
-[node name="DamageTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="DamageParticles" type="Node2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("5_wg4o3")
@@ -236,10 +239,7 @@ particle_emitter = ExtResource("6_1wa5i")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://dwn263h6kvyyo"
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="die" from="Health" to="." method="_on_health_die"]
-[connection signal="hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="die" from="Health" to="Bounty" method="_on_health_die"]
+[connection signal="hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="hurt_at" from="Health" to="DamageParticles" method="_on_health_hurt_at"]
-[connection signal="timeout" from="DamageTimer" to="." method="_damage_entities"]

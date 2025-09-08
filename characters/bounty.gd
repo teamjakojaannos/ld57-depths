@@ -15,4 +15,4 @@ func _on_health_die() -> void:
 	Globals.money += bounty
 
 static func find(node: Node) -> Bounty:
-	return Components.find(node, "Bounty")
+	return Nodes.find_by_class(node, "Bounty")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=25 format=3 uid="uid://bf1fy0bxb0uml"]
 
 [ext_resource type="Script" uid="uid://dv0ja71tjy6bn" path="res://fish/spiky_puffer_fish/spike_fish.gd" id="1_onis2"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="2_0rbh6"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_0rbh6"]
 [ext_resource type="Texture2D" uid="uid://smlf3v78mu0y" path="res://fish/spiky_puffer_fish/pufferfisu.png" id="2_onis2"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_f2lvf"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_seadf"]

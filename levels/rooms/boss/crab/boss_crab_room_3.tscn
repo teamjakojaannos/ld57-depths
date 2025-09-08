@@ -6,7 +6,7 @@
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="3_hp56v"]
 [ext_resource type="Script" uid="uid://c7ii4bayyxpmm" path="res://levels/objectives/tasks/kill_target.gd" id="3_rla3u"]
 [ext_resource type="Script" uid="uid://btsoo67jwmhcf" path="res://boss/crab/crabby.gd" id="4_mwgwi"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="5_rla3u"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="5_rla3u"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="6_yl3b1"]
 [ext_resource type="Texture2D" uid="uid://dyyewpvcbqr5x" path="res://boss/crab/rapuwalk.png" id="7_djm20"]
 [ext_resource type="PackedScene" uid="uid://ca4p0t703gbx" path="res://boss/crab/bossy_snappy.tscn" id="8_66tns"]

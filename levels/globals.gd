@@ -79,9 +79,12 @@ func reset() -> void:
 		_replay_upgrades.call_deferred()
 	else:
 		depth = 0.0
-		current_room_index = 0
+		current_room_index = 2
 		money = money_at_start
 		bought_upgrades.clear()
+
+		await LevelRig.initial_scene_ready
+		player.unlock_harpoon_gun.call_deferred()
 
 
 func _replay_upgrades() -> void:

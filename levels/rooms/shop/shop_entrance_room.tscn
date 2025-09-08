@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://buuryffkq1s70" path="res://shop/kyltti-sheet.png" id="12_wcqac"]
 [ext_resource type="Texture2D" uid="uid://lul85doj4at" path="res://shop/closed.png" id="13_o0ugp"]
 [ext_resource type="Texture2D" uid="uid://c3vmkr71tmgt2" path="res://shop/open.png" id="14_jedvl"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="15_qjyra"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="15_qjyra"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="16_xu1ti"]
 [ext_resource type="AudioStream" uid="uid://dvd74jspqa7l5" path="res://characters/player/harpoongun_wall_impact.ogg" id="17_tqyk5"]
 [ext_resource type="AudioStream" uid="uid://ceu8x3g3ndtqh" path="res://shop/tuplausmusa_loopable.ogg" id="18_4x0q0"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_aud8y"]
 [ext_resource type="PackedScene" uid="uid://dqngjdi7feqd4" path="res://boss/crab/snappy_arm.tscn" id="2_8y5u7"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="2_tr78k"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_tr78k"]
 [ext_resource type="AudioStream" uid="uid://clghm8gts3qpq" path="res://boss/crab/crabclaw_long.ogg" id="3_aud8y"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_171te"]
 

@@ -32,7 +32,7 @@ project/assembly_name="depths"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/components_library/plugin.cfg")
+enabled=PackedStringArray("res://addons/AS2P/plugin.cfg", "res://addons/jakojaannos_components_library/plugin.cfg", "res://addons/jakojaannos_utilities_library/plugin.cfg")
 
 [global_group]
 

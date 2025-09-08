@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
 [ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_fjv7j"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/components_library/components/character/health.gd" id="4_cn5n1"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="4_cn5n1"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_x42bk"]
 [ext_resource type="Script" uid="uid://dwn263h6kvyyo" path="res://characters/damage_particles.gd" id="6_poyks"]
