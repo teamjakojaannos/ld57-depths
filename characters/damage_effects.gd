@@ -65,12 +65,8 @@ func _emit_particles(room: Node2D, hurt_pos: Vector2) -> void:
 
 	var emitter: Node2D = particle_emitter.instantiate()
 	emitter.global_position = hurt_pos
-	if Engine.is_editor_hint():
-		var reaper = Nodes.find_by_class(emitter, "Reaper")
-		if reaper is Reaper:
-			# Ensure preview instances are properly freed.
-			reaper.allow_reaping_in_editor = true
 
+	Nodes.mark_as_safe_to_free(emitter)
 	room.add_child(emitter)
 
 func _nudge() -> void:

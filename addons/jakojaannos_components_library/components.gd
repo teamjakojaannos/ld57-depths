@@ -1,3 +1,4 @@
+@tool
 class_name Components
 
 ## Attempts to connect a callable [param fn] to a signal of given
@@ -46,8 +47,8 @@ static func try_connect_to(component: Node, signal_name: String, fn: Callable) -
 ## [br]
 ## See also [member Components.set_default]
 static func set_default_sibling(node: Node, property: String, component_name: String) -> void:
-	var existing = node.get("property")
-	if existing != null and Nodes.match_by_class_name(existing, component_name):
+	var existing = node.get(property)
+	if existing != null && Nodes.match_by_class_name(existing, component_name):
 		return
 
 	var component = Nodes.find_by_class(node.get_parent(), component_name)

@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://brjjrvtluy1ks"]
+[gd_scene load_steps=8 format=3 uid="uid://brjjrvtluy1ks"]
 
 [ext_resource type="Texture2D" uid="uid://dxcb6gaon0ppd" path="res://particles/desitahti.png" id="1_k14qj"]
 [ext_resource type="Script" uid="uid://dk6rgmwftp083" path="res://particles/hurtsplosion.gd" id="2_a881q"]
-[ext_resource type="Script" uid="uid://4efeo5r2l1hy" path="res://utilities/reaper.gd" id="3_wk6mp"]
 [ext_resource type="Texture2D" uid="uid://c3wsqr0nb2upy" path="res://particles/senttitahti.png" id="4_gfio6"]
 [ext_resource type="Texture2D" uid="uid://dxsjghjusbr8d" path="res://particles/millitahti.png" id="5_phcyl"]
 
@@ -38,10 +37,6 @@ explosiveness = 0.8
 process_material = SubResource("ParticleProcessMaterial_1p1as")
 script = ExtResource("2_a881q")
 
-[node name="Reaper" type="Node" parent="."]
-script = ExtResource("3_wk6mp")
-metadata/_custom_type_script = "uid://4efeo5r2l1hy"
-
 [node name="Medium" type="GPUParticles2D" parent="."]
 emitting = false
 texture = ExtResource("4_gfio6")
@@ -56,4 +51,4 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_1p1as")
 
-[connection signal="finished" from="." to="Reaper" method="reap"]
+[connection signal="finished" from="." to="." method="_on_finished"]
