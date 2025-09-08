@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cx0yqjvqex2ft" path="res://graphics/spike.png" id="1_k8k4s"]
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_wovym"]
-[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="3_wovym"]
+[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://addons/jakojaannos_components_library/components/lifetime.gd" id="3_wovym"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_uq8tb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wovym"]

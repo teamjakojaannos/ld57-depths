@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://ctjdv3ddjte5s"]
 
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_3vbes"]
-[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://utilities/lifetime.gd" id="1_mtty5"]
+[ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://addons/jakojaannos_components_library/components/lifetime.gd" id="1_mtty5"]
 [ext_resource type="Texture2D" uid="uid://bctlw3oytvyk1" path="res://characters/anchor.png" id="2_e0s76"]
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_iklul"]
 [ext_resource type="Script" uid="uid://dcwntjp1sybhk" path="res://characters/anchor_impact.gd" id="5_ogsqg"]
