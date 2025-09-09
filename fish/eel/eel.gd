@@ -3,33 +3,39 @@ extends Node2D
 @export var damage = 1
 @export var speed = 150.0
 
-enum Direction {
-	Left, Right
-}
-
-var move_direction = Direction.Left
 @export var level_bound_left = -200
 @export var level_bound_right = 200
 
+@onready var sprite: AnimatedSprite2D = $Sprite
+@onready var animations: AnimationPlayer = $Animations
+@onready var health: Health = Health.find(self)
+
+var _facing: Facing.Horizontal = Facing.Horizontal.LEFT
+
 func _physics_process(delta: float) -> void:
-	var go_right = move_direction == Direction.Right
-	var is_over_bounds = position.x >= level_bound_right if go_right else position.x <= level_bound_left
+	var is_moving_left = _facing == Facing.Horizontal.LEFT
+	var is_moving_right = _facing == Facing.Horizontal.RIGHT
+
+	var min_bound = min(level_bound_left, level_bound_right)
+	var max_bound = max(level_bound_left, level_bound_right)
+	var is_over_bounds: bool = \
+		(position.x >= max_bound and is_moving_right) or \
+		(position.x <= min_bound and is_moving_left)
+
 	if is_over_bounds:
-		move_direction = Direction.Left if go_right else Direction.Right
+		_facing = Facing.opposite_h(_facing)
 
-	var direction = Vector2(1.0, 0.0) if go_right else Vector2(-1.0, 0.0)
-	position = position + direction * speed * delta
+	var direction = Facing.as_vec_h(_facing)
+	var velocity = direction * speed
+	position = position + velocity * delta
 
-	$AnimatedSprite2D.flip_h = go_right
+	sprite.flip_h = is_moving_right
 
-func _on_health_hurt() -> void:
-	# stop current animation in case we have another hurt animation playing
-	$HurtAnimations.stop()
-	$HurtAnimations.play("hurt")
 
 func _on_health_die() -> void:
-	$HurtAnimations.play("die")
 	var tween = create_tween()
 	tween.tween_property(self, "speed", 0.0, 1.0)
-	await $HurtAnimations.animation_finished
+
+	animations.play("die")
+	await animations.animation_finished
 	queue_free()

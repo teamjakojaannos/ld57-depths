@@ -5,12 +5,15 @@ const GROUP_SAFE_TO_DELETE_IN_EDITOR: String = \
 	"I KNOW WHAT I AM DOING THIS NODE IS SAFE TO AUTOMATICALLY FREE IN-EDITOR"
 
 ## Finds a node with a matching [code]class_name[/code] (or a built-in
-## class). Nodes are searched from direct siblings of [param node].
-static func find_by_class(node: Node, clazz: String) -> Variant:
+## class). Nodes are searched from direct siblings of [param node].[br]
+## [br]
+## If [param node] is of matching class and [param match_self] is set to
+## [code]true[/code], the [param node] itself is returned.
+static func find_by_class(node: Node, clazz: String, match_self: bool = true) -> Variant:
 	if is_null(node):
 		return null
 
-	if match_by_class_name(node, clazz):
+	if match_self and match_by_class_name(node, clazz):
 		return node
 
 	var by_name = node.get_node_or_null(clazz)
@@ -38,8 +41,8 @@ static func match_by_class_name(node: Node, clazz: String) -> bool:
 
 ## @tool-safe null check, resilient to non-tool script instances evaluating to
 ## Object#null -abominations, which seemingly, in some cases, pass the regular
-## `node != null` -checks.
-##
+## `node != null` -checks.[br]
+## [br]
 ## Prefer this over regular null checks in tool-scripts.
 static func is_null(node: Node) -> bool:
 	return node is not Node

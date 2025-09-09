@@ -8,13 +8,17 @@ signal healed
 signal die
 
 ## Fired when hurt too soon after taking damage and damage instance is ignored.
+## [br][br]
+## The interpretation of [i]"Too soon"[/i] is defined by
+## [member Health.invulnerable_time_after_damage]
 signal hurt_too_soon
 
-## Fired when is_invulnerable is true and taking damage.
+## Fired when taking damage while [member Health.is_invulnerable] is set to
+## [code]true[/code].
 signal hurt_invulnerable
 
-## Fired when taking damage. Returns the position of the node dealing the
-## damage.
+## Fired when taking damage. Returns the position of the node that dealt the
+## damage instance.
 signal hurt_at(position: Vector2)
 
 @export var max_health: float = 10
@@ -22,6 +26,7 @@ signal hurt_at(position: Vector2)
 @export var invulnerable_time_after_damage: float = 0.1
 var _was_just_hurt = false
 
+## Ignores all incoming damage if set to [code]true[/code].
 @export var is_invulnerable: bool = false
 
 var is_dead: bool:
@@ -38,16 +43,20 @@ var _health: float = 10
 static func find(node: Node) -> Health:
 	return Nodes.find_by_class(node, "Health")
 
+
 func heal(amount: float, _from: Node) -> void:
 	var old_health = _health
 	_health = clamp(_health + amount, 0, max_health)
 	_check_signals(old_health, Vector2.INF)
 
+
 func take_damage(amount: float, _from: Node) -> void:
 	_try_take_damage(amount, _from, Vector2.INF)
 
+
 func take_damage_at(amount: float, _from: Node, point: Vector2) -> void:
 	_try_take_damage(amount, _from, point)
+
 
 func _try_take_damage(amount: float, _from: Node, point: Vector2) -> void:
 	if _was_just_hurt:
