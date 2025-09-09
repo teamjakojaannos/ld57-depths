@@ -8,7 +8,8 @@ extends Node2D
 
 @onready var sprite: AnimatedSprite2D = $Sprite
 @onready var animations: AnimationPlayer = $Animations
-@onready var health: Health = Health.find(self)
+@onready var health: Health = Nodes.find_by_class(self, Health)
+@onready var hurtbox: Hurtbox = Nodes.find_by_class(self, Hurtbox)
 
 var _facing: Facing.Horizontal = Facing.Horizontal.LEFT
 
@@ -33,6 +34,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_die() -> void:
+	hurtbox.queue_free()
+
 	var tween = create_tween()
 	tween.tween_property(self, "speed", 0.0, 1.0)
 

@@ -8,8 +8,10 @@ class_name DamageParticles
 @export var health: Health
 
 func _ready() -> void:
-	Components.set_default_sibling(self, "health", "Health")
-	Components.try_connect_to(health, "hurt_at", _on_health_hurt_at)
+	health = Nodes.find_if_null(get_parent(), health, Health)
+
+	if not Objects.is_null(health):
+		Signals.try_connect(health.hurt_at, _on_health_hurt_at)
 
 func _on_health_hurt_at(pos: Vector2):
 	var emitter: Node2D = particle_emitter.instantiate()

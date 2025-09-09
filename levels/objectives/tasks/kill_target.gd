@@ -17,7 +17,7 @@ var _is_target_killed: bool = false:
 		_check_completed.call_deferred()
 
 func _get_configuration_warnings() -> PackedStringArray:
-	var health = Health.find(target)
+	var health = Nodes.find_by_class(target, Health)
 	return PackedStringArray(_validate_target(target, health))
 
 func _ready() -> void:
@@ -41,7 +41,7 @@ static func _validate_target(t: Node, h: Health) -> Array[String]:
 	return []
 
 func _subscribe_to_target_death() -> void:
-	var health = Health.find(target)
+	var health = Nodes.find_by_class(target, Health)
 	var errors = _validate_target(target, health)
 	if !errors.is_empty():
 		for error in errors:

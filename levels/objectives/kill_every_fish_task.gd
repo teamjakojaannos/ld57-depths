@@ -19,7 +19,7 @@ func start() -> void:
 	can_complete = true
 
 func _track_target(enemy: Node) -> void:
-	var health = Health.find(enemy)
+	var health = Nodes.find_by_class(enemy, Health)
 	if health is Health:
 		kills_required += 1
 		health.die.connect(_record_kill)

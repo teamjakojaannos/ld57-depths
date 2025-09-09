@@ -1,18 +1,18 @@
 @tool
 extends Node2D
 
+# HACK: Advance Expressions cannot use the Facing.Horizontal enum directly, but
+#       a constant "re-export" seems to work just fine.
+# TODO-4.5: is this still needed?
+const HFacing = Facing.Horizontal
+
 @onready var player: Player = $".."
 
 var animation_root: AnimationNodeStateMachinePlayback:
 	get:
 		return $AnimationTree["parameters/playback"]
 
-enum Facing {
-	LEFT,
-	RIGHT,
-}
-
-@export var debug_facing: Facing = Facing.RIGHT
+@export var debug_facing: Facing.Horizontal = Facing.Horizontal.RIGHT
 @export var debug_is_walking: bool = false
 @export var debug_is_falling: bool = false
 @export var debug_is_crouching: bool = false
@@ -45,15 +45,15 @@ var is_falling: bool:
 
 		return !player.is_on_floor()
 
-var facing: Facing:
+var facing: Facing.Horizontal = Facing.Horizontal.LEFT:
 	get:
 		if Engine.is_editor_hint():
 			return debug_facing
 
 		if player.looking_at == Player.LookingAt.LEFT:
-			return Facing.LEFT
+			return Facing.Horizontal.LEFT
 		else:
-			return Facing.RIGHT
+			return Facing.Horizontal.RIGHT
 
 
 func _on_player_jumped() -> void:

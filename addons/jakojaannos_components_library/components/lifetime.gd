@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func _free_after_delay() -> void:
 	var target = get_parent()
-	if Nodes.is_null(target):
+	if Objects.is_null(target):
 		return
 
 	if Engine.is_editor_hint() and not Nodes.is_safe_to_free_in_editor(target):

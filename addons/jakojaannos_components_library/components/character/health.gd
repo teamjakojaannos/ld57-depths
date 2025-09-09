@@ -40,9 +40,6 @@ var current_health: float:
 var _is_killed: bool = false
 var _health: float = 10
 
-static func find(node: Node) -> Health:
-	return Nodes.find_by_class(node, "Health")
-
 
 func heal(amount: float, _from: Node) -> void:
 	var old_health = _health

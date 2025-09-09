@@ -2,10 +2,6 @@
 extends Node
 class_name DamageEffects
 
-func _preview() -> void:
-	# HACK: just use some Node2D as parent as things are not moving in-editor.
-	_apply(get_parent(), Vector2.ZERO)
-
 
 @export var emit_particles: bool = true
 @export var nudge: bool = true
@@ -43,13 +39,19 @@ func _preview() -> void:
 @export_tool_button("Preview", "Callable")
 var debug_preview_action = _preview
 
+func _preview() -> void:
+	# HACK: just use some Node2D as parent as things are not moving in-editor.
+	_apply(get_parent(), Vector2.ZERO)
+
 
 var _nudger: Tween
 var _flasher: Tween
 
 func _ready() -> void:
-	Components.set_default_sibling(self, "health", "Health")
-	Components.try_connect_to(health, "hurt_at", _on_health_hurt_at)
+	health = Nodes.find_if_null(get_parent(), health, Health)
+
+	if not Objects.is_null(health):
+		Signals.try_connect(health.hurt_at, _on_health_hurt_at)
 
 func _on_health_hurt_at(hurt_pos: Vector2):
 	_apply(Globals.current_room, hurt_pos)

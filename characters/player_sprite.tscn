@@ -28,11 +28,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvpab"]
 advance_mode = 2
-advance_expression = "facing == Facing.LEFT"
+advance_expression = "facing == HFacing.LEFT"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6mya6"]
 advance_mode = 2
-advance_expression = "facing == Facing.RIGHT"
+advance_expression = "facing == HFacing.RIGHT"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_qp1es"]
 states/End/position = Vector2(614, 101.333)
@@ -54,11 +54,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6pff7"]
 advance_mode = 2
-advance_expression = "facing == Facing.LEFT"
+advance_expression = "facing == HFacing.LEFT"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rpeu7"]
 advance_mode = 2
-advance_expression = "facing == Facing.RIGHT"
+advance_expression = "facing == HFacing.RIGHT"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rpeu7"]
 states/crouch_left/node = SubResource("AnimationNodeAnimation_mjkfq")
@@ -79,11 +79,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nbheu"]
 advance_mode = 2
-advance_expression = "facing == Facing.LEFT"
+advance_expression = "facing == HFacing.LEFT"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5mswt"]
 advance_mode = 2
-advance_expression = "facing == Facing.RIGHT"
+advance_expression = "facing == HFacing.RIGHT"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dx8gg"]
 states/Start/position = Vector2(379, 100.333)
@@ -105,11 +105,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjhu2"]
 advance_mode = 2
-advance_expression = "facing == Facing.LEFT"
+advance_expression = "facing == HFacing.LEFT"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3y70i"]
 advance_mode = 2
-advance_expression = "facing == Facing.RIGHT"
+advance_expression = "facing == HFacing.RIGHT"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_hsn1j"]
 states/idle_left/node = SubResource("AnimationNodeAnimation_qp1es")
@@ -130,11 +130,11 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5f4cm"]
 advance_mode = 2
-advance_expression = "facing == Facing.LEFT"
+advance_expression = "facing == HFacing.LEFT"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d3tvb"]
 advance_mode = 2
-advance_expression = "facing == Facing.RIGHT"
+advance_expression = "facing == HFacing.RIGHT"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nbheu"]
 states/walk_left/node = SubResource("AnimationNodeAnimation_3t8uj")

@@ -1,6 +1,8 @@
 extends Control
 class_name ObjectiveOverlay
 
+signal show_objective_finished
+
 func _ready() -> void:
 	visible = false
 
@@ -12,6 +14,9 @@ func show_objective(
 	anim_speed: float,
 	linger_duration: float = 0.0
 ) -> void:
+	if visible:
+		await show_objective_finished
+
 	visible = true
 
 	$VBoxContainer/ObjectiveLine1.text = line1
@@ -44,9 +49,4 @@ func show_objective(
 	visible = false
 	$AnimationPlayer.stop()
 
-	#if line3 != "":
-	#	$AnimationPlayer.play("enter_3_lines")
-	#elif line2 != "":
-	#	$AnimationPlayer.play("enter_2_lines")
-	#elif line1 != "":
-	#	$AnimationPlayer.play("enter_1_line")
+	show_objective_finished.emit()
