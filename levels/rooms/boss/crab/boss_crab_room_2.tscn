@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://be042jbqyalhf"]
+[gd_scene load_steps=18 format=4 uid="uid://be042jbqyalhf"]
 
 [ext_resource type="Script" uid="uid://call4531ikc12" path="res://levels/rooms/objective_room.gd" id="1_vpg7h"]
 [ext_resource type="PackedScene" uid="uid://crwj03iu2symr" path="res://levels/rooms/boss/crab/boss_crab_room_3.tscn" id="2_dq627"]
@@ -12,6 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://1bvqgpst3ypf" path="res://boss/crab/snappy.tscn" id="8_3dpfq"]
 [ext_resource type="PackedScene" uid="uid://me27a85v8vp3" path="res://levels/bubble_elevator.tscn" id="9_fq3nh"]
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="10_vpg7h"]
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="13_3dpfq"]
+[ext_resource type="PackedScene" uid="uid://dhnk7wy7gv244" path="res://fish/eel/eel_pingpong.tscn" id="14_fq3nh"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rx1fe"]
 
@@ -147,6 +149,12 @@ metadata/_edit_lock_ = true
 position = Vector2(0, 52)
 shape = SubResource("RectangleShape2D_agt58")
 debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
+
+[node name="Eel" parent="." instance=ExtResource("13_3dpfq")]
+position = Vector2(0, -198)
+
+[node name="Eel2" parent="." instance=ExtResource("14_fq3nh")]
+position = Vector2(0, -235)
 
 [connection signal="objective_completed" from="." to="BubbleElevator" method="disable"]
 [connection signal="attack_finished" from="CrabClaws/SnappyLeft" to="CrabClaws" method="_on_snappy_left_attack_finished"]
