@@ -1,44 +1,40 @@
 @tool
-extends Node
 class_name Health
+extends Node
 
-
-signal hurt
-signal healed
 signal die
-
+signal healed
+signal hurt
+## Fired when taking damage. Returns the position of the node that dealt the
+## damage instance.
+signal hurt_at(position: Vector2)
+## Fired when taking damage while [member Health.is_invulnerable] is set to
+## [code]true[/code].
+signal hurt_invulnerable
 ## Fired when hurt too soon after taking damage and damage instance is ignored.
 ## [br][br]
 ## The interpretation of [i]"Too soon"[/i] is defined by
 ## [member Health.invulnerable_time_after_damage]
 signal hurt_too_soon
 
-## Fired when taking damage while [member Health.is_invulnerable] is set to
-## [code]true[/code].
-signal hurt_invulnerable
-
-## Fired when taking damage. Returns the position of the node that dealt the
-## damage instance.
-signal hurt_at(position: Vector2)
-
 @export var max_health: float = 10
-
 @export var invulnerable_time_after_damage: float = 0.1
-var _was_just_hurt = false
-
 ## Ignores all incoming damage if set to [code]true[/code].
 @export var is_invulnerable: bool = false
-
-var is_dead: bool:
-	get:
-		return _health <= 0
 
 var current_health: float:
 	get:
 		return _health
-
-var _is_killed: bool = false
+var is_dead: bool:
+	get:
+		return _health <= 0
 var _health: float = 10
+var _is_killed: bool = false
+var _was_just_hurt = false
+
+
+func _ready() -> void:
+	_health = max_health
 
 
 func heal(amount: float, _from: Node) -> void:
@@ -53,6 +49,23 @@ func take_damage(amount: float, _from: Node) -> void:
 
 func take_damage_at(amount: float, _from: Node, point: Vector2) -> void:
 	_try_take_damage(amount, _from, point)
+
+
+func _check_signals(old_health: float, point: Vector2) -> void:
+	if Engine.is_editor_hint() or _is_killed:
+		return
+
+	var change = _health - old_health
+	if change > 0:
+		healed.emit()
+	elif change < 0:
+		hurt.emit()
+		if point.is_finite():
+			hurt_at.emit(point)
+
+	if is_dead:
+		_is_killed = true
+		die.emit()
 
 
 func _try_take_damage(amount: float, _from: Node, point: Vector2) -> void:
@@ -72,23 +85,3 @@ func _try_take_damage(amount: float, _from: Node, point: Vector2) -> void:
 		_was_just_hurt = true
 		await get_tree().create_timer(invulnerable_time_after_damage, false).timeout
 		_was_just_hurt = false
-
-func _ready() -> void:
-	_health = max_health
-
-
-func _check_signals(old_health: float, point: Vector2) -> void:
-	if Engine.is_editor_hint() or _is_killed:
-		return
-
-	var change = _health - old_health
-	if change > 0:
-		healed.emit()
-	elif change < 0:
-		hurt.emit()
-		if point.is_finite():
-			hurt_at.emit(point)
-
-	if is_dead:
-		_is_killed = true
-		die.emit()

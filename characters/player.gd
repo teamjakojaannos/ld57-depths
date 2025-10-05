@@ -1,54 +1,29 @@
 class_name Player
 extends CharacterBody2D
 
-@onready var hitbox: Hitbox = $Hitbox
+signal die
+signal gained_upgrade(upgrade: Upgrade)
+signal healed
+signal hurt
+signal jumped
+signal landed
 
-const AIR_ACCEL: float = 2500.0
-const AIR_DECEL_MULT: float = 2.0
-var SPEED: float = 150.0 # THIS USED TO BE CONST SO ITS UPPERCASE
-const JUMP_VELOCITY: float = -150.0
-
-var is_in_transition: bool = false
-var is_dead: bool:
-	get:
-		return $Health.is_dead
-
-var _slowdown_amount: float
-var _push_force: Vector2 = Vector2.ZERO
-
+enum LookingAt {
+	LEFT,
+	RIGHT,
+}
 enum Upgrade {
 	UnlockHarpoonGun,
 	UnlockNetThrower,
 	UnlockAnchorDropper,
 }
 
-## Applies a knockback force (single time "impulse") on the player.
-func push(force: Vector2) -> void:
-	_push_force += force
+const AIR_ACCEL: float = 2500.0
+const AIR_DECEL_MULT: float = 2.0
+const JUMP_VELOCITY: float = -150.0
 
-## Applies a movement slow on the player
-func apply_slow(amount: float, duration: float) -> void:
-	_slowdown_amount += amount
-	await get_tree().create_timer(duration).timeout
-
-	_slowdown_amount = move_toward(_slowdown_amount, 0, amount)
-
-
-signal jumped
-signal hurt
-signal healed
-signal die
-signal landed
-signal gained_upgrade(upgrade: Upgrade)
-
-
-var is_moving: bool:
-	get:
-		return abs(velocity.x) > 0.5
-
-var _jumping: bool = false
-var _just_landed: bool = false
-
+# THIS USED TO BE CONST SO ITS UPPERCASE
+var SPEED: float = 150.0
 var is_crouching: bool = false:
 	get:
 		return is_crouching
@@ -57,7 +32,13 @@ var is_crouching: bool = false:
 
 		hitbox.get_node("CrouchingShape").set_deferred("disabled", !value)
 		hitbox.get_node("StandingShape").set_deferred("disabled", value)
-
+var is_dead: bool:
+	get:
+		return $Health.is_dead
+var is_in_transition: bool = false
+var is_moving: bool:
+	get:
+		return abs(velocity.x) > 0.5
 var looking_at: LookingAt = LookingAt.RIGHT
 var looking_at_scalar: float:
 	get:
@@ -65,11 +46,13 @@ var looking_at_scalar: float:
 var looking_at_str: String:
 	get:
 		return Player.look_at_str(looking_at)
+var _jumping: bool = false
+var _just_landed: bool = false
+var _push_force: Vector2 = Vector2.ZERO
+var _slowdown_amount: float
 
-enum LookingAt {
-	LEFT,
-	RIGHT
-}
+@onready var hitbox: Hitbox = $Hitbox
+
 
 static func look_at_scalar(direction: LookingAt) -> float:
 	match direction:
@@ -77,6 +60,7 @@ static func look_at_scalar(direction: LookingAt) -> float:
 			return -1.0
 		_:
 			return 1.0
+
 
 static func look_at_str(direction: LookingAt) -> String:
 	match direction:
@@ -86,6 +70,7 @@ static func look_at_str(direction: LookingAt) -> String:
 			return "right"
 		_:
 			return "unknown"
+
 
 func _ready() -> void:
 	Globals.player = self
@@ -161,9 +146,6 @@ func _physics_process(delta: float) -> void:
 	_push_force = _push_force.lerp(Vector2.ZERO, 0.5)
 
 
-func _on_jump_timer_timeout() -> void:
-	_jumping = false
-
 func _input(event: InputEvent) -> void:
 	if is_dead or is_in_transition:
 		return
@@ -176,17 +158,46 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("attack_3"):
 		$AnchorDropper.fire(self, look_direction)
 
+
+## Applies a movement slow on the player
+func apply_slow(amount: float, duration: float) -> void:
+	_slowdown_amount += amount
+	await get_tree().create_timer(duration).timeout
+
+	_slowdown_amount = move_toward(_slowdown_amount, 0, amount)
+
+
+func get_health():
+	return $Health._health
+
+
+func get_max_health():
+	return $Health.max_health
+
+
+func heal_to_full():
+	$Health.heal(999, self)
+
+
+## Applies a knockback force (single time "impulse") on the player.
+func push(force: Vector2) -> void:
+	_push_force += force
+
+
+func unlock_anchor_dropper():
+	$AnchorDropper.is_unlocked = true
+	gained_upgrade.emit(Upgrade.UnlockAnchorDropper)
+
+
 func unlock_harpoon_gun():
 	$HarpoonGun.is_unlocked = true
 	gained_upgrade.emit(Upgrade.UnlockHarpoonGun)
+
 
 func unlock_net_thrower():
 	$NetThrower.is_unlocked = true
 	gained_upgrade.emit(Upgrade.UnlockNetThrower)
 
-func unlock_anchor_dropper():
-	$AnchorDropper.is_unlocked = true
-	gained_upgrade.emit(Upgrade.UnlockAnchorDropper)
 
 func upgrade_harpoon_gun(tier: int):
 	match tier:
@@ -199,13 +210,12 @@ func upgrade_harpoon_gun(tier: int):
 		_:
 			push_error("No tier %s implemented for harpoon gun upgrades" % tier)
 
-func heal_to_full():
-	$Health.heal(999, self)
 
 func upgrade_max_health(tier: int):
 	var amount = tier * 2
 	$Health.max_health += amount
 	$Health.heal(amount, self)
+
 
 func upgrade_speed(tier: int):
 	match tier:
@@ -216,11 +226,6 @@ func upgrade_speed(tier: int):
 		_:
 			push_error("No speed upgrade tier %s implemented" % tier)
 
-func get_health():
-	return $Health._health
-
-func get_max_health():
-	return $Health.max_health
 
 func _on_health_die() -> void:
 	die.emit()
@@ -228,8 +233,14 @@ func _on_health_die() -> void:
 	await UI.objective_overlay.show_objective("YOU", "ARE", "DEAD", 0.5)
 	LevelRig.restart_game(true)
 
-func _on_health_hurt() -> void:
-	hurt.emit()
 
 func _on_health_heal() -> void:
 	healed.emit()
+
+
+func _on_health_hurt() -> void:
+	hurt.emit()
+
+
+func _on_jump_timer_timeout() -> void:
+	_jumping = false
