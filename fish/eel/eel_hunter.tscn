@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://diyjrqcx182sr"]
+
+[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="1_h5exk"]
+[ext_resource type="Script" uid="uid://bh7segc2sa4g3" path="res://fish/eel/eel_hunter.gd" id="2_rib17"]
+
+[node name="Eel" instance=ExtResource("1_h5exk")]
+script = ExtResource("2_rib17")
+level_bound_left = -320
+level_bound_right = 320
+
+[node name="VisibleOnScreen" type="VisibleOnScreenNotifier2D" parent="." index="0"]
+position = Vector2(1.90735e-06, 0)
+rect = Rect2(-32, -10, 64, 20)
+
+[connection signal="screen_exited" from="VisibleOnScreen" to="." method="_on_screen_exited"]

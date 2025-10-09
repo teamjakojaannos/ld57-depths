@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://56cynunhvasm" path="res://graphics/environment/merisuolakurkku.png" id="11_vg8ge"]
 [ext_resource type="TileSet" uid="uid://b7l7ni8f711eg" path="res://levels/generation/tiles.tres" id="12_ew3gl"]
 [ext_resource type="PackedScene" uid="uid://betjhqmoocxtc" path="res://fish/little_crab/little_crab.tscn" id="13_d2nx3"]
-[ext_resource type="PackedScene" uid="uid://lpjtb8lmu68i" path="res://fish/eel/eel.tscn" id="14_fvijw"]
+[ext_resource type="PackedScene" uid="uid://cevjp4euhapid" path="res://fish/eel/eel_pingpong.tscn" id="14_qibsy"]
 [ext_resource type="Script" uid="uid://c80dawef5gw2f" path="res://levels/rooms/tutorial/unlock_harpoon_gun.gd" id="15_1g077"]
 [ext_resource type="Texture2D" uid="uid://txydvpv0wd82" path="res://graphics/environment/triplaharppuuna.png" id="16_pa4xi"]
 [ext_resource type="Script" uid="uid://bbarnotmb40n7" path="res://levels/next_level_trigger.gd" id="17_qibsy"]
@@ -106,19 +106,16 @@ position = Vector2(-95, -14)
 rotates = false
 
 [node name="LittleCrab2" parent="CrabPath" instance=ExtResource("13_d2nx3")]
-position = Vector2(-147.514, -14)
+position = Vector2(-147.51419, -14)
 progress = 52.5
 rotates = false
 
-[node name="Eel" parent="." instance=ExtResource("14_fvijw")]
-modulate = Color(0.67978, 0.82, 0.6724, 1)
+[node name="Eel" parent="." instance=ExtResource("14_qibsy")]
 position = Vector2(35, -121)
-speed = 75.0
 level_bound_left = 50
 level_bound_right = 215
-
-[node name="Health" parent="Eel" index="0"]
-max_health = 5.0
+speed = 75.0
+initial_facing = 0
 
 [node name="ItemTrigger" type="Area2D" parent="."]
 position = Vector2(-9, -94)
@@ -148,5 +145,3 @@ debug_color = Color(2.76752e-06, 0.64766, 0.204744, 0.42)
 
 [connection signal="area_entered" from="ItemTrigger" to="ItemTrigger" method="_on_area_entered"]
 [connection signal="body_entered" from="NextLevelTrigger" to="NextLevelTrigger" method="_on_body_entered"]
-
-[editable path="Eel"]

@@ -1,33 +1,33 @@
-[gd_scene load_steps=18 format=3 uid="uid://lpjtb8lmu68i"]
+[gd_scene load_steps=18 format=3 uid="uid://dhnk7wy7gv244"]
 
-[ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="1_43kmr"]
-[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="1_hl0h3"]
-[ext_resource type="Script" uid="uid://bur0f1flc47nv" path="res://fish/eel/eel.gd" id="1_ucu2c"]
-[ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_1wa5i"]
-[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="3_a4hyh"]
-[ext_resource type="Script" uid="uid://dfv0kbqj2ou5n" path="res://characters/damage_effects.gd" id="4_teljg"]
-[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="5_teljg"]
+[ext_resource type="Script" uid="uid://dm26ku20d8btu" path="res://fish/eel/eel_pingpong.gd" id="1_e14mf"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_3hn7x"]
+[ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_4wptj"]
+[ext_resource type="Script" uid="uid://dfv0kbqj2ou5n" path="res://characters/damage_effects.gd" id="4_3u15w"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_kycfx"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="6_o61e5"]
+[ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="7_jas1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4hyh"]
 size = Vector2(64, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wa5i"]
-size = Vector2(60, 10)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43kmr"]
+size = Vector2(64, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hl0h3"]
-atlas = ExtResource("1_43kmr")
+atlas = ExtResource("7_jas1x")
 region = Rect2(0, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ucu2c"]
-atlas = ExtResource("1_43kmr")
+atlas = ExtResource("7_jas1x")
 region = Rect2(96, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a4hyh"]
-atlas = ExtResource("1_43kmr")
+atlas = ExtResource("7_jas1x")
 region = Rect2(192, 0, 96, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fl2kc"]
-atlas = ExtResource("1_43kmr")
+atlas = ExtResource("7_jas1x")
 region = Rect2(288, 0, 96, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wg4o3"]
@@ -160,23 +160,21 @@ _data = {
 }
 
 [node name="Eel" type="Node2D"]
-script = ExtResource("1_ucu2c")
-max_health = 4.0
-initial_facing = 0
+script = ExtResource("1_e14mf")
 
 [node name="Health" type="Node" parent="."]
-script = ExtResource("1_hl0h3")
+script = ExtResource("2_3hn7x")
 max_health = 4.0
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
 
 [node name="Bounty" type="Node" parent="." node_paths=PackedStringArray("health")]
-script = ExtResource("3_1wa5i")
+script = ExtResource("3_4wptj")
 bounty = 3
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://ds8qvr68yl5bj"
 
 [node name="DamageEffects" type="Node" parent="." node_paths=PackedStringArray("nudge_pivot", "flash_node", "health")]
-script = ExtResource("4_teljg")
+script = ExtResource("4_3u15w")
 nudge_pivot = NodePath("../Sprite")
 flash_node = NodePath("../Sprite")
 flash_times = 3
@@ -186,25 +184,24 @@ metadata/_custom_type_script = "uid://dfv0kbqj2ou5n"
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 collision_layer = 4
 collision_mask = 0
-script = ExtResource("3_a4hyh")
+script = ExtResource("5_kycfx")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://5fp57vk4c4a3"
 
 [node name="Shape" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_a4hyh")
-debug_color = Color(2.0696223e-06, 0.6328286, 0.45079678, 0.41960785)
+debug_color = Color(0.964706, 0, 0.494118, 0.419608)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
-script = ExtResource("5_teljg")
+script = ExtResource("6_o61e5")
 damage = 1.0
 mode = 1
 metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 
 [node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
-shape = SubResource("RectangleShape2D_1wa5i")
-debug_color = Color(0.9193259, 0.25451085, 0.32875583, 0.41960785)
+shape = SubResource("RectangleShape2D_43kmr")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_wg4o3")

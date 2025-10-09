@@ -7,16 +7,15 @@ enum Direction {
 	DOWN,
 	LEFT,
 }
-
 enum Horizontal {
 	LEFT = Direction.LEFT,
 	RIGHT = Direction.RIGHT,
 }
-
 enum Vertical {
 	UP = Direction.UP,
 	DOWN = Direction.DOWN,
 }
+
 
 static func opposite_h(facing: Horizontal) -> Horizontal:
 	if facing == Horizontal.LEFT:
@@ -24,11 +23,13 @@ static func opposite_h(facing: Horizontal) -> Horizontal:
 	else:
 		return Horizontal.LEFT
 
+
 static func as_vec_h(facing: Horizontal) -> Vector2:
 	if facing == Horizontal.RIGHT:
 		return Vector2.RIGHT
 	else:
 		return Vector2.LEFT
+
 
 static func opposite_v(facing: Vertical) -> Vertical:
 	if facing == Vertical.UP:
@@ -36,11 +37,13 @@ static func opposite_v(facing: Vertical) -> Vertical:
 	else:
 		return Vertical.UP
 
+
 static func as_vec_v(facing: Vertical) -> Vector2:
 	if facing == Vertical.UP:
 		return Vector2.DOWN
 	else:
 		return Vector2.DOWN
+
 
 static func opposite(facing: Direction) -> Direction:
 	match facing:
@@ -56,6 +59,7 @@ static func opposite(facing: Direction) -> Direction:
 			push_error(""""%s" is not a valid Direction!""" % not_valid)
 			return Direction.UP
 
+
 static func as_vec(facing: Direction) -> Vector2:
 	match facing:
 		Direction.UP:
@@ -69,3 +73,17 @@ static func as_vec(facing: Direction) -> Vector2:
 		var not_valid:
 			push_error(""""%s" is not a valid Direction!""" % not_valid)
 			return Vector2.UP
+
+
+static func sign_h(facing: Horizontal) -> int:
+	if facing == Horizontal.RIGHT:
+		return 1
+	else:
+		return -1
+
+
+static func sign_v(facing: Vertical) -> int:
+	if facing == Vertical.DOWN:
+		return 1
+	else:
+		return -1

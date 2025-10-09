@@ -1,17 +1,5 @@
-extends Node
 class_name EnemyWave
-
-@export_category("Enemy to spawn")
-@export var enemy: PackedScene
-@export var count_min: int = 1
-@export var count_max: int = 2
-
-@export_group("Advanced")
-@export
-## The global node group used to determine possible spawnpoints
-##  - Normal = enemy_spawn
-##  - Path follower = path_enemy_spawn
-var spawn_group: SpawnGroup = SpawnGroup.LEGACY
+extends Node
 
 enum SpawnGroup {
 	## Default/legacy behaviour: The enemy is spawned on-screen,
@@ -28,25 +16,18 @@ enum SpawnGroup {
 	ON_PLATFORM_PATH,
 }
 
-func spawn() -> Array[Node]:
-	# NOTE:
-	# this might be dangerous in case some special spawning script continues as
-	# player progresses to the next level.
-	var room = Globals.current_room
+@export_category("Enemy to spawn")
+@export var enemy: PackedScene
+@export var count_min: int = 1
+@export var count_max: int = 2
 
-	var spawned_enemies: Array[Node] = []
-	for i in randi_range(count_min, count_max):
-		var instance = _spawn_enemy(room)
-		spawned_enemies.push_back(instance)
+@export_group("Advanced")
+@export
+## The global node group used to determine possible spawnpoints
+##  - Normal = enemy_spawn
+##  - Path follower = path_enemy_spawn
+var spawn_group: SpawnGroup = SpawnGroup.LEGACY
 
-	return spawned_enemies
-
-
-func _spawn_enemy(room: Room) -> Node2D:
-	var instance: Node2D = enemy.instantiate()
-	_place_at_spawnpoint(instance, room, spawn_group)
-
-	return instance
 
 static func _place_at_spawnpoint(instance: Node2D, room: Room, group: SpawnGroup) -> void:
 	match group:
@@ -110,3 +91,37 @@ static func _spawngroup_to_name(group: SpawnGroup) -> String:
 			spawn_group_name = "enemy_spawn"
 
 	return spawn_group_name
+
+
+## Spawn the enemies in this wave, with option to wait until all of the enemies
+## have signaled to be fully spawned (e.g. spawn animation finished).
+func spawn(wait: bool = false) -> Array[Node]:
+	# NOTE:
+	# this might be dangerous in case some special spawning script continues as
+	# player progresses to the next level.
+	var room = Globals.current_room
+
+	var tasks: Array[Promise] = []
+	var spawned_enemies: Array[Node] = []
+	for i in randi_range(count_min, count_max):
+		var task: Promise
+		if wait:
+			task = Promise.new()
+			tasks.push_back(task)
+
+		var instance = _spawn_enemy(room, task)
+		spawned_enemies.push_back(instance)
+
+	await Promise.async_all(tasks)
+	return spawned_enemies
+
+
+func _spawn_enemy(room: Room, task: Promise) -> Node2D:
+	var instance: Node2D = enemy.instantiate()
+	_place_at_spawnpoint(instance, room, spawn_group)
+
+	## TODO: await some signal from the enemy
+	if task != null:
+		task.resolve()
+
+	return instance

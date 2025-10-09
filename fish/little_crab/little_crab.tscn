@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://betjhqmoocxtc"]
+[gd_scene load_steps=26 format=3 uid="uid://betjhqmoocxtc"]
 
 [ext_resource type="Script" uid="uid://cxxnc7mrpbeq6" path="res://fish/little_crab/little_crab.gd" id="1_x42bk"]
 [ext_resource type="Texture2D" uid="uid://dr6len03dg61t" path="res://fish/little_crab/rapu.png" id="2_x42bk"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_poyks"]
 [ext_resource type="PackedScene" uid="uid://b2klgm83ir3fd" path="res://particles/hurtsplosion_tiny.tscn" id="5_8aic4"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_x42bk"]
+[ext_resource type="Texture2D" uid="uid://cvdlehc4d6sww" path="res://levels/tileset1.png" id="7_8aic4"]
 
 [sub_resource type="Animation" id="Animation_fjv7j"]
 resource_name = "RESET"
@@ -15,59 +16,160 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mask:offset")
+tracks/0/path = NodePath("Mask/Sprite:offset")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -4)]
+"values": [Vector2(0, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mask:position")
+tracks/1/path = NodePath("SpawnRubble:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnRubble:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask/Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rdpxf"]
+resource_name = "RESET_HIDDEN"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Mask/Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpawnRubble:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnRubble:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask/Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_8aic4"]
 resource_name = "spawn"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Mask:offset")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
+tracks/0/path = NodePath("Mask/Sprite:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.29999995, 1.8333334, 2.2, 2.4666667, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, -39), Vector2(0, -12)]
+"values": [Vector2(0, 19), Vector2(0, 19), Vector2(0, 6.2449036), Vector2(0, 4), Vector2(0, -10), Vector2(0, -8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Mask:position")
+tracks/1/path = NodePath("SpawnRubble:emitting")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 2.3666666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpawnRubble:amount_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.23333333, 1.2333333, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.9, 0.9, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Mask/Sprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.73333335),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 26), Vector2(0, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8aic4"]
 _data = {
 &"RESET": SubResource("Animation_fjv7j"),
+&"RESET_HIDDEN": SubResource("Animation_rdpxf"),
 &"spawn": SubResource("Animation_8aic4")
 }
 
@@ -109,6 +211,34 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gdxh0"]
+atlas = ExtResource("7_8aic4")
+region = Rect2(70, 52, 4, 4)
+
+[sub_resource type="Curve" id="Curve_20hts"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.49506575, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_k3s87"]
+curve = SubResource("Curve_20hts")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nxa66"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(0, 6.91, 0)
+emission_shape = 3
+emission_box_extents = Vector3(14, 1.35, 1)
+angle_min = -179.99998
+angle_max = 180.00002
+direction = Vector3(0, -1, 0)
+spread = 15.0
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.75
+scale_max = 1.25
+alpha_curve = SubResource("CurveTexture_k3s87")
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3s87"]
 size = Vector2(30, 11)
 
@@ -129,12 +259,11 @@ script = ExtResource("3_fjv7j")
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://ds8qvr68yl5bj"
 
-[node name="DamageEffects" type="Node" parent="." node_paths=PackedStringArray("nudge_pivot", "flash_node", "health")]
+[node name="DamageEffects" type="Node" parent="." node_paths=PackedStringArray("flash_node", "health")]
 script = ExtResource("4_fjv7j")
 nudge = false
 particle_emitter = ExtResource("5_8aic4")
-nudge_pivot = NodePath("../Sprite")
-flash_node = NodePath("../Sprite")
+flash_node = NodePath("../Mask/Sprite")
 flash_duration = 0.2
 health = NodePath("../Health")
 metadata/_custom_type_script = "uid://dfv0kbqj2ou5n"
@@ -143,21 +272,28 @@ metadata/_custom_type_script = "uid://dfv0kbqj2ou5n"
 libraries = {
 &"": SubResource("AnimationLibrary_8aic4")
 }
-autoplay = "spawn"
 
 [node name="Mask" type="Sprite2D" parent="."]
 clip_children = 1
 texture = SubResource("CanvasTexture_fjv7j")
-offset = Vector2(0, -4)
+offset = Vector2(0, -8)
 region_enabled = true
 region_rect = Rect2(0, 0, 32, 32)
 
 [node name="Sprite" type="AnimatedSprite2D" parent="Mask"]
 sprite_frames = SubResource("SpriteFrames_gdxh0")
 autoplay = "default"
-offset = Vector2(0, -12)
+offset = Vector2(0, -8)
+
+[node name="SpawnRubble" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 40
+texture = SubResource("AtlasTexture_gdxh0")
+lifetime = 0.75
+process_material = SubResource("ParticleProcessMaterial_nxa66")
 
 [node name="Hurtbox" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 collision_layer = 0
 collision_mask = 2
@@ -165,12 +301,13 @@ script = ExtResource("4_poyks")
 damage = 1.0
 metadata/_custom_type_script = "uid://bc3ebm4bllm2e"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_k3s87")
 debug_color = Color(0.729412, 0, 0.368627, 0.419608)
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+visible = false
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("5_x42bk")
@@ -183,7 +320,6 @@ shape = SubResource("CircleShape2D_y25ns")
 
 [connection signal="die" from="Health" to="." method="_on_health_die"]
 [connection signal="die" from="Health" to="Bounty" method="_on_health_die"]
-[connection signal="hurt" from="Health" to="." method="_on_health_hurt"]
 [connection signal="hurt_at" from="Health" to="DamageEffects" method="_on_health_hurt_at"]
 [connection signal="area_entered" from="Hurtbox" to="Hurtbox" method="_on_area_entered"]
 [connection signal="area_exited" from="Hurtbox" to="Hurtbox" method="_on_area_exited"]
