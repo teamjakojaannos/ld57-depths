@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://cqaojdgp1iy1y"]
+
+[ext_resource type="Texture2D" uid="uid://c3mlvrimd7i8x" path="res://boss/crab/rapuclaw.png" id="1_5oo2y"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0yh8"]
+atlas = ExtResource("1_5oo2y")
+region = Rect2(258, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiodq"]
+atlas = ExtResource("1_5oo2y")
+region = Rect2(2, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00haj"]
+atlas = ExtResource("1_5oo2y")
+region = Rect2(130, 10, 42, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obwof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"idle_claw_closed",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}],
+"loop": true,
+"name": &"idle_claw_open",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"idle_claw_opening",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snapping",
+"speed": 15.0
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6u1in"]
+
+[sub_resource type="Animation" id="Animation_6rfmu"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_closed"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_r5js0"]
+length = 0.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_open"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_76wnj"]
+length = 1.5384616
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_opening"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7692308),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_wh6sd"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["snapping"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fks4g"]
+_data = {
+&"idle_claw_closed": SubResource("Animation_6rfmu"),
+&"idle_claw_open": SubResource("Animation_r5js0"),
+&"idle_claw_opening": SubResource("Animation_76wnj"),
+&"snapping": SubResource("Animation_wh6sd")
+}
+
+[node name="Sprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_obwof")
+animation = &"idle_claw_closed"
+offset = Vector2(-11, -32)
+
+[node name="SpriteAnimations" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6u1in"),
+&"sprite": SubResource("AnimationLibrary_fks4g")
+}

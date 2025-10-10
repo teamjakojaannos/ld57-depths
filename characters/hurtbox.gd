@@ -14,7 +14,7 @@ enum Mode {
 }
 
 ## Amount of damage applied.
-@export var damage: float = 0.0
+@export var damage: float = 1.0
 ## How the damage should be applied.
 @export var mode: Mode = Mode.ONCE:
 	get:

@@ -1,18 +1,19 @@
 @tool
 class_name Nodes
 
-const GROUP_SAFE_TO_DELETE_IN_EDITOR: String = \
-	"I KNOW WHAT I AM DOING THIS NODE IS SAFE TO AUTOMATICALLY FREE IN-EDITOR"
+const GROUP_SAFE_TO_DELETE_IN_EDITOR: String = "I KNOW WHAT I AM DOING THIS NODE IS SAFE TO AUTOMATICALLY FREE IN-EDITOR"
+
 
 static func find_if_null(
-	node: Node,
-	value: Node,
-	clazz: Variant
+		node: Node,
+		value: Node,
+		clazz: Variant,
 ) -> Object:
 	if not Objects.is_null(value):
 		return value
 
 	return find_by_class(node, clazz, true)
+
 
 ## Finds a node with matching class. Nodes are searched from direct siblings of
 ## [param node].[br]
@@ -25,9 +26,9 @@ static func find_if_null(
 ## specifically, the [param clazz] [b]must[/b] be valid second parameter for
 ## [method @GDScript.is_instance_of]
 static func find_by_class(
-	node: Node,
-	clazz: Variant,
-	match_self: bool = true
+		node: Node,
+		clazz: Variant,
+		match_self: bool = true,
 ) -> Object:
 	if Objects.is_null(node):
 		return null
@@ -41,44 +42,32 @@ static func find_by_class(
 
 	return null
 
+
 ## Finds a node with a matching [code]class_name[/code] (or a built-in
 ## class). Nodes are searched from direct siblings of [param node].[br]
 ## [br]
 ## If [param node] is of matching class and [param match_self] is set to
 ## [code]true[/code], the [param node] itself is returned.
 static func find_by_class_name(
-	node: Node,
-	clazz: String,
-	match_self: bool = true
+		node: Node,
+		clazz: String,
+		match_self: bool = true,
 ) -> Object:
 	if Objects.is_null(node):
 		return null
 
-	if match_self and match_by_class_name(node, clazz):
+	if match_self and Objects.match_by_class_name(node, clazz):
 		return node
 
 	var by_name = node.get_node_or_null(clazz)
-	if match_by_class_name(by_name, clazz):
+	if Objects.match_by_class_name(by_name, clazz):
 		return by_name
 
 	for child in node.get_children():
-		if match_by_class_name(child, clazz):
+		if Objects.match_by_class_name(child, clazz):
 			return child
 
 	return null
-
-
-static func match_by_class_name(node: Node, clazz: String) -> bool:
-	if Objects.is_null(node):
-		return false
-
-	var script = node.get_script()
-	if script is Script:
-		# FIXME: does not support inheritance
-		return script.get_global_name() == clazz
-
-	# Fallback to matching by built-in class
-	return node.is_class(clazz)
 
 
 ## Marks the node as "safe to free in-editor". This is useful for any case when
@@ -91,6 +80,7 @@ static func mark_as_safe_to_free(node: Node) -> void:
 		return
 
 	node.add_to_group(GROUP_SAFE_TO_DELETE_IN_EDITOR)
+
 
 ## Checks if the node is marked as "safe to free in-editor". May evaluate to
 ## [code]true[/code] only for nodes which have explicitly been marked as safe

@@ -1,0 +1,214 @@
+[gd_scene load_steps=13 format=3 uid="uid://8ryy3r6661i7"]
+
+[ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_48ij5"]
+[ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_wek6f"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_ai2c5"]
+[ext_resource type="AudioStream" uid="uid://clghm8gts3qpq" path="res://boss/crab/crabclaw_long.ogg" id="5_yaek0"]
+[ext_resource type="PackedScene" uid="uid://cqaojdgp1iy1y" path="res://boss/crab/crab_arm.tscn" id="6_wek6f"]
+
+[sub_resource type="Animation" id="Animation_m6qkv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 56)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_h65yr"]
+resource_name = "attack"
+length = 1.6
+step = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SpriteAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("snapping"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 1, 1.2, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 24), Vector2(0, -8), Vector2(0, 16), Vector2(0, 8), Vector2(0, 16), Vector2(0, 56)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.7, 1.1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.261799, -0.261799, 0.261799, -0.261799]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SFX")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_6u1in"]
+resource_name = "enter"
+length = 1.6
+step = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SpriteAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("snappy"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(0, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_l305o"]
+resource_name = "idle"
+length = 1.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SpriteAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("snappy"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_00haj"]
+resource_name = "peek"
+length = 1.5
+step = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/SpriteAnimations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("no_snappy"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.5),
+"transitions": PackedFloat32Array(0.5, -2, 1),
+"update": 0,
+"values": [Vector2(0, 56), Vector2(0, 24), Vector2(0, 56)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_obwof"]
+_data = {
+&"RESET": SubResource("Animation_m6qkv"),
+&"attack": SubResource("Animation_h65yr"),
+&"enter": SubResource("Animation_6u1in"),
+&"idle": SubResource("Animation_l305o"),
+&"peek": SubResource("Animation_00haj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbbtm"]
+size = Vector2(28.1931, 28.1931)
+
+[node name="FlailingCrabArm" type="Node2D"]
+script = ExtResource("1_48ij5")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_wek6f")
+metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_obwof")
+}
+
+[node name="Pivot" parent="." instance=ExtResource("6_wek6f")]
+position = Vector2(0, 56)
+
+[node name="Hitbox" type="Area2D" parent="Pivot" node_paths=PackedStringArray("health")]
+position = Vector2(0, -56)
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_ai2c5")
+health = NodePath("../../Health")
+metadata/_custom_type_script = "uid://5fp57vk4c4a3"
+
+[node name="Shape" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(-10.4, 14.4)
+rotation = -0.785397
+shape = SubResource("RectangleShape2D_fbbtm")
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yaek0")
+max_polyphony = 4
+bus = &"Enemy SFX"
