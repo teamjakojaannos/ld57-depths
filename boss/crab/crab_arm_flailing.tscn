@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://8ryy3r6661i7"]
+[gd_scene load_steps=24 format=3 uid="uid://8ryy3r6661i7"]
 
 [ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_48ij5"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_wek6f"]
 [ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_ai2c5"]
 [ext_resource type="AudioStream" uid="uid://clghm8gts3qpq" path="res://boss/crab/crabclaw_long.ogg" id="5_yaek0"]
+[ext_resource type="Texture2D" uid="uid://c3mlvrimd7i8x" path="res://boss/crab/rapuclaw.png" id="6_ctoln"]
 [ext_resource type="PackedScene" uid="uid://cqaojdgp1iy1y" path="res://boss/crab/crab_arm.tscn" id="6_wek6f"]
+[ext_resource type="Script" uid="uid://dgkufqnoysrjd" path="res://addons/jakojaannos_animated_sprite_importer/sprite_animation_player_2d.gd" id="7_ai2c5"]
 
 [sub_resource type="Animation" id="Animation_m6qkv"]
 length = 0.001
@@ -180,6 +182,184 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fbbtm"]
 size = Vector2(28.1931, 28.1931)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0yh8"]
+atlas = ExtResource("6_ctoln")
+region = Rect2(258, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oiodq"]
+atlas = ExtResource("6_ctoln")
+region = Rect2(2, 10, 42, 70)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00haj"]
+atlas = ExtResource("6_ctoln")
+region = Rect2(130, 10, 42, 70)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obwof"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"idle_claw_closed",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}],
+"loop": true,
+"name": &"idle_claw_open",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"idle_claw_opening",
+"speed": 1.3
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oiodq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00haj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0yh8")
+}],
+"loop": true,
+"name": &"snapping",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_ctoln"]
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_closed"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ai2c5"]
+length = 0.6666667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_open"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.33333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_yaek0"]
+length = 1.5384616
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle_claw_opening"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7692308),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_3c32r"]
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:animation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["snapping"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ctvn5"]
+_data = {
+&"idle_claw_closed": SubResource("Animation_ctoln"),
+&"idle_claw_open": SubResource("Animation_ai2c5"),
+&"idle_claw_opening": SubResource("Animation_yaek0"),
+&"snapping": SubResource("Animation_3c32r")
+}
+
 [node name="FlailingCrabArm" type="Node2D"]
 script = ExtResource("1_48ij5")
 
@@ -212,3 +392,15 @@ shape = SubResource("RectangleShape2D_fbbtm")
 stream = ExtResource("5_yaek0")
 max_polyphony = 4
 bus = &"Enemy SFX"
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("animations")]
+sprite_frames = SubResource("SpriteFrames_obwof")
+animation = &"idle_claw_closed"
+script = ExtResource("7_ai2c5")
+animations = NodePath("Animations")
+metadata/_custom_type_script = "uid://dgkufqnoysrjd"
+
+[node name="Animations" type="AnimationPlayer" parent="Sprite"]
+libraries = {
+&"sprite": SubResource("AnimationLibrary_ctvn5")
+}

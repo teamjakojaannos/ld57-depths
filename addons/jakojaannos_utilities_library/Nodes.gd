@@ -29,6 +29,7 @@ static func find_by_class(
 		node: Node,
 		clazz: Variant,
 		match_self: bool = true,
+		recursive: bool = false,
 ) -> Object:
 	if Objects.is_null(node):
 		return null
@@ -37,8 +38,13 @@ static func find_by_class(
 		return node
 
 	for child in node.get_children():
-		if is_instance_of(child, clazz):
-			return child
+		if recursive:
+			var found = Nodes.find_by_class(child, clazz, true, true)
+			if found:
+				return found
+		else:
+			if is_instance_of(child, clazz):
+				return child
 
 	return null
 
@@ -52,6 +58,7 @@ static func find_by_class_name(
 		node: Node,
 		clazz: String,
 		match_self: bool = true,
+		recursive: bool = false,
 ) -> Object:
 	if Objects.is_null(node):
 		return null
@@ -64,8 +71,14 @@ static func find_by_class_name(
 		return by_name
 
 	for child in node.get_children():
-		if Objects.match_by_class_name(child, clazz):
-			return child
+		if recursive:
+			var found = Nodes.find_by_class_name(child, clazz, true, true)
+			if found:
+				return found
+
+		else:
+			if Objects.match_by_class_name(child, clazz):
+				return child
 
 	return null
 

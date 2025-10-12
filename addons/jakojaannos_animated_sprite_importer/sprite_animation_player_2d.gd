@@ -1,5 +1,12 @@
-class_name EditorAnimatedSpriteImporterInspectorPlugin
-extends EditorInspectorPlugin
+@tool
+class_name SpriteAnimationPlayer2D
+extends AnimatedSprite2D
+
+@export var animations: AnimationPlayer
+
+@export_tool_button("Write to AnimationPlayer", "AnimationPlayer")
+#var foo: EditorNode
+var write_to_anim_player = _do_sync
 
 
 static func _add_discrete_animation_track(a: Animation, path: NodePath) -> int:
@@ -11,7 +18,7 @@ static func _add_discrete_animation_track(a: Animation, path: NodePath) -> int:
 	return track
 
 
-static func write_sprite_frames_to_animation(
+static func _write_sprite_frames_to_animation(
 		animation: Animation,
 		animation_name: String,
 		fps: float,
@@ -33,11 +40,11 @@ static func write_sprite_frames_to_animation(
 	animation.loop_mode = loop_mode
 
 
-static func sync_sprite_to_animation(
+static func _sync_sprite_to_animation(
 		sprite: AnimatedSprite2D,
 		anim_player: AnimationPlayer,
 ) -> void:
-	anim_player.root_node = ".."
+	anim_player.root_node = anim_player.get_path_to(sprite)
 
 	var sprite_frames: SpriteFrames = sprite.sprite_frames
 	if sprite_frames is not SpriteFrames:
@@ -62,7 +69,7 @@ static func sync_sprite_to_animation(
 
 		var animation := Animation.new()
 		library.add_animation(animation_name, animation)
-		write_sprite_frames_to_animation(
+		_write_sprite_frames_to_animation(
 			animation,
 			animation_name,
 			fps,
@@ -98,26 +105,41 @@ static func _select_loop_mode(
 		return Animation.LoopMode.LOOP_NONE
 
 
-func _can_handle(object: Object) -> bool:
-	if object is not AnimationPlayer:
-		return false
-
-	var anim_player := object as AnimationPlayer
-	return anim_player.get_parent() is AnimatedSprite2D
+func _enter_tree() -> void:
+	_assign_owner()
 
 
-func _on_import_button_pressed(anim_player: AnimationPlayer) -> void:
-	var sprite: AnimatedSprite2D = anim_player.get_parent()
-	sync_sprite_to_animation(sprite, anim_player)
+func _ready() -> void:
+	if not animations:
+		_create_default_animation_player()
+
+	if Engine.is_editor_hint():
+		if not sprite_frames_changed.is_connected(_on_sprite_frames_changed):
+			sprite_frames_changed.connect(_on_sprite_frames_changed)
+
+		_on_sprite_frames_changed.call_deferred()
 
 
-func _parse_category(object: Object, category: String) -> void:
-	if category != "AnimationPlayer":
+func _assign_owner() -> void:
+	if animations.owner:
 		return
 
-	var button := Button.new()
-	button.text = "Import from parent sprite"
-	var action = _on_import_button_pressed.bind(object)
-	button.pressed.connect(action)
+	if Engine.is_editor_hint():
+		animations.owner = EditorInterface.get_edited_scene_root()
+	else:
+		animations.owner = self
 
-	add_custom_control(button)
+
+func _create_default_animation_player() -> void:
+	animations = AnimationPlayer.new()
+	animations.name = "Animations"
+	add_child(animations, true)
+
+
+func _do_sync() -> void:
+	_sync_sprite_to_animation.call_deferred(self, animations)
+
+
+func _on_sprite_frames_changed() -> void:
+	_do_sync()
+	Signals.try_connect(sprite_frames.changed, _do_sync)
