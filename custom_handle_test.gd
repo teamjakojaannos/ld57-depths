@@ -6,6 +6,6 @@ extends Node2D
 
 
 func _create_2d_gizmos(gizmos: EditorGizmos) -> void:
-	print("_create_2d_gizmos")
+	print("asdas")
 	var _point_translate_gizmo := gizmos.translate_2d(point)
 	var _point_translate_gizmo_static := gizmos.translate_2d(Vector2.RIGHT * 100.0)

@@ -5,25 +5,20 @@ extends EditorPlugin
 const EDITOR_2D_VIEWPORT_CLASS_NAME := "CanvasItemEditorViewport"
 const GIZMO_METHOD_NAME := "_create_2d_gizmos"
 
-static var _instance: EditorAnimatedSpriteImporterPlugin
-static var instance: EditorAnimatedSpriteImporterPlugin:
-	get:
-		return _instance
-
 var inspector_plugin: EditorInspectorPlugin
 var _last_node: Node = null
 var _node_gizmos: Array[EditorGizmoHandle] = []
 
 
 func _enter_tree() -> void:
-	_instance = self
+	_cleanup_gizmos()
 
 	inspector_plugin = EditorAnimatedSpriteImporterInspectorPlugin.new()
 	add_inspector_plugin(inspector_plugin)
 
 
 func _exit_tree() -> void:
-	_instance = null
+	_cleanup_gizmos()
 
 	if inspector_plugin != null:
 		remove_inspector_plugin(inspector_plugin)
@@ -31,9 +26,13 @@ func _exit_tree() -> void:
 
 
 func _cleanup_gizmos() -> void:
-	print("CLEANUP")
 	_node_gizmos = []
 	_last_node = null
+
+
+func _create_gizmos_for_node(node: Node) -> Array[EditorGizmoHandle]:
+	var gizmos := EditorGizmos.new()
+	return gizmos._create_gizmos_with(node)
 
 
 func _edit(object: Object) -> void:
@@ -46,9 +45,7 @@ func _edit(object: Object) -> void:
 	if not node:
 		return
 
-	var gizmos := EditorGizmos.new()
-	var _node_gizmos = gizmos._create_gizmos_with(node)
-	print("Got %s gizmos" % _node_gizmos.size())
+	_node_gizmos = _create_gizmos_for_node(node)
 	if _node_gizmos.is_empty():
 		return
 
@@ -69,7 +66,6 @@ func _find_canvas_item_editor_viewport() -> Control:
 
 
 func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
-	print.call_deferred("Whaaaaaat %s" % _node_gizmos.size())
 	if _node_gizmos.is_empty():
 		return
 
@@ -79,7 +75,6 @@ func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 	var m = editor_scene_root.get_final_transform()
 
 	for gizmo_handle in _node_gizmos:
-		print.call_deferred("Drawing %s" % gizmo_handle)
 		var viewport_pos = m * gizmo_handle.position
 		viewport_control.draw_circle(viewport_pos, 5.0, Color.NAVY_BLUE, true)
 		viewport_control.draw_circle(viewport_pos, 100.0, Color.DEEP_SKY_BLUE, false, 2)
@@ -96,10 +91,11 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 	# Transform from scene coordinates to viewport coordinates
 	var m = editor_scene_root.get_final_transform()
 
-	for point in _node_gizmos:
+	for gizmo_handle in _node_gizmos:
+		var point = gizmo_handle.position
 		var viewport_pos = m * point
 		if viewport_pos.distance_to(mouse) < 100.0:
-			print("MOUSE OVER!")
+			print("HOVER!")
 			return true
 
 	return false

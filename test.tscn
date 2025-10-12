@@ -6,17 +6,4 @@
 
 [node name="CustomHandleTest" type="Node2D" parent="."]
 script = ExtResource("1_37kl0")
-point = Vector2(2, 100)
 metadata/_custom_type_script = "uid://dsx75si2eidh5"
-
-[node name="32,32" type="Marker2D" parent="."]
-position = Vector2(32, 32)
-gizmo_extents = 32.0
-
-[node name="100,-50" type="Marker2D" parent="."]
-position = Vector2(100, -50)
-gizmo_extents = 32.0
-
-[node name="-1000,-500" type="Marker2D" parent="."]
-position = Vector2(-1000, -500)
-gizmo_extents = 32.0
