@@ -2,32 +2,41 @@
 class_name EditorGizmos
 extends RefCounted
 
-var _created_gizmos: Array[EditorGizmo] = []
-var _is_creating_gizmos := false
+signal redraw_requested
+
+var _gizmos: Array[EditorGizmo] = []
+var _target: Node
+var _undo_redo: EditorUndoRedoManager
 
 
-func translate_2d(position: Vector2, on_move: Callable) -> EditorGizmo:
-	if not _is_creating_gizmos:
-		push_error("Gizmos can only be created during [_create_2d_gizmos]")
-		return
+func _init(undo_redo: EditorUndoRedoManager, target: Node) -> void:
+	_undo_redo = undo_redo
+	_target = target
 
-	var g := EditorTranslate2Gizmo.new(position)
+	_target.call(EditorAnimatedSpriteImporterPlugin.GIZMO_METHOD_NAME, self)
+
+
+func _input(viewport: Control, event: InputEvent) -> bool:
+	for gizmo in _gizmos:
+		if gizmo._do_input(viewport, event):
+			return true
+
+	return false
+
+
+func _draw(viewport: Control) -> void:
+	for gizmo in _gizmos:
+		gizmo._do_draw(viewport)
+
+
+func is_empty() -> bool:
+	return _gizmos.is_empty()
+
+
+func translate_2d(property: StringName, on_move: Callable) -> EditorGizmo:
+	var position: Vector2 = _target.get(property)
+	var g := EditorTranslate2Gizmo.new(_target, _undo_redo, property)
 	g.moved.connect(on_move)
-	_created_gizmos.push_back(g)
+	g.changed.connect(redraw_requested.emit)
+	_gizmos.push_back(g)
 	return g
-
-
-func _create_gizmos_for(node: Node) -> Array[EditorGizmo]:
-	if _is_creating_gizmos:
-		push_error("Multiple overlapping calls to _create_gizmos_for(): await is not allowed during gizmo creation!")
-		return []
-
-	_created_gizmos = []
-
-	_is_creating_gizmos = true
-	node.call(EditorAnimatedSpriteImporterPlugin.GIZMO_METHOD_NAME, self)
-	_is_creating_gizmos = false
-
-	var result = _created_gizmos
-	_created_gizmos = []
-	return result
