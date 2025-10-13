@@ -7,7 +7,11 @@ const GIZMO_METHOD_NAME := "_create_2d_gizmos"
 
 var inspector_plugin: EditorInspectorPlugin
 var _last_node: Node = null
-var _node_gizmos: Array[EditorGizmoHandle] = []
+var _node_gizmos: Array[EditorGizmo] = []
+var _is_dragging: bool:
+	get:
+		return !!_dragged_gizmo
+var _dragged_gizmo: EditorTranslate2Gizmo = null
 
 
 func _enter_tree() -> void:
@@ -30,9 +34,9 @@ func _cleanup_gizmos() -> void:
 	_last_node = null
 
 
-func _create_gizmos_for_node(node: Node) -> Array[EditorGizmoHandle]:
+func _create_gizmos_for_node(node: Node) -> Array[EditorGizmo]:
 	var gizmos := EditorGizmos.new()
-	return gizmos._create_gizmos_with(node)
+	return gizmos._create_gizmos_for(node)
 
 
 func _edit(object: Object) -> void:
@@ -74,10 +78,8 @@ func _forward_canvas_draw_over_viewport(viewport_control: Control) -> void:
 	# Transform from scene coordinates to viewport coordinates
 	var m = editor_scene_root.get_final_transform()
 
-	for gizmo_handle in _node_gizmos:
-		var viewport_pos = m * gizmo_handle.position
-		viewport_control.draw_circle(viewport_pos, 5.0, Color.NAVY_BLUE, true)
-		viewport_control.draw_circle(viewport_pos, 100.0, Color.DEEP_SKY_BLUE, false, 2)
+	for gizmo in _node_gizmos:
+		gizmo._do_draw(viewport_control)
 
 
 func _forward_canvas_gui_input(event: InputEvent) -> bool:
@@ -88,15 +90,36 @@ func _forward_canvas_gui_input(event: InputEvent) -> bool:
 	var mouse = viewport_control.get_local_mouse_position()
 
 	var editor_scene_root := EditorInterface.get_editor_viewport_2d()
-	# Transform from scene coordinates to viewport coordinates
-	var m = editor_scene_root.get_final_transform()
 
-	for gizmo_handle in _node_gizmos:
-		var point = gizmo_handle.position
-		var viewport_pos = m * point
-		if viewport_pos.distance_to(mouse) < 100.0:
-			print("HOVER!")
+	# Transforms for converting coordinates to/from scene coordinates
+	var to_viewport = editor_scene_root.get_final_transform()
+	var to_scene = editor_scene_root.get_final_transform().affine_inverse()
+
+	if event is InputEventMouseMotion:
+		if _is_dragging:
+			var translate_gizmo := _dragged_gizmo as EditorTranslate2Gizmo
+			if translate_gizmo:
+				var scene_mouse_pos = to_scene * mouse
+				translate_gizmo.moved.emit(scene_mouse_pos)
+				update_overlays()
 			return true
+
+	var button = event as InputEventMouseButton
+	if button and button.button_index == MouseButton.MOUSE_BUTTON_LEFT:
+		if button.is_released():
+			_dragged_gizmo = null
+		elif button.is_pressed():
+			for gizmo in _node_gizmos:
+				var translate_gizmo := gizmo as EditorTranslate2Gizmo
+				if not translate_gizmo:
+					continue
+
+				var viewport_pos = to_viewport * translate_gizmo.position
+
+				var is_hovering: bool = viewport_pos.distance_to(mouse) < 100.0
+				if is_hovering:
+					_dragged_gizmo = gizmo
+					return true
 
 	return false
 

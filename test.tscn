@@ -6,4 +6,5 @@
 
 [node name="CustomHandleTest" type="Node2D" parent="."]
 script = ExtResource("1_37kl0")
+point = Vector2(40.496796, -38.794174)
 metadata/_custom_type_script = "uid://dsx75si2eidh5"
