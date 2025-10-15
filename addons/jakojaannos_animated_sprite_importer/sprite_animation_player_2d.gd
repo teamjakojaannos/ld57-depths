@@ -5,8 +5,36 @@ extends AnimatedSprite2D
 @export var animations: AnimationPlayer
 
 @export_tool_button("Write to AnimationPlayer", "AnimationPlayer")
-#var foo: EditorNode
 var write_to_anim_player = _do_sync
+var _frame_offsets: Dictionary[StringName, PackedVector2Array] = { }
+var _frame_offset: Vector2:
+	get:
+		if not _frame_offsets.has(animation):
+			return Vector2.ZERO
+
+		var offsets = _frame_offsets[animation]
+		if not offsets:
+			return Vector2.ZERO
+
+		return offsets[frame]
+	set(value):
+		if not sprite_frames:
+			return
+
+		if not _frame_offsets.has(animation):
+			var frame_count := sprite_frames.get_frame_count(animation)
+			var new_array: PackedVector2Array = []
+			new_array.resize(frame_count)
+			new_array.fill(Vector2.ZERO)
+
+			_frame_offsets[animation] = new_array
+
+		var offsets = _frame_offsets[animation]
+		offsets[frame] = value
+
+		var delta = value - position
+		offset = -value
+		position = value
 
 
 static func _add_discrete_animation_track(a: Animation, path: NodePath) -> int:
@@ -118,6 +146,14 @@ func _ready() -> void:
 			sprite_frames_changed.connect(_on_sprite_frames_changed)
 
 		_on_sprite_frames_changed.call_deferred()
+
+
+func _create_2d_gizmos(gizmos: EditorGizmos) -> void:
+	gizmos.translate_2d("_frame_offset", _on_frame_offset_moved)
+
+
+func _on_frame_offset_moved(new_pos: Vector2) -> void:
+	_frame_offset = new_pos
 
 
 func _assign_owner() -> void:

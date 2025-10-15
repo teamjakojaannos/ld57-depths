@@ -7,7 +7,7 @@ extends RefCounted
 signal changed
 
 var _render_root: Control = null
-var _target: Node
+var _target_ref: WeakRef
 var _undo_redo: EditorUndoRedoManager
 
 
@@ -24,7 +24,7 @@ static func _to_scene_coords(position: Vector2) -> Vector2:
 
 
 func _init(target: Node, undo_redo: EditorUndoRedoManager):
-	_target = target
+	_target_ref = weakref(target)
 	_undo_redo = undo_redo
 
 
@@ -35,6 +35,26 @@ func _input(event: InputEvent) -> bool:
 # @abstract
 func _draw() -> void:
 	printerr("TODO: gdscript-formatter issue #133")
+
+
+func get_target() -> Node:
+	var target := _target_ref.get_ref()
+	if not target:
+		return null
+
+	var target_node := target as Node
+	if not target_node:
+		return null
+
+	return target_node
+
+
+func get_target_property(property: StringName, default: Variant = null) -> Variant:
+	var target := get_target()
+	if not target:
+		return default
+
+	return target.get(property)
 
 
 func mark_changed() -> void:

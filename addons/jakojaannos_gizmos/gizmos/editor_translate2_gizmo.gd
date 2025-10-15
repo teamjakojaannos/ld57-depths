@@ -6,7 +6,7 @@ signal moved(new_pos: Vector2)
 
 var position: Vector2:
 	get:
-		return _target.get(_position_property)
+		return get_target_property(_position_property, Vector2.ZERO)
 var _position_property: StringName
 var _original_pos: Vector2
 var _is_dragging: bool = false
@@ -64,9 +64,13 @@ func _drag_motion() -> void:
 func _drag_drop() -> void:
 	var final_pos: Vector2 = position
 	if _original_pos != final_pos:
-		_undo_redo.create_action("Moved translate gizmo for \"%s.%s\" to %s" % [_target.name, _position_property, final_pos])
-		_undo_redo.add_do_property(_target, _position_property, final_pos)
-		_undo_redo.add_undo_property(_target, _position_property, _original_pos)
+		var target = get_target()
+		if not target:
+			return
+
+		_undo_redo.create_action("Moved translate gizmo for \"%s.%s\" to %s" % [target.name, _position_property, final_pos])
+		_undo_redo.add_do_property(target, _position_property, final_pos)
+		_undo_redo.add_undo_property(target, _position_property, _original_pos)
 		_undo_redo.add_do_method(self, "mark_changed")
 		_undo_redo.add_undo_method(self, "mark_changed")
 		_undo_redo.commit_action(false)

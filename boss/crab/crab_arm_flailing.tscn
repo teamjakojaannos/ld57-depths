@@ -373,6 +373,7 @@ libraries = {
 }
 
 [node name="Pivot" parent="." instance=ExtResource("6_wek6f")]
+visible = false
 position = Vector2(0, 56)
 
 [node name="Hitbox" type="Area2D" parent="Pivot" node_paths=PackedStringArray("health")]
@@ -394,8 +395,11 @@ max_polyphony = 4
 bus = &"Enemy SFX"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("animations")]
+position = Vector2(-25, 58)
 sprite_frames = SubResource("SpriteFrames_obwof")
 animation = &"idle_claw_closed"
+frame_progress = 0.6840098
+offset = Vector2(-9.893341, -29.951279)
 script = ExtResource("7_ai2c5")
 animations = NodePath("Animations")
 metadata/_custom_type_script = "uid://dgkufqnoysrjd"
