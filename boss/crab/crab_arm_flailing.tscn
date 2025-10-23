@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://8ryy3r6661i7"]
+[gd_scene load_steps=48 format=3 uid="uid://8ryy3r6661i7"]
 
 [ext_resource type="Script" uid="uid://dmd20irdpgpwf" path="res://boss/crab/snappy.gd" id="1_48ij5"]
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_wek6f"]
@@ -7,6 +7,206 @@
 [ext_resource type="Texture2D" uid="uid://c3mlvrimd7i8x" path="res://boss/crab/rapuclaw.png" id="6_ctoln"]
 [ext_resource type="PackedScene" uid="uid://cqaojdgp1iy1y" path="res://boss/crab/crab_arm.tscn" id="6_wek6f"]
 [ext_resource type="Script" uid="uid://dgkufqnoysrjd" path="res://addons/jakojaannos_animated_sprite_importer/sprite_animation_player_2d.gd" id="7_ai2c5"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ctoln"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ai2c5"]
+animation = &"sway_slow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yaek0"]
+animation = &"peek"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ai2c5"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_ctoln"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ctoln"]
+graph_offset = Vector2(-170.93057, 66.83905)
+nodes/output/position = Vector2(670, 230)
+nodes/Peeking/node = SubResource("AnimationNodeAnimation_yaek0")
+nodes/Peeking/position = Vector2(70, 510)
+nodes/Flailing/node = SubResource("AnimationNodeAnimation_ai2c5")
+nodes/Flailing/position = Vector2(70, 300)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_ctoln")
+nodes/Add2/position = Vector2(430, 220)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_ctoln")
+nodes/TimeScale/position = Vector2(250, 270)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_ai2c5")
+"nodes/TimeScale 2/position" = Vector2(250, 480)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"TimeScale 2", &"Add2", 1, &"TimeScale", &"TimeScale", 0, &"Flailing", &"TimeScale 2", 0, &"Peeking"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_ai2c5"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3c32r"]
+animation = &"peek"
+use_custom_timeline = true
+timeline_length = 1.0
+stretch_time_scale = true
+start_offset = 1.0
+loop_mode = 0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ctoln"]
+animation = &"sway_slow"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ctvn5"]
+animation = &"snapping"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_yaek0"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_3c32r"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_72nji"]
+graph_offset = Vector2(-112.5, 22.951765)
+nodes/output/position = Vector2(1000, 70)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ctvn5")
+nodes/Animation/position = Vector2(380, 290)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_ai2c5")
+nodes/Add2/position = Vector2(550, 90)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_3c32r")
+"nodes/Animation 2/position" = Vector2(380, 120)
+nodes/Flailing/node = SubResource("AnimationNodeAdd2_3c32r")
+nodes/Flailing/position = Vector2(790, 60)
+nodes/FlailSpeed/node = SubResource("AnimationNodeTimeScale_yaek0")
+nodes/FlailSpeed/position = Vector2(550, 450)
+"nodes/Animation 3/node" = SubResource("AnimationNodeAnimation_ctoln")
+"nodes/Animation 3/position" = Vector2(380, 480)
+node_connections = [&"output", 0, &"Flailing", &"Add2", 0, &"Animation 2", &"Add2", 1, &"Animation", &"Flailing", 0, &"Add2", &"Flailing", 1, &"FlailSpeed", &"FlailSpeed", 0, &"Animation 3"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i44a2"]
+animation = &"stop"
+advance_on_start = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xp2rl"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_72nji"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kgoa1"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ai2c5"]
+states/End/position = Vector2(846.6953, 58.035156)
+states/Rise/node = SubResource("AnimationNodeBlendTree_ctoln")
+states/Rise/position = Vector2(408.45313, 88.53558)
+states/Snap/node = SubResource("AnimationNodeBlendTree_72nji")
+states/Snap/position = Vector2(583.5481, 88.781555)
+states/Start/position = Vector2(82.11719, 88.88208)
+states/stop/node = SubResource("AnimationNodeAnimation_i44a2")
+states/stop/position = Vector2(242.96219, 87.21396)
+transitions = ["Rise", "Snap", SubResource("AnimationNodeStateMachineTransition_xp2rl"), "Start", "stop", SubResource("AnimationNodeStateMachineTransition_72nji"), "stop", "Rise", SubResource("AnimationNodeStateMachineTransition_kgoa1")]
+graph_offset = Vector2(-75.01437, -67.4475)
+
+[sub_resource type="Animation" id="Animation_i44a2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 67)]
+}
+tracks/2/type = "animation"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Animations")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": PackedStringArray("[stop]"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_72nji"]
+resource_name = "peek"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, 2),
+"update": 0,
+"values": [Vector2(10, 67), Vector2(10, 47)]
+}
+
+[sub_resource type="Animation" id="Animation_ctvn5"]
+resource_name = "sway_slow"
+length = 4.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:rotation")
+tracks/0/interp = 4
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.17453292519943295, 0.0, 0.17453292519943295, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ai2c5"]
+resource_name = "snapping"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Animations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("sprite/snapping"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_ctoln"]
+resource_name = "stop"
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Animations")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("[stop]"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_72nji"]
+_data = {
+&"RESET": SubResource("Animation_i44a2"),
+&"peek": SubResource("Animation_72nji"),
+&"snapping": SubResource("Animation_ai2c5"),
+&"stop": SubResource("Animation_ctoln"),
+&"sway_slow": SubResource("Animation_ctvn5")
+}
 
 [sub_resource type="Animation" id="Animation_m6qkv"]
 length = 0.001
@@ -241,7 +441,7 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="Animation" id="Animation_ctoln"]
+[sub_resource type="Animation" id="Animation_xp2rl"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -268,7 +468,7 @@ tracks/1/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_ai2c5"]
+[sub_resource type="Animation" id="Animation_kgoa1"]
 length = 0.6666667
 loop_mode = 1
 tracks/0/type = "value"
@@ -296,7 +496,7 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_yaek0"]
+[sub_resource type="Animation" id="Animation_6wtyp"]
 length = 1.5384616
 loop_mode = 1
 tracks/0/type = "value"
@@ -324,7 +524,7 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_3c32r"]
+[sub_resource type="Animation" id="Animation_ixyh8"]
 length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -354,10 +554,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ctvn5"]
 _data = {
-&"idle_claw_closed": SubResource("Animation_ctoln"),
-&"idle_claw_open": SubResource("Animation_ai2c5"),
-&"idle_claw_opening": SubResource("Animation_yaek0"),
-&"snapping": SubResource("Animation_3c32r")
+&"idle_claw_closed": SubResource("Animation_xp2rl"),
+&"idle_claw_open": SubResource("Animation_kgoa1"),
+&"idle_claw_opening": SubResource("Animation_6wtyp"),
+&"snapping": SubResource("Animation_ixyh8")
 }
 
 [node name="FlailingCrabArm" type="Node2D"]
@@ -366,6 +566,21 @@ script = ExtResource("1_48ij5")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_wek6f")
 metadata/_custom_type_script = "uid://dc6vhyynq1mq8"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ai2c5")
+anim_player = NodePath("../AnimationPlayerNew")
+parameters/Rise/Add2/add_amount = 0.25
+parameters/Rise/TimeScale/scale = 1.0
+"parameters/Rise/TimeScale 2/scale" = 0.5
+parameters/Snap/Add2/add_amount = 1.0
+parameters/Snap/Flailing/add_amount = 0.25
+parameters/Snap/FlailSpeed/scale = 8.0
+
+[node name="AnimationPlayerNew" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_72nji")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -395,11 +610,11 @@ max_polyphony = 4
 bus = &"Enemy SFX"
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("animations")]
-position = Vector2(-25, 58)
+position = Vector2(10, 67)
 sprite_frames = SubResource("SpriteFrames_obwof")
-animation = &"idle_claw_closed"
-frame_progress = 0.6840098
-offset = Vector2(-9.893341, -29.951279)
+animation = &"snapping"
+frame = 1
+offset = Vector2(-10, -31)
 script = ExtResource("7_ai2c5")
 animations = NodePath("Animations")
 metadata/_custom_type_script = "uid://dgkufqnoysrjd"

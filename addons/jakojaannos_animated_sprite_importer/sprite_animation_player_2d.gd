@@ -30,11 +30,13 @@ var _frame_offset: Vector2:
 			_frame_offsets[animation] = new_array
 
 		var offsets = _frame_offsets[animation]
-		offsets[frame] = value
+		var old_offset: Vector2 = offsets[frame]
+		var new_offset := position - value
+		#var delta = new_offset - old_offset
 
-		var delta = value - position
-		offset = -value
-		position = value
+		offsets[frame] = new_offset
+		offset = new_offset
+		position = -new_offset
 
 
 static func _add_discrete_animation_track(a: Animation, path: NodePath) -> int:
