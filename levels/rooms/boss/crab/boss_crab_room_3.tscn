@@ -10,7 +10,7 @@
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="6_yl3b1"]
 [ext_resource type="Texture2D" uid="uid://dyyewpvcbqr5x" path="res://boss/crab/rapuwalk.png" id="7_djm20"]
 [ext_resource type="PackedScene" uid="uid://ca4p0t703gbx" path="res://boss/crab/bossy_snappy.tscn" id="8_66tns"]
-[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="9_fw4ry"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://addons/jakojaannos_components_library/components/hitbox.gd" id="9_fw4ry"]
 [ext_resource type="Script" uid="uid://jfyby71sefyu" path="res://utilities/trigger_hurt.gd" id="10_qx2x6"]
 [ext_resource type="Texture2D" uid="uid://pw7s3hg04pje" path="res://boss/crab/rapu_delaa.png" id="11_bfwlk"]
 [ext_resource type="Script" uid="uid://djfpp2d3fbril" path="res://boss/boss_healthbar.gd" id="12_ihd1f"]

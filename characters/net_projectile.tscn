@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_hqja7"]
 [ext_resource type="Script" uid="uid://dhxp0561m5pwb" path="res://addons/jakojaannos_components_library/components/lifetime.gd" id="2_ee6op"]
 [ext_resource type="Texture2D" uid="uid://7r0ldnpfl5sr" path="res://characters/player/verkko.png" id="2_hqja7"]
-[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_hxwdh"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://addons/jakojaannos_components_library/components/hurtbox.gd" id="3_hxwdh"]
 [ext_resource type="Script" uid="uid://cdsehs74oj2vb" path="res://characters/net_hit.gd" id="6_rg887"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hxwdh"]

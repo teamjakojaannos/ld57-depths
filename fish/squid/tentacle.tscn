@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cwmbpjiybokgk" path="res://boss/squid/tentacle.gd" id="1_jpyso"]
 [ext_resource type="Script" uid="uid://cg7sh665ycy8b" path="res://fish/squid/tentacle_segments.gd" id="3_hxd3t"]
-[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="3_qj5eb"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://addons/jakojaannos_components_library/components/hurtbox.gd" id="3_qj5eb"]
 [ext_resource type="PackedScene" uid="uid://d4m7jblaqmqlg" path="res://boss/squid/tentacle_segment.tscn" id="4_jpyso"]
-[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="4_pcm7t"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://addons/jakojaannos_components_library/components/hitbox.gd" id="4_pcm7t"]
 [ext_resource type="Texture2D" uid="uid://c5lmt4qk0g8me" path="res://boss/squid/bad_dragon.png" id="5_jpyso"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpyso"]

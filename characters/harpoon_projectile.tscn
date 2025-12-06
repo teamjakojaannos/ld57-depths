@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://e7enuvutsgkh" path="res://characters/projectile.gd" id="1_1vnpa"]
 [ext_resource type="Texture2D" uid="uid://8piw52kr2jqf" path="res://characters/harppuuna_projektiili.png" id="2_1vnpa"]
 [ext_resource type="Texture2D" uid="uid://brigoy27bkp6p" path="res://particles/mikrokupla.png" id="3_sq7bj"]
-[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="4_k6xo0"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://addons/jakojaannos_components_library/components/hurtbox.gd" id="4_k6xo0"]
 [ext_resource type="Script" uid="uid://s13kjqk25no0" path="res://characters/player/harpoon_sfx.gd" id="5_op6yx"]
 
 [sub_resource type="Gradient" id="Gradient_sq7bj"]

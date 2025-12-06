@@ -4,8 +4,8 @@
 [ext_resource type="Script" uid="uid://dc6vhyynq1mq8" path="res://addons/jakojaannos_components_library/components/character/health.gd" id="2_3hn7x"]
 [ext_resource type="Script" uid="uid://ds8qvr68yl5bj" path="res://characters/bounty.gd" id="3_4wptj"]
 [ext_resource type="Script" uid="uid://dfv0kbqj2ou5n" path="res://characters/damage_effects.gd" id="4_3u15w"]
-[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://characters/hitbox.gd" id="5_kycfx"]
-[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://characters/hurtbox.gd" id="6_o61e5"]
+[ext_resource type="Script" uid="uid://5fp57vk4c4a3" path="res://addons/jakojaannos_components_library/components/hitbox.gd" id="5_kycfx"]
+[ext_resource type="Script" uid="uid://bc3ebm4bllm2e" path="res://addons/jakojaannos_components_library/components/hurtbox.gd" id="6_o61e5"]
 [ext_resource type="Texture2D" uid="uid://csnj3p2sqb4fx" path="res://fish/eel/eeel.png" id="7_jas1x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4hyh"]
