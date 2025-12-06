@@ -1,0 +1,6 @@
+[submodule "addons/jakojaannos_utilities_library"]
+	path = addons/jakojaannos_utilities_library
+	url = git@github.com:teamjakojaannos/godot-addon-utilities.git
+[submodule "addons/jakojaannos_components_library"]
+	path = addons/jakojaannos_components_library
+	url = git@github.com:teamjakojaannos/godot-addon-components.git
